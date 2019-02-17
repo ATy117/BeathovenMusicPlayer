@@ -3,14 +3,26 @@
     -jfx-focus-color: #ffba08;
     -jfx-unfocus-color: #303030;
 }
+
+.jfx-password-field
+{
+    -jfx-focus-color: #ffba08;
+    -jfx-unfocus-color: #303030;
+}
+
 .text-field
 {
-    //-fx-prompt-text-fill: rgb(255, 255, 255);
     -fx-text-fill: rgb(255, 255, 255);
+}
+
+.jfx-button
+{
+    -fx-background-color: #ffba08;
 }
 
 .text-field .input-line
 {
     -fx-background-color: rgb(255, 186, 8);
 }
+
 
