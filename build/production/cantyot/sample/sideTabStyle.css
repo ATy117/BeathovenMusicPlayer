@@ -1,0 +1,9 @@
+.jfx-tab-pane  {
+    -fx-background-color: WHITE;
+}
+
+.jfx-tab-pane .headers-region {
+    -fx-background-color: #FFBA08;
+}
+
+

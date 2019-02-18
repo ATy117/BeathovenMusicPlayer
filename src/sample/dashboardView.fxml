@@ -1,14 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXSlider?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #303030;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.dashboardController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #333333;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.dashboardController">
    <children>
-      <AnchorPane layoutY="534.0" prefHeight="66.0" prefWidth="900.0" style="-fx-background-color: #FFBA08;">
+      <AnchorPane layoutY="502.0" prefHeight="98.0" prefWidth="900.0" style="-fx-background-color: #FFBA08;">
          <effect>
             <DropShadow />
          </effect>
+         <children>
+            <JFXSlider layoutX="243.0" layoutY="63.0" prefHeight="24.0" prefWidth="415.0" stylesheets="@mediaPlayerStyle.css" />
+            <Circle accessibleRole="BUTTON" fill="WHITE" layoutX="450.0" layoutY="40.0" radius="20.0" stroke="WHITE" strokeType="INSIDE" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="52.0" layoutX="23.0" layoutY="23.0" stroke="WHITE" strokeType="INSIDE" width="51.0" />
+            <Text fill="WHITE" layoutX="85.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title of the song">
+               <font>
+                  <Font name="Rockwell" size="15.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="85.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="By Apple">
+               <font>
+                  <Font name="Rockwell" size="12.0" />
+               </font>
+            </Text>
+         </children>
       </AnchorPane>
    </children>
 </AnchorPane>
