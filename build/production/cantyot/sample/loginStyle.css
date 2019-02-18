@@ -17,11 +17,6 @@
     -fx-padding: 10;
 }
 
-.password-field
-{
-    -width: 10px;
-}
-
 .jfx-button
 {
     -fx-background-color: #ffba08;
