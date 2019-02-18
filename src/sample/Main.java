@@ -8,10 +8,12 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("loginView.fxml"));
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Beathoven");
         primaryStage.setScene(new Scene(root, 900, 600));
         primaryStage.setResizable(false);
         primaryStage.show();

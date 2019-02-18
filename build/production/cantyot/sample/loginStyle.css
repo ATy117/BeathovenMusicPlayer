@@ -1,12 +1,12 @@
 .jfx-text-field
 {
-    -jfx-focus-color: #ffba08;
+    -jfx-focus-color: #FFBA08;
     -jfx-unfocus-color: #303030;
 }
 
 .jfx-password-field
 {
-    -jfx-focus-color: #ffba08;
+    -jfx-focus-color: #FFBA08;
     -jfx-unfocus-color: #303030;
 }
 
@@ -14,12 +14,11 @@
 {
     -fx-text-fill: rgb(255, 255, 255);
     -fx-font: 16px "Menlo";
-    -fx-padding: 10;
 }
 
 .jfx-button
 {
-    -fx-background-color: #ffba08;
+    -fx-background-color: #FFBA08;
 }
 
 .text-field .input-line

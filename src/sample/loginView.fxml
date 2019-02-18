@@ -11,13 +11,13 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="914.0" style="-fx-background-color: #303030;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.loginController">
    <children>
-      <AnchorPane prefHeight="601.0" prefWidth="341.0" style="-fx-background-color: #ffba08;">
+      <AnchorPane prefHeight="601.0" prefWidth="341.0" style="-fx-background-color: #FFBA08;">
          <effect>
-            <DropShadow />
+            <DropShadow spread="0.75" />
          </effect></AnchorPane>
-      <AnchorPane fx:id="welcomeAnchor" layoutX="341.0" layoutY="-2.0" prefHeight="605.0" prefWidth="556.0">
+      <AnchorPane fx:id="welcomeAnchor" layoutX="341.0" layoutY="2.0" prefHeight="605.0" prefWidth="556.0">
          <children>
-            <JFXTextField focusColor="#ffba08" labelFloat="true" layoutX="144.0" layoutY="148.0" prefHeight="40.0" prefWidth="276.0" promptText="Username" stylesheets="@loginStyle.css">
+            <JFXTextField focusColor="#ffba08" labelFloat="true" layoutX="157.0" layoutY="156.0" prefHeight="40.0" prefWidth="256.0" promptText="Username" stylesheets="@loginStyle.css">
                <font>
                   <Font size="17.0" />
                </font>
@@ -27,22 +27,22 @@
                   <Font name="Menlo Regular" size="26.0" />
                </font>
             </Text>
-            <JFXPasswordField layoutX="144.0" layoutY="208.0" prefHeight="40.0" prefWidth="276.0" promptText="Password" stylesheets="@loginStyle.css">
+            <JFXPasswordField labelFloat="true" layoutX="157.0" layoutY="219.0" prefHeight="40.0" prefWidth="256.0" promptText="Password" stylesheets="@loginStyle.css">
                <font>
-                  <Font size="17.0" />
+                  <Font size="8.0" />
                </font>
             </JFXPasswordField>
-            <JFXButton fx:id="loginButton" buttonType="RAISED" layoutX="157.0" layoutY="273.0" prefHeight="39.0" prefWidth="256.0" ripplerFill="#bf8c09" stylesheets="@loginStyle.css" text="Login" textFill="WHITE">
+            <JFXButton fx:id="loginButton" buttonType="RAISED" layoutX="157.0" layoutY="283.0" onAction="#changeToDashboard" prefHeight="39.0" prefWidth="256.0" ripplerFill="#bf8c09" stylesheets="@loginStyle.css" text="Login" textFill="WHITE">
                <font>
                   <Font name="Menlo Regular" size="21.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="accountRegisterButton" buttonType="RAISED" layoutX="157.0" layoutY="475.0" onAction="#changeToRegister" prefHeight="0.0" prefWidth="256.0" ripplerFill="#785701" stylesheets="@loginStyle.css" text="Register" textFill="WHITE">
+            <JFXButton fx:id="accountRegisterButton" buttonType="RAISED" layoutX="157.0" layoutY="475.0" onAction="#changeToRegister" prefHeight="40.0" prefWidth="256.0" ripplerFill="#785701" stylesheets="@loginStyle.css" text="Register" textFill="WHITE">
                <font>
                   <Font name="Menlo Regular" size="21.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="guestLoginButton" buttonType="RAISED" layoutX="157.0" layoutY="410.0" prefHeight="40.0" prefWidth="256.0" ripplerFill="#785601" stylesheets="@loginStyle.css" text="Login as Guest" textFill="WHITE">
+            <JFXButton fx:id="guestLoginButton" buttonType="RAISED" layoutX="157.0" layoutY="410.0" onAction="#changeToDashboard" prefHeight="40.0" prefWidth="256.0" ripplerFill="#785601" stylesheets="@loginStyle.css" text="Login as Guest" textFill="WHITE">
                <font>
                   <Font name="Menlo Regular" size="21.0" />
                </font>
@@ -56,21 +56,40 @@
             <Line endX="2.6014404296875" endY="-3.0517578125E-5" layoutX="405.0" layoutY="367.0" startX="-100.0" stroke="WHITE" strokeWidth="1.2" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="registerAnchor" layoutX="343.0" prefHeight="648.0" prefWidth="616.0" visible="false">
+      <AnchorPane fx:id="registerAnchor" layoutX="342.0" prefHeight="648.0" prefWidth="616.0" visible="false">
          <children>
-            <JFXTextField layoutX="70.0" layoutY="212.0" prefHeight="43.0" prefWidth="427.0" promptText="Username" stylesheets="@loginStyle.css" />
-            <JFXPasswordField layoutX="71.0" layoutY="278.0" prefHeight="39.0" prefWidth="428.0" promptText="Password" stylesheets="@loginStyle.css" />
+            <JFXTextField labelFloat="true" layoutX="70.0" layoutY="212.0" prefHeight="43.0" prefWidth="427.0" promptText="Username" stylesheets="@loginStyle.css" />
+            <JFXPasswordField labelFloat="true" layoutX="71.0" layoutY="278.0" prefHeight="39.0" prefWidth="428.0" promptText="Password" stylesheets="@loginStyle.css">
+               <font>
+                  <Font size="9.0" />
+               </font></JFXPasswordField>
             <Text fill="WHITE" layoutX="160.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register Account">
                <font>
                   <Font name="Menlo Regular" size="26.0" />
                </font>
             </Text>
-            <JFXButton buttonType="RAISED" layoutX="82.0" layoutY="357.0" prefHeight="40.0" prefWidth="408.0" ripplerFill="#bf8c09" stylesheets="@loginStyle.css" text="Register" textFill="WHITE">
+            <JFXButton buttonType="RAISED" layoutX="82.0" layoutY="357.0" prefHeight="40.0" prefWidth="408.0" ripplerFill="WHITE" stylesheets="@loginStyle.css" text="Register" textFill="WHITE">
                <font>
                   <Font name="Menlo Regular" size="21.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="registerBack" buttonType="RAISED" layoutX="27.0" layoutY="357.0" onAction="#changeToWelcome" prefHeight="29.0" prefWidth="40.0" ripplerFill="#8f6d01" stylesheets="@loginStyle.css" text="&lt;" textFill="WHITE">
+            <JFXButton fx:id="registerBack" buttonType="RAISED" layoutX="17.0" layoutY="357.0" minWidth="32.0" onAction="#changeToWelcome" prefHeight="40.0" prefWidth="54.0" ripplerFill="WHITE" stylesheets="@loginStyle.css" text="&lt;" textFill="WHITE">
+               <font>
+                  <Font name="Menlo Regular" size="12.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="createProfileAnchor" layoutX="342.0" layoutY="-2.0" prefHeight="612.0" prefWidth="580.0" visible="false">
+         <children>
+            <Text fill="WHITE" layoutX="180.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Profile">
+               <font>
+                  <Font name="Menlo Regular" size="26.0" />
+               </font>
+            </Text>
+            <JFXTextField labelFloat="true" layoutX="86.0" layoutY="340.0" prefHeight="43.0" prefWidth="209.0" promptText="First Name" stylesheets="@loginStyle.css" />
+            <JFXTextField labelFloat="true" layoutX="308.0" layoutY="340.0" prefHeight="43.0" prefWidth="183.0" promptText="Last Name" stylesheets="@loginStyle.css" />
+            <JFXButton buttonType="RAISED" layoutX="89.0" layoutY="417.0" prefHeight="40.0" prefWidth="402.0" ripplerFill="#bf8c09" stylesheets="@loginStyle.css" text="Register" textFill="WHITE">
                <font>
                   <Font name="Menlo Regular" size="21.0" />
                </font>
