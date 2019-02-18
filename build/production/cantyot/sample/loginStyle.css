@@ -13,6 +13,13 @@
 .text-field
 {
     -fx-text-fill: rgb(255, 255, 255);
+    -fx-font: 16px "Menlo";
+    -fx-padding: 10;
+}
+
+.password-field
+{
+    -width: 10px;
 }
 
 .jfx-button
@@ -24,5 +31,6 @@
 {
     -fx-background-color: rgb(255, 186, 8);
 }
+
 
 

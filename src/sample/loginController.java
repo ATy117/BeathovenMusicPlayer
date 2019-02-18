@@ -5,10 +5,11 @@ import javafx.scene.layout.AnchorPane;
 
 public class loginController {
 
-	public AnchorPane welcomeAnchor;
-	public AnchorPane registerAnchor;
 
-	public void loginScreen(ActionEvent actionEvent) {
+	public AnchorPane registerAnchor;
+	public AnchorPane welcomeAnchor;
+
+	public void changeToRegister(ActionEvent actionEvent) {
 		welcomeAnchor.setVisible(false);
 		registerAnchor.setVisible(true);
 	}
