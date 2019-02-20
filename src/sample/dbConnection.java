@@ -3,9 +3,8 @@ import java.sql.*;
 
 public class dbConnection {
     private final static String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
-    private final static String URL = "jdbc:mysql://localhost:3306//";
+    private final static String URL = "jdbc:mysql://localhost:3306/my_songs";
     private final static String USERNAME = "root";
-    private final static String DATABASE = "my_songs";
     private final static String PASSWORD = "12345678";
 
     public Connection getConnection() {
@@ -14,7 +13,7 @@ public class dbConnection {
 
 
             Class.forName(DRIVER_NAME);
-            Connection connection = DriverManager.getConnection(URL + DATABASE + "?autoReconnect=true&useSSL=false", USERNAME, PASSWORD);
+            Connection connection = DriverManager.getConnection(URL +"?autoReconnect=true&useSSL=false", USERNAME, PASSWORD);
 
             System.out.println("[MYSQL] CONNECTED SUCCESSFULLY");
             return connection;
