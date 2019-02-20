@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 
 public class loginController {
 
-
 	public AnchorPane registerAnchor;
 	public AnchorPane welcomeAnchor;
 	public JFXButton registerBack;
@@ -30,7 +29,7 @@ public class loginController {
 	public void changeToDashboard(ActionEvent actionEvent) throws Exception {
 		Parent dashboard = FXMLLoader.load(getClass().getResource("dashboardView.fxml"));
 		Stage myStage = (Stage) guestLoginButton.getScene().getWindow();
-		myStage.setScene(new Scene(dashboard, 900, 600));
+		myStage.setScene(new Scene(dashboard, 1000, 600));
 	}
 
 

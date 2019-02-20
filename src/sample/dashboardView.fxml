@@ -1,31 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXSlider?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #333333;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.dashboardController">
+<AnchorPane maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #333333;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.dashboardController">
    <children>
-      <AnchorPane layoutY="502.0" prefHeight="98.0" prefWidth="900.0" style="-fx-background-color: #FFBA08;">
+      <AnchorPane layoutX="-1.0" layoutY="531.0" maxWidth="1000.0" minWidth="1000.0" prefHeight="69.0" prefWidth="1000.0" style="-fx-background-color: #E9B050;">
          <effect>
             <DropShadow />
          </effect>
          <children>
-            <JFXSlider layoutX="243.0" layoutY="63.0" prefHeight="24.0" prefWidth="415.0" stylesheets="@mediaPlayerStyle.css" />
-            <Circle accessibleRole="BUTTON" fill="WHITE" layoutX="450.0" layoutY="40.0" radius="20.0" stroke="WHITE" strokeType="INSIDE" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="52.0" layoutX="23.0" layoutY="23.0" stroke="WHITE" strokeType="INSIDE" width="51.0" />
-            <Text fill="WHITE" layoutX="85.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title of the song">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="49.0" layoutX="14.0" layoutY="10.0" stroke="WHITE" strokeType="INSIDE" width="48.0" />
+            <Text fill="WHITE" layoutX="71.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Broken dreams" wrappingWidth="113.94287109375">
                <font>
                   <Font name="Rockwell" size="15.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="85.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="By Apple">
+            <Text fill="WHITE" layoutX="71.0" layoutY="47.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="By Sky" wrappingWidth="47.943359375">
                <font>
                   <Font name="Rockwell" size="12.0" />
+               </font>
+            </Text>
+            <JFXSlider layoutX="271.0" layoutY="23.0" prefHeight="24.0" prefWidth="560.0" stylesheets="@mediaPlayerStyle.css" />
+            <Label layoutX="225.0" layoutY="26.0" text="00:00" textFill="WHITE">
+               <font>
+                  <Font name="Rockwell" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="837.0" layoutY="25.0" text="00:00" textFill="WHITE">
+               <font>
+                  <Font name="Rockwell" size="13.0" />
+               </font>
+            </Label>
+            <Circle accessibleRole="BUTTON" fill="WHITE" layoutX="936.0" layoutY="34.0" opacity="0.7" radius="17.0" stroke="WHITE" strokeType="INSIDE" />
+         </children>
+      </AnchorPane>
+      <VBox layoutY="60.0" prefHeight="471.0" prefWidth="230.0" style="-fx-background-color: #20202020;" stylesheets="@sideTabStyle.css">
+         <children>
+            <JFXButton fx:id="songsTab" defaultButton="true" onAction="#switchSongsPane" prefHeight="60.0" prefWidth="230.0" text="Songs" textFill="WHITE">
+               <font>
+                  <Font name="Rockwell" size="19.0" />
+               </font></JFXButton>
+            <JFXButton fx:id="playlistsTab" defaultButton="true" onAction="#switchPlaylistsPane" prefHeight="60.0" prefWidth="230.0" text="Playlists" textFill="WHITE">
+               <font>
+                  <Font name="Rockwell" size="19.0" />
+               </font>
+            </JFXButton>
+            <JFXButton fx:id="favoritesTab" defaultButton="true" graphicTextGap="1.0" onAction="#switchFavoritesPane" prefHeight="60.0" prefWidth="230.0" text="Favorites" textFill="WHITE">
+               <font>
+                  <Font name="Rockwell" size="19.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </VBox>
+      <AnchorPane layoutX="-1.0" prefHeight="60.0" prefWidth="1000.0" style="-fx-background-color: #303030;">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <Pane accessibleRole="BUTTON" layoutY="-2.0" prefHeight="60.0" prefWidth="230.0">
+               <children>
+                  <Circle accessibleRole="BUTTON" fill="WHITE" layoutX="35.0" layoutY="31.0" opacity="0.7" radius="21.0" stroke="WHITE" strokeType="INSIDE" />
+                  <Text fill="WHITE" layoutX="76.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Denzel Paule Tan" wrappingWidth="139.94287109375">
+                     <font>
+                        <Font name="Rockwell" size="15.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Text fill="WHITE" layoutX="516.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGO" wrappingWidth="47.99998641014099">
+               <font>
+                  <Font name="Rockwell" size="15.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="songsPane" layoutX="230.0" layoutY="60.0" prefHeight="471.0" prefWidth="770.0" visible="false">
+         <children>
+            <Text fill="WHITE" layoutX="114.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="songs" wrappingWidth="47.99998641014099">
+               <font>
+                  <Font name="Rockwell" size="15.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="playlistsPane" layoutX="230.0" layoutY="60.0" prefHeight="471.0" prefWidth="770.0" visible="false">
+         <children>
+            <Text fill="WHITE" layoutX="240.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="playlists" wrappingWidth="47.99998641014099">
+               <font>
+                  <Font name="Rockwell" size="15.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="favoritesPane" layoutX="230.0" layoutY="60.0" prefHeight="471.0" prefWidth="770.0">
+         <children>
+            <Text fill="WHITE" layoutX="121.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="faves" wrappingWidth="47.99998641014099">
+               <font>
+                  <Font name="Rockwell" size="15.0" />
                </font>
             </Text>
          </children>
