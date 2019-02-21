@@ -11,12 +11,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("loginView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("startView.fxml"));
         primaryStage.setTitle("Beathoven");
         primaryStage.setScene(new Scene(root, 1000, 600));
         primaryStage.setResizable(false);
         primaryStage.show();
-        ;new FadeIn(root).play();
+
     }
 
 

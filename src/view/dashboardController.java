@@ -12,42 +12,36 @@ public class dashboardController {
 
 	public JFXScrollPane mainScrollPane;
 	public Text usernameHeader;
-	private songsTabController songsTabControl;
-	private favoritesTabController favoritesTabControl;
-	private playlistsTabController playlistsTabControl;
-	private profilesTabController profilesTabControl;
-
 
 	public void switchSongsPane(ActionEvent actionEvent) throws IOException {
 		clearPanes();
-		FXMLLoader loader = new FXMLLoader(songsTabController.class.getResource("songsTabView.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("songsTabView.fxml"));
 		AnchorPane page = loader.load();
 		mainScrollPane.getChildren().add(page);
-		songsTabControl = loader.getController();
+
 	}
 
 	public void switchPlaylistsPane(ActionEvent actionEvent) throws IOException {
 		clearPanes();
-		FXMLLoader loader = new FXMLLoader(songsTabController.class.getResource("playlistsTabView.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("playlistsTabView.fxml"));
 		AnchorPane page = loader.load();
 		mainScrollPane.getChildren().add(page);
-		playlistsTabControl = loader.getController();
+
 	}
 
 	public void switchFavoritesPane(ActionEvent actionEvent) throws IOException {
 		clearPanes();
-		FXMLLoader loader = new FXMLLoader(songsTabController.class.getResource("favoritesTabView.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("favoritesTabView.fxml"));
 		AnchorPane page = loader.load();
 		mainScrollPane.getChildren().add(page);
-		favoritesTabControl = loader.getController();
 	}
 
 	public void switchProfilePane(ActionEvent actionEvent) throws IOException {
 		clearPanes();
-		FXMLLoader loader = new FXMLLoader(songsTabController.class.getResource("profilesTabView.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("profilesTabView.fxml"));
 		AnchorPane page = loader.load();
 		mainScrollPane.getChildren().add(page);
-		profilesTabControl = loader.getController();
+
 	}
 
 	public void clearPanes() {

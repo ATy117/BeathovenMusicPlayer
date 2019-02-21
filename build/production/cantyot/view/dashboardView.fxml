@@ -43,7 +43,10 @@
             <DropShadow />
          </effect>
       </VBox>
-      <JFXScrollPane fx:id="mainScrollPane" layoutX="232.0" layoutY="63.0" prefHeight="468.0" prefWidth="767.0" style="-fx-background-color: #303030;" />
+      <JFXScrollPane fx:id="mainScrollPane" layoutX="232.0" layoutY="63.0" prefHeight="468.0" prefWidth="767.0" style="-fx-background-color: #303030;">
+         <children>
+            <fx:include source="songsTabView.fxml" />
+         </children></JFXScrollPane>
       <AnchorPane layoutX="-1.0" layoutY="531.0" maxWidth="1000.0" minWidth="1000.0" prefHeight="69.0" prefWidth="1000.0" style="-fx-background-color: #E9B050;">
          <effect>
             <DropShadow />
