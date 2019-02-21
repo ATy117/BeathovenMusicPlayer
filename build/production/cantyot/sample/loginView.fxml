@@ -32,17 +32,17 @@
                   <Font size="8.0" />
                </font>
             </JFXPasswordField>
-            <JFXButton fx:id="loginButton" buttonType="RAISED" layoutX="206.0" layoutY="286.0" onAction="#changeToDashboard" prefHeight="39.0" prefWidth="256.0" ripplerFill="#bf8c09" stylesheets="@loginStyle.css" text="Login" textFill="#221d1d">
+            <JFXButton fx:id="loginButton" buttonType="RAISED" layoutX="206.0" layoutY="286.0" onAction="#changeToDashboard" prefHeight="39.0" prefWidth="256.0" ripplerFill="WHITE" stylesheets="@loginStyle.css" text="Login" textFill="#221d1d">
                <font>
                   <Font name="Rockwell" size="21.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="accountRegisterButton" buttonType="RAISED" layoutX="206.0" layoutY="478.0" onAction="#changeToRegister" prefHeight="40.0" prefWidth="256.0" ripplerFill="#785701" stylesheets="@loginStyle.css" text="Register" textFill="#221d1d">
+            <JFXButton fx:id="accountRegisterButton" buttonType="RAISED" layoutX="206.0" layoutY="478.0" onAction="#changeToRegister" prefHeight="40.0" prefWidth="256.0" ripplerFill="WHITE" stylesheets="@loginStyle.css" text="Register" textFill="#221d1d">
                <font>
                   <Font name="Rockwell" size="21.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="guestLoginButton" buttonType="RAISED" layoutX="206.0" layoutY="413.0" onAction="#changeToDashboard" prefHeight="40.0" prefWidth="256.0" ripplerFill="#785601" stylesheets="@loginStyle.css" text="Login as Guest" textFill="#221d1d">
+            <JFXButton fx:id="guestLoginButton" buttonType="RAISED" layoutX="206.0" layoutY="413.0" onAction="#changeToDashboard" prefHeight="40.0" prefWidth="256.0" ripplerFill="WHITE" stylesheets="@loginStyle.css" text="Login as Guest" textFill="#221d1d">
                <font>
                   <Font name="Rockwell" size="21.0" />
                </font>
