@@ -1,4 +1,4 @@
-package sample;
+package view;
 
 import animatefx.animation.FadeIn;
 import javafx.application.Application;
