@@ -126,9 +126,9 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <ScrollPane fx:id="mainScrollPane" layoutX="209.0" layoutY="60.0" prefHeight="480.0" prefWidth="791.0" stylesheets="@pageTheme.css">
+      <ScrollPane fx:id="mainScrollPane" hbarPolicy="NEVER" layoutX="209.0" layoutY="61.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pannable="true" prefHeight="478.0" prefWidth="791.0" style="-fx-background-color: #303030;" stylesheets="@pageTheme.css">
          <content>
-            <fx:include source="songsTabView.fxml" />
+            <fx:include prefHeight="460.0" prefWidth="789.0" source="songsTabView.fxml" />
          </content>
          <effect>
             <InnerShadow />
