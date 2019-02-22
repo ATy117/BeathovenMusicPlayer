@@ -20,7 +20,7 @@
             <Font name="Menlo Regular" size="26.0" />
          </font>
       </Text>
-      <JFXButton buttonType="RAISED" layoutX="149.0" layoutY="362.0" prefHeight="40.0" prefWidth="408.0" ripplerFill="WHITE" stylesheets="@loginStyle.css" text="Register" textFill="#221d1d">
+      <JFXButton fx:id="registerConfirmButton" buttonType="RAISED" layoutX="149.0" layoutY="362.0" onAction="#changeToDashboard" prefHeight="40.0" prefWidth="408.0" ripplerFill="WHITE" stylesheets="@loginStyle.css" text="Register" textFill="#221d1d">
          <font>
             <Font name="Menlo Regular" size="21.0" />
          </font>
