@@ -6,6 +6,11 @@
     -fx-background-color:#303030;
 }
 
+.scroll-bar:horizontal {
+    -fx-opacity: 0;
+    -fx-padding:-7;
+}
+
 .increment-button, .decrement-button {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
