@@ -4,6 +4,8 @@
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
@@ -48,10 +50,16 @@
       </Text>
       <Line endX="2.6014404296875" endY="-3.0517578125E-5" layoutX="305.0" layoutY="383.0" startX="-100.0" stroke="WHITE" strokeWidth="1.2" />
       <Line endX="2.6014404296875" endY="-3.0517578125E-5" layoutX="452.0" layoutY="384.0" startX="-100.0" stroke="WHITE" strokeWidth="1.2" />
-      <AnchorPane prefHeight="84.0" prefWidth="660.0" style="-fx-background-color: #303030;">
+      <AnchorPane prefHeight="78.0" prefWidth="660.0" style="-fx-background-color: #303030;">
          <effect>
             <DropShadow />
          </effect>
+         <children>
+            <ImageView fx:id="logoIV" fitHeight="59.0" fitWidth="366.0" layoutX="152.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/resources/logo.jpg" />
+               </image></ImageView>
+         </children>
       </AnchorPane>
    </children>
 </AnchorPane>

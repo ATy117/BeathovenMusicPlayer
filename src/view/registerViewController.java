@@ -5,6 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -12,6 +14,11 @@ import java.io.IOException;
 public class registerViewController {
 	public JFXButton registerConfirmButton;
 	public JFXButton registerBackButton;
+	public ImageView logoIV;
+
+	public void initialize () {
+
+	}
 
 	public void changePane(ActionEvent actionEvent) throws IOException {
 		if (actionEvent.getSource() == registerConfirmButton) {
