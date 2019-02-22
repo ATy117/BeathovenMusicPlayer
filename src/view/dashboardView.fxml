@@ -5,6 +5,7 @@
 <?import com.jfoenix.controls.JFXSlider?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,7 +18,25 @@
 
 <AnchorPane fx:id="mainPane" maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #333333;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.dashboardController">
    <children>
-      <VBox layoutY="60.0" prefHeight="471.0" prefWidth="230.0" style="-fx-background-color: #202020;" stylesheets="@sideTabStyle.css">
+      <AnchorPane layoutY="459.0" prefHeight="81.0" prefWidth="209.0" style="-fx-background-color: #202020;">
+         <effect>
+            <InnerShadow />
+         </effect>
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="49.0" layoutX="10.0" layoutY="12.0" stroke="WHITE" strokeType="INSIDE" width="48.0" />
+            <Text fill="WHITE" layoutX="67.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Broken dreams" wrappingWidth="113.94287109375">
+               <font>
+                  <Font name="Rockwell" size="15.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="67.0" layoutY="58.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="By Sky" wrappingWidth="47.943359375">
+               <font>
+                  <Font name="Rockwell" size="12.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <VBox layoutY="60.0" prefHeight="403.0" prefWidth="209.0" style="-fx-background-color: #202020;" stylesheets="@sideTabStyle.css">
          <children>
             <JFXButton fx:id="songsTab" defaultButton="true" onAction="#changeTab" prefHeight="60.0" prefWidth="230.0" text="Songs" textFill="WHITE">
                <font>
@@ -40,41 +59,30 @@
             </JFXButton>
          </children>
          <effect>
-            <DropShadow />
+            <InnerShadow />
          </effect>
       </VBox>
-      <JFXScrollPane fx:id="mainScrollPane" layoutX="232.0" layoutY="63.0" prefHeight="468.0" prefWidth="767.0" style="-fx-background-color: #303030;">
+      <JFXScrollPane fx:id="mainScrollPane" layoutX="210.0" layoutY="61.0" prefHeight="479.0" prefWidth="789.0" style="-fx-background-color: #303030;">
          <children>
             <fx:include source="songsTabView.fxml" />
          </children></JFXScrollPane>
-      <AnchorPane layoutX="-1.0" layoutY="531.0" maxWidth="1000.0" minWidth="1000.0" prefHeight="69.0" prefWidth="1000.0" style="-fx-background-color: #E9B050;">
+      <AnchorPane layoutY="540.0" maxWidth="1000.0" minWidth="1000.0" prefHeight="60.0" prefWidth="1000.0" style="-fx-background-color: #E9B050;">
          <effect>
             <DropShadow />
          </effect>
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="49.0" layoutX="14.0" layoutY="10.0" stroke="WHITE" strokeType="INSIDE" width="48.0" />
-            <Text fill="WHITE" layoutX="71.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Broken dreams" wrappingWidth="113.94287109375">
-               <font>
-                  <Font name="Rockwell" size="15.0" />
-               </font>
-            </Text>
-            <Text fill="WHITE" layoutX="71.0" layoutY="47.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="By Sky" wrappingWidth="47.943359375">
-               <font>
-                  <Font name="Rockwell" size="12.0" />
-               </font>
-            </Text>
-            <JFXSlider layoutX="271.0" layoutY="23.0" prefHeight="24.0" prefWidth="560.0" stylesheets="@mediaPlayerStyle.css" />
-            <Label layoutX="225.0" layoutY="26.0" text="00:00" textFill="WHITE">
+            <JFXSlider layoutX="261.0" layoutY="18.0" prefHeight="24.0" prefWidth="560.0" stylesheets="@mediaPlayerStyle.css" />
+            <Label layoutX="212.0" layoutY="21.0" text="00:00" textFill="WHITE">
                <font>
                   <Font name="Rockwell" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="837.0" layoutY="25.0" text="00:00" textFill="WHITE">
+            <Label layoutX="832.0" layoutY="21.0" text="00:00" textFill="WHITE">
                <font>
                   <Font name="Rockwell" size="13.0" />
                </font>
             </Label>
-            <Circle accessibleRole="BUTTON" fill="WHITE" layoutX="936.0" layoutY="34.0" opacity="0.7" radius="17.0" stroke="WHITE" strokeType="INSIDE" />
+            <Circle accessibleRole="BUTTON" fill="WHITE" layoutX="933.0" layoutY="30.0" opacity="0.7" radius="17.0" stroke="WHITE" strokeType="INSIDE" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="-1.0" prefHeight="60.0" prefWidth="1000.0" style="-fx-background-color: #303030;">

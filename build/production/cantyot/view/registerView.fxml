@@ -3,32 +3,38 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="registerAnchor" prefHeight="600.0" prefWidth="660.0" style="-fx-background-color: #303030;" stylesheets="@loginStyle.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.startController">
+<AnchorPane fx:id="registerAnchor" prefHeight="600.0" prefWidth="660.0" style="-fx-background-color: #303030;" stylesheets="@loginStyle.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.registerViewController">
    <children>
-      <JFXTextField labelFloat="true" layoutX="137.0" layoutY="217.0" prefHeight="43.0" prefWidth="427.0" promptText="Username" stylesheets="@loginStyle.css" />
-      <JFXPasswordField labelFloat="true" layoutX="138.0" layoutY="283.0" prefHeight="39.0" prefWidth="428.0" promptText="Password" stylesheets="@loginStyle.css">
+      <JFXTextField labelFloat="true" layoutX="148.0" layoutY="242.0" prefHeight="43.0" prefWidth="408.0" promptText="Username" stylesheets="@loginStyle.css" />
+      <JFXPasswordField labelFloat="true" layoutX="148.0" layoutY="311.0" prefHeight="39.0" prefWidth="408.0" promptText="Password" stylesheets="@loginStyle.css">
          <font>
             <Font size="9.0" />
          </font>
       </JFXPasswordField>
-      <Text fill="WHITE" layoutX="227.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register Account">
+      <Text fill="WHITE" layoutX="205.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register Account">
          <font>
             <Font name="Menlo Regular" size="26.0" />
          </font>
       </Text>
-      <JFXButton fx:id="registerConfirmButton" buttonType="RAISED" layoutX="149.0" layoutY="362.0" onAction="#changeToDashboard" prefHeight="40.0" prefWidth="408.0" ripplerFill="WHITE" stylesheets="@loginStyle.css" text="Register" textFill="#221d1d">
+      <JFXButton fx:id="registerConfirmButton" buttonType="RAISED" layoutX="148.0" layoutY="410.0" onAction="#changePane" prefHeight="40.0" prefWidth="408.0" ripplerFill="WHITE" stylesheets="@loginStyle.css" text="Register" textFill="#221d1d">
          <font>
             <Font name="Menlo Regular" size="21.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="registerBack" buttonType="RAISED" layoutX="84.0" layoutY="362.0" minWidth="32.0" onAction="#changeToWelcome" prefHeight="40.0" prefWidth="54.0" ripplerFill="WHITE" stylesheets="@loginStyle.css" text="&lt;" textFill="WHITE">
+      <JFXButton fx:id="registerBackButton" buttonType="RAISED" layoutX="84.0" layoutY="410.0" minWidth="32.0" onAction="#changePane" prefHeight="40.0" prefWidth="54.0" ripplerFill="WHITE" stylesheets="@loginStyle.css" text="&lt;" textFill="WHITE">
          <font>
             <Font name="Menlo Regular" size="12.0" />
          </font>
       </JFXButton>
+      <AnchorPane prefHeight="84.0" prefWidth="660.0" style="-fx-background-color: #303030;">
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
    </children>
 </AnchorPane>
