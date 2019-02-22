@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class registerViewController {
+
 	public JFXButton registerConfirmButton;
 	public JFXButton registerBackButton;
 	public ImageView logoIV;
