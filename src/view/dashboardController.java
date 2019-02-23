@@ -27,8 +27,7 @@ public class dashboardController {
 	public JFXButton logoutButton;
 
 
-	public void initialize() throws IOException {
-
+	public void initialize()  {
 
 	}
 
@@ -60,5 +59,9 @@ public class dashboardController {
 		Parent dashboard = FXMLLoader.load(getClass().getResource("mainLoginView.fxml"));
 		Stage myStage = (Stage) logoutButton.getScene().getWindow();
 		myStage.setScene(new Scene(dashboard));
+	}
+
+	public void changeUsername (String s) {
+		usernameHeader.setText(s);
 	}
 }
