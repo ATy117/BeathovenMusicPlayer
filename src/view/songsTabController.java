@@ -105,6 +105,7 @@ public class songsTabController {
 				new FileChooser.ExtensionFilter("MP3 Files", "*.mp3"));
 
 		Stage myStage = (Stage) fileUploadButton.getScene().getWindow();
+
 		List<File> selectedFiles = fileChooser.showOpenMultipleDialog(myStage);
 
 		CopyOption[] options = new CopyOption[]{

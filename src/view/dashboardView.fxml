@@ -23,9 +23,6 @@
          <effect>
             <InnerShadow />
          </effect>
-         <children>
-            <fx:include source="songsTabView.fxml" />
-         </children>
       </AnchorPane>
       <AnchorPane layoutY="464.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="76.0" prefWidth="210.0" style="-fx-background-color: #101010;" stylesheets="@theme.css">
          <children>

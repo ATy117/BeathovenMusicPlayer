@@ -16,10 +16,17 @@ public class mainLoginController {
 	public JFXButton loginButton;
 	public JFXButton accountRegisterButton;
 	public JFXButton guestLoginButton;
+	public Stage primaryStage;
+
+	public void setPrimaryStage(Stage stage) {
+		this.primaryStage = stage;
+	}
+
 
 	public void changeLoginPane(ActionEvent actionEvent) throws IOException {
 		if (actionEvent.getSource() == loginButton) {
 			Parent dashboard = FXMLLoader.load(getClass().getResource("dashboardView.fxml"));
+
 			Stage myStage = (Stage) guestLoginButton.getScene().getWindow();
 			loginButton.setText("Logging in...");
 			PauseTransition pause = new PauseTransition(Duration.seconds(0.7));

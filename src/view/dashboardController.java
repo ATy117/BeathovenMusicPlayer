@@ -28,19 +28,22 @@ public class dashboardController {
 	public AnchorPane pageArea;
 	public JFXButton logoutButton;
 
-
-	
+	public void initialize() {
+		usernameHeader.setText("gab");
+	}
 
 	public void changeTab (ActionEvent actionEvent) throws IOException {
 		if (actionEvent.getSource()==songsTab) {
 			pageArea.getChildren().clear();
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("songsTabView.fxml"));
 			pageArea.getChildren().add(loader.load());
+
 		}
 		else if (actionEvent.getSource() == playlistsTab) {
 			pageArea.getChildren().clear();
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("playlistsTabView.fxml"));
 			pageArea.getChildren().add(loader.load());
+
 		}
 		else if (actionEvent.getSource() == favoritesTab) {
 			pageArea.getChildren().clear();
