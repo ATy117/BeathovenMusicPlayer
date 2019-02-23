@@ -44,7 +44,7 @@ public class songsTabController {
 			artist.setPrefWidth(270);
 
 			Button play = new Button(" ");
-			play.getStylesheets().add(getClass().getResource("icons.css").toString());
+			play.getStylesheets().add(getClass().getResource("theme.css").toString());
 			play.getStyleClass().add("play-button");
 			play.setMinHeight(32);
 			play.setMinWidth(32);
