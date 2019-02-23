@@ -17,7 +17,6 @@ public class mainLoginController {
 	public JFXButton accountRegisterButton;
 	public JFXButton guestLoginButton;
 
-
 	public void changeLoginPane(ActionEvent actionEvent) throws IOException {
 		if (actionEvent.getSource() == loginButton) {
 			Parent dashboard = FXMLLoader.load(getClass().getResource("createProfView.fxml"));

@@ -27,7 +27,9 @@ public class dashboardController {
 	public Text curSongArtist;
 
 
-	public void initialize() {
+	public void initialize() throws IOException{
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("songsTabView.fxml"));
+		pageArea.getChildren().add(loader.load());
 		usernameHeader.setText("gab");
 		usernameHeader.setText("gab");
 		curSongName.setText("No song playing");

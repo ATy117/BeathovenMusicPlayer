@@ -38,9 +38,13 @@ public class songsTabController {
 
 			Label title = new Label("Song " + i);
 			Label artist = new Label ("Artist " + i);
+			Label duration = new Label ("00:00");
 
 			title.setPrefWidth(300);
-			artist.setPrefWidth(270);
+			artist.setPrefWidth(220);
+			duration.setPrefWidth(40);
+
+			duration.setOpacity(0.50);
 
 			Button play = new Button(" ");
 			play.getStylesheets().add(getClass().getResource("theme.css").toString());
@@ -72,7 +76,7 @@ public class songsTabController {
 			});
 
 
-			songCell.getChildren().addAll(play, title, artist ,plus);
+			songCell.getChildren().addAll(play, duration, title, artist ,plus);
 			songsListView.getItems().add(songCell);
 
 			songCell.setOnMouseClicked(e -> {
