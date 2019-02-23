@@ -12,5 +12,5 @@ public abstract class User implements Serializable {
     public void setLibrary(Library library) {
         this.library = library;
     }
-    
+
 }
