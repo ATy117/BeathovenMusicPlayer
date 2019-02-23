@@ -27,9 +27,14 @@ public class dashboardController {
 	public JFXButton profilesTab;
 	public AnchorPane pageArea;
 	public JFXButton logoutButton;
+	public Text curSongName;
+	public Text curSongArtist;
 
 	public void initialize() {
+
 		usernameHeader.setText("gab");
+		curSongName.setText("No song playing");
+		curSongArtist.setText("");
 	}
 
 	public void changeTab (ActionEvent actionEvent) throws IOException {
@@ -62,9 +67,5 @@ public class dashboardController {
 		Parent dashboard = FXMLLoader.load(getClass().getResource("mainLoginView.fxml"));
 		Stage myStage = (Stage) logoutButton.getScene().getWindow();
 		myStage.setScene(new Scene(dashboard));
-	}
-
-	public void changeUsername (String s) {
-		usernameHeader.setText(s);
 	}
 }
