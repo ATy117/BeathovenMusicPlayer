@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="471.0" prefWidth="791.0" style="-fx-background-color: #303030;" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.songsTabController">
+<AnchorPane fx:id="songsPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="471.0" prefWidth="791.0" style="-fx-background-color: #303030;" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.songsTabController">
    <children>
       <Label layoutX="34.0" layoutY="29.0" prefHeight="34.0" prefWidth="93.0" text="Songs" textFill="WHITE">
          <font>
@@ -14,6 +14,11 @@
          </font>
       </Label>
       <JFXListView fx:id="songsListView" layoutX="20.0" layoutY="85.0" prefHeight="386.0" prefWidth="751.0" />
-      <JFXButton fx:id="fileUploadButton" layoutX="624.0" layoutY="29.0" onAction="#uploadFile" prefHeight="34.0" prefWidth="139.0" text="Upload a song" />
+      <JFXButton fx:id="fileUploadButton" layoutX="713.0" layoutY="23.0" onAction="#uploadFile" prefHeight="47.0" prefWidth="47.0" styleClass="upload-button" stylesheets="@icons.css" text=" " />
+      <Label layoutX="620.0" layoutY="29.0" prefHeight="34.0" prefWidth="93.0" text="UPLOAD" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

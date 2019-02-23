@@ -96,3 +96,17 @@
 #musicPlayer {
     -fx-background-color:  #E9B350;
 }
+
+.list-view .list-cell {
+    -fx-background-color: #303030;
+    -fx-text-fill: WHITE;
+}
+
+.list-view .label {
+    -fx-text-fill: WHITE;
+}
+
+.list-cell {
+    -fx-border-color: #000000;
+    -fx-border-width: 0 0 0.2 0;
+}
