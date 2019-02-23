@@ -23,6 +23,7 @@ public abstract class TrackCollection implements Serializable {
     public void addTrack (Track track){
         trackList.add(track);
     }
+
     public void deleteTrack(int index){
         trackList.remove(index);
     }
