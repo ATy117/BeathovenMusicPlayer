@@ -29,7 +29,9 @@ public class dashboardController {
 	public JFXButton logoutButton;
 
 
-	
+	public void initialize() {
+		usernameHeader.setText("gab");
+	}
 
 	public void changeTab (ActionEvent actionEvent) throws IOException {
 		if (actionEvent.getSource()==songsTab) {
