@@ -11,18 +11,6 @@
 
 <AnchorPane fx:id="createProfileAnchor" prefHeight="600.0" prefWidth="660.0" style="-fx-background-color: #303030;" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.createProfileController">
    <children>
-      <Text fill="WHITE" layoutX="218.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Your Profile" textAlignment="CENTER" wrappingWidth="201.60845947265625">
-         <font>
-            <Font name="Menlo Regular" size="26.0" />
-         </font>
-      </Text>
-      <JFXTextField labelFloat="true" layoutX="128.0" layoutY="366.0" prefHeight="43.0" prefWidth="209.0" promptText="First Name" />
-      <JFXTextField labelFloat="true" layoutX="350.0" layoutY="366.0" prefHeight="43.0" prefWidth="183.0" promptText="Last Name" />
-      <JFXButton buttonType="RAISED" layoutX="131.0" layoutY="443.0" prefHeight="40.0" prefWidth="402.0" ripplerFill="#bf8c09" text="Register" textFill="WHITE">
-         <font>
-            <Font name="Menlo Regular" size="21.0" />
-         </font>
-      </JFXButton>
       <AnchorPane prefHeight="78.0" prefWidth="660.0" style="-fx-background-color: #303030;">
          <effect>
             <DropShadow />
@@ -35,5 +23,22 @@
             </ImageView>
          </children>
       </AnchorPane>
+      <Text fill="WHITE" layoutX="218.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Your Profile" textAlignment="CENTER" wrappingWidth="201.60845947265625">
+         <font>
+            <Font name="Menlo Regular" size="26.0" />
+         </font>
+      </Text>
+      <JFXTextField labelFloat="true" layoutX="128.0" layoutY="366.0" prefHeight="43.0" prefWidth="209.0" promptText="First Name" />
+      <JFXTextField labelFloat="true" layoutX="350.0" layoutY="366.0" prefHeight="43.0" prefWidth="183.0" promptText="Last Name" />
+      <JFXButton fx:id="createProfButton" buttonType="RAISED" layoutX="131.0" layoutY="443.0" onAction="#changePane" prefHeight="40.0" prefWidth="402.0" ripplerFill="#bf8c09" text="Create" textFill="WHITE">
+         <font>
+            <Font name="Menlo Regular" size="21.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="createBackButton" buttonType="RAISED" layoutX="71.0" layoutY="443.0" onAction="#changePane" prefHeight="40.0" prefWidth="48.0" ripplerFill="#bf8c09" text="&lt;" textFill="WHITE">
+         <font>
+            <Font name="Menlo Regular" size="14.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>
