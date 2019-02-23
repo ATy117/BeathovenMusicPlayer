@@ -26,7 +26,6 @@ public class dashboardController {
 	public Text curSongName;
 	public Text curSongArtist;
 
-	public void initialize() {
 
 	public void initialize() {
 		usernameHeader.setText("gab");
