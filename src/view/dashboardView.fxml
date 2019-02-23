@@ -5,7 +5,6 @@
 <?import com.jfoenix.controls.JFXSlider?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
@@ -18,79 +17,34 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainPane" maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #333333;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.dashboardController">
+<AnchorPane fx:id="mainPane" maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #333333;" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.dashboardController">
    <children>
-      <AnchorPane layoutY="459.0" prefHeight="81.0" prefWidth="209.0" style="-fx-background-color: #202020;">
+      <AnchorPane fx:id="pageArea" layoutX="209.0" layoutY="61.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="479.0" prefWidth="791.0" style="-fx-background-color: #303030;">
          <effect>
             <InnerShadow />
          </effect>
+      </AnchorPane>
+      <AnchorPane layoutY="464.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="76.0" prefWidth="210.0" style="-fx-background-color: #101010;" stylesheets="@theme.css">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="42.0" layoutX="7.0" layoutY="20.0" stroke="WHITE" strokeType="INSIDE" width="42.0" />
-            <Text fill="WHITE" layoutX="60.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="hi hello haha hehe" wrappingWidth="131.94287109375">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="42.0" layoutX="13.0" layoutY="17.0" stroke="WHITE" strokeType="INSIDE" width="42.0" />
+            <Text fill="WHITE" layoutX="64.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Broken Dreams" wrappingWidth="140.29711109399796">
                <font>
-                  <Font name="Rockwell" size="13.0" />
+                  <Font name="Rockwell" size="11.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="60.0" layoutY="57.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="By Schuyler Ng" wrappingWidth="123.943359375">
+            <Text fill="WHITE" layoutX="64.0" layoutY="51.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="By Schuyler Ng" wrappingWidth="134.84617614746094">
                <font>
-                  <Font name="Rockwell" size="12.0" />
+                  <Font name="Rockwell" size="8.0" />
                </font>
             </Text>
          </children>
       </AnchorPane>
-      <JFXScrollPane layoutX="1.0" layoutY="61.0">
-         <children>
-            <VBox fillWidth="false" prefHeight="403.0" prefWidth="208.0" style="-fx-background-color: #202020;" stylesheets="@sideTabStyle.css">
-               <children>
-                  <Label alignment="CENTER" contentDisplay="TOP" opacity="0.42" prefHeight="38.0" prefWidth="211.0" text="Music Library" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Rockwell" size="13.0" />
-                     </font>
-                     <padding>
-                        <Insets top="20.0" />
-                     </padding>
-                  </Label>
-                  <JFXButton fx:id="songsTab" defaultButton="true" onAction="#changeTab" prefHeight="40.0" prefWidth="235.0" text="Songs" textAlignment="RIGHT" textFill="WHITE">
-                     <font>
-                        <Font name="Rockwell" size="19.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton fx:id="playlistsTab" defaultButton="true" onAction="#changeTab" prefHeight="60.0" prefWidth="230.0" text="Playlists" textFill="WHITE">
-                     <font>
-                        <Font name="Rockwell" size="19.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton fx:id="favoritesTab" defaultButton="true" graphicTextGap="1.0" onAction="#changeTab" prefHeight="60.0" prefWidth="230.0" text="Favorites" textFill="WHITE">
-                     <font>
-                        <Font name="Rockwell" size="19.0" />
-                     </font>
-                  </JFXButton>
-                  <Label alignment="TOP_CENTER" contentDisplay="TOP" opacity="0.42" prefHeight="38.0" prefWidth="150.0" text="Social" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Rockwell" size="13.0" />
-                     </font>
-                     <padding>
-                        <Insets top="20.0" />
-                     </padding>
-                  </Label>
-                  <JFXButton fx:id="profilesTab" defaultButton="true" graphicTextGap="1.0" onAction="#changeTab" prefHeight="60.0" prefWidth="230.0" text="My Profile" textFill="WHITE">
-                     <font>
-                        <Font name="Rockwell" size="19.0" />
-                     </font>
-                  </JFXButton>
-               </children>
-               <effect>
-                  <InnerShadow />
-               </effect>
-            </VBox>
-         </children>
-      </JFXScrollPane>
-      <AnchorPane layoutY="540.0" maxWidth="1000.0" minWidth="1000.0" prefHeight="60.0" prefWidth="1000.0" style="-fx-background-color: #E9B050;">
+      <AnchorPane id="musicPlayer" layoutY="540.0" maxWidth="1000.0" minWidth="1000.0" prefHeight="60.0" prefWidth="1000.0">
          <effect>
             <DropShadow />
          </effect>
          <children>
-            <JFXSlider layoutX="261.0" layoutY="18.0" prefHeight="24.0" prefWidth="560.0" stylesheets="@mediaPlayerStyle.css" />
+            <JFXSlider layoutX="261.0" layoutY="18.0" prefHeight="24.0" prefWidth="560.0" stylesheets="@theme.css" />
             <Label layoutX="212.0" layoutY="21.0" text="00:00" textFill="WHITE">
                <font>
                   <Font name="Rockwell" size="13.0" />
@@ -104,7 +58,51 @@
             <Circle accessibleRole="BUTTON" fill="WHITE" layoutX="933.0" layoutY="30.0" opacity="0.7" radius="17.0" stroke="WHITE" strokeType="INSIDE" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="-1.0" prefHeight="60.0" prefWidth="1000.0" style="-fx-background-color: #303030;">
+      <JFXScrollPane layoutX="1.0" layoutY="61.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="208.0">
+         <children>
+            <VBox fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="210.0" style="-fx-background-color: #202020;" styleClass="#tabButton" stylesheets="@theme.css">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="TOP" opacity="0.42" prefHeight="38.0" prefWidth="211.0" text="Music Library" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Rockwell" size="13.0" />
+                     </font>
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                  </Label>
+                  <JFXButton id="tabButton" fx:id="songsTab" defaultButton="true" onAction="#changeTab" prefHeight="40.0" prefWidth="235.0" text="Songs" textAlignment="RIGHT" textFill="WHITE">
+                     <font>
+                        <Font name="Rockwell" size="19.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton id="tabButton" fx:id="playlistsTab" defaultButton="true" onAction="#changeTab" prefHeight="60.0" prefWidth="230.0" text="Playlists" textFill="WHITE">
+                     <font>
+                        <Font name="Rockwell" size="19.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton id="tabButton" fx:id="favoritesTab" defaultButton="true" graphicTextGap="1.0" onAction="#changeTab" prefHeight="60.0" prefWidth="230.0" text="Favorites" textFill="WHITE">
+                     <font>
+                        <Font name="Rockwell" size="19.0" />
+                     </font>
+                  </JFXButton>
+                  <Label alignment="TOP_CENTER" contentDisplay="TOP" opacity="0.42" prefHeight="38.0" prefWidth="150.0" text="Social" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Rockwell" size="13.0" />
+                     </font>
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                  </Label>
+                  <JFXButton id="tabButton" fx:id="profilesTab" defaultButton="true" graphicTextGap="1.0" onAction="#changeTab" prefHeight="60.0" prefWidth="230.0" text="My Profile" textFill="WHITE">
+                     <font>
+                        <Font name="Rockwell" size="19.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </VBox>
+         </children>
+      </JFXScrollPane>
+      <AnchorPane id="mainHeader" layoutX="-1.0" prefHeight="60.0" prefWidth="1000.0">
          <effect>
             <DropShadow />
          </effect>
@@ -126,13 +124,5 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <ScrollPane fx:id="mainScrollPane" hbarPolicy="NEVER" layoutX="209.0" layoutY="61.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pannable="true" prefHeight="478.0" prefWidth="791.0" style="-fx-background-color: #303030;" stylesheets="@pageTheme.css">
-         <content>
-            <fx:include prefHeight="460.0" prefWidth="789.0" source="songsTabView.fxml" />
-         </content>
-         <effect>
-            <InnerShadow />
-         </effect>
-      </ScrollPane>
    </children>
 </AnchorPane>
