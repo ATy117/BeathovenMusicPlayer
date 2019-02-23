@@ -8,6 +8,7 @@ public class Profile implements Serializable {
     private String username;
     private String firstName;
     private String lastName;
+    private String avatarURL;
 
     private List<Song> favoriteSongs = new ArrayList<>();
     private List<Playlist> favoritePlaylists = new ArrayList<>();
@@ -34,6 +35,14 @@ public class Profile implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getAvatarURL() {
+        return avatarURL;
+    }
+
+    public void setAvatarURL(String avatarURL) {
+        this.avatarURL = avatarURL;
     }
 
     public void addFavoriteSong (Song song){

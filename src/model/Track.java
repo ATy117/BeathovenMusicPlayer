@@ -5,6 +5,8 @@ import java.io.Serializable;
 public abstract class Track implements Serializable {
 
     private String name;
+    private String trackURL;
+    private String imageURL;
     private String collection;
     private String genre;
     private int year;
@@ -23,6 +25,22 @@ public abstract class Track implements Serializable {
 
     public void setCollection(String collection) {
         this.collection = collection;
+    }
+
+    public String getTrackURL() {
+        return trackURL;
+    }
+
+    public void setTrackURL(String trackURL) {
+        this.trackURL = trackURL;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
     public String getGenre() {
