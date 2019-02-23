@@ -29,19 +29,29 @@ public class songsTabController {
 
 	public void initialize() {
 
-		fileUploadButton.getStyleClass().add("icon-button");
+		fileUploadButton.getStyleClass().add("upload-button");
+
 
 		// Song list renderer
 		for(int i=0; i<30; i++ ) {
 			HBox songCell = new HBox();
+			songCell.setSpacing(20);
 
 			Label title = new Label("Song " + i);
 			Label artist = new Label ("Artist " + i);
 
 			title.setPrefWidth(300);
-			artist.setPrefWidth(100);
+			artist.setPrefWidth(270);
+
+			Button play = new Button(" ");
+			play.getStylesheets().add(getClass().getResource("icons.css").toString());
+			play.getStyleClass().add("play-button");
+			play.setMinHeight(32);
+			play.setMinWidth(32);
+
 
 			Button plus = new Button("+");
+
 			plus.setOnMouseClicked(e -> {
 				PopOver popOver = new PopOver();
 				popOver.setArrowLocation(PopOver.ArrowLocation.RIGHT_CENTER);
@@ -52,9 +62,9 @@ public class songsTabController {
 				popOver.setDetachable(false);
 				popOver.show(plus);
 			});
-			
 
-			songCell.getChildren().addAll(artist, title,plus);
+
+			songCell.getChildren().addAll(play, title, artist ,plus);
 			songsListView.getItems().add(songCell);
 
 			songCell.setOnMouseClicked(e -> {

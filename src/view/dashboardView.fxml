@@ -19,7 +19,7 @@
 
 <AnchorPane fx:id="mainPane" maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #333333;" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.dashboardController">
    <children>
-      <AnchorPane fx:id="pageArea" layoutX="209.0" layoutY="61.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="479.0" prefWidth="791.0" style="-fx-background-color: #303030;">
+      <AnchorPane fx:id="pageArea" layoutX="210.0" layoutY="61.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="479.0" prefWidth="791.0" style="-fx-background-color: #303030;">
          <effect>
             <InnerShadow />
          </effect>
@@ -47,18 +47,20 @@
             <DropShadow />
          </effect>
          <children>
-            <JFXSlider layoutX="261.0" layoutY="18.0" prefHeight="24.0" prefWidth="560.0" stylesheets="@theme.css" />
-            <Label layoutX="212.0" layoutY="21.0" text="00:00" textFill="WHITE">
+            <JFXSlider layoutX="261.0" layoutY="18.0" prefHeight="24.0" prefWidth="666.0" stylesheets="@theme.css" />
+            <Label layoutX="210.0" layoutY="21.0" text="00:00" textFill="WHITE">
                <font>
                   <Font name="Rockwell" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="832.0" layoutY="21.0" text="00:00" textFill="WHITE">
+            <Label layoutX="941.0" layoutY="21.0" text="00:00" textFill="WHITE">
                <font>
                   <Font name="Rockwell" size="13.0" />
                </font>
             </Label>
-            <Circle accessibleRole="BUTTON" fill="WHITE" layoutX="933.0" layoutY="30.0" opacity="0.7" radius="17.0" stroke="WHITE" strokeType="INSIDE" />
+            <JFXButton layoutX="26.0" layoutY="17.0" prefHeight="27.0" prefWidth="35.0" styleClass="rewind-media" stylesheets="@theme.css" text=" " />
+            <JFXButton layoutX="96.0" layoutY="17.0" prefHeight="27.0" prefWidth="25.0" styleClass="play-media" stylesheets="@theme.css" text=" " />
+            <JFXButton layoutX="150.0" layoutY="17.0" prefHeight="27.0" prefWidth="35.0" styleClass="forward-media" stylesheets="@theme.css" />
          </children>
       </AnchorPane>
       <JFXScrollPane layoutX="1.0" layoutY="61.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="208.0">
@@ -105,7 +107,7 @@
             </VBox>
          </children>
       </JFXScrollPane>
-      <AnchorPane id="mainHeader" layoutX="-1.0" prefHeight="60.0" prefWidth="1000.0">
+      <AnchorPane id="mainHeader" layoutX="-1.0" prefHeight="60.0" prefWidth="1000.0" stylesheets="@theme.css">
          <effect>
             <DropShadow />
          </effect>
@@ -125,6 +127,12 @@
                   <Image url="@/resources/logo.jpg" />
                </image>
             </ImageView>
+            <JFXButton layoutX="931.0" layoutY="9.0" prefHeight="42.0" prefWidth="42.0" styleClass="logout-button" stylesheets="@theme.css" text=" " />
+            <Text fx:id="usernameHeader1" fill="WHITE" layoutX="861.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGOUT" wrappingWidth="62.94287109375">
+               <font>
+                  <Font name="Rockwell" size="13.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>
