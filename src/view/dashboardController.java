@@ -15,6 +15,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class dashboardController {
 	
@@ -27,8 +29,8 @@ public class dashboardController {
 	public JFXButton logoutButton;
 
 
-	public void initialize()  {
-
+	public void initialize() {
+		usernameHeader.setText("gab");
 	}
 
 	public void changeTab (ActionEvent actionEvent) throws IOException {
