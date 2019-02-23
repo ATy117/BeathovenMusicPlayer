@@ -20,7 +20,7 @@ public class dashboardController {
 	public JFXButton profilesTab;
 	public AnchorPane pageArea;
 
-	public void initialize() {
+	public void initialize() throws IOException {
 
 	}
 

@@ -19,25 +19,25 @@
 
 <AnchorPane fx:id="mainPane" maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #333333;" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.dashboardController">
    <children>
-      <AnchorPane fx:id="pageArea" layoutX="209.0" layoutY="61.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="479.0" prefWidth="791.0" style="-fx-background-color: #303030;">
+      <AnchorPane fx:id="pageArea" layoutX="209.0" layoutY="61.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="479.0" prefWidth="791.0" style="-fx-background-color: #303030;">
          <effect>
             <InnerShadow />
          </effect>
-      </AnchorPane>
-      <AnchorPane layoutY="459.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="81.0" prefWidth="208.0" style="-fx-background-color: #101010;" stylesheets="@theme.css">
-         <effect>
-            <DropShadow />
-         </effect>
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="42.0" layoutX="7.0" layoutY="20.0" stroke="WHITE" strokeType="INSIDE" width="42.0" />
-            <Text fill="WHITE" layoutX="56.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Broken Dreams" wrappingWidth="130.00000721216202">
+            <fx:include source="songsTabView.fxml" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="464.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="76.0" prefWidth="210.0" style="-fx-background-color: #101010;" stylesheets="@theme.css">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="42.0" layoutX="13.0" layoutY="17.0" stroke="WHITE" strokeType="INSIDE" width="42.0" />
+            <Text fill="WHITE" layoutX="64.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Broken Dreams" wrappingWidth="150.00000721216202">
                <font>
                   <Font name="Rockwell" size="13.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="56.0" layoutY="57.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="By Schuyler Ng" wrappingWidth="123.943359375">
+            <Text fill="WHITE" layoutX="64.0" layoutY="51.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="By Schuyler Ng" wrappingWidth="134.84617614746094">
                <font>
-                  <Font name="Rockwell" size="12.0" />
+                  <Font name="Rockwell" size="11.0" />
                </font>
             </Text>
          </children>
@@ -63,7 +63,7 @@
       </AnchorPane>
       <JFXScrollPane layoutX="1.0" layoutY="61.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="208.0">
          <children>
-            <VBox fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="208.0" style="-fx-background-color: #202020;" styleClass="#tabButton" stylesheets="@theme.css">
+            <VBox fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="210.0" style="-fx-background-color: #202020;" styleClass="#tabButton" stylesheets="@theme.css">
                <children>
                   <Label alignment="CENTER" contentDisplay="TOP" opacity="0.42" prefHeight="38.0" prefWidth="211.0" text="Music Library" textAlignment="CENTER" textFill="WHITE">
                      <font>
@@ -102,9 +102,6 @@
                      </font>
                   </JFXButton>
                </children>
-               <effect>
-                  <DropShadow />
-               </effect>
             </VBox>
          </children>
       </JFXScrollPane>
