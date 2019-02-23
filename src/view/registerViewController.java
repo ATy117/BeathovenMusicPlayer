@@ -17,9 +17,6 @@ public class registerViewController {
 	public JFXButton registerBackButton;
 	public ImageView logoIV;
 
-	public void initialize () {
-
-	}
 
 	public void changePane(ActionEvent actionEvent) throws IOException {
 		if (actionEvent.getSource() == registerConfirmButton) {

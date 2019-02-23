@@ -23,19 +23,16 @@
          <effect>
             <InnerShadow />
          </effect>
-         <children>
-            <fx:include source="songsTabView.fxml" />
-         </children>
       </AnchorPane>
       <AnchorPane layoutY="464.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="76.0" prefWidth="210.0" style="-fx-background-color: #101010;" stylesheets="@theme.css">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="42.0" layoutX="13.0" layoutY="17.0" stroke="WHITE" strokeType="INSIDE" width="42.0" />
-            <Text fill="WHITE" layoutX="64.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Broken Dreams" wrappingWidth="150.00000721216202">
+            <Text fx:id="curSongName" fill="WHITE" layoutX="64.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Broken Dreams" wrappingWidth="150.00000721216202">
                <font>
                   <Font name="Rockwell" size="13.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="64.0" layoutY="51.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="By Schuyler Ng" wrappingWidth="134.84617614746094">
+            <Text fx:id="curSongArtist" fill="WHITE" layoutX="64.0" layoutY="51.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="By Schuyler Ng" wrappingWidth="134.84617614746094">
                <font>
                   <Font name="Rockwell" size="11.0" />
                </font>
