@@ -127,8 +127,8 @@
                   <Image url="@/resources/logo.jpg" />
                </image>
             </ImageView>
-            <JFXButton layoutX="931.0" layoutY="9.0" prefHeight="42.0" prefWidth="42.0" styleClass="logout-button" stylesheets="@theme.css" text=" " />
-            <Text fx:id="usernameHeader1" fill="WHITE" layoutX="861.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGOUT" wrappingWidth="62.94287109375">
+            <JFXButton fx:id="logoutButton" layoutX="931.0" layoutY="9.0" onAction="#logoutUser" prefHeight="42.0" prefWidth="42.0" styleClass="logout-button" stylesheets="@theme.css" text=" " />
+            <Text fill="WHITE" layoutX="861.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGOUT" wrappingWidth="62.94287109375">
                <font>
                   <Font name="Rockwell" size="13.0" />
                </font>

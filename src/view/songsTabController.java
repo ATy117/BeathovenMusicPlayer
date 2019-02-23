@@ -31,7 +31,6 @@ public class songsTabController {
 
 		fileUploadButton.getStyleClass().add("upload-button");
 
-
 		// Song list renderer
 		for(int i=0; i<30; i++ ) {
 			HBox songCell = new HBox();
@@ -53,14 +52,23 @@ public class songsTabController {
 			Button plus = new Button("+");
 
 			plus.setOnMouseClicked(e -> {
-				PopOver popOver = new PopOver();
-				popOver.setArrowLocation(PopOver.ArrowLocation.RIGHT_CENTER);
-				popOver.setContentNode(new Label("Test"));
-				popOver.setAutoFix(true);
-				popOver.setAutoHide(true);
-				popOver.setHideOnEscape(true);
-				popOver.setDetachable(false);
-				popOver.show(plus);
+
+				AnchorPane details = new AnchorPane();
+				details.setMinWidth(300);
+				details.setMinHeight(300);
+
+
+				PopOver songDetails = new PopOver();
+				songDetails.setPrefHeight(300);
+				songDetails.setPrefWidth(300);
+
+				songDetails.setArrowLocation(PopOver.ArrowLocation.RIGHT_TOP);
+				songDetails.setContentNode(details);
+				songDetails.setAutoFix(true);
+				songDetails.setAutoHide(true);
+				songDetails.setHideOnEscape(true);
+				songDetails.setDetachable(false);
+				songDetails.show(plus);
 			});
 
 
