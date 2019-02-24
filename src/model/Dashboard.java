@@ -4,34 +4,22 @@ public class Dashboard {
     private User currentUser;
     private Profile userProfile;
     private Library library;
-    private Playlist currentPlaylist = null;
-    private Song currentSong = null;
 
     public Dashboard (GuestUser g){
         currentUser = g;
         userProfile = null;
-        library = g.getLibrary();
+        library = new Library();
     }
 
     public Dashboard (RegisteredUser rg){
         currentUser = rg;
-        userProfile = rg.getProfile();
+        userProfile = new Profile();
         library = rg.getLibrary();
     }
 
-    public Playlist getCurrentPlaylist() {
-        return currentPlaylist;
+    public void setRegisteredLibraryFromGuest (){
+        currentUser.setLibrary(library);
     }
 
-    public void setCurrentPlaylist(Playlist currentPlaylist) {
-        this.currentPlaylist = currentPlaylist;
-    }
 
-    public Song getCurrentSong() {
-        return currentSong;
-    }
-
-    public void setCurrentSong(Song currentSong) {
-        this.currentSong = currentSong;
-    }
 }
