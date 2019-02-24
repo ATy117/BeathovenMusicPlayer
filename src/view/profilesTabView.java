@@ -1,4 +1,9 @@
 package view;
 
-public class profilesTabView {
+public class ProfilesTabView {
+	private DashboardView parent;
+
+	public ProfilesTabView(DashboardView parent) {
+		this.parent = parent;
+	}
 }

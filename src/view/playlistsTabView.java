@@ -1,4 +1,10 @@
 package view;
 
-public class playlistsTabView {
+public class PlaylistsTabView {
+
+	private DashboardView parent;
+
+	public PlaylistsTabView(DashboardView parent) {
+		this.parent = parent;
+	}
 }

@@ -1,4 +1,9 @@
 package view;
 
-public class favoritesTabView {
+public class FavoritesTabView {
+	private DashboardView parent;
+
+	public FavoritesTabView(DashboardView parent) {
+		this.parent = parent;
+	}
 }

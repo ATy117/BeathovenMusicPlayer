@@ -11,7 +11,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
-public class createProfileView {
+public class CreateProfileView {
 	public JFXButton createBackButton;
 	public JFXButton createProfButton;
 

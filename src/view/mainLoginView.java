@@ -11,7 +11,7 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
-public class mainLoginView {
+public class MainLoginView {
 	public JFXButton loginButton;
 	public JFXButton accountRegisterButton;
 	public JFXButton guestLoginButton;

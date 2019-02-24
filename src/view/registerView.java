@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class registerView {
+public class RegisterView {
 
 	public JFXButton registerConfirmButton;
 	public JFXButton registerBackButton;
