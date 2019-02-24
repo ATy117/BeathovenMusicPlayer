@@ -30,7 +30,7 @@ public class dbService {
 
     public static RegisteredUser toRegUser(ResultSet rs) throws SQLException{
         RegisteredUser toRegUser = null;
-        try(ByteArrayInputStream bais = new ByteArrayInputStream(rs.getBytes(registeredUser.COL_REG_USER_BLOB));
+        try(ByteArrayInputStream bais = new ByteArrayInputStream(rs.getBytes(RegisteredUser.COL_REGUSERBLOB));
             ObjectInputStream ois = new ObjectInputStream(bais);){
             toRegUser = (RegisteredUser) ois.readObject();
         }catch(IOException e){
@@ -42,14 +42,12 @@ public class dbService {
         return toRegUser;
     }
 
-    public void addUser(RegisteredUser registeredUser) {
+    public void addUser(String username, String password, RegisteredUser registeredUser) {
         Connection connect = connection.getConnection();
-        String username = registeredUser.getProfile().getUsername();
-        String password = null;
         byte[] stream = toBlob(registeredUser);
 
         String query = "INSERT INTO " +
-                registeredUser.TABLE +
+                RegisteredUser.TABLE +
                 " VALUES(?,?,?)";
         try {
             PreparedStatement statement = connect.prepareStatement(query);
@@ -68,8 +66,8 @@ public class dbService {
     public ObservableList<RegisteredUser> getAllRegUsers() {
         List<RegisteredUser> regUsers = FXCollections.observableArrayList();
         Connection connect = connection.getConnection();
-        String query = 	"SELECT " + registeredUser.COL_REG_USER_BLOB +
-                " FROM " + registeredUser.TABLE;
+        String query = 	"SELECT " + RegisteredUser.COL_REGUSERBLOB +
+                " FROM " + RegisteredUser.TABLE;
 
 
         try {
@@ -91,7 +89,7 @@ public class dbService {
             return null;
         }
 
-        return (ObservableList<registeredUser>) regUsers;
+        return (ObservableList<RegisteredUser>) regUsers;
     }
 
 

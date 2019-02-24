@@ -1,5 +1,7 @@
 package model;
 
+import java.io.Serializable;
+
 public class Dashboard {
     private User currentUser;
     private Profile userProfile;

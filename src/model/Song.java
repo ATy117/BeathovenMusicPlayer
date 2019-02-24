@@ -1,4 +1,6 @@
 package model;
 
-public class Song extends Track{
+import java.io.Serializable;
+
+public class Song extends Track implements Serializable {
 }

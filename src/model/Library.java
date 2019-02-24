@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Library {
+public class Library implements Serializable {
     private List<Song> allSongs = new ArrayList<>();
     private List<Playlist> allPlaylists = new ArrayList<>();
 
