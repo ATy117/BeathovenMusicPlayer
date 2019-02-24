@@ -14,6 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.Track;
 import org.controlsfx.control.PopOver;
 
 import java.awt.event.MouseEvent;
@@ -34,15 +35,13 @@ public class SongsTabView {
 
 	public void initialize() {
 
-		fileUploadButton.getStyleClass().add("upload-button");
-
 		// Song list renderer
-		for(int i=0; i<30; i++ ) {
+		for (Track song: parent.songlist){
 			HBox songCell = new HBox();
 			songCell.setSpacing(20);
 
-			Label title = new Label("Song " + i);
-			Label artist = new Label ("Artist " + i);
+			Label title = new Label(song.getName());
+			Label artist = new Label ("Artist ");
 			Label duration = new Label ("00:00");
 
 			title.setPrefWidth(300);
@@ -87,13 +86,14 @@ public class SongsTabView {
 			songCell.setOnMouseClicked(e -> {
 				if(e.getButton().equals(MouseButton.PRIMARY)){
 					if(e.getClickCount() == 2){
-						System.out.println("Play song");
-
+						System.out.println("Play " + song.getName());
+						parent.sayHi();
 					}
 				}
 			});
 
 		}
+		fileUploadButton.getStyleClass().add("upload-button");
 	}
 
 

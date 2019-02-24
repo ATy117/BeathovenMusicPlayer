@@ -10,8 +10,12 @@ import javafx.scene.layout.AnchorPane;
 
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.Song;
+import model.Track;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DashboardView {
@@ -27,16 +31,24 @@ public class DashboardView {
 	public Text curSongArtist;
 
 
+	List<Track> songlist = new ArrayList<>();
+
 	public void initialize() throws IOException{
+		for (int i=0; i<30; i++) {
+			Track music = new Song();
+			music.setName("song" + i);
+			songlist.add(music);
+		}
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("songsTabTemplate.fxml"));
 		SongsTabView songsTab = new SongsTabView(this);
 		loader.setController(songsTab);
 		pageArea.getChildren().add(loader.load());
 
 		usernameHeader.setText("gab");
-		usernameHeader.setText("gab");
 		curSongName.setText("No song playing");
 		curSongArtist.setText("");
+
+
 	}
 
 	public void changeTab (ActionEvent actionEvent) throws IOException {
@@ -77,5 +89,9 @@ public class DashboardView {
 		Parent dashboard = FXMLLoader.load(getClass().getResource("mainLoginTemplate.fxml"));
 		Stage myStage = (Stage) logoutButton.getScene().getWindow();
 		myStage.setScene(new Scene(dashboard));
+	}
+
+	public void sayHi () {
+		System.out.println("hi");
 	}
 }
