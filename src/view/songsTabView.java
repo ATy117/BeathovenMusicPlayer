@@ -3,29 +3,29 @@ package view;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.controlsfx.control.PopOver;
 
+import java.awt.event.MouseEvent;
 import java.io.*;
 import java.nio.file.*;
 import java.util.List;
 
-public class SongsTabView {
+public class songsTabView {
 
 	public JFXListView songsListView;
 	public JFXButton fileUploadButton;
 	public AnchorPane songsPane;
-	private DashboardView parent;
-
-	public SongsTabView(DashboardView parent) {
-		this.parent = parent;
-	}
 
 	public void initialize() {
 

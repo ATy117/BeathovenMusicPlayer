@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-public class DashboardView {
+public class dashboardView {
 	
 	public Text usernameHeader;
 	public JFXButton songsTab;
@@ -29,8 +29,6 @@ public class DashboardView {
 
 	public void initialize() throws IOException{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("songsTabTemplate.fxml"));
-		SongsTabView songsTab = new SongsTabView(this);
-		loader.setController(songsTab);
 		pageArea.getChildren().add(loader.load());
 		usernameHeader.setText("gab");
 		usernameHeader.setText("gab");
@@ -42,31 +40,23 @@ public class DashboardView {
 		if (actionEvent.getSource()==songsTab) {
 			pageArea.getChildren().clear();
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("songsTabTemplate.fxml"));
-			SongsTabView songsTab = new SongsTabView(this);
-			loader.setController(songsTab);
 			pageArea.getChildren().add(loader.load());
 
 		}
 		else if (actionEvent.getSource() == playlistsTab) {
 			pageArea.getChildren().clear();
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("playlistsTabTemplate.fxml"));
-			PlaylistsTabView playlistsTab = new PlaylistsTabView(this);
-			loader.setController(playlistsTab);
 			pageArea.getChildren().add(loader.load());
 
 		}
 		else if (actionEvent.getSource() == favoritesTab) {
 			pageArea.getChildren().clear();
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("favoritesTabTemplate.fxml"));
-			FavoritesTabView favoritesTab = new FavoritesTabView(this);
-			loader.setController(favoritesTab);
 			pageArea.getChildren().add(loader.load());
 		}
 		else if (actionEvent.getSource() == profilesTab) {
 			pageArea.getChildren().clear();
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("profilesTabTemplate.fxml"));
-			ProfilesTabView profilesTab = new ProfilesTabView(this);
-			loader.setController(profilesTab);
 			pageArea.getChildren().add(loader.load());
 		}
 	}
@@ -77,6 +67,4 @@ public class DashboardView {
 		Stage myStage = (Stage) logoutButton.getScene().getWindow();
 		myStage.setScene(new Scene(dashboard));
 	}
-
-
 }
