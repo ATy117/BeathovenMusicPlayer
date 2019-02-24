@@ -26,6 +26,11 @@ public class SongsTabView {
 	public JFXListView songsListView;
 	public JFXButton fileUploadButton;
 	public AnchorPane songsPane;
+	DashboardView parent;
+
+	public SongsTabView (DashboardView parent) {
+		this.parent = parent;
+	}
 
 	public void initialize() {
 
@@ -83,6 +88,7 @@ public class SongsTabView {
 				if(e.getButton().equals(MouseButton.PRIMARY)){
 					if(e.getClickCount() == 2){
 						System.out.println("Play song");
+
 					}
 				}
 			});
