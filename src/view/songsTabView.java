@@ -21,7 +21,7 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.List;
 
-public class songsTabController {
+public class songsTabView {
 
 	public JFXListView songsListView;
 	public JFXButton fileUploadButton;

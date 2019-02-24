@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-public class dashboardController {
+public class dashboardView {
 	
 	public Text usernameHeader;
 	public JFXButton songsTab;
@@ -28,7 +28,7 @@ public class dashboardController {
 
 
 	public void initialize() throws IOException{
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("songsTabView.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("songsTabTemplate.fxml"));
 		pageArea.getChildren().add(loader.load());
 		usernameHeader.setText("gab");
 		usernameHeader.setText("gab");
@@ -39,31 +39,31 @@ public class dashboardController {
 	public void changeTab (ActionEvent actionEvent) throws IOException {
 		if (actionEvent.getSource()==songsTab) {
 			pageArea.getChildren().clear();
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("songsTabView.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("songsTabTemplate.fxml"));
 			pageArea.getChildren().add(loader.load());
 
 		}
 		else if (actionEvent.getSource() == playlistsTab) {
 			pageArea.getChildren().clear();
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("playlistsTabView.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("playlistsTabTemplate.fxml"));
 			pageArea.getChildren().add(loader.load());
 
 		}
 		else if (actionEvent.getSource() == favoritesTab) {
 			pageArea.getChildren().clear();
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("favoritesTabView.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("favoritesTabTemplate.fxml"));
 			pageArea.getChildren().add(loader.load());
 		}
 		else if (actionEvent.getSource() == profilesTab) {
 			pageArea.getChildren().clear();
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("profilesTabView.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("profilesTabTemplate.fxml"));
 			pageArea.getChildren().add(loader.load());
 		}
 	}
 
 
 	public void logoutUser(ActionEvent actionEvent) throws IOException {
-		Parent dashboard = FXMLLoader.load(getClass().getResource("mainLoginView.fxml"));
+		Parent dashboard = FXMLLoader.load(getClass().getResource("mainLoginTemplate.fxml"));
 		Stage myStage = (Stage) logoutButton.getScene().getWindow();
 		myStage.setScene(new Scene(dashboard));
 	}
