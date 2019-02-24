@@ -66,6 +66,14 @@ public class Profile implements Serializable {
         favoriteSongs.remove(song);
     }
 
+    public List<Song> getFavoriteSongs() {
+        return favoriteSongs;
+    }
+
+    public List<Playlist> getFavoritePlaylists() {
+        return favoritePlaylists;
+    }
+
     public void addFavoritePlaylist ( Playlist playlist){
         favoritePlaylists.add(playlist);
     }
