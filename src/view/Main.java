@@ -20,7 +20,6 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        dbService service = new dbService(new dbConnection());
         launch(args);
     }
 }
