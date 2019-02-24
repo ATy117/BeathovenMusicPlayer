@@ -1,5 +1,4 @@
-package view;
-import model.*;
+package model;
 import java.sql.*;
 import java.io.*;
 import java.util.List;
@@ -29,11 +28,11 @@ public class dbService {
         return stream;
     }
 
-    public static registeredUser toRegUser(ResultSet rs) throws SQLException{
-        registeredUser toRegUser = null;
+    public static RegisteredUser toRegUser(ResultSet rs) throws SQLException{
+        RegisteredUser toRegUser = null;
         try(ByteArrayInputStream bais = new ByteArrayInputStream(rs.getBytes(registeredUser.COL_REG_USER_BLOB));
             ObjectInputStream ois = new ObjectInputStream(bais);){
-            toRegUser = (registeredUser) ois.readObject();
+            toRegUser = (RegisteredUser) ois.readObject();
         }catch(IOException e){
             e.printStackTrace();
         }catch(ClassNotFoundException e){
@@ -43,11 +42,11 @@ public class dbService {
         return toRegUser;
     }
 
-    public void addUser(registeredUser user) {
+    public void addUser(RegisteredUser registeredUser) {
         Connection connect = connection.getConnection();
-        String username = user.getUsername();
-        String password = user.getPassword();
-        byte[] stream = toBlob(user);
+        String username = registeredUser.getProfile().getUsername();
+        String password = null;
+        byte[] stream = toBlob(registeredUser);
 
         String query = "INSERT INTO " +
                 registeredUser.TABLE +
@@ -66,8 +65,8 @@ public class dbService {
         }
     }
 
-    public ObservableList<registeredUser> getAllRegUsers() {
-        List<registeredUser> regUsers = FXCollections.observableArrayList();
+    public ObservableList<RegisteredUser> getAllRegUsers() {
+        List<RegisteredUser> regUsers = FXCollections.observableArrayList();
         Connection connect = connection.getConnection();
         String query = 	"SELECT " + registeredUser.COL_REG_USER_BLOB +
                 " FROM " + registeredUser.TABLE;
