@@ -23,13 +23,13 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.*;
 import java.nio.file.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SongsTabView {
 
 	@FXML public JFXListView songsListView;
 	@FXML public JFXButton fileUploadButton;
-	@FXML public AnchorPane songsPane;
 	@FXML public JFXComboBox groupComboBox;
 	DashboardView parent;
 
@@ -38,10 +38,50 @@ public class SongsTabView {
 	}
 
 	public void initialize() {
+		populateSongList();
+		initGroupByCombo();
+	}
 
-		// populate sort combo box
-		groupComboBox.getItems().addAll("Genre", "Album", "Year");
 
+	public void uploadFile(ActionEvent actionEvent) {
+
+		String pathname = System.getProperty("user.home") + "/Documents/Beathoven";
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Select mp3 files");
+
+		File songsDirectory = new File(pathname);
+		if(!songsDirectory.exists()) {
+			songsDirectory.mkdir();
+		}
+
+		File findDirectory = new File(System.getProperty("user.home")+"/Downloads");
+		fileChooser.setInitialDirectory(findDirectory);
+		fileChooser.getExtensionFilters().addAll(
+				new FileChooser.ExtensionFilter("MP3 Files", "*.mp3"));
+
+		Stage myStage = (Stage) fileUploadButton.getScene().getWindow();
+
+		List<File> selectedFiles = fileChooser.showOpenMultipleDialog(myStage);
+
+		CopyOption[] options = new CopyOption[]{
+				StandardCopyOption.REPLACE_EXISTING,
+				StandardCopyOption.COPY_ATTRIBUTES
+		};
+
+		if (selectedFiles != null) {
+			for (File newsong: selectedFiles) {
+				Path target = Paths.get(newsong.toURI());
+				Path destination = Paths.get(pathname+ "/" + newsong.getName());
+				try {
+					Files.copy(target, destination, options);
+				} catch (IOException ex) {
+					System.out.println("File couldn't be moved");
+				}
+			}
+		}
+	}
+
+	public void populateSongList(){
 		// Song list renderer
 		for (Track song: parent.songlist){
 			HBox songCell = new HBox();
@@ -100,47 +140,12 @@ public class SongsTabView {
 			});
 
 		}
-		fileUploadButton.getStyleClass().add("upload-button");
 	}
 
-
-
-	public void uploadFile(ActionEvent actionEvent) {
-
-		String pathname = System.getProperty("user.home") + "/Documents/Beathoven";
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Select mp3 files");
-
-		File songsDirectory = new File(pathname);
-		if(!songsDirectory.exists()) {
-			songsDirectory.mkdir();
-		}
-
-		File findDirectory = new File(System.getProperty("user.home")+"/Downloads");
-		fileChooser.setInitialDirectory(findDirectory);
-		fileChooser.getExtensionFilters().addAll(
-				new FileChooser.ExtensionFilter("MP3 Files", "*.mp3"));
-
-		Stage myStage = (Stage) fileUploadButton.getScene().getWindow();
-
-		List<File> selectedFiles = fileChooser.showOpenMultipleDialog(myStage);
-
-		CopyOption[] options = new CopyOption[]{
-				StandardCopyOption.REPLACE_EXISTING,
-				StandardCopyOption.COPY_ATTRIBUTES
-		};
-
-		if (selectedFiles != null) {
-			for (File newsong: selectedFiles) {
-				Path target = Paths.get(newsong.toURI());
-				Path destination = Paths.get(pathname+ "/" + newsong.getName());
-				try {
-					Files.copy(target, destination, options);
-				} catch (IOException ex) {
-					System.out.println("File couldn't be moved");
-				}
-			}
-		}
+	public void initGroupByCombo (){
+		groupComboBox.getItems().add("Genre");
+		groupComboBox.getItems().add("Album");
+		groupComboBox.getItems().add("Year");
 	}
 
 

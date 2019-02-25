@@ -25,16 +25,21 @@ public class DashboardView {
 	public JFXButton playlistsTab;
 	public JFXButton profilesTab;
 	public AnchorPane pageArea;
-	public JFXButton logoutButton;
 	public Text curSongName;
 	public Text curSongArtist;
+	public JFXButton logoutButton;
 
 
 	List<Track> songlist = new ArrayList<>();
 
 	public void initialize() throws IOException{
 
-		populateSongList();
+		for (int i=0; i<30; i++) {
+			Track music = new Song();
+			music.setName("song" + i);
+			songlist.add(music);
+		}
+
 		setCurrentUser();
 		setPlayingSong(null);
 
@@ -81,13 +86,7 @@ public class DashboardView {
 		System.out.println("hi");
 	}
 
-	public void populateSongList() {
-		for (int i=0; i<30; i++) {
-			Track music = new Song();
-			music.setName("song" + i);
-			songlist.add(music);
-		}
-	}
+
 
 	public void setCurrentUser() {
 		usernameHeader.setText("gab");
