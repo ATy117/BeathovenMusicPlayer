@@ -25,29 +25,28 @@ public class DashboardView {
 	public JFXButton playlistsTab;
 	public JFXButton profilesTab;
 	public AnchorPane pageArea;
-	public JFXButton logoutButton;
 	public Text curSongName;
 	public Text curSongArtist;
+	public JFXButton logoutButton;
 
 
 	List<Track> songlist = new ArrayList<>();
 
 	public void initialize() throws IOException{
+
 		for (int i=0; i<30; i++) {
 			Track music = new Song();
 			music.setName("song" + i);
 			songlist.add(music);
 		}
+
+		setCurrentUser();
+		setPlayingSong(null);
+
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("songsTabTemplate.fxml"));
 		SongsTabView songsTab = new SongsTabView(this);
 		loader.setController(songsTab);
 		pageArea.getChildren().add(loader.load());
-
-		usernameHeader.setText("gab");
-		curSongName.setText("No song playing");
-		curSongArtist.setText("");
-
-
 	}
 
 	public void changeTab (ActionEvent actionEvent) throws IOException {
@@ -85,5 +84,23 @@ public class DashboardView {
 
 	public void sayHi () {
 		System.out.println("hi");
+	}
+
+
+
+	public void setCurrentUser() {
+		usernameHeader.setText("gab");
+	}
+
+	public void setPlayingSong(Song current) {
+
+		if (current!= null) {
+			curSongName.setText(current.getName());
+			curSongArtist.setText("artist");
+		}
+		else {
+			curSongName.setText("No Song Playing");
+			curSongArtist.setText("");
+		}
 	}
 }
