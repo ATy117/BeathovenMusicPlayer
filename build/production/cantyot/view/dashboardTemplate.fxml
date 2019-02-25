@@ -45,20 +45,27 @@
             <DropShadow />
          </effect>
          <children>
-            <JFXSlider layoutX="261.0" layoutY="18.0" prefHeight="24.0" prefWidth="666.0" stylesheets="@theme.css" />
-            <Label layoutX="210.0" layoutY="21.0" text="00:00" textFill="WHITE">
+            <JFXSlider layoutX="255.0" layoutY="18.0" prefHeight="24.0" prefWidth="576.0" stylesheets="@theme.css" />
+            <Label layoutX="209.0" layoutY="23.0" text="00:00" textFill="WHITE">
                <font>
                   <Font name="Rockwell" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="941.0" layoutY="21.0" text="00:00" textFill="WHITE">
+            <Label layoutX="831.0" layoutY="22.0" text="00:00" textFill="WHITE">
                <font>
                   <Font name="Rockwell" size="13.0" />
                </font>
             </Label>
             <JFXButton layoutX="26.0" layoutY="17.0" prefHeight="27.0" prefWidth="35.0" styleClass="rewind-media" stylesheets="@theme.css" text=" " />
-            <JFXButton layoutX="96.0" layoutY="17.0" prefHeight="27.0" prefWidth="25.0" styleClass="play-media" stylesheets="@theme.css" text=" " />
-            <JFXButton layoutX="150.0" layoutY="17.0" prefHeight="27.0" prefWidth="35.0" styleClass="forward-media" stylesheets="@theme.css" />
+            <JFXButton layoutX="89.0" layoutY="17.0" prefHeight="27.0" prefWidth="25.0" styleClass="play-media" stylesheets="@theme.css" text=" " />
+            <JFXButton layoutX="137.0" layoutY="17.0" prefHeight="27.0" prefWidth="35.0" styleClass="forward-media" stylesheets="@theme.css" />
+            <JFXButton layoutX="880.0" layoutY="19.0" prefHeight="27.0" prefWidth="25.0" style="-fx-background-color: #202020;" text="S" textFill="WHITE" />
+            <JFXButton layoutX="920.0" layoutY="19.0" prefHeight="27.0" prefWidth="27.0" style="-fx-background-color: #202020;" text="R" textFill="WHITE" />
+            <JFXButton fx:id="viewDetailsButton" layoutX="961.0" layoutY="19.0" onAction="#displaySongDetails" prefHeight="27.0" prefWidth="25.0" style="-fx-background-color: #202020;" text="View" textFill="WHITE">
+               <font>
+                  <Font size="6.0" />
+               </font>
+            </JFXButton>
          </children>
       </AnchorPane>
       <JFXScrollPane layoutX="1.0" layoutY="61.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="208.0">
