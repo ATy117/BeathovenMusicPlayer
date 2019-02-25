@@ -1,9 +1,11 @@
 package view;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,6 +19,7 @@ import javafx.stage.Stage;
 import model.Track;
 import org.controlsfx.control.PopOver;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.*;
 import java.nio.file.*;
@@ -24,9 +27,10 @@ import java.util.List;
 
 public class SongsTabView {
 
-	public JFXListView songsListView;
-	public JFXButton fileUploadButton;
-	public AnchorPane songsPane;
+	@FXML public JFXListView songsListView;
+	@FXML public JFXButton fileUploadButton;
+	@FXML public AnchorPane songsPane;
+	@FXML public JFXComboBox groupComboBox;
 	DashboardView parent;
 
 	public SongsTabView (DashboardView parent) {
@@ -34,6 +38,9 @@ public class SongsTabView {
 	}
 
 	public void initialize() {
+
+		// populate sort combo box
+		groupComboBox.getItems().addAll("Genre", "Album", "Year");
 
 		// Song list renderer
 		for (Track song: parent.songlist){
