@@ -6,4 +6,6 @@ public class ProfilesTabView {
 	public ProfilesTabView (DashboardView parent) {
 		this.parent = parent;
 	}
+
+
 }

@@ -10,6 +10,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.GaussianBlur;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -87,15 +89,22 @@ public class SongsTabView {
 			HBox songCell = new HBox();
 			songCell.setSpacing(20);
 
+			ImageView cover = new ImageView(new Image(getClass().getResourceAsStream("/resources/blank_album.jpg")));
+			cover.setFitHeight(40);
+			cover.setFitWidth(40);
+
+
 			Label title = new Label(song.getName());
 			Label artist = new Label ("Artist ");
 			Label duration = new Label ("00:00");
 
-			title.setPrefWidth(300);
+			title.setPrefWidth(250);
 			artist.setPrefWidth(220);
 			duration.setPrefWidth(40);
 
 			duration.setOpacity(0.50);
+
+
 
 			Button play = new Button(" ");
 			play.getStylesheets().add(getClass().getResource("theme.css").toString());
@@ -109,13 +118,11 @@ public class SongsTabView {
 			plus.setOnMouseClicked(e -> {
 
 				AnchorPane details = new AnchorPane();
-				details.setMinWidth(300);
-				details.setMinHeight(300);
+				details.setMinWidth(150);
+				details.setMinHeight(150);
 
 
 				PopOver songDetails = new PopOver();
-				songDetails.setPrefHeight(300);
-				songDetails.setPrefWidth(300);
 
 				songDetails.setArrowLocation(PopOver.ArrowLocation.RIGHT_TOP);
 				songDetails.setContentNode(details);
@@ -127,7 +134,7 @@ public class SongsTabView {
 			});
 
 
-			songCell.getChildren().addAll(play, duration, title, artist ,plus);
+			songCell.getChildren().addAll(play, cover, duration, title, artist ,plus);
 			songsListView.getItems().add(songCell);
 
 			songCell.setOnMouseClicked(e -> {
