@@ -2,22 +2,34 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="createProfileAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="471.0" prefWidth="791.0" style="-fx-background-color: #303030;" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text fill="WHITE" layoutX="295.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Your Profile" textAlignment="CENTER" wrappingWidth="201.60845947265625">
+      <Text fill="WHITE" layoutX="241.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Your Profile" textAlignment="CENTER" wrappingWidth="318.60845947265625">
          <font>
             <Font name="Menlo Regular" size="26.0" />
          </font>
       </Text>
-      <JFXTextField labelFloat="true" layoutX="195.0" layoutY="246.0" prefHeight="43.0" prefWidth="209.0" promptText="First Name" />
-      <JFXTextField labelFloat="true" layoutX="414.0" layoutY="246.0" prefHeight="43.0" prefWidth="183.0" promptText="Last Name" />
-      <JFXButton fx:id="createProfButton" buttonType="RAISED" layoutX="195.0" layoutY="306.0" onAction="#changePane" prefHeight="40.0" prefWidth="402.0" ripplerFill="#bf8c09" text="Create" textFill="WHITE">
+      <JFXTextField labelFloat="true" layoutX="198.0" layoutY="303.0" prefHeight="43.0" prefWidth="202.0" promptText="First Name" />
+      <JFXTextField labelFloat="true" layoutX="414.0" layoutY="303.0" prefHeight="43.0" prefWidth="187.0" promptText="Last Name" />
+      <JFXButton fx:id="createProfButton" buttonType="RAISED" layoutX="199.0" layoutY="357.0" onAction="#changePane" prefHeight="40.0" prefWidth="402.0" ripplerFill="#bf8c09" text="Create" textFill="WHITE">
          <font>
             <Font name="Menlo Regular" size="21.0" />
+         </font>
+      </JFXButton>
+      <Circle fx:id="profilePicture" fill="WHITE" layoutX="400.0" layoutY="171.0" radius="78.0" stroke="WHITE" strokeType="INSIDE">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Circle>
+      <JFXButton fx:id="uploadButton" buttonType="RAISED" layoutX="366.0" layoutY="273.0" onAction="#uploadProfilePic" prefHeight="30.0" prefWidth="59.0" ripplerFill="#bf8c09" text="Upload" textFill="WHITE">
+         <font>
+            <Font name="Menlo Regular" size="11.0" />
          </font>
       </JFXButton>
    </children>

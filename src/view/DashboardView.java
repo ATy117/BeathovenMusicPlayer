@@ -16,6 +16,7 @@ import model.Track;
 import org.controlsfx.control.PopOver;
 
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,8 @@ public class DashboardView {
 	public JFXButton logoutButton;
 	public JFXButton viewDetailsButton;
 
+	public String appdirectory;
+
 	Boolean registered;
 	List<Track> songlist = new ArrayList<>();
 
@@ -46,8 +49,10 @@ public class DashboardView {
 			songlist.add(music);
 		}
 
+		setAppDirectory();
 		setCurrentUser();
 		setPlayingSong(null);
+
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("songsTabTemplate.fxml"));
 		SongsTabView songsTab = new SongsTabView(this);
@@ -138,5 +143,13 @@ public class DashboardView {
 		songDetails.setHideOnEscape(true);
 		songDetails.setDetachable(false);
 		songDetails.show((Button)actionEvent.getSource());
+	}
+
+	public void setAppDirectory() {
+		appdirectory = System.getProperty("user.home") + "/Documents/Beathoven/";
+		File appfolder = new File(appdirectory);
+		if(!appfolder.exists()) {
+			appfolder.mkdir();
+		}
 	}
 }

@@ -47,7 +47,7 @@ public class SongsTabView {
 
 	public void uploadFile(ActionEvent actionEvent) {
 
-		String pathname = System.getProperty("user.home") + "/Documents/Beathoven";
+		String pathname = parent.appdirectory + "/Music";
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Select mp3 files");
 
