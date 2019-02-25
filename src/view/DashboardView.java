@@ -23,7 +23,6 @@ public class DashboardView {
 	public Text usernameHeader;
 	public JFXButton songsTab;
 	public JFXButton playlistsTab;
-	public JFXButton favoritesTab;
 	public JFXButton profilesTab;
 	public AnchorPane pageArea;
 	public JFXButton logoutButton;
@@ -67,13 +66,6 @@ public class DashboardView {
 			loader.setController(playlistsTab);
 			pageArea.getChildren().add(loader.load());
 
-		}
-		else if (actionEvent.getSource() == favoritesTab) {
-			pageArea.getChildren().clear();
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("favoritesTabTemplate.fxml"));
-			FavoritesTabView favoritesTab = new FavoritesTabView(this);
-			loader.setController(favoritesTab);
-			pageArea.getChildren().add(loader.load());
 		}
 		else if (actionEvent.getSource() == profilesTab) {
 			pageArea.getChildren().clear();

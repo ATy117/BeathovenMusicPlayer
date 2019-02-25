@@ -82,11 +82,6 @@
                         <Font name="Rockwell" size="19.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton id="tabButton" fx:id="favoritesTab" defaultButton="true" graphicTextGap="1.0" onAction="#changeTab" prefHeight="60.0" prefWidth="230.0" text="Favorites" textFill="WHITE">
-                     <font>
-                        <Font name="Rockwell" size="19.0" />
-                     </font>
-                  </JFXButton>
                   <Label alignment="TOP_CENTER" contentDisplay="TOP" opacity="0.42" prefHeight="38.0" prefWidth="150.0" text="Social" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Rockwell" size="13.0" />
