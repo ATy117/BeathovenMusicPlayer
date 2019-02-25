@@ -1,4 +1,4 @@
-package view;
+package app;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +10,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("mainLoginTemplate.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/mainLoginTemplate.fxml"));
         primaryStage.setTitle("Beathoven");
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
