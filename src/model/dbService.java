@@ -2,9 +2,8 @@ package model;
 import java.sql.*;
 import java.io.*;
 import java.util.List;
+import java.util.ArrayList;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 public class dbService {
     private dbConnection connection;
@@ -63,8 +62,8 @@ public class dbService {
         }
     }
 
-    public ObservableList<RegisteredUser> getAllRegUsers() {
-        List<RegisteredUser> regUsers = FXCollections.observableArrayList();
+    public ArrayList<RegisteredUser> getAllRegUsers() {
+        ArrayList<RegisteredUser> regUsers = new ArrayList<>();
         Connection connect = connection.getConnection();
         String query = 	"SELECT " + RegisteredUser.COL_REGUSERBLOB +
                 " FROM " + RegisteredUser.TABLE;
@@ -89,7 +88,7 @@ public class dbService {
             return null;
         }
 
-        return (ObservableList<RegisteredUser>) regUsers;
+        return regUsers;
     }
 
 
