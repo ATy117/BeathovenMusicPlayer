@@ -49,6 +49,8 @@ public class DashboardView extends View{
 			songlist.add(music);
 		}
 
+
+
 		setAppDirectory();
 		setCurrentUser();
 		setPlayingSong(null);
@@ -87,7 +89,7 @@ public class DashboardView extends View{
 				CreateProfileView newProfilesTab = new CreateProfileView(this);
 				loader.setController(newProfilesTab);
 				pageArea.getChildren().add(loader.load());
-				registered=true;
+
 			}
 			else {
 				pageArea.getChildren().clear();

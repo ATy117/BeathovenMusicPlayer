@@ -32,6 +32,7 @@ public class CreateProfileView {
 			ProfilesTabView myprofile = new ProfilesTabView(parent);
 			loader.setController(myprofile);
 			parent.pageArea.getChildren().add(loader.load());
+			parent.registered=true;
 		}
 	}
 
