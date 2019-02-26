@@ -40,9 +40,6 @@ public abstract class TrackCollection implements Serializable {
     public int getTrackCount(){
         return trackList.size();
     }
-
-    public void shuffle(){
-        Collections.shuffle(trackList);
-    }
+    
 
 }
