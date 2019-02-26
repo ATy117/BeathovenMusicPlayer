@@ -11,6 +11,7 @@ public class Dashboard {
     private Playlist currentPlaylist = null;
     private Song currentSong = null;
     private List<Track> queue = new ArrayList<>();
+    private List<Track> done = new ArrayList<>();
 
     public Dashboard (GuestUser g){
         currentUser = g;
@@ -61,6 +62,25 @@ public class Dashboard {
         queue.addAll(np);
     }
 
+    public boolean playNextSong(){
+        if (!queue.isEmpty()) {
+            done.add(0, currentSong);
+            currentSong = (Song) queue.get(0);
+            queue.remove(0);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean playPreviousSong(){
+        if (!done.isEmpty()){
+            queue.add(0, currentSong);
+            currentSong = (Song) done.get(0);
+            done.remove(0);
+            return true;
+        }
+        return false;
+    }
 
 
 
