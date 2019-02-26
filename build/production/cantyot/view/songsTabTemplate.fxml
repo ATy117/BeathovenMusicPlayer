@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,12 +14,13 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <JFXListView fx:id="songsListView" layoutX="20.0" layoutY="85.0" prefHeight="386.0" prefWidth="751.0" stylesheets="@theme.css" />
-      <JFXButton fx:id="fileUploadButton" layoutX="713.0" layoutY="23.0" onAction="#uploadFile" prefHeight="47.0" prefWidth="47.0" styleClass="upload-button" stylesheets="@theme.css" text=" " />
-      <Label layoutX="620.0" layoutY="29.0" prefHeight="34.0" prefWidth="93.0" text="UPLOAD" textFill="WHITE">
+      <JFXListView fx:id="songsListView" layoutX="20.0" layoutY="73.0" prefHeight="398.0" prefWidth="751.0" stylesheets="@theme.css" />
+      <JFXButton fx:id="fileUploadButton" layoutX="710.0" layoutY="26.0" onAction="#uploadFile" prefHeight="41.0" prefWidth="41.0" styleClass="upload-button" stylesheets="@theme.css" text=" " />
+      <Label layoutX="617.0" layoutY="29.0" prefHeight="34.0" prefWidth="93.0" text="UPLOAD" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
+      <JFXComboBox fx:id="groupComboBox" focusColor="#ffb54d" layoutX="454.0" layoutY="33.0" prefHeight="27.0" prefWidth="142.0" promptText="Group By" unFocusColor="#ffcb73" />
    </children>
 </AnchorPane>

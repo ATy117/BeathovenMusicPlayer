@@ -1,4 +1,6 @@
 package model;
 
-public class Album extends TrackCollection{
+import java.io.Serializable;
+
+public class Album extends TrackCollection implements Serializable {
 }
