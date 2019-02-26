@@ -11,6 +11,8 @@ import javafx.scene.layout.AnchorPane;
 
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.Dashboard;
+import model.DashboardModel;
 import model.Song;
 import model.Track;
 import org.controlsfx.control.PopOver;
@@ -22,6 +24,9 @@ import java.util.List;
 
 
 public class DashboardView extends View{
+
+	private Dashboard viewState;
+	private DashboardModel model;
 	
 	public Text usernameHeader;
 	public JFXButton songsTab;
