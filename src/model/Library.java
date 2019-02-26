@@ -47,5 +47,7 @@ public class Library {
         allPlaylists.remove(playlist);
     }
 
-
+    public Playlist getSongsAsPlaylist (){
+        return new Playlist("All Songs", allSongs);
+    }
 }
