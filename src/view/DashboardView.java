@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class DashboardView {
+public class DashboardView extends View{
 	
 	public Text usernameHeader;
 	public JFXButton songsTab;
@@ -59,6 +59,9 @@ public class DashboardView {
 		loader.setController(songsTab);
 		pageArea.getChildren().add(loader.load());
 	}
+
+	@Override
+	public void Update() {}
 
 	public void changeTab (ActionEvent actionEvent) throws IOException {
 		if (actionEvent.getSource()==songsTab) {
