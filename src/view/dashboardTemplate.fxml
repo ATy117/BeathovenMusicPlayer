@@ -11,13 +11,14 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainPane" maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #333333;" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.dashboardController">
+<AnchorPane fx:id="mainPane" maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #333333;" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.DashboardView">
    <children>
       <AnchorPane fx:id="pageArea" layoutX="210.0" layoutY="61.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="479.0" prefWidth="791.0" style="-fx-background-color: #303030;">
          <effect>
@@ -44,20 +45,27 @@
             <DropShadow />
          </effect>
          <children>
-            <JFXSlider layoutX="261.0" layoutY="18.0" prefHeight="24.0" prefWidth="666.0" stylesheets="@theme.css" />
-            <Label layoutX="210.0" layoutY="21.0" text="00:00" textFill="WHITE">
+            <JFXSlider layoutX="255.0" layoutY="18.0" prefHeight="24.0" prefWidth="576.0" stylesheets="@theme.css" />
+            <Label layoutX="209.0" layoutY="23.0" text="00:00" textFill="WHITE">
                <font>
                   <Font name="Rockwell" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="941.0" layoutY="21.0" text="00:00" textFill="WHITE">
+            <Label layoutX="831.0" layoutY="22.0" text="00:00" textFill="WHITE">
                <font>
                   <Font name="Rockwell" size="13.0" />
                </font>
             </Label>
             <JFXButton layoutX="26.0" layoutY="17.0" prefHeight="27.0" prefWidth="35.0" styleClass="rewind-media" stylesheets="@theme.css" text=" " />
-            <JFXButton layoutX="96.0" layoutY="17.0" prefHeight="27.0" prefWidth="25.0" styleClass="play-media" stylesheets="@theme.css" text=" " />
-            <JFXButton layoutX="150.0" layoutY="17.0" prefHeight="27.0" prefWidth="35.0" styleClass="forward-media" stylesheets="@theme.css" />
+            <JFXButton layoutX="89.0" layoutY="17.0" prefHeight="27.0" prefWidth="25.0" styleClass="play-media" stylesheets="@theme.css" text=" " />
+            <JFXButton layoutX="137.0" layoutY="17.0" prefHeight="27.0" prefWidth="35.0" styleClass="forward-media" stylesheets="@theme.css" />
+            <JFXButton layoutX="880.0" layoutY="19.0" prefHeight="27.0" prefWidth="25.0" style="-fx-background-color: #202020;" text="S" textFill="WHITE" />
+            <JFXButton layoutX="920.0" layoutY="19.0" prefHeight="27.0" prefWidth="27.0" style="-fx-background-color: #202020;" text="R" textFill="WHITE" />
+            <JFXButton fx:id="viewDetailsButton" layoutX="961.0" layoutY="19.0" onAction="#displaySongDetails" prefHeight="27.0" prefWidth="25.0" style="-fx-background-color: #202020;" text="View" textFill="WHITE">
+               <font>
+                  <Font size="6.0" />
+               </font>
+            </JFXButton>
          </children>
       </AnchorPane>
       <JFXScrollPane layoutX="1.0" layoutY="61.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="208.0">
@@ -82,11 +90,6 @@
                         <Font name="Rockwell" size="19.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton id="tabButton" fx:id="favoritesTab" defaultButton="true" graphicTextGap="1.0" onAction="#changeTab" prefHeight="60.0" prefWidth="230.0" text="Favorites" textFill="WHITE">
-                     <font>
-                        <Font name="Rockwell" size="19.0" />
-                     </font>
-                  </JFXButton>
                   <Label alignment="TOP_CENTER" contentDisplay="TOP" opacity="0.42" prefHeight="38.0" prefWidth="150.0" text="Social" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Rockwell" size="13.0" />
@@ -100,6 +103,17 @@
                         <Font name="Rockwell" size="19.0" />
                      </font>
                   </JFXButton>
+                  <Region prefHeight="124.0" prefWidth="210.0" />
+                  <AnchorPane accessibleRole="BUTTON" prefHeight="26.0" prefWidth="210.0">
+                     <children>
+                        <Text fill="WHITE" layoutX="58.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGOUT" wrappingWidth="62.94287109375">
+                           <font>
+                              <Font name="Rockwell" size="13.0" />
+                           </font>
+                        </Text>
+                        <JFXButton fx:id="logoutButton" accessibleRole="IMAGE_VIEW" layoutX="14.0" layoutY="6.0" onAction="#logoutUser" prefHeight="24.0" prefWidth="25.0" styleClass="logout-button" stylesheets="@theme.css" text=" " />
+                     </children>
+                  </AnchorPane>
                </children>
             </VBox>
          </children>
@@ -124,12 +138,6 @@
                   <Image url="@/resources/logo.jpg" />
                </image>
             </ImageView>
-            <JFXButton fx:id="logoutButton" layoutX="931.0" layoutY="9.0" onAction="#logoutUser" prefHeight="42.0" prefWidth="42.0" styleClass="logout-button" stylesheets="@theme.css" text=" " />
-            <Text fill="WHITE" layoutX="861.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGOUT" wrappingWidth="62.94287109375">
-               <font>
-                  <Font name="Rockwell" size="13.0" />
-               </font>
-            </Text>
          </children>
       </AnchorPane>
    </children>

@@ -36,4 +36,12 @@ public class Dashboard {
     public void setCurrentSong(Song currentSong) {
         this.currentSong = currentSong;
     }
+
+    public Profile getUserProfile() {
+        return userProfile;
+    }
+
+    public Library getLibrary() {
+        return library;
+    }
 }

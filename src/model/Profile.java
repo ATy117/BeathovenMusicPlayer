@@ -1,8 +1,7 @@
 package model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Profile implements Serializable {
     private String username;
@@ -13,6 +12,8 @@ public class Profile implements Serializable {
 
     private List<Song> favoriteSongs = new ArrayList<>();
     private List<Playlist> favoritePlaylists = new ArrayList<>();
+
+    private HashMap<Song, Integer> songTracker = new HashMap<>();
 
     public String getUsername() {
         return username;
@@ -66,6 +67,14 @@ public class Profile implements Serializable {
         favoriteSongs.remove(song);
     }
 
+    public List<Song> getFavoriteSongs() {
+        return favoriteSongs;
+    }
+
+    public List<Playlist> getFavoritePlaylists() {
+        return favoritePlaylists;
+    }
+
     public void addFavoritePlaylist ( Playlist playlist){
         favoritePlaylists.add(playlist);
     }
@@ -76,6 +85,18 @@ public class Profile implements Serializable {
 
     public void removeFavoritePlaylist ( int index){
         favoritePlaylists.remove(index);
+    }
+
+    public void trackSong (Song song){
+        if (songTracker.containsKey(song)){
+            songTracker.replace(song, songTracker.get(song) + 1);
+        } else {
+            songTracker.put(song, 1);
+        }
+    }
+
+    public Song getMostPlayedSong(){
+        return Collections.max(songTracker.entrySet(), Map.Entry.comparingByValue()).getKey();
     }
 
 }
