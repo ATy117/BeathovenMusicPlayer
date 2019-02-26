@@ -24,7 +24,7 @@ public class RegisterView {
 			myStage.setScene(new Scene(dashboard));
 		}
 		else if (actionEvent.getSource() == registerBackButton ){
-			Parent login = FXMLLoader.load(getClass().getResource("mainLoginTemplate.fxml"));
+			Parent login = FXMLLoader.load(getClass().getResource("loginTemplate.fxml"));
 			Stage myStage = (Stage) registerBackButton.getScene().getWindow();
 			myStage.setScene(new Scene(login));
 		}

@@ -15,14 +15,13 @@ import model.Song;
 import model.Track;
 import org.controlsfx.control.PopOver;
 
-import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class DashboardView {
+public class DashboardView extends View{
 	
 	public Text usernameHeader;
 	public JFXButton songsTab;
@@ -49,22 +48,27 @@ public class DashboardView {
 			songlist.add(music);
 		}
 
+
+
 		setAppDirectory();
 		setCurrentUser();
 		setPlayingSong(null);
 
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("songsTabTemplate.fxml"));
-		SongsTabView songsTab = new SongsTabView(this);
+		SongsTabPage songsTab = new SongsTabPage(this);
 		loader.setController(songsTab);
 		pageArea.getChildren().add(loader.load());
 	}
+
+	@Override
+	public void Update() {}
 
 	public void changeTab (ActionEvent actionEvent) throws IOException {
 		if (actionEvent.getSource()==songsTab) {
 			pageArea.getChildren().clear();
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("songsTabTemplate.fxml"));
-			SongsTabView songsTab = new SongsTabView(this);
+			SongsTabPage songsTab = new SongsTabPage(this);
 			loader.setController(songsTab);
 			pageArea.getChildren().add(loader.load());
 
@@ -72,7 +76,7 @@ public class DashboardView {
 		else if (actionEvent.getSource() == playlistsTab) {
 			pageArea.getChildren().clear();
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("playlistsTabTemplate.fxml"));
-			PlaylistsTabView playlistsTab = new PlaylistsTabView(this);
+			PlaylistTabPage playlistsTab = new PlaylistTabPage(this);
 			loader.setController(playlistsTab);
 			pageArea.getChildren().add(loader.load());
 
@@ -81,15 +85,15 @@ public class DashboardView {
 			if (!registered) {
 				pageArea.getChildren().clear();
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("createProfTemplate.fxml"));
-				CreateProfileView newProfilesTab = new CreateProfileView(this);
+				CreateProfilePage newProfilesTab = new CreateProfilePage(this);
 				loader.setController(newProfilesTab);
 				pageArea.getChildren().add(loader.load());
-				registered=true;
+
 			}
 			else {
 				pageArea.getChildren().clear();
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("profilesTabTemplate.fxml"));
-				ProfilesTabView myprofile = new ProfilesTabView(this);
+				ProfilesTabPage myprofile = new ProfilesTabPage(this);
 				loader.setController(myprofile);
 				pageArea.getChildren().add(loader.load());
 			}
@@ -101,7 +105,7 @@ public class DashboardView {
 
 
 	public void logoutUser(ActionEvent actionEvent) throws IOException {
-		Parent dashboard = FXMLLoader.load(getClass().getResource("mainLoginTemplate.fxml"));
+		Parent dashboard = FXMLLoader.load(getClass().getResource("loginTemplate.fxml"));
 		Stage myStage = (Stage) logoutButton.getScene().getWindow();
 		myStage.setScene(new Scene(dashboard));
 	}

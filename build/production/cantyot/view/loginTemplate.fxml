@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainLoginPane" prefHeight="600.0" prefWidth="660.0" style="-fx-background-color: #303030;" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainLoginView">
+<AnchorPane fx:id="mainLoginPane" prefHeight="600.0" prefWidth="660.0" style="-fx-background-color: #303030;" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginView">
    <children>
       <JFXTextField focusColor="#ffba08" labelFloat="true" layoutX="202.0" layoutY="174.0" prefHeight="40.0" prefWidth="256.0" promptText="Username">
          <font>
@@ -43,7 +43,7 @@
             <Font name="Rockwell" size="21.0" />
          </font>
       </JFXButton>
-      <Text fill="WHITE" layoutX="324.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OR" wrappingWidth="30.6533203125">
+      <Text fill="WHITE" layoutX="322.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OR" wrappingWidth="15.6533203125">
          <font>
             <Font name="Menlo Regular" size="13.0" />
          </font>

@@ -1,27 +1,22 @@
 package view;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
-import java.util.List;
 
-public class CreateProfileView {
+public class CreateProfilePage {
 	@FXML public JFXButton createProfButton;
 	@FXML public JFXButton uploadButton;
 	DashboardView parent;
 
-	public CreateProfileView (DashboardView parent) {
+	public CreateProfilePage(DashboardView parent) {
 		this.parent = parent;
 	}
 
@@ -29,9 +24,10 @@ public class CreateProfileView {
 		if (actionEvent.getSource() == createProfButton) {
 			parent.pageArea.getChildren().clear();
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("profilesTabTemplate.fxml"));
-			ProfilesTabView myprofile = new ProfilesTabView(parent);
+			ProfilesTabPage myprofile = new ProfilesTabPage(parent);
 			loader.setController(myprofile);
 			parent.pageArea.getChildren().add(loader.load());
+			parent.registered=true;
 		}
 	}
 

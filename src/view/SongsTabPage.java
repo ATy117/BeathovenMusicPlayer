@@ -28,14 +28,14 @@ import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SongsTabView {
+public class SongsTabPage {
 
 	@FXML public JFXListView songsListView;
 	@FXML public JFXButton fileUploadButton;
 	@FXML public JFXComboBox groupComboBox;
 	DashboardView parent;
 
-	public SongsTabView (DashboardView parent) {
+	public SongsTabPage(DashboardView parent) {
 		this.parent = parent;
 	}
 
