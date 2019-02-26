@@ -81,6 +81,10 @@ public class Dashboard {
         }
         return false;
     }
+    
+    public void shuffleQueue(){
+        Collections.shuffle(queue);
+    }
 
 
 
