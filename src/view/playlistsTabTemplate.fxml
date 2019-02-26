@@ -1,10 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="471.0" prefWidth="791.0" style="-fx-background-color: #303030;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Circle fill="DODGERBLUE" layoutX="518.0" layoutY="77.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="#eeeeee" layoutX="89.0" layoutY="76.0" radius="44.0" stroke="BLACK" strokeType="INSIDE" />
+      <Text fill="WHITE" layoutX="160.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tupid Ass Playlist">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Text>
+      <JFXListView layoutX="45.0" layoutY="134.0" prefHeight="323.0" prefWidth="732.0" stylesheets="@theme.css" />
+      <JFXButton buttonType="RAISED" layoutX="160.0" layoutY="93.0" ripplerFill="#ffffff22" text="+" textFill="#dda00f">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+      <Text fill="#c9c7c7" layoutX="197.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Song to Playlist" wrappingWidth="175.9482421875">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <JFXButton layoutX="427.0" layoutY="58.0" text="&lt;3" textFill="#ee8b01">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="488.0" layoutY="58.0" text="..." textFill="#ee8b01">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>
