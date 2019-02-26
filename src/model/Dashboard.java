@@ -1,11 +1,16 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Dashboard {
     private User currentUser;
     private Profile userProfile;
     private Library library;
     private Playlist currentPlaylist = null;
     private Song currentSong = null;
+    private List<Track> queue = new ArrayList<>();
 
     public Dashboard (GuestUser g){
         currentUser = g;
@@ -42,4 +47,21 @@ public class Dashboard {
     public Library getLibrary() {
         return library;
     }
+
+    public void addToQueue(Song s) {
+        queue.add(s);
+    }
+
+    public void addCurrentPLaylistToQueue(){
+        this.addPlaylistToQueue(currentPlaylist);
+    }
+
+    public void addPlaylistToQueue(Playlist p){
+        List<Track> np = new ArrayList (p.getTrackList());
+        queue.addAll(np);
+    }
+
+
+
+
 }
