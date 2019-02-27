@@ -58,15 +58,13 @@ public class dbService {
             statement.setBytes(3, stream);
 
             statement.executeUpdate();
-            System.out.println("INSERT TO [REGISTERED_USER] TABLE SUCCESS!");
         }catch(SQLException e) {
             e.printStackTrace();
-            System.out.println("INSERT TO [REGISTERED_USER] TABLE FAILED!");
         }
     }
 
-    public ObservableList<RegisteredUser> getAllRegUsers() {
-        ObservableList<RegisteredUser> regUsers = FXCollections.observableArrayList();
+    public ArrayList<RegisteredUser> getAllRegUsers() {
+        ArrayList<RegisteredUser> regUsers = new ArrayList<>();
         Connection connect = connection.getConnection();
         String query = 	"SELECT " + RegisteredUserDB.COL_REGUSERBLOB +
                 " FROM " + RegisteredUserDB.TABLE;
@@ -84,30 +82,28 @@ public class dbService {
             statement.close();
             connect.close();
 
-            System.out.println("[REGISTERED_USER] SELECT SUCCESS!");
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("[REGISTERED_USER] SELECT FAILED!");
             return null;
         }
 
         return regUsers;
     }
 
-    public boolean checkExistingUsername(String username){
+    public boolean checkUsername(String username){
         Connection connect = connection.getConnection();
-        ObservableList<RegisteredUser> regUsers = getAllRegUsers();
-        String query = 	"SELECT " + RegisteredUserDB.COL_USERNAME +
-                " FROM " + RegisteredUserDB.TABLE;
+        ArrayList<RegisteredUser> regUsers = getAllRegUsers();
+        String query = 	"SELECT * " +
+                "FROM " + RegisteredUserDB.TABLE;
         try {
             PreparedStatement statement = connect.prepareStatement(query);
             ResultSet rs = statement.executeQuery();
 
             while(rs.next()) {
-                String currDBUsername = rs.toString();
+                String currDBUsername = rs.getString(RegisteredUserDB.COL_USERNAME);
                 for(RegisteredUser registeredUser: regUsers){
                     String tempUsername = registeredUser.getProfile().getUsername();
-                    if(tempUsername.equalsIgnoreCase(currDBUsername)){
+                    if(currDBUsername.equalsIgnoreCase(tempUsername)){
                         return true;
                     }
                 }
@@ -119,7 +115,35 @@ public class dbService {
             return false;
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("[REGISTERED_USER] SELECT FAILED!");
+            return false;
+        }
+    }
+
+    public boolean checkPassword(String password){
+        Connection connect = connection.getConnection();
+        ArrayList<RegisteredUser> regUsers = getAllRegUsers();
+        String query = 	"SELECT * " +
+                "FROM " + RegisteredUserDB.TABLE;
+        try {
+            PreparedStatement statement = connect.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+
+            while(rs.next()) {
+                String currDBUsername = rs.getString(RegisteredUserDB.COL_PASSWORD);
+                for(RegisteredUser registeredUser: regUsers){
+                    String tempUsername = registeredUser.getProfile().getUsername();
+                    if(currDBUsername.equalsIgnoreCase(tempUsername)){
+                        return true;
+                    }
+                }
+            }
+
+            rs.close();
+            statement.close();
+            connect.close();
+            return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
             return false;
         }
     }
