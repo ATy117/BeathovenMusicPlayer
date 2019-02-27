@@ -44,22 +44,38 @@ public class dbService {
         return toRegUser;
     }
 
-    public void addUser(String username, String password, RegisteredUser registeredUser) {
+    public boolean checkUsername(String username){
+        ArrayList<RegisteredUser> regUsers = getAllRegUsers();
+        for(RegisteredUser registeredUser: regUsers){
+            String tempRegisteredUser = registeredUser.getProfile().getUsername();
+            if(tempRegisteredUser.equalsIgnoreCase(username)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean addUser(String username, String password, RegisteredUser registeredUser) {
         Connection connect = connection.getConnection();
         byte[] stream = toBlob(registeredUser);
+        if(!checkUsername(username)) {
+            String query = "INSERT INTO " +
+                    RegisteredUserDB.TABLE +
+                    " VALUES(?,?,?)";
+            try {
+                PreparedStatement statement = connect.prepareStatement(query);
+                statement.setString(1, username);
+                statement.setString(2, password);
+                statement.setBytes(3, stream);
 
-        String query = "INSERT INTO " +
-                RegisteredUserDB.TABLE +
-                " VALUES(?,?,?)";
-        try {
-            PreparedStatement statement = connect.prepareStatement(query);
-            statement.setString(1, username);
-            statement.setString(2, password);
-            statement.setBytes(3, stream);
-
-            statement.executeUpdate();
-        }catch(SQLException e) {
-            e.printStackTrace();
+                statement.executeUpdate();
+                return true;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }else{
+            return false;
         }
     }
 
@@ -90,62 +106,36 @@ public class dbService {
         return regUsers;
     }
 
-    public boolean checkUsername(String username){
+
+    public RegisteredUser checkLogIn(String username, String password){
         Connection connect = connection.getConnection();
-        ArrayList<RegisteredUser> regUsers = getAllRegUsers();
-        String query = 	"SELECT * " +
-                "FROM " + RegisteredUserDB.TABLE;
+        String query = 	"SELECT *" +
+                " FROM " + RegisteredUserDB.TABLE;
+
+
         try {
             PreparedStatement statement = connect.prepareStatement(query);
             ResultSet rs = statement.executeQuery();
 
             while(rs.next()) {
-                String currDBUsername = rs.getString(RegisteredUserDB.COL_USERNAME);
-                for(RegisteredUser registeredUser: regUsers){
-                    String tempUsername = registeredUser.getProfile().getUsername();
-                    if(currDBUsername.equalsIgnoreCase(tempUsername)){
-                        return true;
-                    }
+                String dbUsername = rs.getString(RegisteredUserDB.COL_USERNAME);
+                String dbPassword = rs.getString(RegisteredUserDB.COL_PASSWORD);
+                if(dbUsername.equals(username) && dbPassword.equals(password)){
+                    return toRegUser(rs);
                 }
+
             }
 
             rs.close();
             statement.close();
             connect.close();
-            return false;
+            return null;
+
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
     }
 
-    public boolean checkPassword(String password){
-        Connection connect = connection.getConnection();
-        ArrayList<RegisteredUser> regUsers = getAllRegUsers();
-        String query = 	"SELECT * " +
-                "FROM " + RegisteredUserDB.TABLE;
-        try {
-            PreparedStatement statement = connect.prepareStatement(query);
-            ResultSet rs = statement.executeQuery();
-
-            while(rs.next()) {
-                String currDBUsername = rs.getString(RegisteredUserDB.COL_PASSWORD);
-                for(RegisteredUser registeredUser: regUsers){
-                    String tempUsername = registeredUser.getProfile().getUsername();
-                    if(currDBUsername.equalsIgnoreCase(tempUsername)){
-                        return true;
-                    }
-                }
-            }
-
-            rs.close();
-            statement.close();
-            connect.close();
-            return false;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
 
 }
