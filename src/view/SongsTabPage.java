@@ -28,7 +28,7 @@ import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SongsTabPage {
+public class SongsTabPage extends View {
 
 	@FXML public JFXListView songsListView;
 	@FXML public JFXButton fileUploadButton;
@@ -39,10 +39,14 @@ public class SongsTabPage {
 		this.parent = parent;
 	}
 
+
 	public void initialize() {
 		populateSongList();
 		initGroupByCombo();
 	}
+
+	@Override
+	public void Update() {}
 
 
 	public void uploadFile(ActionEvent actionEvent) {

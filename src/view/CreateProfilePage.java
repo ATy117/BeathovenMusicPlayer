@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 
-public class CreateProfilePage {
+public class CreateProfilePage extends View {
 	@FXML public JFXButton createProfButton;
 	@FXML public JFXButton uploadButton;
 	DashboardView parent;
@@ -19,6 +19,9 @@ public class CreateProfilePage {
 	public CreateProfilePage(DashboardView parent) {
 		this.parent = parent;
 	}
+
+	@Override
+	public void Update() {}
 
 	public void changePane(ActionEvent actionEvent) throws IOException {
 		if (actionEvent.getSource() == createProfButton) {

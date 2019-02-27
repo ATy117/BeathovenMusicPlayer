@@ -2,6 +2,7 @@ package view;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -9,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Dashboard;
@@ -38,6 +40,11 @@ public class DashboardView extends View{
 	public JFXButton logoutButton;
 	public JFXButton viewDetailsButton;
 
+	@FXML public AnchorPane songsPane;
+	@FXML public AnchorPane playlistsPane;
+	@FXML public AnchorPane profilesPane;
+	@FXML public AnchorPane createProfilePane;
+
 	public String appdirectory;
 
 	Boolean registered;
@@ -53,58 +60,33 @@ public class DashboardView extends View{
 			songlist.add(music);
 		}
 
-
-
 		setAppDirectory();
 		setCurrentUser();
 		setPlayingSong(null);
-
-
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("songsTabTemplate.fxml"));
-		SongsTabPage songsTab = new SongsTabPage(this);
-		loader.setController(songsTab);
-		pageArea.getChildren().add(loader.load());
+		loadAllViews();
+		setCurrentPane(songsPane);
 	}
 
 	@Override
-	public void Update() {}
+	public void Update() {
+		viewState = model.getDashboardState();
+	}
 
-	public void changeTab (ActionEvent actionEvent) throws IOException {
+	public void changeTab (ActionEvent actionEvent){
 		if (actionEvent.getSource()==songsTab) {
-			pageArea.getChildren().clear();
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("songsTabTemplate.fxml"));
-			SongsTabPage songsTab = new SongsTabPage(this);
-			loader.setController(songsTab);
-			pageArea.getChildren().add(loader.load());
-
+			setCurrentPane(songsPane);
 		}
 		else if (actionEvent.getSource() == playlistsTab) {
-			pageArea.getChildren().clear();
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("playlistsTabTemplate.fxml"));
-			PlaylistTabPage playlistsTab = new PlaylistTabPage(this);
-			loader.setController(playlistsTab);
-			pageArea.getChildren().add(loader.load());
-
+			setCurrentPane(playlistsPane);
 		}
 		else if (actionEvent.getSource() == profilesTab) {
 			if (!registered) {
-				pageArea.getChildren().clear();
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("createProfTemplate.fxml"));
-				CreateProfilePage newProfilesTab = new CreateProfilePage(this);
-				loader.setController(newProfilesTab);
-				pageArea.getChildren().add(loader.load());
-
+				setCurrentPane(createProfilePane);
 			}
 			else {
-				pageArea.getChildren().clear();
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("profilesTabTemplate.fxml"));
-				ProfilesTabPage myprofile = new ProfilesTabPage(this);
-				loader.setController(myprofile);
-				pageArea.getChildren().add(loader.load());
+				setCurrentPane(profilesPane);
 			}
 		}
-
-
 
 	}
 
@@ -118,8 +100,6 @@ public class DashboardView extends View{
 	public void sayHi () {
 		System.out.println("hi");
 	}
-
-
 
 	public void setCurrentUser() {
 		usernameHeader.setText("gab");
@@ -152,6 +132,36 @@ public class DashboardView extends View{
 		songDetails.setHideOnEscape(true);
 		songDetails.setDetachable(false);
 		songDetails.show((Button)actionEvent.getSource());
+	}
+
+	public void loadAllViews () throws IOException {
+
+		FXMLLoader loader;
+
+		loader = new FXMLLoader(getClass().getResource("songsTabTemplate.fxml"));
+		SongsTabPage songsTab = new SongsTabPage(this);
+		loader.setController(songsTab);
+		songsPane = loader.load();
+
+		loader = new FXMLLoader(getClass().getResource("playlistsTabTemplate.fxml"));
+		PlaylistTabPage playlistsTab = new PlaylistTabPage(this);
+		loader.setController(playlistsTab);
+		playlistsPane = loader.load();
+
+		loader = new FXMLLoader(getClass().getResource("profilesTabTemplate.fxml"));
+		ProfilesTabPage myprofile = new ProfilesTabPage(this);
+		loader.setController(myprofile);
+		profilesPane = loader.load();
+
+		loader = new FXMLLoader(getClass().getResource("createProfTemplate.fxml"));
+		CreateProfilePage newProfilesTab = new CreateProfilePage(this);
+		loader.setController(newProfilesTab);
+		createProfilePane = loader.load();
+	}
+
+	public void setCurrentPane (Pane pane) {
+		pageArea.getChildren().clear();
+		pageArea.getChildren().add(pane);
 	}
 
 	public void setAppDirectory() {
