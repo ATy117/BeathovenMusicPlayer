@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.*;
+import dbservice.*;
 
 public class Main extends Application {
 
@@ -20,6 +21,8 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+        dbService service = new dbService(new dbConnection());
+        service.getAllRegUsers();
         launch(args);
     }
 }

@@ -1,7 +1,10 @@
-package model;
+package dbservice;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import model.RegisteredUser;
+
 import java.sql.*;
 import java.io.*;
-import java.util.List;
 import java.util.ArrayList;
 
 
@@ -29,7 +32,7 @@ public class dbService {
 
     public static RegisteredUser toRegUser(ResultSet rs) throws SQLException{
         RegisteredUser toRegUser = null;
-        try(ByteArrayInputStream bais = new ByteArrayInputStream(rs.getBytes(RegisteredUser.COL_REGUSERBLOB));
+        try(ByteArrayInputStream bais = new ByteArrayInputStream(rs.getBytes(RegisteredUserDB.COL_REGUSERBLOB));
             ObjectInputStream ois = new ObjectInputStream(bais);){
             toRegUser = (RegisteredUser) ois.readObject();
         }catch(IOException e){
@@ -46,7 +49,7 @@ public class dbService {
         byte[] stream = toBlob(registeredUser);
 
         String query = "INSERT INTO " +
-                RegisteredUser.TABLE +
+                RegisteredUserDB.TABLE +
                 " VALUES(?,?,?)";
         try {
             PreparedStatement statement = connect.prepareStatement(query);
@@ -62,11 +65,11 @@ public class dbService {
         }
     }
 
-    public ArrayList<RegisteredUser> getAllRegUsers() {
-        ArrayList<RegisteredUser> regUsers = new ArrayList<>();
+    public ObservableList<RegisteredUser> getAllRegUsers() {
+        ObservableList<RegisteredUser> regUsers = FXCollections.observableArrayList();
         Connection connect = connection.getConnection();
-        String query = 	"SELECT " + RegisteredUser.COL_REGUSERBLOB +
-                " FROM " + RegisteredUser.TABLE;
+        String query = 	"SELECT " + RegisteredUserDB.COL_REGUSERBLOB +
+                " FROM " + RegisteredUserDB.TABLE;
 
 
         try {
@@ -91,5 +94,34 @@ public class dbService {
         return regUsers;
     }
 
+    public boolean checkExistingUsername(String username){
+        Connection connect = connection.getConnection();
+        ObservableList<RegisteredUser> regUsers = getAllRegUsers();
+        String query = 	"SELECT " + RegisteredUserDB.COL_USERNAME +
+                " FROM " + RegisteredUserDB.TABLE;
+        try {
+            PreparedStatement statement = connect.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+
+            while(rs.next()) {
+                String currDBUsername = rs.toString();
+                for(RegisteredUser registeredUser: regUsers){
+                    String tempUsername = registeredUser.getProfile().getUsername();
+                    if(tempUsername.equalsIgnoreCase(currDBUsername)){
+                        return true;
+                    }
+                }
+            }
+
+            rs.close();
+            statement.close();
+            connect.close();
+            return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("[REGISTERED_USER] SELECT FAILED!");
+            return false;
+        }
+    }
 
 }
