@@ -49,17 +49,10 @@ public class Dashboard {
         return library;
     }
 
-    public void addToQueue(Song s) {
-        queue.add(s);
-    }
-
-    public void addCurrentPLaylistToQueue(){
-        this.addPlaylistToQueue(currentPlaylist);
-    }
-
-    public void addPlaylistToQueue(Playlist p){
-        List<Track> np = new ArrayList (p.getTrackList());
+    public void addCurrentPlaylistToQueue(){
+        List<Track> np = currentPlaylist.getTrackList();
         queue.addAll(np);
+        queue.remove(currentSong);
     }
 
     public boolean playNextSong(){

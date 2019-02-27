@@ -12,6 +12,12 @@ public class DashboardModel extends Model {
 		this.dashboardState = dashboardState;
 	}
 
+	public void setCurrentSongAndPlaylist(Song s, Playlist p){
+		dashboardState.setCurrentSong(s);
+		dashboardState.setCurrentPlaylist(p);
+		dashboardState.addCurrentPlaylistToQueue();
+	}
+	
 
 
 
