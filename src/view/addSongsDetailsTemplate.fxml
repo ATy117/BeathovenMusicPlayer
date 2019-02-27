@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane prefHeight="471.0" prefWidth="791.0" style="-fx-background-color: #303030;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Circle fill="WHITE" layoutX="164.0" layoutY="170.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
+      <JFXButton layoutX="107.0" layoutY="302.0" prefHeight="25.0" prefWidth="115.0" text="Upload Image" textFill="#ffc300" />
+      <JFXTextField layoutX="317.0" layoutY="99.0" prefHeight="39.0" prefWidth="188.0" promptText="Song Name" unFocusColor="#f8a705" />
+      <JFXTextField layoutX="317.0" layoutY="151.0" prefHeight="39.0" prefWidth="188.0" promptText="Artist" unFocusColor="#f8a705" />
+      <JFXTextField layoutX="317.0" layoutY="205.0" prefHeight="39.0" prefWidth="188.0" promptText="Album" unFocusColor="#f8a705" />
+      <JFXTextField layoutX="317.0" layoutY="263.0" prefHeight="39.0" prefWidth="188.0" promptText="Genre" unFocusColor="#f8a705" />
+   </children>
+</AnchorPane>

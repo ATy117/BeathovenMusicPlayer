@@ -75,7 +75,7 @@ public class DashboardView extends View{
 		}
 		else if (actionEvent.getSource() == playlistsTab) {
 			pageArea.getChildren().clear();
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("playlistsTabTemplate.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("playlistTabTemplate.fxml"));
 			PlaylistTabPage playlistsTab = new PlaylistTabPage(this);
 			loader.setController(playlistsTab);
 			pageArea.getChildren().add(loader.load());
