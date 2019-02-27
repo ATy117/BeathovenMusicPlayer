@@ -17,9 +17,17 @@ public class DashboardModel extends Model {
 		dashboardState.setCurrentPlaylist(p);
 		dashboardState.addCurrentPlaylistToQueue();
 	}
-	
 
+	public void fetchNextSong(){
+		dashboardState.playNextSong();
+	}
 
+	public void fetchPreviousSong(){
+		dashboardState.playPreviousSong();
+	}
 
+	public void shuffle(){
+		dashboardState.shuffleQueue();
+	}
 
 }
