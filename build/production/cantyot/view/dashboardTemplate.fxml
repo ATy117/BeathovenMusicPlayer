@@ -25,15 +25,25 @@
             <InnerShadow />
          </effect>
       </AnchorPane>
-      <AnchorPane layoutY="464.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="76.0" prefWidth="210.0" style="-fx-background-color: #101010;" stylesheets="@theme.css">
+      <AnchorPane layoutY="439.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="101.0" prefWidth="210.0" style="-fx-background-color: #101010;" stylesheets="@theme.css">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="42.0" layoutX="13.0" layoutY="17.0" stroke="WHITE" strokeType="INSIDE" width="42.0" />
-            <Text fx:id="curSongName" fill="WHITE" layoutX="64.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Broken Dreams" wrappingWidth="150.00000721216202">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="42.0" layoutX="14.0" layoutY="29.0" stroke="WHITE" strokeType="INSIDE" width="42.0" />
+            <Text fx:id="curSongName" fill="WHITE" layoutX="74.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Broken Dreams" wrappingWidth="150.00000721216202">
                <font>
                   <Font name="Rockwell" size="13.0" />
                </font>
             </Text>
-            <Text fx:id="curSongArtist" fill="WHITE" layoutX="64.0" layoutY="51.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="By Schuyler Ng" wrappingWidth="134.84617614746094">
+            <Text fx:id="curSongArtist" fill="WHITE" layoutX="74.0" layoutY="47.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="By Schuyler Ng" wrappingWidth="134.84617614746094">
+               <font>
+                  <Font name="Rockwell" size="11.0" />
+               </font>
+            </Text>
+            <Text fx:id="curSongArtist1" fill="WHITE" layoutX="74.0" layoutY="64.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="Album" wrappingWidth="134.84617614746094">
+               <font>
+                  <Font name="Rockwell" size="11.0" />
+               </font>
+            </Text>
+            <Text fx:id="curSongArtist2" fill="WHITE" layoutX="74.0" layoutY="81.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="GENRE" wrappingWidth="134.84617614746094">
                <font>
                   <Font name="Rockwell" size="11.0" />
                </font>
@@ -59,16 +69,11 @@
             <JFXButton layoutX="26.0" layoutY="17.0" prefHeight="27.0" prefWidth="35.0" styleClass="rewind-media" stylesheets="@theme.css" text=" " />
             <JFXButton layoutX="89.0" layoutY="17.0" prefHeight="27.0" prefWidth="25.0" styleClass="play-media" stylesheets="@theme.css" text=" " />
             <JFXButton layoutX="137.0" layoutY="17.0" prefHeight="27.0" prefWidth="35.0" styleClass="forward-media" stylesheets="@theme.css" />
-            <JFXButton layoutX="880.0" layoutY="19.0" prefHeight="27.0" prefWidth="25.0" style="-fx-background-color: #202020;" text="S" textFill="WHITE" />
-            <JFXButton layoutX="920.0" layoutY="19.0" prefHeight="27.0" prefWidth="27.0" style="-fx-background-color: #202020;" text="R" textFill="WHITE" />
-            <JFXButton fx:id="viewDetailsButton" layoutX="961.0" layoutY="19.0" onAction="#displaySongDetails" prefHeight="27.0" prefWidth="25.0" style="-fx-background-color: #202020;" text="View" textFill="WHITE">
-               <font>
-                  <Font size="6.0" />
-               </font>
-            </JFXButton>
+            <JFXButton layoutX="904.0" layoutY="19.0" prefHeight="27.0" prefWidth="25.0" style="-fx-background-color: #202020;" text="S" textFill="WHITE" />
+            <JFXButton layoutX="941.0" layoutY="19.0" prefHeight="27.0" prefWidth="27.0" style="-fx-background-color: #202020;" text="R" textFill="WHITE" />
          </children>
       </AnchorPane>
-      <JFXScrollPane layoutX="1.0" layoutY="61.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="208.0">
+      <JFXScrollPane layoutX="1.0" layoutY="60.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="208.0">
          <children>
             <VBox fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="210.0" style="-fx-background-color: #202020;" styleClass="#tabButton" stylesheets="@theme.css">
                <children>
@@ -104,16 +109,7 @@
                      </font>
                   </JFXButton>
                   <Region prefHeight="124.0" prefWidth="210.0" />
-                  <AnchorPane accessibleRole="BUTTON" prefHeight="26.0" prefWidth="210.0">
-                     <children>
-                        <Text fill="WHITE" layoutX="58.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOGOUT" wrappingWidth="62.94287109375">
-                           <font>
-                              <Font name="Rockwell" size="13.0" />
-                           </font>
-                        </Text>
-                        <JFXButton fx:id="logoutButton" accessibleRole="IMAGE_VIEW" layoutX="14.0" layoutY="6.0" onAction="#logoutUser" prefHeight="24.0" prefWidth="25.0" styleClass="logout-button" stylesheets="@theme.css" text=" " />
-                     </children>
-                  </AnchorPane>
+                  <AnchorPane accessibleRole="BUTTON" prefHeight="26.0" prefWidth="210.0" />
                </children>
             </VBox>
          </children>

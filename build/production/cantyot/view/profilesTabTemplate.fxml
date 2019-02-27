@@ -1,10 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="471.0" prefWidth="791.0" style="-fx-background-color: #303030;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Circle fill="DODGERBLUE" layoutX="173.0" layoutY="278.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="WHITE" layoutX="118.0" layoutY="108.0" radius="64.0" stroke="BLACK" strokeType="INSIDE" />
+      <Text fill="#e8e8e8" layoutX="203.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Schuyler">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="324.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ng">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fill="#b5abab" layoutX="202.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\@scalar_ng" wrappingWidth="179.4453125">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <JFXButton layoutX="202.0" layoutY="141.0" prefHeight="29.0" prefWidth="68.0" text="EDIT" textFill="#f8c702">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXListView layoutX="124.0" layoutY="206.0" prefHeight="251.0" prefWidth="225.0" stylesheets="@theme.css" />
+      <JFXListView layoutX="356.0" layoutY="206.0" prefHeight="251.0" prefWidth="122.0" stylesheets="@theme.css" />
+      <JFXListView layoutX="484.0" layoutY="206.0" prefHeight="251.0" prefWidth="225.0" stylesheets="@theme.css" />
+      <Text layoutX="206.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fave Songs" />
+      <Text layoutX="383.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fave Playlists" />
+      <Text fill="#dad4d4" layoutX="206.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Most Played:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#d0d0d0" layoutX="319.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Song" wrappingWidth="74.8955078125">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

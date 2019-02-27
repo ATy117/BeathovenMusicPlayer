@@ -10,12 +10,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class RegisterView {
+public class RegisterView  extends View {
 
 	public JFXButton registerConfirmButton;
 	public JFXButton registerBackButton;
 	public ImageView logoIV;
 
+	@Override
+	public void Update() {}
 
 	public void changePane(ActionEvent actionEvent) throws IOException {
 		if (actionEvent.getSource() == registerConfirmButton) {

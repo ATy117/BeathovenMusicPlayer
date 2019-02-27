@@ -11,10 +11,13 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 
-public class LoginView {
+public class LoginView extends View{
 	public JFXButton loginButton;
 	public JFXButton accountRegisterButton;
 	public JFXButton guestLoginButton;
+
+	@Override
+	public void Update() {}
 
 	public void changeLoginPane(ActionEvent actionEvent) throws IOException {
 		if (actionEvent.getSource() == loginButton) {

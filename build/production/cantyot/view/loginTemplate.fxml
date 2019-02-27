@@ -43,7 +43,7 @@
             <Font name="Rockwell" size="21.0" />
          </font>
       </JFXButton>
-      <Text fill="WHITE" layoutX="322.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OR" wrappingWidth="15.6533203125">
+      <Text fill="WHITE" layoutX="324.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OR" wrappingWidth="30.6533203125">
          <font>
             <Font name="Menlo Regular" size="13.0" />
          </font>
