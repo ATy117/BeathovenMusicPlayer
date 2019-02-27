@@ -16,7 +16,7 @@
          </font>
       </Text>
       <JFXListView layoutX="45.0" layoutY="134.0" prefHeight="323.0" prefWidth="732.0" stylesheets="@theme.css" />
-      <JFXButton buttonType="RAISED" layoutX="160.0" layoutY="93.0" ripplerFill="#ffffff22" text="+" textFill="#dda00f">
+      <JFXButton buttonType="RAISED" layoutX="160.0" layoutY="93.0" ripplerFill="#e8e8e821" text="+" textFill="#dda00f">
          <font>
             <Font size="18.0" />
          </font>
