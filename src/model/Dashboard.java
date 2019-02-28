@@ -8,10 +8,8 @@ public class Dashboard {
     private User currentUser;
     private Profile userProfile;
     private Library library;
-    private Playlist currentPlaylist = null;
-    private Song currentSong = null;
-    private List<Track> queue = new ArrayList<>();
-    private List<Track> done = new ArrayList<>();
+    private SongPlayer songPlayer;
+
 
     public Dashboard (GuestUser g){
         currentUser = g;
@@ -25,67 +23,35 @@ public class Dashboard {
         library = rg.getLibrary();
     }
 
-    public Playlist getCurrentPlaylist() {
-        return currentPlaylist;
+    public User getCurrentUser() {
+        return currentUser;
     }
 
-    public void setCurrentPlaylist(Playlist currentPlaylist) {
-        this.currentPlaylist = currentPlaylist;
-    }
-
-    public Song getCurrentSong() {
-        return currentSong;
-    }
-
-    public void setCurrentSong(Song currentSong) {
-        this.currentSong = currentSong;
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
     }
 
     public Profile getUserProfile() {
         return userProfile;
     }
 
+    public void setUserProfile(Profile userProfile) {
+        this.userProfile = userProfile;
+    }
+
     public Library getLibrary() {
         return library;
     }
 
-    public void addToQueue(Song s) {
-        queue.add(s);
+    public void setLibrary(Library library) {
+        this.library = library;
     }
 
-    public void addCurrentPLaylistToQueue(){
-        this.addPlaylistToQueue(currentPlaylist);
+    public SongPlayer getSongPlayer() {
+        return songPlayer;
     }
 
-    public void addPlaylistToQueue(Playlist p){
-        List<Track> np = new ArrayList (p.getTrackList());
-        queue.addAll(np);
+    public void setSongPlayer(SongPlayer songPlayer) {
+        this.songPlayer = songPlayer;
     }
-
-    public boolean playNextSong(){
-        if (!queue.isEmpty()) {
-            done.add(0, currentSong);
-            currentSong = (Song) queue.get(0);
-            queue.remove(0);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean playPreviousSong(){
-        if (!done.isEmpty()){
-            queue.add(0, currentSong);
-            currentSong = (Song) done.get(0);
-            done.remove(0);
-            return true;
-        }
-        return false;
-    }
-    
-    public void shuffleQueue(){
-        Collections.shuffle(queue);
-    }
-
-
-
 }
