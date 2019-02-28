@@ -12,6 +12,7 @@ public class Library implements Serializable {
         return allSongs;
     }
 
+
     public List<Playlist> getAllPlaylists() {
         return allPlaylists;
     }
