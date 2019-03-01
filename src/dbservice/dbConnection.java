@@ -1,4 +1,4 @@
-package model;
+package dbservice;
 import java.sql.*;
 
 public class dbConnection {
