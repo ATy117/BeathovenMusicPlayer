@@ -2,7 +2,7 @@ package controller;
 
 import javafx.scene.Node;
 import javafx.stage.Stage;
-import model.*;
+import model_rework.*;
 import view.DashboardView;
 import view.LoginView;
 
