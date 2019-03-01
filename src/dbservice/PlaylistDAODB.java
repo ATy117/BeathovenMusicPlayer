@@ -1,6 +1,6 @@
 package dbservice;
 
-import model.Playlist;
+import model_rework.Playlist;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public class PlaylistDAODB implements PlaylistDAO {
     }
 
     @Override
-    public boolean deletePlaylist(Playlist id) {
+    public boolean deletePlaylist(int playlist_id) {
         return false;
     }
 

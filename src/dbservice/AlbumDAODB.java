@@ -1,6 +1,6 @@
 package dbservice;
 
-import model.Album;
+import model_rework.Album;
 
 import java.util.List;
 

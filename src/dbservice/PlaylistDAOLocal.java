@@ -2,16 +2,21 @@ package dbservice;
 
 import model_rework.Playlist;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlaylistDAOLocal implements PlaylistDAO {
+
+    private List<Playlist> playlists = new ArrayList<>();
+
     @Override
     public boolean addPlaylist(Playlist playlist) {
-        return false;
+        playlists.add(playlist);
+        return true;
     }
 
     @Override
-    public boolean deletePlaylist(Playlist id) {
+    public boolean deletePlaylist(int playlist_id) {
         return false;
     }
 
