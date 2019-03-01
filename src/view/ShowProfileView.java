@@ -1,15 +1,17 @@
 package view;
 
 import controller.MasterController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 public class ShowProfileView extends View{
+
+
 
 	public ShowProfileView(MasterController controller, Stage stage) throws IOException {
 
@@ -24,16 +26,15 @@ public class ShowProfileView extends View{
 		stage.setScene(scene);
 	}
 
-	public void editUserDetails(ActionEvent actionEvent) {
-
-	}
-
-	public void changePane(ActionEvent actionEvent) {
-
-	}
 
 
 
 	@Override
 	public void Update(){}
+
+	public void changePane(ActionEvent actionEvent) {
+	}
+
+	public void editUserDetails(ActionEvent actionEvent) {
+	}
 }
