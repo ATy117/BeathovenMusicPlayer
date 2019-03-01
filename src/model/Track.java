@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public abstract class Track implements Serializable {
+public abstract class Track implements Serializable,Favoritable {
 
     private String name;
     private String trackURL;
@@ -10,6 +10,7 @@ public abstract class Track implements Serializable {
     private String collection;
     private String genre;
     private int year;
+    private Boolean isFavorite = false;
 
     public String getName() {
         return name;
@@ -57,5 +58,10 @@ public abstract class Track implements Serializable {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    @Override
+    public void mark(boolean isFavorite) {
+        this.isFavorite = isFavorite;
     }
 }

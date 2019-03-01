@@ -5,9 +5,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public abstract class TrackCollection implements Serializable {
+public abstract class TrackCollection implements Serializable, Favoritable {
     private String collectionName;
     private List<Track> trackList = new ArrayList<>();
+    private Boolean isFavorite = false;
 
     public String getCollectionName() {
         return collectionName;
@@ -40,6 +41,9 @@ public abstract class TrackCollection implements Serializable {
     public int getTrackCount(){
         return trackList.size();
     }
-    
 
+    @Override
+    public void mark(boolean isFavorite) {
+        this.isFavorite = isFavorite;
+    }
 }
