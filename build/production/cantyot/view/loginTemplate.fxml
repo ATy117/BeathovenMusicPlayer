@@ -11,36 +11,36 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainLoginPane" prefHeight="600.0" prefWidth="660.0" style="-fx-background-color: #303030;" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginView">
+<AnchorPane fx:id="mainLoginPane" prefHeight="600.0" prefWidth="660.0" style="-fx-background-color: #303030;" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <JFXTextField focusColor="#ffba08" labelFloat="true" layoutX="202.0" layoutY="174.0" prefHeight="40.0" prefWidth="256.0" promptText="Username">
+      <JFXTextField focusColor="#8ba0a9" labelFloat="true" layoutX="202.0" layoutY="174.0" prefHeight="40.0" prefWidth="256.0" promptText="Username" unFocusColor="#eaa830">
          <font>
             <Font size="17.0" />
          </font>
       </JFXTextField>
-      <Text fill="WHITE" layoutX="287.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" wrappingWidth="73.45361328125">
+      <Text fill="#f1f6f1" layoutX="287.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" wrappingWidth="73.45361328125">
          <font>
-            <Font name="Rockwell" size="26.0" />
+            <Font name="Poppins Regular" size="26.0" />
          </font>
       </Text>
-      <JFXPasswordField labelFloat="true" layoutX="202.0" layoutY="245.0" prefHeight="40.0" prefWidth="256.0" promptText="Password">
+      <JFXPasswordField focusColor="#8ba0a9" labelFloat="true" layoutX="202.0" layoutY="245.0" prefHeight="40.0" prefWidth="256.0" promptText="Password" unFocusColor="#eaa830">
          <font>
             <Font size="8.0" />
          </font>
       </JFXPasswordField>
-      <JFXButton fx:id="loginButton" buttonType="RAISED" layoutX="202.0" layoutY="311.0" onAction="#changeLoginPane" prefHeight="39.0" prefWidth="256.0" ripplerFill="WHITE" text="Login" textFill="#221d1d">
+      <JFXButton fx:id="loginButton" buttonType="RAISED" layoutX="202.0" layoutY="311.0" onAction="#changeLoginPane" prefHeight="39.0" prefWidth="256.0" ripplerFill="#e9c582" text="Login" textFill="#303030">
          <font>
-            <Font name="Rockwell" size="21.0" />
+            <Font name="Poppins Regular" size="19.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="accountRegisterButton" buttonType="RAISED" layoutX="206.0" layoutY="470.0" onAction="#changeLoginPane" prefHeight="40.0" prefWidth="256.0" ripplerFill="WHITE" text="Register" textFill="#221d1d">
+      <JFXButton fx:id="accountRegisterButton" buttonType="RAISED" layoutX="206.0" layoutY="470.0" prefHeight="40.0" prefWidth="256.0" ripplerFill="#e9c582" text="Register" textFill="#303030">
          <font>
-            <Font name="Rockwell" size="21.0" />
+            <Font name="Poppins Regular" size="19.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="guestLoginButton" buttonType="RAISED" layoutX="206.0" layoutY="410.0" onAction="#changeLoginPane" prefHeight="40.0" prefWidth="256.0" ripplerFill="WHITE" text="Login as Guest" textFill="#221d1d">
+      <JFXButton fx:id="guestLoginButton" buttonType="RAISED" layoutX="206.0" layoutY="410.0" prefHeight="40.0" prefWidth="256.0" ripplerFill="#e9cb82" text="Login as Guest" textFill="#303030">
          <font>
-            <Font name="Rockwell" size="21.0" />
+            <Font name="Poppins Regular" size="19.0" />
          </font>
       </JFXButton>
       <Text fill="WHITE" layoutX="324.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OR" wrappingWidth="30.6533203125">
@@ -55,9 +55,9 @@
             <DropShadow />
          </effect>
          <children>
-            <ImageView fx:id="logoIV" fitHeight="59.0" fitWidth="366.0" layoutX="152.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="logoIV" fitHeight="59.0" fitWidth="366.0" layoutX="198.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@/resources/logo.jpg" />
+                  <Image url="@../resources/beathoven.png" />
                </image></ImageView>
          </children>
       </AnchorPane>

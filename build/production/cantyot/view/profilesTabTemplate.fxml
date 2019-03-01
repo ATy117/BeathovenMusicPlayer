@@ -9,7 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="471.0" prefWidth="791.0" style="-fx-background-color: #303030;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Circle fill="WHITE" layoutX="118.0" layoutY="108.0" radius="64.0" stroke="BLACK" strokeType="INSIDE" />
+      <Circle fill="WHITE" layoutX="118.0" zlayoutY="108.0" radius="64.0" stroke="BLACK" strokeType="INSIDE" />
       <Text fill="#e8e8e8" layoutX="203.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Schuyler">
          <font>
             <Font size="24.0" />
