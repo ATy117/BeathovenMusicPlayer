@@ -1,6 +1,6 @@
 package dbservice;
 
-import model.Album;
+import model_rework.Album;
 
 import java.util.List;
 
@@ -23,5 +23,10 @@ public class AlbumDAOLocal implements AlbumDAO {
     @Override
     public List<Album> getAlbums(int user_id) {
         return null;
+    }
+
+    @Override
+    public boolean checkAlbum(String album_name) {
+        return false;
     }
 }
