@@ -21,12 +21,12 @@
             <Font name="Poppins Regular" size="21.0" />
          </font>
       </Text>
-      <JFXTextField fx:id="usernameField" focusColor="#e9c582" layoutX="191.0" layoutY="74.0" promptText="Username" unFocusColor="#eaa830">
+      <JFXTextField fx:id="usernameField" focusColor="#e9c582" layoutX="191.0" layoutY="66.0" promptText="Username" unFocusColor="#eaa830">
          <font>
             <Font name="Poppins Regular" size="14.0" />
          </font>
       </JFXTextField>
-      <JFXPasswordField fx:id="passwordField" focusColor="#e9c582" layoutX="191.0" layoutY="128.0" promptText="Password" unFocusColor="#eaa830">
+      <JFXPasswordField fx:id="passwordField" focusColor="#e9c582" layoutX="191.0" layoutY="107.0" promptText="Password" unFocusColor="#eaa830">
          <font>
             <Font name="Poppins Regular" size="14.0" />
          </font>
@@ -37,6 +37,11 @@
          </font>
       </JFXButton>
       <JFXButton fx:id="loginGuestBtn" layoutX="202.0" layoutY="315.0" prefHeight="30.0" prefWidth="149.0" style="-fx-background-color: #303030" text="Log-in as Guest" textFill="#8ba0a9">
+         <font>
+            <Font name="Poppins Regular" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="loginBtn" layoutX="202.0" layoutY="157.0" onAction="#sayHi" prefHeight="30.0" prefWidth="149.0" style="-fx-background-color: #303030" text="Log-in" textFill="#8ba0a9">
          <font>
             <Font name="Poppins Regular" size="14.0" />
          </font>

@@ -53,11 +53,16 @@
                   <Font name="Poppins Regular" size="14.0" />
                </font>
             </Text>
-            <Text fx:id="genreText" fill="#454444" layoutX="738.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ballad">
+            <Text fx:id="genreText" fill="#454444" layoutX="27.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ballad">
                <font>
                   <Font name="Poppins Regular" size="14.0" />
                </font>
             </Text>
+            <JFXButton fx:id="myProfileBtn" layoutX="685.0" layoutY="7.0" prefHeight="56.0" prefWidth="134.0" style="-fx-background-color: #eaa830" text="My Profile" textFill="#303030">
+               <font>
+                  <Font name="Poppins Regular" size="18.0" />
+               </font>
+            </JFXButton>
          </children></AnchorPane>
       <JFXScrollPane fx:id="songsScroll" layoutY="60.0" prefHeight="426.0" prefWidth="161.0" style="-fx-background-color: #303030">
          <children>
@@ -74,12 +79,14 @@
                         <Font name="Poppins Regular" size="14.0" />
                      </font>
                   </JFXTextField>
-                  <Label prefHeight="56.0" prefWidth="28.0" />
-                  <JFXButton fx:id="myProfileBtn" prefHeight="39.0" prefWidth="162.0" text="My Profile" textFill="#8ba0a9">
+                  <Label prefHeight="17.0" prefWidth="162.0" text="Label" />
+                  <Text fill="#8ba0a9" strokeType="OUTSIDE" strokeWidth="0.0" text="Albums" textAlignment="CENTER" wrappingWidth="157.5540008544922">
                      <font>
                         <Font name="Poppins Regular" size="18.0" />
                      </font>
-                  </JFXButton>
+                  </Text>
+                  <VBox fx:id="albumsVbox" prefHeight="306.0" prefWidth="161.0" />
+                  <Label prefHeight="56.0" prefWidth="28.0" />
                </children></VBox>
          </children></JFXScrollPane>
       <JFXScrollPane layoutX="683.0" layoutY="60.0" prefHeight="426.0" prefWidth="143.0">
