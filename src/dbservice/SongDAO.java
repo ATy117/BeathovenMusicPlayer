@@ -10,7 +10,7 @@ public interface SongDAO {
     public void updateSong (Song song);
     public List<Song> getAllSong(int user_id);
     public List<Song> getPlaylistSong(int user_id, int playlist_id);
-    public List<Song> getAlbumSong(int album_id);
+    public List<Song> getAlbumSong(int user_id, int album_id);
     public List<Song> getFavoriteSong(int user_id);
     public Song getMostPlayed(int user_id);
     public boolean checkSong(int user_id, String song_name);

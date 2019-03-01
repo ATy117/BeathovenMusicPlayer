@@ -36,7 +36,7 @@ public class SongDAODB implements SongDAO{
     }
 
     @Override
-    public List<Song> getAlbumSong(int album_id) {
+    public List<Song> getAlbumSong(int user_id, int album_id) {
         return null;
     }
 
