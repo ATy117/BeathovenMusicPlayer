@@ -1,5 +1,7 @@
 package model_rework;
 
+import java.io.File;
+
 public class Song {
     private int song_id;
     private String song_name;
@@ -16,7 +18,7 @@ public class Song {
     private String artist_name;
 
     private boolean favorite;
-    private String song_URL;
+    private File song_URL;
 
     private int times_played;
 
@@ -100,11 +102,11 @@ public class Song {
         this.favorite = favorite;
     }
 
-    public String getSong_URL() {
+    public File getSong_URL() {
         return song_URL;
     }
 
-    public void setSong_URL(String song_URL) {
+    public void setSong_URL(File song_URL) {
         this.song_URL = song_URL;
     }
 

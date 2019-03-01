@@ -1,10 +1,12 @@
 package model_rework;
 
+import java.io.File;
+
 public class Album {
     private int album_id;
     private String name;
     private int user_id;
-    private String coverURL;
+    private File cover_URL;
 
     public int getAlbum_id() {
         return album_id;
@@ -30,11 +32,11 @@ public class Album {
         this.user_id = user_id;
     }
 
-    public String getCoverURL() {
-        return coverURL;
+    public File getCover_URL() {
+        return cover_URL;
     }
 
-    public void setCoverURL(String coverURL) {
-        this.coverURL = coverURL;
+    public void setCover_URL(File cover_URL) {
+        this.cover_URL = cover_URL;
     }
 }
