@@ -11,13 +11,11 @@ import java.io.File;
 import java.io.IOException;
 
 public class RegisterView extends View{
-	Stage stage;
-	MasterController controller;
 
-	public RegisterView(MasterController controller) throws IOException {
+	public RegisterView(MasterController controller, Stage stage) throws IOException {
 
 		this.controller = controller;
-		stage = controller.getStage();
+		this.stage = stage;
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("registerPageTemplate.fxml"));
 		loader.setController(this);
@@ -28,10 +26,14 @@ public class RegisterView extends View{
 		stage.setScene(scene);
 	}
 
-	public void RegisterAccount(ActionEvent actionEvent) {
+	public void registerAccount(ActionEvent actionEvent) {
 		// get user name / pass, pic
 		File test = new File("test");
 		controller.registerAccount("user", "pass", test);
+	}
+
+	public void changePane(ActionEvent actionEvent) {
+
 	}
 
 	@Override

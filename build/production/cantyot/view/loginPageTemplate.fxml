@@ -41,5 +41,10 @@
             <Font name="Poppins Regular" size="14.0" />
          </font>
       </JFXButton>
+      <JFXButton fx:id="loginBtn" layoutX="202.0" layoutY="172.0" onAction="#loginUser" prefHeight="30.0" prefWidth="149.0" style="-fx-background-color: #303030" text="login" textFill="#8ba0a9">
+         <font>
+            <Font name="Poppins Regular" size="14.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>
