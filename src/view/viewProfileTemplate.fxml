@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="436.0" prefWidth="609.0" style="-fx-background-color: #454444" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="447.0" prefWidth="609.0" style="-fx-background-color: #454444" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <JFXButton fx:id="backBtn" layoutX="14.0" layoutY="14.0" style="-fx-background-color: #303030" text="back" textFill="#454444">
          <font>
@@ -46,23 +46,24 @@
             <Font name="Poppins Regular" size="12.0" />
          </font>
       </JFXTextField>
-      <JFXListView fx:id="faveSongsList" layoutX="43.0" layoutY="217.0" prefHeight="201.0" prefWidth="193.0" style="-fx-background-color: #303030"/>
-      <JFXListView fx:id="favePlaylistList" layoutX="244.0" layoutY="217.0" prefHeight="201.0" prefWidth="125.0" style="-fx-background-color: #303030"/>
-      <JFXListView fx:id="songPlaylistList" layoutX="376.0" layoutY="217.0" prefHeight="201.0" prefWidth="193.0" style="-fx-background-color: #303030"/>
-      <Text fill="#e9b350" layoutX="88.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Favorite Songs">
+      <JFXListView fx:id="faveSongsList" layoutX="43.0" layoutY="212.0" prefHeight="201.0" prefWidth="193.0" style="-fx-background-color: #303030" />
+      <JFXListView fx:id="favePlaylistList" layoutX="244.0" layoutY="212.0" prefHeight="201.0" prefWidth="125.0" style="-fx-background-color: #303030" />
+      <JFXListView fx:id="songPlaylistList" layoutX="376.0" layoutY="212.0" prefHeight="201.0" prefWidth="193.0" style="-fx-background-color: #303030" />
+      <Text fill="#e9b350" layoutX="88.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Favorite Songs">
          <font>
             <Font name="Poppins Regular" size="13.0" />
          </font>
       </Text>
-      <Text fill="#e9b350" layoutX="254.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Favorite Playlists">
+      <Text fill="#e9b350" layoutX="254.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Favorite Playlists">
          <font>
             <Font name="Poppins Regular" size="13.0" />
          </font>
       </Text>
-      <Text fill="#e9b350" layoutX="408.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Songs from Playlist">
+      <Text fill="#e9b350" layoutX="408.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Songs from Playlist">
          <font>
             <Font name="Poppins Regular" size="13.0" />
          </font>
       </Text>
+      <JFXButton fx:id="logoutBtn" layoutX="510.0" layoutY="417.0" text="Log Out" textFill="#8ba0a9" style="-fx-background-color: #303030" />
    </children>
 </AnchorPane>
