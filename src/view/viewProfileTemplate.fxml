@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="447.0" prefWidth="609.0" style="-fx-background-color: #454444" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <JFXButton fx:id="backBtn" layoutX="14.0" layoutY="14.0" style="-fx-background-color: #303030" text="back" textFill="#454444">
+         <font>
+            <Font name="Poppins Regular" size="12.0" />
+         </font>
+      </JFXButton>
+      <Text fill="#eaa830" layoutX="251.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Profile">
+         <font>
+            <Font name="Comfortaa Regular" size="21.0" />
+         </font>
+      </Text>
+      <Circle fx:id="profilePic" fill="#a19d9d" layoutX="86.0" layoutY="118.0" radius="49.0" stroke="#8f8f8f0a" strokeType="INSIDE" />
+      <JFXTextField fx:id="firstNameField" focusColor="#e9c582" layoutX="156.0" layoutY="86.0" promptText="First Name" unFocusColor="#eaa830">
+         <font>
+            <Font name="Poppins Regular" size="12.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="lastameField" focusColor="#e9c582" layoutX="313.0" layoutY="86.0" promptText="Last Name" unFocusColor="#eaa830">
+         <font>
+            <Font name="Poppins Regular" size="12.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="usernameField" focusColor="#e9c582" layoutX="156.0" layoutY="118.0" promptText="Username" unFocusColor="#eaa830">
+         <font>
+            <Font name="Poppins Regular" size="12.0" />
+         </font>
+      </JFXTextField>
+      <Text fill="#8ba0a9" layoutX="156.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Most Played Song:">
+         <font>
+            <Font name="Poppins Regular" size="14.0" />
+         </font>
+      </Text>
+      <JFXTextField fx:id="mostPlayedField" focusColor="#f1f6f1" layoutX="313.0" layoutY="155.0" promptText="Song" unFocusColor="#8ba0a9">
+         <font>
+            <Font name="Poppins Regular" size="12.0" />
+         </font>
+      </JFXTextField>
+      <JFXListView fx:id="faveSongsList" layoutX="43.0" layoutY="212.0" prefHeight="201.0" prefWidth="193.0" style="-fx-background-color: #303030" />
+      <JFXListView fx:id="favePlaylistList" layoutX="244.0" layoutY="212.0" prefHeight="201.0" prefWidth="125.0" style="-fx-background-color: #303030" />
+      <JFXListView fx:id="songPlaylistList" layoutX="376.0" layoutY="212.0" prefHeight="201.0" prefWidth="193.0" style="-fx-background-color: #303030" />
+      <Text fill="#e9b350" layoutX="88.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Favorite Songs">
+         <font>
+            <Font name="Poppins Regular" size="13.0" />
+         </font>
+      </Text>
+      <Text fill="#e9b350" layoutX="254.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Favorite Playlists">
+         <font>
+            <Font name="Poppins Regular" size="13.0" />
+         </font>
+      </Text>
+      <Text fill="#e9b350" layoutX="408.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Songs from Playlist">
+         <font>
+            <Font name="Poppins Regular" size="13.0" />
+         </font>
+      </Text>
+      <JFXButton fx:id="logoutBtn" layoutX="510.0" layoutY="417.0" text="Log Out" textFill="#8ba0a9" style="-fx-background-color: #303030" />
+   </children>
+</AnchorPane>

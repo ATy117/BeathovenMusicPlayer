@@ -1,5 +1,6 @@
 package view;
 
+
 import controller.MasterController;
 import javafx.stage.Stage;
 import model.Dashboard;
@@ -28,4 +29,4 @@ public class DashboardView extends View{
 
 	@Override
 	public void Update() {}
-}
+
