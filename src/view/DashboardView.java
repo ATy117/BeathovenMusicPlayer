@@ -28,5 +28,5 @@ public class DashboardView extends View{
 	}
 
 	@Override
-	public void Update() {}
+	public void Update(){}
 
