@@ -1,12 +1,14 @@
 package model_rework;
 
+import java.io.File;
+
 public class User {
     private int user_id;
     private String username;
     private String password;
     private String first_name;
     private String last_name;
-    private String avatarURL;
+    private File avatarURL;
 
     public int getUser_id() {
         return user_id;
@@ -48,11 +50,11 @@ public class User {
         this.last_name = last_name;
     }
 
-    public String getAvatarURL() {
+    public File getAvatarURL() {
         return avatarURL;
     }
 
-    public void setAvatarURL(String avatarURL) {
+    public void setAvatarURL(File avatarURL) {
         this.avatarURL = avatarURL;
     }
 }
