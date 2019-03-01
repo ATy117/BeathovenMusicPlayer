@@ -43,4 +43,8 @@ public class LoginView extends View {
 	public void loginUser(javafx.event.ActionEvent actionEvent)  throws IOException{
 		controller.loginUser("User", "Pass");
 	}
+
+	public void changePane(javafx.event.ActionEvent actionEvent) {
+
+	}
 }

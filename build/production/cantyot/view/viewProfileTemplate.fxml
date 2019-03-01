@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="447.0" prefWidth="609.0" style="-fx-background-color: #454444" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <JFXButton fx:id="backBtn" layoutX="14.0" layoutY="14.0" style="-fx-background-color: #303030" text="back" textFill="#454444">
+      <JFXButton fx:id="backBtn" layoutX="14.0" layoutY="14.0" onAction="#changePane" style="-fx-background-color: #303030" text="back" textFill="#454444">
          <font>
             <Font name="Poppins Regular" size="12.0" />
          </font>
@@ -64,7 +64,12 @@
             <Font name="Poppins Regular" size="13.0" />
          </font>
       </Text>
-      <JFXButton fx:id="logoutBtn" layoutX="510.0" layoutY="417.0" style="-fx-background-color: #303030" text="Log Out" textFill="#8ba0a9" />
+      <JFXButton fx:id="logoutBtn" layoutX="510.0" layoutY="417.0" onAction="#changePane" style="-fx-background-color: #303030" text="Log Out" textFill="#8ba0a9" />
+      <JFXButton fx:id="editBtn" layoutX="460.0" layoutY="86.0" onAction="#editUserDetails" style="-fx-background-color: #303030" text="back" textFill="#454444">
+         <font>
+            <Font name="Poppins Regular" size="12.0" />
+         </font>
+      </JFXButton>
 
    </children>
 </AnchorPane>

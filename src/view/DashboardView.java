@@ -1,13 +1,13 @@
 package view;
 
 import controller.MasterController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model_rework.Dashboard;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 public class DashboardView extends View {
@@ -29,53 +29,16 @@ public class DashboardView extends View {
 		stage.setScene(scene);
 	}
 
-	public void logout(ActionEvent actionEvent) {
 
-	}
-
-	public void displayPlaylist(ActionEvent actionEvent) {
-
-	}
-
-	public void displayAllSongs(ActionEvent actionEvent) {
-
-	}
-
-	public void addSong(ActionEvent actionEvent) {
-
-	}
-
-	public void editSong(ActionEvent actionEvent) {
-
-	}
-
-	public void searchSong(ActionEvent actionEvent) {
-
-	}
-
-	public void filterSongs(ActionEvent actionEvent) {
-
-	}
-
-	public void createPlaylist(ActionEvent actionEvent) {
-
-	}
-
-	public void changePane(ActionEvent actionEvent) {
-
-	}
-
-	public void playSong(ActionEvent actionEvent) {
-		// get song index
-		// controller.playSong(index, d.getUser_ID);
-	}
-
-	public void deleteSong(ActionEvent actionEvent) {
-
-	}
 
 	@Override
 	public void Update() {
+	}
+
+	public void changePane(ActionEvent actionEvent) {
+	}
+
+	public void createPlaylist(ActionEvent actionEvent) {
 	}
 }
 
