@@ -1,6 +1,6 @@
 package dbservice;
 
-import model.Playlist;
+import model_rework.Playlist;
 
 import java.util.List;
 
