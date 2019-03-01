@@ -1,10 +1,15 @@
 package app;
 
 import controller.MasterController;
+import dbservice.UserDAO;
+import dbservice.UserDAODB;
+import dbservice.dbConnection;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model_rework.User;
 
+import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
 
