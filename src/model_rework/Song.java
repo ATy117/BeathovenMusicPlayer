@@ -3,6 +3,8 @@ package model_rework;
 import java.io.File;
 
 public class Song {
+    private static int instances = 0;
+
     private int song_id;
     private String song_name;
 
@@ -21,6 +23,12 @@ public class Song {
     private File song_URL;
 
     private int times_played;
+
+    public Song(){
+        this.song_id = instances;
+        instances++;
+    }
+
 
     public int getSong_id() {
         return song_id;

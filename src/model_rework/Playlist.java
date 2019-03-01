@@ -1,10 +1,17 @@
 package model_rework;
 
 public class Playlist {
+    private static int instances = 0;
+
     private int playlist_id;
     private String name;
     private boolean favorite;
     private int user_id;
+
+    public Playlist (){
+        this.playlist_id = instances;
+        instances++;
+    }
 
     public int getPlaylist_id() {
         return playlist_id;

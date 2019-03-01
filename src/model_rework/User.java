@@ -3,6 +3,8 @@ package model_rework;
 import java.io.File;
 
 public class User {
+    protected static int instances = 0;
+
     private int user_id;
     private String username;
     private String password;
