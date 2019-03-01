@@ -1,19 +1,18 @@
 package view;
 
-
 import controller.MasterController;
 import javafx.stage.Stage;
 import model.Dashboard;
 
 import java.awt.event.ActionEvent;
 
-public class DashboardView extends View{
+public class DashboardView extends View {
 
 	MasterController controller;
 	Dashboard dashboard;
 	Stage stage;
 
-	public DashboardView (MasterController controller, Dashboard dashboard) {
+	public DashboardView(MasterController controller, Dashboard dashboard) {
 		this.controller = controller;
 		this.dashboard = dashboard;
 		// loads FXML
@@ -28,5 +27,7 @@ public class DashboardView extends View{
 	}
 
 	@Override
-	public void Update(){}
+	public void Update() {
+	}
+}
 
