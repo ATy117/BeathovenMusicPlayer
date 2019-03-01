@@ -24,4 +24,9 @@ public class AlbumDAOLocal implements AlbumDAO {
     public List<Album> getAlbums(int user_id) {
         return null;
     }
+
+    @Override
+    public boolean checkAlbum(String album_name) {
+        return false;
+    }
 }
