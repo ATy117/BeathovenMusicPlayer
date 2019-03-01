@@ -4,8 +4,10 @@ import javafx.scene.Node;
 import javafx.stage.Stage;
 import model.*;
 import view.DashboardView;
+import view.LoginView;
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.util.List;
 
@@ -13,16 +15,20 @@ public class MasterController extends Controller {
 
 	Dashboard dash;
 	Stage stage;
+	Stage playerStage;
 	Connection conn;
 	//song player service
 
-	public MasterController(Stage stage) {
+	public MasterController(Stage stage) throws IOException {
 		this.stage = stage;
+		LoginView login = new LoginView(this);
 	}
 
 	public void loginUser(String user, String password) {
 		// if(userdaodb.check(user,password)
 		//         createDashboard(userdaodb.getUser(User,Pass);
+		// User dude = null;
+		//createDashboard(dude);
 
 	}
 
@@ -43,7 +49,7 @@ public class MasterController extends Controller {
 		//createDashboard(u);
 	}
 
-	private void createDashboard(User user) {
+	private void createDashboard(User user) throws IOException {
 
 		if (user instanceof RegisteredUser) {
 			dash = new Dashboard((RegisteredUser) user);
@@ -53,6 +59,11 @@ public class MasterController extends Controller {
 		}
 
 		DashboardView dashview = new DashboardView(this, dash);
+
+		// for music player pop too
+		playerStage = new Stage();
+		playerStage.setTitle("Music Player");
+
 	}
 
 	public Stage getStage() {

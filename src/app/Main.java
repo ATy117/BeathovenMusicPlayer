@@ -13,6 +13,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        primaryStage.setResizable(false);
         MasterController controller = new MasterController(primaryStage);
     }
 

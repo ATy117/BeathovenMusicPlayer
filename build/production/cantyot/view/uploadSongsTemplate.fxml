@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="435.0" prefWidth="546.0" style="-fx-background-color: #454444" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text fx:id="addEditSong" fill="#eaa830" layoutX="227.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Song">
+         <font>
+            <Font name="Comfortaa Regular" size="18.0" />
+         </font>
+      </Text>
+      <Circle fx:id="songImage" fill="#bdbebf" layoutX="123.0" layoutY="154.0" radius="64.0" stroke="#00000003" strokeType="INSIDE" />
+      <JFXButton fx:id="setBtn" layoutX="81.0" layoutY="236.0" style="-fx-background-color: #303030" text="Set Image" textFill="#8ba0a9">
+         <font>
+            <Font name="Poppins Regular" size="13.0" />
+         </font>
+      </JFXButton>
+      <JFXTextField fx:id="titleField" focusColor="#e9c582" layoutX="227.0" layoutY="116.0" promptText="Title" unFocusColor="#eaa830">
+         <font>
+            <Font name="Poppins Regular" size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="artistField" focusColor="#e9c582" layoutX="227.0" layoutY="162.0" promptText="Artist" unFocusColor="#eaa830">
+         <font>
+            <Font name="Poppins Regular" size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="albumField" focusColor="#e9c582" layoutX="227.0" layoutY="203.0" promptText="Album" unFocusColor="#eaa830">
+         <font>
+            <Font name="Poppins Regular" size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXComboBox fx:id="genreField" focusColor="#e9c582" layoutX="227.0" layoutY="253.0" prefHeight="25.0" prefWidth="164.0" promptText="Genre" unFocusColor="#eaa830" />
+      <JFXButton fx:id="uploadBtn" layoutX="228.0" layoutY="297.0" prefHeight="30.0" prefWidth="164.0" style="-fx-background-color: #303030" text="Upload" textFill="#8ba0a9">
+         <font>
+            <Font name="Poppins Regular" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXTextField fx:id="fileField" focusColor="#e9c582" layoutX="227.0" layoutY="327.0" prefHeight="30.0" prefWidth="216.0" promptText="File" unFocusColor="#eaa830">
+         <font>
+            <Font name="Poppins Regular" size="14.0" />
+         </font>
+      </JFXTextField>
+      <JFXButton fx:id="doneBtn" layoutX="283.0" layoutY="378.0" style="-fx-background-color: #303030" text="Done" textFill="#8ba0a9">
+         <font>
+            <Font name="Poppins Regular" size="14.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>
