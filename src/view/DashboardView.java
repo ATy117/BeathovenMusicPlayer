@@ -12,16 +12,14 @@ import java.io.IOException;
 
 public class DashboardView extends View {
 
-	MasterController controller;
 	Dashboard dashboard;
-	Stage stage;
 
-	public DashboardView(MasterController controller, Dashboard dashboard) throws IOException {
+	public DashboardView(MasterController controller, Dashboard dashboard, Stage stage) throws IOException {
 		this.controller = controller;
 		this.dashboard = dashboard;
 		// dashbord attach(this)
 
-		stage = controller.getStage();
+		this.stage = stage;
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboardTemplate.fxml"));
 		loader.setController(this);
 		Parent root = (Parent) loader.load();
@@ -31,9 +29,49 @@ public class DashboardView extends View {
 		stage.setScene(scene);
 	}
 
+	public void logout(ActionEvent actionEvent) {
+
+	}
+
+	public void displayPlaylist(ActionEvent actionEvent) {
+
+	}
+
+	public void displayAllSongs(ActionEvent actionEvent) {
+
+	}
+
+	public void addSong(ActionEvent actionEvent) {
+
+	}
+
+	public void editSong(ActionEvent actionEvent) {
+
+	}
+
+	public void searchSong(ActionEvent actionEvent) {
+
+	}
+
+	public void filterSongs(ActionEvent actionEvent) {
+
+	}
+
+	public void createPlaylist(ActionEvent actionEvent) {
+
+	}
+
+	public void changePane(ActionEvent actionEvent) {
+
+	}
+
 	public void playSong(ActionEvent actionEvent) {
 		// get song index
 		// controller.playSong(index, d.getUser_ID);
+	}
+
+	public void deleteSong(ActionEvent actionEvent) {
+
 	}
 
 	@Override

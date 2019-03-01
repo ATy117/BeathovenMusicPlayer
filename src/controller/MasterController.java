@@ -21,13 +21,14 @@ public class MasterController extends Controller {
 
 	public MasterController(Stage stage) throws IOException {
 		this.stage = stage;
-		LoginView login = new LoginView(this);
+		LoginView login = new LoginView(this, stage);
 	}
 
-	public void loginUser(String user, String password) {
+	public void loginUser(String user, String password) throws IOException {
 		// if(userdaodb.check(user,password)
 		//         createDashboard(userdaodb.getUser(User,Pass);
-		// User dude = null;
+		//User dude = new RegisteredUser();
+
 		//createDashboard(dude);
 
 	}
@@ -58,17 +59,15 @@ public class MasterController extends Controller {
 			dash = new Dashboard((GuestUser) user);
 		}
 
-		DashboardView dashview = new DashboardView(this, dash);
+		DashboardView dashview = new DashboardView(this, dash, stage);
 
 		// for music player pop too
 		playerStage = new Stage();
 		playerStage.setTitle("Music Player");
-
 	}
 
-	public Stage getStage() {
-		return stage;
-	}
+
+	public Stage getPlayerStage() {return playerStage; }
 
 
 

@@ -1,6 +1,8 @@
 package view;
 
+import com.jfoenix.controls.JFXButton;
 import controller.MasterController;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,14 +13,12 @@ import java.io.IOException;
 
 public class LoginView extends View {
 
-	Stage stage;
-	MasterController controller;
+	@FXML public JFXButton loginBtn;
 
-	public LoginView(MasterController controller) throws IOException{
+	public LoginView(MasterController controller, Stage stage) throws IOException{
 
 		this.controller = controller;
-		stage = controller.getStage();
-
+		this.stage = stage;
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("loginPageTemplate.fxml"));
 		loader.setController(this);
@@ -30,11 +30,17 @@ public class LoginView extends View {
 		stage.show();
 	}
 
-	public void loginUser(ActionEvent actionEvent) {
-		// get user / pass from textfield
-		controller.loginUser("User", "Pass");
+
+
+	public void changePane(ActionEvent actionEvent) {
+
 	}
 
 	@Override
 	public void Update() {}
+
+
+	public void loginUser(javafx.event.ActionEvent actionEvent)  throws IOException{
+		controller.loginUser("User", "Pass");
+	}
 }
