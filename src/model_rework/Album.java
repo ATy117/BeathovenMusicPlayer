@@ -3,10 +3,18 @@ package model_rework;
 import java.io.File;
 
 public class Album {
+    private static int instances = 0;
+
     private int album_id;
     private String name;
     private int user_id;
     private File cover_URL;
+
+    public Album(){
+        this.album_id = instances;
+        instances++;
+    }
+
 
     public int getAlbum_id() {
         return album_id;

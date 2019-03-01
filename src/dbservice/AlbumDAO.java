@@ -1,6 +1,6 @@
 package dbservice;
 
-import model.Album;
+import model_rework.Album;
 
 import java.util.List;
 
@@ -9,4 +9,5 @@ public interface AlbumDAO {
     public boolean deleteAlbum(int album_id);
     public void updateAlbum(Album album);
     public List<Album> getAlbums(int user_id);
+    public boolean checkAlbum(String album_name);
 }
