@@ -21,6 +21,11 @@ public class SongDAODB implements SongDAO{
     }
 
     @Override
+    public boolean checkSong(int user_id, String song_name) {
+        return false;
+    }
+
+    @Override
     public List<Song> getAllSong(int user_id) {
         return null;
     }

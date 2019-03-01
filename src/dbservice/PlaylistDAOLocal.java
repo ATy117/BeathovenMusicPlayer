@@ -39,6 +39,11 @@ public class PlaylistDAOLocal implements PlaylistDAO {
     }
 
     @Override
+    public boolean checkPlaylist(int user_id, String playlist_name) {
+        return false;
+    }
+
+    @Override
     public List<Playlist> getPlaylists(int user_id) {
         List<Playlist> userPlaylists = new ArrayList<>();
         for (Playlist p : playlists){

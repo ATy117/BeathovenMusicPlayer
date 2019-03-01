@@ -6,6 +6,11 @@ import java.util.List;
 
 public class SongDAOLocal implements SongDAO {
     @Override
+    public boolean checkSong(int user_id, String song_name) {
+        return false;
+    }
+
+    @Override
     public boolean addSong(Song song) {
         return false;
     }
