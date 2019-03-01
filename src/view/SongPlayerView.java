@@ -1,13 +1,12 @@
 package view;
 
 import controller.MasterController;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 public class SongPlayerView extends View {
@@ -26,26 +25,31 @@ public class SongPlayerView extends View {
 		stage.setScene(scene);
 	}
 
+	public void playpause (ActionEvent actionEvent) {
 
-
-	@Override
-	public void Update(){}
-
-	public void playPause(ActionEvent actionEvent) {
-	}
-
-	public void nextSong(ActionEvent actionEvent) {
 	}
 
 	public void prevSong(ActionEvent actionEvent) {
+		// if 1 click or 2 click, diff response
+
+	}
+
+	public void nextSong(ActionEvent actionEvent) {
+
 	}
 
 	public void shuffle(ActionEvent actionEvent) {
+
 	}
 
 	public void repeat(ActionEvent actionEvent) {
+
 	}
 
-	public void goToDuration(MouseEvent mouseEvent) {
+	public void goToDuration(ActionEvent actionEvent) {
+
 	}
+
+	@Override
+	public void Update(){}
 }

@@ -25,17 +25,21 @@ public class UploadSongsView extends View{
 		stage.setScene(scene);
 	}
 
+	public void uploadAlbumCover (ActionEvent actionEvent) {
+
+	}
+
+	public void uploadSongFile(ActionEvent actionEvent) {
+
+	}
+
+	public void addEditSongDetails(ActionEvent actionEvent) {
+
+	}
+
+
 
 
 	@Override
 	public void Update(){}
-
-	public void uploadAlbumCover(javafx.event.ActionEvent actionEvent) {
-	}
-
-	public void uploadSongFile(javafx.event.ActionEvent actionEvent) {
-	}
-
-	public void addEditSongDetails(javafx.event.ActionEvent actionEvent) {
-	}
 }
