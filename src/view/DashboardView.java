@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.Dashboard;
+import model_rework.Dashboard;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
