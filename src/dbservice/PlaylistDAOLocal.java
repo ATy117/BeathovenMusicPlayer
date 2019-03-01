@@ -17,21 +17,51 @@ public class PlaylistDAOLocal implements PlaylistDAO {
 
     @Override
     public boolean deletePlaylist(int playlist_id) {
+        for (Playlist p : playlists){
+            if (p.getPlaylist_id() == playlist_id){
+                playlists.remove(p);
+                return true;
+            }
+        }
         return false;
     }
 
     @Override
     public boolean updatePlaylist(Playlist playlist) {
+        for (Playlist p : playlists){
+            if (playlist.getPlaylist_id() == p.getPlaylist_id()){
+                p.setFavorite(playlist.isFavorite());
+                p.setName(playlist.getName());
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean checkPlaylist(int user_id, String playlist_name) {
         return false;
     }
 
     @Override
     public List<Playlist> getPlaylists(int user_id) {
-        return null;
+        List<Playlist> userPlaylists = new ArrayList<>();
+        for (Playlist p : playlists){
+            if (p.getUser_id() == user_id){
+                userPlaylists.add(p);
+            }
+        }
+        return userPlaylists;
     }
 
     @Override
     public List<Playlist> getFavoritePlaylists(int user_id) {
-        return null;
+        List<Playlist> userPlaylists = new ArrayList<>();
+        for (Playlist p : playlists){
+            if (p.getUser_id() == user_id && p.isFavorite() == true){
+                userPlaylists.add(p);
+            }
+        }
+        return userPlaylists;
     }
 }
