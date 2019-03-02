@@ -4,7 +4,7 @@ import javafx.stage.Stage;
 import model_rework.DashboardModel;
 import model_rework.Model;
 
-public abstract class Controller {
+public abstract class DashboardController {
 
 	Stage primaryStage;
 	Stage playerStage;

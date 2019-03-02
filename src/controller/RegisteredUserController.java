@@ -1,19 +1,11 @@
 package controller;
 
-import javafx.scene.Node;
 import javafx.stage.Stage;
 import model_rework.*;
 import view.DashboardView;
-import view.LoginView;
-import view.SongPlayerView;
 import view.View;
 
-import java.io.File;
-import java.io.IOException;
-import java.sql.Connection;
-import java.util.List;
-
-public class RegisteredUserController extends Controller {
+public class RegisteredUserController extends DashboardController {
 
 	DashboardModel model;
 

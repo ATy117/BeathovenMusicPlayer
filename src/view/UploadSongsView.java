@@ -1,5 +1,6 @@
 package view;
 
+import controller.UploadSongController;
 import controller.WelcomeController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,19 +12,25 @@ import java.io.IOException;
 public class UploadSongsView{
 
 	Stage primaryStage;
-	WelcomeController controller;
+	UploadSongController controller;
 
-	public UploadSongsView (Stage primaryStage, WelcomeController controller) throws IOException{
+	public UploadSongsView (Stage primaryStage, UploadSongController controller) {
 
 		this.primaryStage = primaryStage;
 		this.controller = controller;
 
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("loginPageTemplate.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("uploadSongsTemplate.fxml"));
 		loader.setController(this);
-		Parent root = (Parent) loader.load();
+		Parent root = null;
+
+		try {
+			root = (Parent) loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		Scene scene = new Scene(root);
 
-		primaryStage.setTitle("Login Page");
+		primaryStage.setTitle("Upload Songs");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}

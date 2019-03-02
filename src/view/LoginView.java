@@ -18,15 +18,21 @@ public class LoginView  {
 
 	@FXML public JFXButton loginBtn;
 	@FXML public JFXButton loginGuestBtn;
+	@FXML public JFXButton registerBtn;
 
-	public LoginView(Stage primaryStage, WelcomeController controller) throws IOException{
+	public LoginView(Stage primaryStage, WelcomeController controller) {
 
 		this.primaryStage = primaryStage;
 		this.controller = controller;
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("loginPageTemplate.fxml"));
 		loader.setController(this);
-		Parent root = (Parent) loader.load();
+		Parent root = null;
+		try {
+			root = (Parent) loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		Scene scene = new Scene(root);
 
 		primaryStage.setTitle("Login Page");
@@ -49,6 +55,8 @@ public class LoginView  {
 	}
 
 	public void changePane(javafx.event.ActionEvent actionEvent) {
-
+		if (actionEvent.getSource() == registerBtn ) {
+			controller.changeToRegister();
+		}
 	}
 }

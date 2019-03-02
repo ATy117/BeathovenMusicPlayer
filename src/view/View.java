@@ -1,14 +1,12 @@
 package view;
 
-import controller.Controller;
-import controller.RegisteredUserController;
+import controller.DashboardController;
 import javafx.stage.Stage;
-import model_rework.DashboardModel;
 
 public abstract class View {
 
 	public abstract void Update();
-	public Controller controller;
+	public DashboardController controller;
 	public Stage stage;
 
 	public View() {

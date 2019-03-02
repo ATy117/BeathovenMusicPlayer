@@ -2,14 +2,11 @@ package controller;
 
 import javafx.stage.Stage;
 import model_rework.DashboardModel;
-import model_rework.Model;
 import model_rework.User;
 import view.DashboardView;
 import view.View;
 
-import java.io.IOException;
-
-public class GuestUserController extends Controller {
+public class GuestUserController extends DashboardController {
 
 	DashboardModel model;
 

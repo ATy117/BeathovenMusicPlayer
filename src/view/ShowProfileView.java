@@ -1,5 +1,6 @@
 package view;
 
+import controller.ShowProfileController;
 import controller.WelcomeController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -13,19 +14,24 @@ public class ShowProfileView extends View{
 
 
 	Stage primaryStage;
-	WelcomeController controller;
+	ShowProfileController controller;
 
-	public ShowProfileView (Stage primaryStage, WelcomeController controller) throws IOException{
+	public ShowProfileView (Stage primaryStage, ShowProfileController controller) {
 
 		this.primaryStage = primaryStage;
 		this.controller = controller;
 
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("loginPageTemplate.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("viewProfileTemplate.fxml"));
 		loader.setController(this);
-		Parent root = (Parent) loader.load();
+		Parent root = null;
+		try {
+			root = (Parent) loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		Scene scene = new Scene(root);
 
-		primaryStage.setTitle("Login Page");
+		primaryStage.setTitle("Your Profile");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}

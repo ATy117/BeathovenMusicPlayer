@@ -1,8 +1,6 @@
 package view;
 
-import controller.Controller;
-import controller.GuestUserController;
-import controller.RegisteredUserController;
+import controller.DashboardController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,7 +15,7 @@ public class DashboardView extends View {
 	private DashboardModel model;
 	private Dashboard viewState;
 
-	public DashboardView (Stage stage, DashboardModel model, Controller controller) {
+	public DashboardView (Stage stage, DashboardModel model, DashboardController controller) {
 
 		this.controller = controller;
 		this.model = model;

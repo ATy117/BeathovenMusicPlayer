@@ -1,8 +1,6 @@
 package view;
 
-import controller.LoginController;
 import controller.SongPlayerController;
-import controller.WelcomeController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
