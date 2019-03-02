@@ -52,7 +52,28 @@ public class SongDAOLocal implements SongDAO {
     }
 
     @Override
+    public boolean addSongToPlaylist(int song_id, int playlist_id) {
+        return false;
+    }
+
+    @Override
+    public boolean addSongToAlbum(int song_id, int album_id) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteSongFromPlaylist(int song_id, int playlist_id) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteSongFromAlbum(int song_id, int album_id) {
+        return false;
+    }
+
+    @Override
     public List<Song> getPlaylistSong(int user_id, int playlist_id) {
+
         return null;
     }
 
@@ -69,5 +90,11 @@ public class SongDAOLocal implements SongDAO {
     @Override
     public Song getMostPlayed(int user_id) {
         return null;
+    }
+
+
+    @Override
+    public boolean checkSongPlaylist(int user_id, int song_id, int playlist_id) {
+        return false;
     }
 }
