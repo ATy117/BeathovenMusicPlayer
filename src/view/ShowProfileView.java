@@ -1,6 +1,6 @@
 package view;
 
-import controller.MasterController;
+import controller.WelcomeController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,18 +12,22 @@ import java.io.IOException;
 public class ShowProfileView extends View{
 
 
+	Stage primaryStage;
+	WelcomeController controller;
 
-	public ShowProfileView(MasterController controller, Stage stage) throws IOException {
+	public ShowProfileView (Stage primaryStage, WelcomeController controller) throws IOException{
 
+		this.primaryStage = primaryStage;
 		this.controller = controller;
-		this.stage = stage;
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("viewProfileTemplate.fxml"));
+
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("loginPageTemplate.fxml"));
 		loader.setController(this);
 		Parent root = (Parent) loader.load();
 		Scene scene = new Scene(root);
 
-		stage.setTitle("My Profile");
-		stage.setScene(scene);
+		primaryStage.setTitle("Login Page");
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 
 

@@ -1,29 +1,32 @@
 package view;
 
-import controller.MasterController;
+import controller.WelcomeController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 
-public class RegisterView extends View{
+public class RegisterView {
 
-	public RegisterView(MasterController controller, Stage stage) throws IOException {
+	Stage primaryStage;
+	WelcomeController controller;
 
+	public RegisterView (Stage primaryStage, WelcomeController controller) throws IOException{
+
+		this.primaryStage = primaryStage;
 		this.controller = controller;
-		this.stage = stage;
 
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("registerPageTemplate.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("loginPageTemplate.fxml"));
 		loader.setController(this);
 		Parent root = (Parent) loader.load();
 		Scene scene = new Scene(root);
 
-		stage.setTitle("Register Account");
-		stage.setScene(scene);
+		primaryStage.setTitle("Login Page");
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 	
 
@@ -38,6 +41,4 @@ public class RegisterView extends View{
 	}
 
 
-	@Override
-	public void Update() {}
 }
