@@ -1,13 +1,25 @@
 package view;
 
 import controller.Controller;
-import controller.MasterController;
+import controller.RegisteredUserController;
 import javafx.stage.Stage;
+import model_rework.DashboardModel;
 
 public abstract class View {
 
-	public MasterController controller;
+	public abstract void Update();
+	public Controller controller;
 	public Stage stage;
 
-	public abstract void Update();
+	public View() {
+
+	}
+
+	public void viewProfile() {
+		controller.viewProfile();
+	}
+
+
+
+
 }

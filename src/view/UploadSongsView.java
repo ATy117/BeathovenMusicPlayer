@@ -1,34 +1,34 @@
 package view;
 
-import controller.MasterController;
+import controller.WelcomeController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 
-public class UploadSongsView extends View{
+public class UploadSongsView{
 
-	public UploadSongsView (MasterController controller, Stage stage) throws IOException {
+	Stage primaryStage;
+	WelcomeController controller;
 
+	public UploadSongsView (Stage primaryStage, WelcomeController controller) throws IOException{
+
+		this.primaryStage = primaryStage;
 		this.controller = controller;
-		this.stage = stage;
 
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("uploadSongsTemplate.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("loginPageTemplate.fxml"));
 		loader.setController(this);
 		Parent root = (Parent) loader.load();
 		Scene scene = new Scene(root);
 
-		stage.setTitle("Upload songs");
-		stage.setScene(scene);
+		primaryStage.setTitle("Login Page");
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 
 
-
-	@Override
-	public void Update(){}
 
 	public void uploadAlbumCover(javafx.event.ActionEvent actionEvent) {
 	}
