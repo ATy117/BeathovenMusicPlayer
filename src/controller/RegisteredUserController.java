@@ -5,6 +5,7 @@ import javafx.stage.Stage;
 import model_rework.*;
 import view.DashboardView;
 import view.LoginView;
+import view.SongPlayerView;
 import view.View;
 
 import java.io.File;
@@ -16,11 +17,16 @@ public class RegisteredUserController extends Controller {
 
 	DashboardModel model;
 
+
 	public RegisteredUserController(Stage primaryStage, User user) {
 		this.model = new DashboardModel(user);
 		this.primaryStage = primaryStage;
+
 		View dash = new DashboardView(primaryStage, model, this);
 		model.Attach(dash);
+
+		playerStage = new Stage();
+		SongPlayerController player = new SongPlayerController(playerStage);
 	}
 
 	@Override
