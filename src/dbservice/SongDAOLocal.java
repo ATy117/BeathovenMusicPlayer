@@ -12,7 +12,7 @@ public class SongDAOLocal implements SongDAO {
     @Override
     public boolean checkSong(int user_id, String song_name) {
         for (Song s : songs){
-            if (s.getSong_id() == user_id && s.getSong_name().equals(song_name))
+            if (s.getSong_id() == user_id && s.getSong_name().equalsIgnoreCase(song_name))
                 return true;
         }
         return false;
@@ -25,6 +25,16 @@ public class SongDAOLocal implements SongDAO {
     }
 
     @Override
+    public boolean addSongToPlaylist(int song_id, int playlist_id) {
+        return false;
+    }
+
+    @Override
+    public boolean addSongToAlbum(int song_id, int album_id) {
+        return false;
+    }
+
+    @Override
     public boolean deleteSong(int song_id) {
         for (Song s : songs){
             if (s.getSong_id() == song_id){
@@ -32,6 +42,16 @@ public class SongDAOLocal implements SongDAO {
                 return true;
             }
         }
+        return false;
+    }
+
+    @Override
+    public boolean deleteSongFromPlaylist(int song_id, int playlist_id) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteSongFromAlbum(int song_id, int album_id) {
         return false;
     }
 
@@ -49,26 +69,6 @@ public class SongDAOLocal implements SongDAO {
             }
         }
         return userSongs;
-    }
-
-    @Override
-    public boolean addSongToPlaylist(int song_id, int playlist_id) {
-        return false;
-    }
-
-    @Override
-    public boolean addSongToAlbum(int song_id, int album_id) {
-        return false;
-    }
-
-    @Override
-    public boolean deleteSongFromPlaylist(int song_id, int playlist_id) {
-        return false;
-    }
-
-    @Override
-    public boolean deleteSongFromAlbum(int song_id, int album_id) {
-        return false;
     }
 
     @Override
