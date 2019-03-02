@@ -26,7 +26,7 @@ public class AlbumDAOLocal implements AlbumDAO {
     }
 
     @Override
-    public boolean checkAlbum(String album_name) {
+    public boolean checkAlbum(String album_name, String artist_name) {
         return false;
     }
 }

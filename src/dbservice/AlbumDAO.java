@@ -9,5 +9,5 @@ public interface AlbumDAO {
     public boolean deleteAlbum(int album_id);
     public void updateAlbum(Album album);
     public List<Album> getAlbums(int user_id);
-    public boolean checkAlbum(String album_name);
+    public boolean checkAlbum(String album_name, String artist_name);
 }
