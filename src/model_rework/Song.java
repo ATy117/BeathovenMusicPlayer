@@ -12,7 +12,6 @@ public class Song {
     private int year;
 
     private int uploader_id;
-    private String upload_name;
 
     private int album_id;
     private String album_name;
@@ -68,14 +67,6 @@ public class Song {
 
     public void setUploader_id(int uploader_id) {
         this.uploader_id = uploader_id;
-    }
-
-    public String getUpload_name() {
-        return upload_name;
-    }
-
-    public void setUpload_name(String upload_name) {
-        this.upload_name = upload_name;
     }
 
     public int getAlbum_id() {

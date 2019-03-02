@@ -7,7 +7,7 @@ import java.util.List;
 
 public class SongDAOLocal implements SongDAO {
 
-    private List<Song> songs = new ArrayList<>();
+    private static List<Song> songs = new ArrayList<>();
 
     @Override
     public boolean checkSong(int user_id, String song_name) {
@@ -21,7 +21,7 @@ public class SongDAOLocal implements SongDAO {
     @Override
     public boolean addSong(Song song) {
         songs.add(song);
-        return false;
+        return true;
     }
 
     @Override
@@ -42,7 +42,13 @@ public class SongDAOLocal implements SongDAO {
 
     @Override
     public List<Song> getAllSong(int user_id) {
-        return null;
+        List<Song> userSongs = new ArrayList<>();
+        for (Song s : songs){
+            if (s.getUploader_id() == user_id){
+                userSongs.add(s);
+            }
+        }
+        return userSongs;
     }
 
     @Override

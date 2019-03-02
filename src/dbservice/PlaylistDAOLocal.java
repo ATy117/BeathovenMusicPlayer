@@ -7,7 +7,7 @@ import java.util.List;
 
 public class PlaylistDAOLocal implements PlaylistDAO {
 
-    private List<Playlist> playlists = new ArrayList<>();
+    private static List<Playlist> playlists = new ArrayList<>();
 
     @Override
     public boolean addPlaylist(Playlist playlist) {
