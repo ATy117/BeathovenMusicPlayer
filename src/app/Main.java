@@ -1,5 +1,6 @@
 package app;
 
+import controller.SongPlayerController;
 import controller.WelcomeController;
 import javafx.application.Application;
 import javafx.stage.Stage;

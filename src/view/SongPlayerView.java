@@ -1,5 +1,7 @@
 package view;
 
+import controller.LoginController;
+import controller.SongPlayerController;
 import controller.WelcomeController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -12,22 +14,28 @@ import java.io.IOException;
 
 public class SongPlayerView{
 
-	Stage primaryStage;
-	WelcomeController controller;
+	Stage playerStage;
+	SongPlayerController controller;
 
-	public SongPlayerView (Stage primaryStage, WelcomeController controller) throws IOException{
+	public SongPlayerView (Stage playerStage, SongPlayerController controller) {
 
-		this.primaryStage = primaryStage;
+		this.playerStage = playerStage;
 		this.controller = controller;
 
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("loginPageTemplate.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("musicPlayerTemplate.fxml"));
 		loader.setController(this);
-		Parent root = (Parent) loader.load();
+		Parent root = null;
+
+		try {
+			root = (Parent) loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		Scene scene = new Scene(root);
 
-		primaryStage.setTitle("Login Page");
-		primaryStage.setScene(scene);
-		primaryStage.show();
+		playerStage.setTitle("Music Player");
+		playerStage.setScene(scene);
+		playerStage.show();
 	}
 
 

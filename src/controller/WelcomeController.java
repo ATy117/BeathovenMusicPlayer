@@ -22,14 +22,14 @@ public class WelcomeController {
 	public boolean loginGuestUser(String username, String password) {
 		UserDAOLocal worker = new UserDAOLocal();
 		User dude = worker.getUser(username, password);
-		Controller controller  = new RegisteredUserController(primaryStage, dude);
+		Controller controller  = new GuestUserController(primaryStage, dude);
 		return true;
 	}
 
 	public boolean loginRegUser(String username, String password) {
 		UserDAOLocal worker = new UserDAOLocal();
 		User dude = worker.getUser(username, password);
-		Controller controller  = new GuestUserController(primaryStage, dude);
+		Controller controller  = new RegisteredUserController(primaryStage, dude);
 		return true;
 	}
 

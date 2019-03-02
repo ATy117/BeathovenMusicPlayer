@@ -18,6 +18,9 @@ public class GuestUserController extends Controller {
 		this.primaryStage = primaryStage;
 		View dash = new DashboardView(primaryStage, model, this);
 		model.Attach(dash);
+
+		playerStage = new Stage();
+		SongPlayerController player = new SongPlayerController(playerStage);
 	}
 
 	@Override
