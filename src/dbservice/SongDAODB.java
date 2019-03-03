@@ -162,7 +162,7 @@ public class SongDAODB implements SongDAO{
     public void updateSong(Song song) {
         int songIDTemp = song.getSong_id();
         String songNameTemp = song.getSong_name();
-        //String aristNameTemp = song.getAlbum_name();
+        String aristNameTemp = song.getArtist_name();
         String genreTemp = song.getGenre();
         int yearTemp = song.getYear();
         int isFavorite = (song.isFavorite()) ? 1:0;
