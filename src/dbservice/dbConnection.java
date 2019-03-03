@@ -3,7 +3,7 @@ import java.sql.*;
 
 public class dbConnection {
     private final static String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
-    private final static String URL = "jdbc:mysql://localhost:3306/my_songs";
+    private final static String URL = "jdbc:mysql://localhost:3306/beathovendb";
     private final static String USERNAME = "root";
     private final static String PASSWORD = "12345678";
 
