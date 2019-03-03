@@ -1,14 +1,15 @@
 package dbservice;
 
+import com.google.common.collect.ArrayListMultimap;
 import model_rework.Song;
 
 import java.util.*;
+import com.google.common.collect.Multimap;
 
 public class SongDAOLocal implements SongDAO {
 
     private static List<Song> songs = new ArrayList<>();
-    private static HashMap<Integer, Integer> playlistSongs = new HashMap<>();
-    private static HashMap<Integer, Integer> albumSongs = new HashMap<>();
+    private static Multimap<Integer, Integer> playlistSongs = new ArrayListMultimap<>();
 
     @Override
     public boolean checkSong(int user_id, String song_name) {
@@ -47,6 +48,7 @@ public class SongDAOLocal implements SongDAO {
         for (Song s : songs){
             if (s.getSong_id() == song_id){
                 songs.remove(s);
+                playlistSongs.values().removeAll(Collections.singleton(song_id));
                 return true;
             }
         }
@@ -63,7 +65,6 @@ public class SongDAOLocal implements SongDAO {
         for(Song s: songs){
             if (s.getSong_id() == song_id && s.getAlbum_id() == album_id){
                 s.setAlbum_id(-1);
-                s.setAlbum_name("");
             }
         }
         return false;
@@ -89,17 +90,12 @@ public class SongDAOLocal implements SongDAO {
     @Override
     public List<Song> getPlaylistSong(int user_id, int playlist_id) {
         List<Song> userSongs = new ArrayList<>();
-        Set set = playlistSongs.entrySet();
-        Iterator iterator = set.iterator();
-
-        while (iterator.hasNext()){
-            Map.Entry m = (Map.Entry) iterator.next();
-            for (Song s: songs){
-                if (s.getUploader_id() == user_id){
-                    if (m.getKey() == (Integer) playlist_id && m.getValue() == (Integer) s.getSong_id()){
-                        userSongs.add(s);
-                        break;
-                    }
+        for (Map.Entry m : playlistSongs.entries()){
+            for (Song s : songs){
+                if (s.getUploader_id() == user_id &&
+                    (Integer) s.getSong_id() == m.getValue() &&
+                    m.getKey() == (Integer) playlist_id){
+                    userSongs.add(s);
                 }
             }
         }
@@ -139,10 +135,8 @@ public class SongDAOLocal implements SongDAO {
         });
     }
 
-
     @Override
     public boolean checkSongPlaylist(int user_id, int song_id, int playlist_id) {
-        
-        return false;
+        return playlistSongs.containsEntry(playlist_id, song_id);
     }
 }
