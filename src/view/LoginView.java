@@ -1,12 +1,10 @@
 package view;
 
 import com.jfoenix.controls.JFXButton;
-import controller.SceneManager;
+import controller.StageManager;
 import controller.WelcomeController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.awt.event.ActionEvent;
@@ -16,6 +14,7 @@ public class LoginView  {
 
 	Stage primaryStage;
 	WelcomeController controller;
+	StageManager sm;
 
 	@FXML public JFXButton loginBtn;
 	@FXML public JFXButton loginGuestBtn;
@@ -29,15 +28,9 @@ public class LoginView  {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("loginPageTemplate.fxml"));
 		loader.setController(this);
 
-		SceneManager sm = new SceneManager(primaryStage);
+		sm = new StageManager(primaryStage);
 		sm.loadScene(loader);
 		sm.setWindowName("Welcome to Beathoven");
-	}
-
-
-
-	public void changePane(ActionEvent actionEvent) {
-
 	}
 
 	public void loginUser(javafx.event.ActionEvent actionEvent) throws IOException {

@@ -11,6 +11,7 @@ import java.io.IOException;
 public class WelcomeController {
 
 	Stage primaryStage;
+	StageManager sm;
 
 	public WelcomeController(Stage primaryStage) throws IOException  {
 		this.primaryStage = primaryStage;
@@ -31,8 +32,19 @@ public class WelcomeController {
 		return true;
 	}
 
+	public boolean registerUser(String username, String password, String pic) {
+		UserDAOLocal worker = new UserDAOLocal();
+		User dude = worker.getUser(username, password);
+		DashboardController controller  = new RegisteredUserController(primaryStage, dude);
+		return true;
+	}
+
 	public void changeToRegister() {
-		
+		RegisterView reg = new RegisterView(primaryStage, this);
+	}
+
+	public void changeToWelcome() {
+		LoginView login = new LoginView(primaryStage, this);
 	}
 
 }
