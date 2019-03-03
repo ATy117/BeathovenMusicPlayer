@@ -5,6 +5,22 @@ import model_rework.Song;
 import java.util.List;
 
 public class SongDAOLocal implements SongDAO {
+<<<<<<< HEAD
+=======
+
+    private static List<Song> songs = new ArrayList<>();
+    private static Multimap<Integer, Integer> playlistSongs = new ArrayListMultimap<>();
+
+    @Override
+    public boolean checkSong(int user_id, String song_name) {
+        for (Song s : songs){
+            if (s.getSong_id() == user_id && s.getSong_name().equalsIgnoreCase(song_name))
+                return true;
+        }
+        return false;
+    }
+
+>>>>>>> parent of c228004... changed something sa localdao
     @Override
     public boolean addSong(Song song) {
         return false;
