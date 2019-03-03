@@ -13,6 +13,10 @@ public abstract class View {
 
 	}
 
+	public View(DashboardController controller) {
+		this.controller = controller;
+	}
+
 	public void viewProfile() {
 		controller.viewProfile();
 	}

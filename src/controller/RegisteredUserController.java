@@ -3,6 +3,7 @@ package controller;
 import javafx.stage.Stage;
 import model_rework.*;
 import view.DashboardView;
+import view.ShowProfileView;
 import view.View;
 
 public class RegisteredUserController extends DashboardController {
@@ -14,8 +15,8 @@ public class RegisteredUserController extends DashboardController {
 		this.model = new DashboardModel(user);
 		this.primaryStage = primaryStage;
 
-		View dash = new DashboardView(primaryStage, model, this);
-		model.Attach(dash);
+		View dashboard = new DashboardView(primaryStage, model, this);
+		model.Attach(dashboard);
 
 		playerStage = new Stage();
 		SongPlayerController player = new SongPlayerController(playerStage);
@@ -23,7 +24,7 @@ public class RegisteredUserController extends DashboardController {
 
 	@Override
 	public void viewProfile() {
-
+		ShowProfileController profileview = new ShowProfileController(primaryStage);
 	}
 
 	@Override
