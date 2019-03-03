@@ -58,7 +58,7 @@
                   <Font name="Poppins Regular" size="14.0" />
                </font>
             </Text>
-            <JFXButton fx:id="myProfileBtn" layoutX="685.0" layoutY="7.0" prefHeight="56.0" prefWidth="134.0" style="-fx-background-color: #eaa830" text="My Profile" textFill="#303030">
+            <JFXButton fx:id="myProfileBtn" layoutX="685.0" layoutY="7.0" onAction="#changePane" prefHeight="56.0" prefWidth="134.0" style="-fx-background-color: #eaa830" text="My Profile" textFill="#303030">
                <font>
                   <Font name="Poppins Regular" size="18.0" />
                </font>
@@ -99,7 +99,7 @@
                         <Font name="Poppins Regular" size="18.0" />
                      </font>
                   </Text>
-                  <JFXButton prefHeight="29.0" prefWidth="143.0" text="+ Add Playlist" textFill="#8ba0a9">
+                  <JFXButton onAction="#createPlaylist" prefHeight="29.0" prefWidth="143.0" text="+ Add Playlist" textFill="#8ba0a9">
                      <font>
                         <Font name="Poppins Regular" size="13.0" />
                      </font>
@@ -114,7 +114,9 @@
                   <Font name="Comfortaa Regular" size="21.0" />
                </font>
             </Text>
-            <JFXButton fx:id="uploadAddSongsBtn" layoutX="134.0" layoutY="33.0" prefHeight="23.0" prefWidth="118.0" text="+ Upload Song" textFill="#e9c582">
+=======
+            <JFXButton fx:id="uploadAddSongsBtn" layoutX="31.0" layoutY="36.0" onAction="#changePane" prefHeight="23.0" prefWidth="118.0" text="+ Upload Song" textFill="#e9c582">
+>>>>>>> master
                <font>
                   <Font name="Poppins Regular" size="13.0" />
                </font>

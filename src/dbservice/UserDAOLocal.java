@@ -8,23 +8,37 @@ import java.util.List;
 
 public class UserDAOLocal implements UserDAO {
 
-    private User localUser;
+    private static List<User> localUsers = new ArrayList<>();
 
     @Override
     public boolean addUser(User user) {
-        localUser = user;
-        return false;
-    }
-
-    @Override
-    public boolean deleteUser(int user_id) {
-        localUser = null;
+        localUsers.add(user);
         return true;
     }
 
     @Override
+    public boolean deleteUser(int user_id) {
+        for (User u: localUsers){
+            if (u.getUser_id() == user_id){
+                localUsers.remove(u);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     public void updateUser(User user) {
-        localUser = user;
+         for(User u : localUsers){
+             if (user.getUser_id() == u.getUser_id()){
+                 u.setAvatarURL(user.getAvatarURL());
+                 u.setFirst_name(user.getFirst_name());
+                 u.setLast_name(user.getLast_name());
+                 u.setPassword(user.getPassword());
+                 u.setUsername(user.getUsername());
+                 break;
+             }
+         }
     }
 
     @Override
@@ -32,12 +46,11 @@ public class UserDAOLocal implements UserDAO {
         GuestUser newUser = new GuestUser();
         newUser.setUsername(username);
         newUser.setPassword(password);
-        localUser = newUser;
         return newUser;
     }
 
     @Override
     public boolean checkUsername(String username) {
-        return localUser.getUsername().equals(username);
+        return true;
     }
 }

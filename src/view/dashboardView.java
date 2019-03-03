@@ -1,43 +1,41 @@
 package view;
 
-import controller.MasterController;
+import controller.DashboardController;
+import controller.StageManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.Dashboard;
-
-import java.awt.event.ActionEvent;
-import java.io.IOException;
+import model_rework.*;
 
 public class DashboardView extends View {
 
-	MasterController controller;
-	Dashboard dashboard;
-	Stage stage;
+	private DashboardModel model;
+	private Dashboard viewState;
 
-	public DashboardView(MasterController controller, Dashboard dashboard) throws IOException {
+	public DashboardView (Stage stage, DashboardModel model, DashboardController controller) {
+
 		this.controller = controller;
-		this.dashboard = dashboard;
-		// dashbord attach(this)
+		this.model = model;
+		this.stage = stage;
 
-		stage = controller.getStage();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboardTemplate.fxml"));
 		loader.setController(this);
-		Parent root = (Parent) loader.load();
 
-		Scene scene = new Scene(root);
-		stage.setTitle("Beathoven");
-		stage.setScene(scene);
-	}
-
-	public void playSong(ActionEvent actionEvent) {
-		// get song index
-		// controller.playSong(index, d.getUser_ID);
+		StageManager sm = new StageManager(stage);
+		sm.loadScene(loader);
+		sm.setWindowName("Beathoven");
 	}
 
 	@Override
 	public void Update() {
+
+	}
+
+	public void changePane(ActionEvent actionEvent) {
+	}
+
+	public void createPlaylist(ActionEvent actionEvent) {
+		controller.sayHi();
 	}
 }
 

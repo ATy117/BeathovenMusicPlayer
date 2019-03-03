@@ -1,40 +1,49 @@
 package view;
 
-import controller.MasterController;
+import com.jfoenix.controls.JFXButton;
+import controller.StageManager;
+import controller.WelcomeController;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 
-public class LoginView extends View {
+public class LoginView  {
 
-	Stage stage;
-	MasterController controller;
+	Stage primaryStage;
+	WelcomeController controller;
+	StageManager sm;
 
-	public LoginView(MasterController controller) throws IOException{
+	@FXML public JFXButton loginBtn;
+	@FXML public JFXButton loginGuestBtn;
+	@FXML public JFXButton registerBtn;
 
+	public LoginView(Stage primaryStage, WelcomeController controller) {
+
+		this.primaryStage = primaryStage;
 		this.controller = controller;
-		stage = controller.getStage();
-
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("loginPageTemplate.fxml"));
 		loader.setController(this);
-		Parent root = (Parent) loader.load();
-		Scene scene = new Scene(root);
 
-		stage.setTitle("Login");
-		stage.setScene(scene);
-		stage.show();
+		sm = new StageManager(primaryStage);
+		sm.loadScene(loader);
+		sm.setWindowName("Welcome to Beathoven");
 	}
 
-	public void loginUser(ActionEvent actionEvent) {
-		// get user / pass from textfield
-		controller.loginUser("User", "Pass");
+	public void loginUser(javafx.event.ActionEvent actionEvent) throws IOException {
+		if (actionEvent.getSource() == loginBtn) {
+			controller.loginRegUser("Name", "Pass");
+		}
+		else if (actionEvent.getSource() == loginGuestBtn)
+			controller.loginGuestUser("Name", "Pass");
 	}
 
-	@Override
-	public void Update() {}
+	public void changePane(javafx.event.ActionEvent actionEvent) {
+		if (actionEvent.getSource() == registerBtn ) {
+			controller.changeToRegister();
+		}
+	}
 }
