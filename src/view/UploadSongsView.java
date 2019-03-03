@@ -23,12 +23,8 @@ public class UploadSongsView{
 		sm.setWindowName("Upload songs");
 	}
 
-
-
-	public void uploadAlbumCover(javafx.event.ActionEvent actionEvent) {
-	}
-
 	public void uploadSongFile(javafx.event.ActionEvent actionEvent) {
+		controller.getFile();
 	}
 
 	public void addEditSongDetails(javafx.event.ActionEvent actionEvent) {

@@ -3,6 +3,7 @@ package controller;
 import javafx.stage.Stage;
 import view.UploadSongsView;
 
+
 public class UploadSongController {
 
 	private Stage primaryStage;
@@ -11,5 +12,11 @@ public class UploadSongController {
 		this.primaryStage = primaryStage;
 
 		UploadSongsView upload = new UploadSongsView(primaryStage, this);
-	}
+    }
+    
+    public boolean getFile(){
+        return true;
+    }
+
+
 }

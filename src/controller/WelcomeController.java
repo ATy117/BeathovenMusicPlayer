@@ -44,4 +44,8 @@ public class WelcomeController {
 		LoginView login = new LoginView(primaryStage, this);
 	}
 
+	public boolean getProfilePic(){
+		return true;
+	}
+
 }

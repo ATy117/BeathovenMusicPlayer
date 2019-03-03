@@ -1,6 +1,8 @@
 package view;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import controller.StageManager;
 import controller.WelcomeController;
 import javafx.fxml.FXML;
@@ -19,6 +21,8 @@ public class LoginView  {
 	@FXML public JFXButton loginBtn;
 	@FXML public JFXButton loginGuestBtn;
 	@FXML public JFXButton registerBtn;
+	@FXML public JFXTextField usernameField;
+	@FXML public JFXPasswordField passwordField;
 
 	public LoginView(Stage primaryStage, WelcomeController controller) {
 
