@@ -1,45 +1,39 @@
 package view;
 
-import com.jfoenix.controls.JFXButton;
-import controller.StageManager;
-import controller.WelcomeController;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+import controller.MasterController;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class RegisterView {
+import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.IOException;
 
-	Stage primaryStage;
-	WelcomeController controller;
+public class RegisterView extends View{
+	Stage stage;
+	MasterController controller;
 
-	@FXML public JFXButton backBtn;
+	public RegisterView(MasterController controller) throws IOException {
 
-	public RegisterView (Stage primaryStage, WelcomeController controller) {
-
-		this.primaryStage = primaryStage;
 		this.controller = controller;
+		stage = controller.getStage();
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("registerPageTemplate.fxml"));
 		loader.setController(this);
+		Parent root = (Parent) loader.load();
+		Scene scene = new Scene(root);
 
-		StageManager sm = new StageManager(primaryStage);
-		sm.loadScene(loader);
-		sm.setWindowName("Register an Account");
+		stage.setTitle("Register Account");
+		stage.setScene(scene);
 	}
 
-	public void changePane(javafx.event.ActionEvent actionEvent) {
-		if (actionEvent.getSource() == backBtn) {
-			controller.changeToWelcome();
-		}
+	public void RegisterAccount(ActionEvent actionEvent) {
+		// get user name / pass, pic
+		File test = new File("test");
+		controller.registerAccount("user", "pass", test);
 	}
 
-	public void uploadProfilePic(ActionEvent actionEvent) {
-	}
-
-	public void registerAccount(ActionEvent actionEvent) {
-		controller.registerUser("user", "name", "pic");
-	}
-
-
+	@Override
+	public void Update() {}
 }

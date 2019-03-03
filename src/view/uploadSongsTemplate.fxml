@@ -14,17 +14,7 @@
             <Font name="Comfortaa Regular" size="18.0" />
          </font>
       </Text>
-<<<<<<< HEAD
       <JFXTextField fx:id="titleField" focusColor="#e9c582" layoutX="137.0" layoutY="117.0" prefHeight="30.0" prefWidth="272.0" promptText="Title" unFocusColor="#eaa830">
-=======
-      <Circle fx:id="songImage" fill="#bdbebf" layoutX="123.0" layoutY="154.0" radius="64.0" stroke="#00000003" strokeType="INSIDE" />
-      <JFXButton fx:id="setBtn" layoutX="81.0" layoutY="236.0" onAction="#uploadAlbumCover" style="-fx-background-color: #303030" text="Set Image" textFill="#8ba0a9">
-         <font>
-            <Font name="Poppins Regular" size="13.0" />
-         </font>
-      </JFXButton>
-      <JFXTextField fx:id="titleField" focusColor="#e9c582" layoutX="227.0" layoutY="116.0" promptText="Title" unFocusColor="#eaa830">
->>>>>>> master
          <font>
             <Font name="Poppins Regular" size="14.0" />
          </font>
@@ -39,11 +29,8 @@
             <Font name="Poppins Regular" size="14.0" />
          </font>
       </JFXTextField>
-<<<<<<< HEAD
-=======
-      <JFXComboBox fx:id="genreField" focusColor="#e9c582" layoutX="227.0" layoutY="253.0" prefHeight="25.0" prefWidth="164.0" promptText="Genre" unFocusColor="#eaa830" />
-      <JFXButton fx:id="uploadBtn" layoutX="228.0" layoutY="297.0" onAction="#uploadSongFile" prefHeight="30.0" prefWidth="164.0" style="-fx-background-color: #303030" text="Upload" textFill="#8ba0a9">
->>>>>>> master
+      <JFXComboBox fx:id="genreField" focusColor="#e9c582" layoutX="201.0" layoutY="253.0" prefHeight="25.0" prefWidth="164.0" promptText="Genre" unFocusColor="#eaa830" />
+      <JFXButton fx:id="uploadBtn" layoutX="201.0" layoutY="297.0" prefHeight="30.0" prefWidth="164.0" style="-fx-background-color: #303030" text="Upload" textFill="#8ba0a9">
          <font>
             <Font name="Poppins Regular" size="14.0" />
          </font>
@@ -53,10 +40,7 @@
             <Font name="Poppins Regular" size="14.0" />
          </font>
       </JFXTextField>
-<<<<<<< HEAD
-=======
-      <JFXButton fx:id="doneBtn" layoutX="283.0" layoutY="378.0" onAction="#addEditSongDetails" style="-fx-background-color: #303030" text="Done" textFill="#8ba0a9">
->>>>>>> master
+      <JFXButton fx:id="doneBtn" layoutX="255.0" layoutY="379.0" style="-fx-background-color: #303030" text="Done" textFill="#8ba0a9">
          <font>
             <Font name="Poppins Regular" size="14.0" />
          </font>

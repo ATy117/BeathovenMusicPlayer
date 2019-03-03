@@ -1,23 +1,10 @@
 package view;
 
-import controller.DashboardController;
-import javafx.stage.Stage;
+import controller.Controller;
 
 public abstract class View {
 
+	public Controller controller;
+
 	public abstract void Update();
-	public DashboardController controller;
-	public Stage stage;
-
-	public View() {
-
-	}
-
-	public void viewProfile() {
-		controller.viewProfile();
-	}
-
-
-
-
 }

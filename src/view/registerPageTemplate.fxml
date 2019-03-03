@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="435.0" prefWidth="546.0" style="-fx-background-color: #454444" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <JFXButton fx:id="backBtn" layoutX="14.0" layoutY="14.0" onAction="#changePane" style="-fx-background-color: #303030" text="back" textFill="#454444">
+      <JFXButton fx:id="backBtn" layoutX="14.0" layoutY="14.0" style="-fx-background-color: #303030" text="back" textFill="#454444">
          <font>
             <Font name="Poppins Regular" size="12.0" />
          </font>
@@ -21,7 +21,7 @@
          </font>
       </Text>
       <Circle fx:id="circlePic" fill="#b1b6bc" layoutX="97.0" layoutY="183.0" radius="60.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-      <JFXButton fx:id="uploadBtn" layoutX="62.0" layoutY="260.0" onAction="#uploadProfilePic" style="-fx-background-color: #303030" text="Upload" textFill="#8ba0a9">
+      <JFXButton fx:id="uploadBtn" layoutX="62.0" layoutY="260.0" style="-fx-background-color: #303030" text="Upload" textFill="#8ba0a9">
          <font>
             <Font name="Poppins Regular" size="14.0" />
          </font>
@@ -51,7 +51,7 @@
             <Font name="Poppins Regular" size="14.0" />
          </font>
       </JFXPasswordField>
-      <JFXButton fx:id="confirm" layoutX="233.0" layoutY="345.0" onAction="#registerAccount" style="-fx-background-color: #303030" text="Confirm" textFill="#8ba0a9">
+      <JFXButton fx:id="confirm" layoutX="233.0" layoutY="345.0" style="-fx-background-color: #303030" text="Confirm" textFill="#8ba0a9">
          <font>
             <Font name="Poppins Regular" size="15.0" />
          </font>

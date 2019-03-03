@@ -11,27 +11,7 @@ public class SongDAODB implements SongDAO{
     }
 
     @Override
-    public boolean addSongToPlaylist(int song_id, int playlist_id) {
-        return false;
-    }
-
-    @Override
-    public boolean addSongToAlbum(int song_id, int album_id) {
-        return false;
-    }
-
-    @Override
     public boolean deleteSong(int song_id) {
-        return false;
-    }
-
-    @Override
-    public boolean deleteSongFromPlaylist(int song_id, int playlist_id) {
-        return false;
-    }
-
-    @Override
-    public boolean deleteSongFromAlbum(int song_id, int album_id) {
         return false;
     }
 
@@ -51,7 +31,7 @@ public class SongDAODB implements SongDAO{
     }
 
     @Override
-    public List<Song> getAlbumSong(int user_id, int album_id) {
+    public List<Song> getAlbumSong(int album_id) {
         return null;
     }
 
@@ -63,15 +43,5 @@ public class SongDAODB implements SongDAO{
     @Override
     public Song getMostPlayed(int user_id) {
         return null;
-    }
-
-    @Override
-    public boolean checkSong(int user_id, String song_name) {
-        return false;
-    }
-
-    @Override
-    public boolean checkSongPlaylist(int user_id, int song_id, int playlist_id) {
-        return false;
     }
 }

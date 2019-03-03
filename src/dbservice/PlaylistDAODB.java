@@ -21,11 +21,6 @@ public class PlaylistDAODB implements PlaylistDAO {
     }
 
     @Override
-    public boolean checkPlaylist(int user_id, String playlist_name) {
-        return false;
-    }
-
-    @Override
     public List<Playlist> getPlaylists(int user_id) {
         return null;
     }

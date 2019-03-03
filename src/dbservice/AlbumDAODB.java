@@ -27,7 +27,7 @@ public class AlbumDAODB implements AlbumDAO{
     }
 
     @Override
-    public boolean checkAlbum(int user_id, String album_name, String artist_name) {
+    public boolean checkAlbum(String album_name) {
         return false;
     }
 }
