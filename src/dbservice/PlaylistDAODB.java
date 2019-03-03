@@ -158,7 +158,7 @@ public class PlaylistDAODB implements PlaylistDAO {
         playlist.setPlaylist_id(rs.getInt(this.COL_PLAYLISTID));
         playlist.setUser_id(rs.getInt(this.COL_USERID));
         playlist.setName(rs.getString(this.COL_PLAYLISTNAME));
-        playlist.setFavorite(rs.getInt(COL_ISFAVORITE)!=0);
+        playlist.setFavorite(rs.getInt(this.COL_ISFAVORITE)!=0);
 
         return playlist;
     }
