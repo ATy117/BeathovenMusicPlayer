@@ -1,5 +1,6 @@
 package view;
 
+import controller.SceneManager;
 import controller.UploadSongController;
 import controller.WelcomeController;
 import javafx.fxml.FXMLLoader;
@@ -21,18 +22,10 @@ public class UploadSongsView{
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("uploadSongsTemplate.fxml"));
 		loader.setController(this);
-		Parent root = null;
 
-		try {
-			root = (Parent) loader.load();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		Scene scene = new Scene(root);
-
-		primaryStage.setTitle("Upload Songs");
-		primaryStage.setScene(scene);
-		primaryStage.show();
+		SceneManager sm = new SceneManager(primaryStage);
+		sm.loadScene(loader);
+		sm.setWindowName("Upload songs");
 	}
 
 

@@ -1,5 +1,6 @@
 package view;
 
+import controller.SceneManager;
 import controller.ShowProfileController;
 import controller.WelcomeController;
 import javafx.event.ActionEvent;
@@ -23,17 +24,10 @@ public class ShowProfileView extends View{
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("viewProfileTemplate.fxml"));
 		loader.setController(this);
-		Parent root = null;
-		try {
-			root = (Parent) loader.load();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		Scene scene = new Scene(root);
 
-		primaryStage.setTitle("Your Profile");
-		primaryStage.setScene(scene);
-		primaryStage.show();
+		SceneManager sm = new SceneManager(primaryStage);
+		sm.loadScene(loader);
+		sm.setWindowName("My Profile");
 	}
 
 
