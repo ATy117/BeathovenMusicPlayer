@@ -1,23 +1,23 @@
 package controller;
 
 import javafx.stage.Stage;
-import model_rework.DashboardModel;
-import model_rework.User;
+import model_rework.*;
 import view.DashboardView;
 import view.View;
 
 public class GuestUserController extends DashboardController {
 
-	DashboardModel model;
-
-	public GuestUserController(Stage primaryStage, User user) {
-		this.model = new DashboardModel(user);
+	public GuestUserController(Stage primaryStage) {
+		songplayermodel = new SongPlayerModel();
+		librarymodel = new LibraryModel();
 		this.primaryStage = primaryStage;
-		View dash = new DashboardView(primaryStage, model, this);
-		model.Attach(dash);
+
+		View dashboard = new DashboardView(primaryStage, songplayermodel, librarymodel, this);
+		songplayermodel.Attach(dashboard);
+		librarymodel.Attach(dashboard);
 
 		playerStage = new Stage();
-		SongPlayerController player = new SongPlayerController(playerStage);
+		SongPlayerController player = new SongPlayerController(playerStage, songplayermodel);
 	}
 
 	@Override

@@ -1,39 +1,51 @@
 package view;
 
+import com.jfoenix.controls.JFXButton;
 import controller.DashboardController;
+import controller.StageManager;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model_rework.*;
 
-import java.io.IOException;
-
 public class DashboardView extends View {
 
-	private DashboardModel model;
-	private Dashboard viewState;
+	private SongPlayerModel songplayermodel;
+	private LibraryModel librarymodel;
+	private ProfileModel profilemodel;
 
-	public DashboardView (Stage stage, DashboardModel model, DashboardController controller) {
+	@FXML JFXButton myProfileBtn;
 
-		this.controller = controller;
-		this.model = model;
+	public DashboardView (Stage stage, SongPlayerModel songplayermodel, LibraryModel librarymodel, DashboardController controller) {
+
+		super(controller);
+		this.songplayermodel = songplayermodel;
+		this.librarymodel = librarymodel;
 		this.stage = stage;
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboardTemplate.fxml"));
 		loader.setController(this);
-		Parent root = null;
 
-		try {
-			root = (Parent) loader.load();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		StageManager sm = new StageManager(stage);
+		sm.loadScene(loader);
+		sm.setWindowName("Beathoven");
+	}
 
-		Scene scene = new Scene(root);
-		stage.setTitle("Beathoven");
-		stage.setScene(scene);
+	public DashboardView (Stage stage, SongPlayerModel songplayermodel, LibraryModel librarymodel, ProfileModel profilemodel, DashboardController controller) {
+
+		super(controller);
+		this.songplayermodel = songplayermodel;
+		this.librarymodel = librarymodel;
+		this.profilemodel = profilemodel;
+		this.stage = stage;
+
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboardTemplate.fxml"));
+		loader.setController(this);
+
+		StageManager sm = new StageManager(stage);
+		sm.loadScene(loader);
+		sm.setWindowName("Beathoven");
 	}
 
 	@Override
@@ -42,6 +54,9 @@ public class DashboardView extends View {
 	}
 
 	public void changePane(ActionEvent actionEvent) {
+		if (actionEvent.getSource() == myProfileBtn) {
+			controller.viewProfile();
+		}
 	}
 
 	public void createPlaylist(ActionEvent actionEvent) {

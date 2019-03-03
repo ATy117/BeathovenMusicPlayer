@@ -17,10 +17,8 @@ public class WelcomeController {
 		LoginView login = new LoginView(primaryStage, this);
 	}
 
-	public boolean loginGuestUser(String username, String password) {
-		UserDAOLocal worker = new UserDAOLocal();
-		User dude = worker.getUser(username, password);
-		DashboardController controller  = new GuestUserController(primaryStage, dude);
+	public boolean loginGuestUser() {
+		DashboardController controller  = new GuestUserController(primaryStage);
 		return true;
 	}
 
@@ -31,8 +29,19 @@ public class WelcomeController {
 		return true;
 	}
 
+	public boolean registerUser(String username, String password, String pic) {
+		UserDAOLocal worker = new UserDAOLocal();
+		User dude = worker.getUser(username, password);
+		DashboardController controller  = new RegisteredUserController(primaryStage, dude);
+		return true;
+	}
+
 	public void changeToRegister() {
-		
+		RegisterView reg = new RegisterView(primaryStage, this);
+	}
+
+	public void changeToWelcome() {
+		LoginView login = new LoginView(primaryStage, this);
 	}
 
 }

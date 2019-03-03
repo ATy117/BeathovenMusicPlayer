@@ -1,39 +1,30 @@
 package view;
 
+import controller.StageManager;
 import controller.ShowProfileController;
-import controller.WelcomeController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.io.IOException;
+import model_rework.ProfileModel;
 
 public class ShowProfileView extends View{
 
+	private Stage primaryStage;
+	private ShowProfileController controller;
+	private ProfileModel profilemodel;
 
-	Stage primaryStage;
-	ShowProfileController controller;
-
-	public ShowProfileView (Stage primaryStage, ShowProfileController controller) {
+	public ShowProfileView (Stage primaryStage, ProfileModel profilemodel, ShowProfileController controller) {
 
 		this.primaryStage = primaryStage;
 		this.controller = controller;
+		this.profilemodel = profilemodel;
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("viewProfileTemplate.fxml"));
 		loader.setController(this);
-		Parent root = null;
-		try {
-			root = (Parent) loader.load();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		Scene scene = new Scene(root);
 
-		primaryStage.setTitle("Your Profile");
-		primaryStage.setScene(scene);
-		primaryStage.show();
+		StageManager sm = new StageManager(primaryStage);
+		sm.loadScene(loader);
+		sm.setWindowName("My Profile");
 	}
 
 
