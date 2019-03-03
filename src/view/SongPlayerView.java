@@ -6,16 +6,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import model_rework.SongPlayerModel;
 
-public class SongPlayerView{
+public class SongPlayerView extends View{
 
-	Stage playerStage;
-	SongPlayerController controller;
+	private Stage playerStage;
+	private SongPlayerController controller;
+	private SongPlayerModel songplayermodel;
 
-	public SongPlayerView (Stage playerStage, SongPlayerController controller) {
+	public SongPlayerView (Stage playerStage, SongPlayerModel songplayermodel, SongPlayerController controller) {
 
 		this.playerStage = playerStage;
 		this.controller = controller;
+		this.songplayermodel = songplayermodel;
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("musicPlayerTemplate.fxml"));
 		loader.setController(this);
@@ -24,6 +27,9 @@ public class SongPlayerView{
 		sm.loadScene(loader);
 		sm.setWindowName("Beathoven Music Player");
 	}
+
+	@Override
+	public void Update(){}
 
 
 

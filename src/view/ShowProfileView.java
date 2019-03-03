@@ -5,17 +5,19 @@ import controller.ShowProfileController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import model_rework.ProfileModel;
 
 public class ShowProfileView extends View{
 
+	private Stage primaryStage;
+	private ShowProfileController controller;
+	private ProfileModel profilemodel;
 
-	Stage primaryStage;
-	ShowProfileController controller;
-
-	public ShowProfileView (Stage primaryStage, ShowProfileController controller) {
+	public ShowProfileView (Stage primaryStage, ProfileModel profilemodel, ShowProfileController controller) {
 
 		this.primaryStage = primaryStage;
 		this.controller = controller;
+		this.profilemodel = profilemodel;
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("viewProfileTemplate.fxml"));
 		loader.setController(this);

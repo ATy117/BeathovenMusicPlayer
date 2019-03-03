@@ -38,7 +38,7 @@ public class LoginView  {
 			controller.loginRegUser("Name", "Pass");
 		}
 		else if (actionEvent.getSource() == loginGuestBtn)
-			controller.loginGuestUser("Name", "Pass");
+			controller.loginGuestUser();
 	}
 
 	public void changePane(javafx.event.ActionEvent actionEvent) {

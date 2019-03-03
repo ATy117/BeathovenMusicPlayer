@@ -11,17 +11,14 @@ import java.io.IOException;
 public class WelcomeController {
 
 	Stage primaryStage;
-	StageManager sm;
 
 	public WelcomeController(Stage primaryStage) throws IOException  {
 		this.primaryStage = primaryStage;
 		LoginView login = new LoginView(primaryStage, this);
 	}
 
-	public boolean loginGuestUser(String username, String password) {
-		UserDAOLocal worker = new UserDAOLocal();
-		User dude = worker.getUser(username, password);
-		DashboardController controller  = new GuestUserController(primaryStage, dude);
+	public boolean loginGuestUser() {
+		DashboardController controller  = new GuestUserController(primaryStage);
 		return true;
 	}
 

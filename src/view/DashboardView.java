@@ -11,15 +11,33 @@ import model_rework.*;
 
 public class DashboardView extends View {
 
-	private DashboardModel model;
-	private Dashboard viewState;
+	private SongPlayerModel songplayermodel;
+	private LibraryModel librarymodel;
+	private ProfileModel profilemodel;
 
 	@FXML JFXButton myProfileBtn;
 
-	public DashboardView (Stage stage, DashboardModel model, DashboardController controller) {
+	public DashboardView (Stage stage, SongPlayerModel songplayermodel, LibraryModel librarymodel, DashboardController controller) {
 
 		super(controller);
-		this.model = model;
+		this.songplayermodel = songplayermodel;
+		this.librarymodel = librarymodel;
+		this.stage = stage;
+
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboardTemplate.fxml"));
+		loader.setController(this);
+
+		StageManager sm = new StageManager(stage);
+		sm.loadScene(loader);
+		sm.setWindowName("Beathoven");
+	}
+
+	public DashboardView (Stage stage, SongPlayerModel songplayermodel, LibraryModel librarymodel, ProfileModel profilemodel, DashboardController controller) {
+
+		super(controller);
+		this.songplayermodel = songplayermodel;
+		this.librarymodel = librarymodel;
+		this.profilemodel = profilemodel;
 		this.stage = stage;
 
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboardTemplate.fxml"));

@@ -1,14 +1,19 @@
 package controller;
 
 import javafx.stage.Stage;
+import model_rework.ProfileModel;
 import view.ShowProfileView;
 
 public class ShowProfileController {
 
-	Stage primaryStage;
+	private Stage primaryStage;
+	private ProfileModel profilemodel;
 
-	public ShowProfileController(Stage primaryStage) {
+	public ShowProfileController(Stage primaryStage, ProfileModel profilemodel) {
 		this.primaryStage = primaryStage;
-		ShowProfileView view = new ShowProfileView(primaryStage, this);
+		this.profilemodel = profilemodel;
+
+		ShowProfileView view = new ShowProfileView(primaryStage, profilemodel, this);
+		profilemodel.Attach(view);
 	}
 }
