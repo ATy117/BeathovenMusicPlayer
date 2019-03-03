@@ -25,7 +25,7 @@ public class ShowProfileController {
     }
 
     public void changeToLogin() {
-        WelcomeController welcome = new WelcomeController(primaryStage);
+
     }
 
     public boolean editUserDetails(){

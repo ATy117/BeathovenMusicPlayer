@@ -16,10 +16,12 @@ public class Dashboard {
     }
 
     public Dashboard (RegisteredUser RU){
+        /*
         user = RU;
         playlistDAO  = new PlaylistDAODB();
         albumDAO = new AlbumDAODB();
         songDAO = new SongDAODB();
+        */
     }
 
     public User getUser() {

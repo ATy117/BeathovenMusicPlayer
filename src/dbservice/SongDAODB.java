@@ -36,7 +36,7 @@ public class SongDAODB implements SongDAO{
     public boolean addSong(Song song) {
         int songIDTemp = song.getSong_id();
         String songNameTemp = song.getSong_name();
-        String aristNameTemp = song.getAlbum_name();
+        //String aristNameTemp = song.getAlbum_name();
         String genreTemp = song.getGenre();
         int yearTemp = song.getYear();
         int isFavorite = (song.isFavorite()) ? 1:0;
@@ -52,7 +52,7 @@ public class SongDAODB implements SongDAO{
         try{
             PreparedStatement statement = this.connection.prepareStatement(query);
             statement.setString(1, songNameTemp);
-            statement.setString(2, aristNameTemp);
+            //statement.setString(2, aristNameTemp);
             statement.setString(3, genreTemp);
             statement.setInt(4, yearTemp);
             statement.setInt(5, isFavorite);
@@ -162,7 +162,7 @@ public class SongDAODB implements SongDAO{
     public void updateSong(Song song) {
         int songIDTemp = song.getSong_id();
         String songNameTemp = song.getSong_name();
-        String aristNameTemp = song.getAlbum_name();
+        //String aristNameTemp = song.getAlbum_name();
         String genreTemp = song.getGenre();
         int yearTemp = song.getYear();
         int isFavorite = (song.isFavorite()) ? 1:0;
@@ -186,7 +186,7 @@ public class SongDAODB implements SongDAO{
         try{
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, songNameTemp);
-            statement.setString(2, aristNameTemp);
+            //statement.setString(2, aristNameTemp);
             statement.setString(3, genreTemp);
             statement.setInt(4, yearTemp);
             statement.setInt(5, isFavorite);
