@@ -35,6 +35,7 @@ public class RegisterView {
 	}
 
 	public void uploadProfilePic(ActionEvent actionEvent) {
+		controller.getProfilePic();
 	}
 
 	public void registerAccount(ActionEvent actionEvent) {
