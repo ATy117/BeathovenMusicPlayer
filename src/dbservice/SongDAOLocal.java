@@ -9,7 +9,7 @@ import com.google.common.collect.Multimap;
 public class SongDAOLocal implements SongDAO {
 
     private static List<Song> songs = new ArrayList<>();
-    private static Multimap<Integer, Integer> playlistSongs = new ArrayListMultimap<>();
+    private static Multimap<Integer, Integer> playlistSongs = ArrayListMultimap.create();
 
     @Override
     public boolean checkSong(int user_id, String song_name) {
