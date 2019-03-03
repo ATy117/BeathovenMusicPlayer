@@ -1,8 +1,10 @@
 package view;
 
+import com.jfoenix.controls.JFXButton;
 import controller.DashboardController;
 import controller.StageManager;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import model_rework.*;
@@ -12,9 +14,11 @@ public class DashboardView extends View {
 	private DashboardModel model;
 	private Dashboard viewState;
 
+	@FXML JFXButton myProfileBtn;
+
 	public DashboardView (Stage stage, DashboardModel model, DashboardController controller) {
 
-		this.controller = controller;
+		super(controller);
 		this.model = model;
 		this.stage = stage;
 
@@ -32,6 +36,9 @@ public class DashboardView extends View {
 	}
 
 	public void changePane(ActionEvent actionEvent) {
+		if (actionEvent.getSource() == myProfileBtn) {
+			controller.viewProfile();
+		}
 	}
 
 	public void createPlaylist(ActionEvent actionEvent) {

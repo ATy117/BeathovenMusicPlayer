@@ -13,8 +13,9 @@ public class GuestUserController extends DashboardController {
 	public GuestUserController(Stage primaryStage, User user) {
 		this.model = new DashboardModel(user);
 		this.primaryStage = primaryStage;
-		View dash = new DashboardView(primaryStage, model, this);
-		model.Attach(dash);
+
+		View dashboard = new DashboardView(primaryStage, model, this);
+		model.Attach(dashboard);
 
 		playerStage = new Stage();
 		SongPlayerController player = new SongPlayerController(playerStage);
