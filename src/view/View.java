@@ -1,7 +1,6 @@
 package view;
 
 import controller.DashboardController;
-import controller.SceneManager;
 import javafx.stage.Stage;
 
 public abstract class View {

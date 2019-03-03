@@ -7,11 +7,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class SceneManager {
+public class StageManager {
 
 	Stage stage;
 
-	public SceneManager (Stage stage){
+	public StageManager(Stage stage){
 		this.stage = stage;
 	}
 

@@ -1,15 +1,11 @@
 package view;
 
 import controller.DashboardController;
-import controller.SceneManager;
+import controller.StageManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model_rework.*;
-
-import java.io.IOException;
 
 public class DashboardView extends View {
 
@@ -25,7 +21,7 @@ public class DashboardView extends View {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboardTemplate.fxml"));
 		loader.setController(this);
 
-		SceneManager sm = new SceneManager(stage);
+		StageManager sm = new StageManager(stage);
 		sm.loadScene(loader);
 		sm.setWindowName("Beathoven");
 	}

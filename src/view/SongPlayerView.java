@@ -1,15 +1,11 @@
 package view;
 
-import controller.SceneManager;
+import controller.StageManager;
 import controller.SongPlayerController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class SongPlayerView{
 
@@ -24,7 +20,7 @@ public class SongPlayerView{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("musicPlayerTemplate.fxml"));
 		loader.setController(this);
 
-		SceneManager sm = new SceneManager(playerStage);
+		StageManager sm = new StageManager(playerStage);
 		sm.loadScene(loader);
 		sm.setWindowName("Beathoven Music Player");
 	}
