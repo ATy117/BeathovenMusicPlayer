@@ -11,5 +11,6 @@
     <orderEntry type="library" exported="" name="io.github.typhon0:AnimateFX:1.2.1" level="project" />
     <orderEntry type="library" exported="" name="controlsfx-9.0.0" level="project" />
     <orderEntry type="library" name="library" level="project" />
+    <orderEntry type="library" name="guava-23.0" level="project" />
   </component>
 </module>
