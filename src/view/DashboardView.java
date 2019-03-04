@@ -18,21 +18,6 @@ public class DashboardView extends View {
 	@FXML JFXButton myProfileBtn;
 	@FXML JFXButton uploadAddSongsBtn;
 
-	public DashboardView (Stage stage, SongPlayerModel songplayermodel, LibraryModel librarymodel, DashboardController controller) {
-
-		super(controller);
-		this.songplayermodel = songplayermodel;
-		this.librarymodel = librarymodel;
-		this.stage = stage;
-
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboardTemplate.fxml"));
-		loader.setController(this);
-
-		StageManager sm = new StageManager(stage);
-		sm.loadScene(loader);
-		sm.setWindowName("Beathoven");
-	}
-
 	public DashboardView (Stage stage, SongPlayerModel songplayermodel, LibraryModel librarymodel, ProfileModel profilemodel, DashboardController controller) {
 
 		super(controller);

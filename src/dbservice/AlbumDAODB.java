@@ -124,7 +124,7 @@ public class AlbumDAODB implements AlbumDAO{
     }
 
     @Override
-    public boolean checkAlbum(int user_id, String album_name, String artist_name) {
+    public int checkAlbum(int user_id, String album_name, String artist_name) {
         String query = "SELECT * FROM " + this.TABLE + " WHERE " +
                         this.COL_USERID + " = ? AND "+
                         this.COL_ALBUMNAME + " = ? AND " +
@@ -132,15 +132,19 @@ public class AlbumDAODB implements AlbumDAO{
 
         try{
             PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, user_id);
+            statement.setString(2, album_name);
+            statement.setString(3, artist_name);
+
             ResultSet rs = statement.executeQuery();
             if(rs.next() == false){
-                return true;
+                return -1;
             }
 
-            return false;
+            return rs.getInt(this.COL_ALBUMID);
         }catch(SQLException e){
             e.printStackTrace();
-            return false;
+            return -1;
         }
     }
 

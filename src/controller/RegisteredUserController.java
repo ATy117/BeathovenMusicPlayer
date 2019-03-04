@@ -6,13 +6,16 @@ import view.DashboardView;
 import view.ShowProfileView;
 import view.View;
 
+import java.sql.Connection;
+
 public class RegisteredUserController extends DashboardController {
 
-	public RegisteredUserController(Stage primaryStage, User user) {
-
+	public RegisteredUserController(Stage primaryStage, Connection connection, User user) {
+		this.connection = connection;
 		songplayermodel = new SongPlayerModel();
 		librarymodel = new LibraryModel();
 		profilemodel = new ProfileModel();
+
 
 		profilemodel.setUser(user);
 
@@ -21,17 +24,17 @@ public class RegisteredUserController extends DashboardController {
 		librarymodel.Attach(dashboard);
 		profilemodel.Attach(dashboard);
 
-		SongPlayerController player = new SongPlayerController(songplayermodel);
+		SongPlayerController player = new SongPlayerController(songplayermodel, connection);
 	}
 
 	@Override
 	public void viewProfile() {
-		ShowProfileController profileview = new ShowProfileController(profilemodel);
+		ShowProfileController profileview = new ShowProfileController(profilemodel, connection);
 	}
 
 	@Override
 	public void uploadSong() {
-		UploadSongController upload = new UploadSongController();
+		UploadSongController upload = new UploadSongController(profilemodel, librarymodel, connection);
 	}
 
 

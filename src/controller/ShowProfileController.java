@@ -7,14 +7,18 @@ import view.DashboardView;
 import view.LoginView;
 import view.ShowProfileView;
 
+import java.sql.Connection;
+
 
 public class ShowProfileController {
 
 	private Stage profileStage;
 	private ProfileModel profilemodel;
+	private Connection connection;
 
-	public ShowProfileController(ProfileModel profilemodel) {
+	public ShowProfileController(ProfileModel profilemodel, Connection connection) {
 		this.profilemodel = profilemodel;
+		this.connection = connection;
 
 		profileStage = new Stage();
 
