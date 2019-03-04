@@ -320,6 +320,8 @@ public class SongDAODB implements SongDAO{
                         this.COL_SONGNAME + " = " + song_name + " AND " +
                         this.COL_ARTISTNAME + " = " + artist_name;
 
+        System.out.println(query);
+
         try{
             PreparedStatement statement = this.connection.prepareStatement(query);
             ResultSet rs = statement.executeQuery();
