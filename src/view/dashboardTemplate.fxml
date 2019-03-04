@@ -58,16 +58,21 @@
                   <Font name="Poppins Regular" size="14.0" />
                </font>
             </Text>
-            <JFXButton fx:id="myProfileBtn" layoutX="685.0" layoutY="7.0" onAction="#changePane" prefHeight="56.0" prefWidth="134.0" style="-fx-background-color: #eaa830" text="My Profile" textFill="#303030">
+            <JFXButton fx:id="myProfileBtn" layoutX="685.0" layoutY="36.0" onAction="#changePane" prefHeight="27.0" prefWidth="134.0" style="-fx-background-color: #eaa830" text="My Profile" textFill="#303030">
                <font>
-                  <Font name="Poppins Regular" size="18.0" />
+                  <Font name="Poppins Regular" size="14.0" />
                </font>
             </JFXButton>
             <Circle fx:id="userPic1" fill="#979ca1" layoutX="62.0" layoutY="35.0" radius="27.0" stroke="#0000000a" strokeType="INSIDE" />
+            <JFXButton fx:id="showMusicPlayerBtn" layoutX="669.0" layoutY="3.0" onAction="#showMusicPlayer" style="-fx-background-color: #eaa830" text="Show Music PLayer" textFill="#303030">
+               <font>
+                  <Font name="Poppins Regular" size="14.0" />
+               </font>
+            </JFXButton>
          </children></AnchorPane>
       <JFXScrollPane fx:id="songsScroll" layoutY="60.0" prefHeight="426.0" prefWidth="161.0" style="-fx-background-color: #303030">
          <children>
-            <VBox fx:id="songsVbox" prefHeight="403.0" prefWidth="161.0" style="-fx-background-color: #303030">
+            <VBox fx:id="songsVbox" prefHeight="417.0" prefWidth="161.0" style="-fx-background-color: #303030">
                <children>
                   <JFXButton fx:id="songsBtn" prefHeight="39.0" prefWidth="166.0" text="Songs" textFill="#8ba0a9">
                      <font>
@@ -122,6 +127,6 @@
             <JFXComboBox fx:id="filterCombo" focusColor="#8ba0a9" layoutX="381.0" layoutY="6.0" prefHeight="25.0" prefWidth="109.0" promptText="Filter" unFocusColor="#8ba0a9" />
          </children>
       </AnchorPane>
-      <JFXListView fx:id="populateSongsList" layoutX="163.0" layoutY="125.0" prefHeight="362.0" prefWidth="518.0" style="-fx-background-color: #3d3d3d" />
+      <JFXListView fx:id="populateSongsList" layoutX="163.0" layoutY="125.0" prefHeight="359.0" prefWidth="518.0" style="-fx-background-color: #3d3d3d" />
    </children>
 </AnchorPane>
