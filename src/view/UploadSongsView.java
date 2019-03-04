@@ -4,7 +4,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import controller.StageManager;
-import controller.UploadSongController;
+import controller.GuestUploadController;
+import controller.UploadController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -14,7 +15,7 @@ import java.io.File;
 public class UploadSongsView{
 
 	Stage primaryStage;
-	UploadSongController controller;
+	UploadController controller;
 
 	@FXML public JFXTextField titleField;
 	@FXML public  JFXTextField artistField;
@@ -24,7 +25,7 @@ public class UploadSongsView{
 	@FXML public JFXButton uploadBtn;
 	@FXML public JFXButton doneBtn;
 
-	public UploadSongsView (Stage primaryStage, UploadSongController controller) {
+	public UploadSongsView (Stage primaryStage, UploadController controller) {
 
 		this.primaryStage = primaryStage;
 		this.controller = controller;
