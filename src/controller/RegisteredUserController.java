@@ -3,37 +3,43 @@ package controller;
 import javafx.stage.Stage;
 import model_rework.*;
 import view.DashboardView;
+import view.ShowProfileView;
 import view.View;
 
 import java.sql.Connection;
 
-public class GuestDashboardController extends DashboardController {
+public class RegisteredUserController extends DashboardController {
 
-	public GuestDashboardController(Stage primaryStage, Connection connection) {
+	public RegisteredUserController(Stage primaryStage, Connection connection, User user) {
+		this.connection = connection;
 		songplayermodel = new SongPlayerModel();
 		librarymodel = new LibraryModel();
 		profilemodel = new ProfileModel();
 
-		this.connection = connection;
+
+		profilemodel.setUser(user);
 
 		View dashboard = new DashboardView(primaryStage, songplayermodel, librarymodel, profilemodel, this);
 		songplayermodel.Attach(dashboard);
 		librarymodel.Attach(dashboard);
+		profilemodel.Attach(dashboard);
 
 		SongPlayerController player = new SongPlayerController(songplayermodel, connection);
 	}
 
 	@Override
 	public void viewProfile() {
-		Stage reg = new Stage();
-		RegisterController register = new RegisterController(reg, connection);
+		ShowProfileController profileview = new ShowProfileController(profilemodel, connection);
 	}
 
 	@Override
-	public void uploadSong() {}
+	public void uploadSong() {
+		UploadSongController upload = new UploadSongController(profilemodel, librarymodel, connection);
+	}
+
 
 	@Override
 	public void sayHi() {
-		System.out.println("Guest User says Hi");
+		System.out.println("Reg User says Hi");
 	}
 }

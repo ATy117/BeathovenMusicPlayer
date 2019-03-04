@@ -5,7 +5,9 @@ import dbservice.dbConnection;
 import javafx.stage.Stage;
 import model_rework.User;
 import view.LoginView;
+import view.RegisterView;
 
+import java.io.IOException;
 import java.sql.Connection;
 
 public class LoginController {
@@ -22,14 +24,14 @@ public class LoginController {
 	}
 
 	public boolean loginGuestUser() {
-		DashboardController controller  = new GuestDashboardController(primaryStage, connection);
+		DashboardController controller  = new GuestUserController(primaryStage, connection);
 		return true;
 	}
 
 	public boolean loginRegUser(String username, String password) {
 		UserDAOLocal worker = new UserDAOLocal();
 		User dude = worker.getUser(username, password);
-		DashboardController controller  = new RegisteredDashboardController(primaryStage, connection, dude);
+		DashboardController controller  = new RegisteredUserController(primaryStage, connection, dude);
 		return true;
 	}
 
