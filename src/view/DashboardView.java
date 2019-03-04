@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model_rework.*;
@@ -74,6 +75,7 @@ public class DashboardView extends View {
 		{
 			HBox hbox = new HBox();
 			Text text = new Text(s.getSong_name());
+			text.setFont(Font.font("Poppins", 14));
 			hbox.getChildren().add(text);
 		}
 	}
