@@ -42,13 +42,13 @@ public class AlbumDAOLocal implements AlbumDAO {
     }
 
     @Override
-    public boolean checkAlbum(int user_id, String album_name, String artist_name) {
+    public int checkAlbum(int user_id, String album_name, String artist_name) {
         for (Album a : albums){
             if (a.getUser_id() == user_id &&
                 a.getName().equalsIgnoreCase(album_name) &&
                 a.getArtist_name().equalsIgnoreCase(artist_name))
-                return true;
+                return a.getAlbum_id();
         }
-        return false;
+        return -1;
     }
 }
