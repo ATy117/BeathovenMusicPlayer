@@ -1,13 +1,21 @@
 package view;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextField;
 import controller.DashboardController;
 import controller.StageManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model_rework.*;
+
+import java.awt.*;
+import java.util.ArrayList;
 
 public class DashboardView extends View {
 
@@ -17,6 +25,7 @@ public class DashboardView extends View {
 
 	@FXML JFXButton myProfileBtn;
 	@FXML JFXButton uploadAddSongsBtn;
+	@FXML VBox playlistVbox;
 
 	public DashboardView (Stage stage, SongPlayerModel songplayermodel, LibraryModel librarymodel, ProfileModel profilemodel, DashboardController controller) {
 
@@ -36,7 +45,7 @@ public class DashboardView extends View {
 
 	@Override
 	public void Update() {
-
+		populateSong((ArrayList<Song>)librarymodel.getSongList());
 	}
 
 	public void changePane(ActionEvent actionEvent) {
@@ -49,7 +58,26 @@ public class DashboardView extends View {
 	}
 
 	public void createPlaylist(ActionEvent actionEvent) {
+		JFXTextField playlistField = new JFXTextField("PlaylistName");
+		//playlistField.getFocusColor(Color.getColor("#8ba0a9"));
+		playlistVbox.getChildren().add(playlistField);
+
 		controller.sayHi();
 	}
+
+	public void showMusicPlayer() {
+		System.out.println("Show Music Player");
+	}
+
+	public void populateSong(ArrayList<Song> songlist){
+		for(Song s : songlist)
+		{
+			HBox hbox = new HBox();
+			Text text = new Text(s.getSong_name());
+			hbox.getChildren().add(text);
+		}
+	}
+
+
 }
 
