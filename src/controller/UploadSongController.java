@@ -103,6 +103,7 @@ public class UploadSongController {
 				}
 			}
 		}
+		librarymodel.setSongList(sd.getAllSong(user_id));
 		uploadStage.close();
 		return true;
 	}
