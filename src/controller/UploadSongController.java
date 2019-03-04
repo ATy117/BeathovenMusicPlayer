@@ -54,7 +54,8 @@ public class UploadSongController {
 				System.out.println("No Album");
 				return true;
 			} else {
-				int album_id = ad.checkAlbum(user_id, artist_name, album_name);
+				int album_id = ad.checkAlbum(user_id, album_name, artist_name);
+				System.out.println(album_id);
 				if ( album_id != -1){
 					SongBuilder builder = new SongBuilder();
 					Song newSong = builder
@@ -80,7 +81,7 @@ public class UploadSongController {
 							.withOwner(user_id)
 							.build();
 					int newAlbumID = newAlbum.getAlbum_id();
-
+					System.out.println(newAlbumID);
 					SongBuilder newbuilder = new SongBuilder();
 					Song song = newbuilder
 							.withAlbumID(newAlbumID)
@@ -97,11 +98,11 @@ public class UploadSongController {
 					ad.addAlbum(newAlbum);
 					sd.addSong(song);
 					System.out.println("New Album");
+					System.out.println(sd.getAllSong(user_id));
 					return true;
 				}
 			}
 		}
-		System.out.println(sd.getAllSong(user_id));
 		uploadStage.close();
 		return true;
 	}
