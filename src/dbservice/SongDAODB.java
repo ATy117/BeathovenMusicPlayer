@@ -314,7 +314,7 @@ public class SongDAODB implements SongDAO{
     // check song returns true if the existing song name under
     // the same user is found
     @Override
-    public boolean checkSong(int user_id, String song_name, String artist_name) {
+    public boolean checkSong(int user_id, String song_name) {
         String query = "SELECT * FROM " + this.TABLE + " WHERE " +
                         this.COL_USERID + " = " + user_id + " AND " +
                         this.COL_SONGNAME + " = " + song_name;

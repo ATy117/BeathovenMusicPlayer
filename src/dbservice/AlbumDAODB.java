@@ -124,7 +124,7 @@ public class AlbumDAODB implements AlbumDAO{
     }
 
     @Override
-    public int checkAlbum(int user_id, String album_name, String artist_name) {
+    public boolean checkAlbum(int user_id, String album_name, String artist_name) {
         String query = "SELECT * FROM " + this.TABLE + " WHERE " +
                         this.COL_USERID + " = ? AND "+
                         this.COL_ALBUMNAME + " = ? AND " +
