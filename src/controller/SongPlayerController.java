@@ -5,13 +5,17 @@ import model_rework.Song;
 import model_rework.SongPlayerModel;
 import view.SongPlayerView;
 
+import java.sql.Connection;
+
 public class SongPlayerController {
 
 	private Stage playerStage;
 	private SongPlayerModel songplayermodel;
+	private Connection connection;
 
-	public SongPlayerController (SongPlayerModel songplayermodel) {
+	public SongPlayerController (SongPlayerModel songplayermodel, Connection connection) {
 		this.songplayermodel = songplayermodel;
+		this.connection = connection;
 
 		playerStage = new Stage();
 
