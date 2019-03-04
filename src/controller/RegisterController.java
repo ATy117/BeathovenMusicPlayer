@@ -7,7 +7,7 @@ import view.RegisterView;
 
 public class RegisterController {
 
-	public Stage primaryStage;
+	private Stage primaryStage;
 
 	public RegisterController(Stage primaryStage) {
 		this.primaryStage = primaryStage;

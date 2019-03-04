@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class LoginController {
 
-	Stage primaryStage;
+	private Stage primaryStage;
 
 	public LoginController(Stage primaryStage)   {
 		this.primaryStage = primaryStage;
