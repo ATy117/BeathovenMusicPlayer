@@ -50,7 +50,7 @@ public class UploadSongsView{
 	    if(!(titleField.getText().isEmpty() || artistField.getText().isEmpty() || genreField.getValue().toString().isEmpty() || yearField.getText().isEmpty())) {
 	        System.out.println("It is not Empty!");
 	        primaryStage.close();
-		    //controller.uploadSong(titleField.getText(), artistField.getText(), albumField.getText(),genreField.getValue(), yearField.getText(), file);
+		    controller.uploadSong(titleField.getText(), artistField.getText(), albumField.getText(), genreField.getValue().toString(), yearField.getText(), file);
         }
 	}
 
