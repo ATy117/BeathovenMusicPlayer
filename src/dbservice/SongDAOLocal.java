@@ -12,9 +12,9 @@ public class SongDAOLocal implements SongDAO {
     private static Multimap<Integer, Integer> playlistSongs = ArrayListMultimap.create();
 
     @Override
-    public boolean checkSong(int user_id, String song_name) {
+    public boolean checkSong(int user_id, String song_name, String artist_name) {
         for (Song s : songs){
-            if (s.getSong_id() == user_id && s.getSong_name().equalsIgnoreCase(song_name))
+            if (s.getSong_id() == user_id && s.getSong_name().equalsIgnoreCase(song_name) && s.getArtist_name().equalsIgnoreCase(artist_name))
                 return true;
         }
         return false;
