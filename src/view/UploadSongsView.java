@@ -46,10 +46,11 @@ public class UploadSongsView{
 
 	public void addEditSongDetails(javafx.event.ActionEvent actionEvent) {
 
+	    File file = new File("resources/beathoven.png");
 	    if(!(titleField.getText().isEmpty() || artistField.getText().isEmpty() || genreField.getValue().toString().isEmpty() || yearField.getText().isEmpty())) {
 	        System.out.println("It is not Empty!");
 	        primaryStage.close();
-		    //controller.confirmDetails(titleField.getText(), artistField.getText(), genreField.getValue(), yearField.getText());
+		    //controller.confirmDetails(titleField.getText(), artistField.getText(), genreField.getValue(), yearField.getText(), file);
         }
 	}
 
