@@ -132,15 +132,19 @@ public class AlbumDAODB implements AlbumDAO{
 
         try{
             PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, user_id);
+            statement.setString(2, album_name);
+            statement.setString(3, artist_name);
+
             ResultSet rs = statement.executeQuery();
             if(rs.next() == false){
-                return true;
+                return -1;
             }
 
-            return false;
+            return rs.getInt(this.COL_ALBUMID);
         }catch(SQLException e){
             e.printStackTrace();
-            return false;
+            return -1;
         }
     }
 

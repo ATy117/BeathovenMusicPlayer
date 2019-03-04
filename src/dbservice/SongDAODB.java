@@ -317,7 +317,8 @@ public class SongDAODB implements SongDAO{
     public boolean checkSong(int user_id, String song_name, String artist_name) {
         String query = "SELECT * FROM " + this.TABLE + " WHERE " +
                         this.COL_USERID + " = " + user_id + " AND " +
-                        this.COL_SONGNAME + " = " + song_name;
+                        this.COL_SONGNAME + " = " + song_name + " AND " +
+                        this.COL_ARTISTNAME + " = " + artist_name;
 
         try{
             PreparedStatement statement = this.connection.prepareStatement(query);
