@@ -24,9 +24,11 @@ public class UploadSongsView{
 	}
 
 	public void uploadSongFile(javafx.event.ActionEvent actionEvent) {
-		controller.getFile();
+		// file window
 	}
 
+
 	public void addEditSongDetails(javafx.event.ActionEvent actionEvent) {
+		controller.confirmDetails();
 	}
 }

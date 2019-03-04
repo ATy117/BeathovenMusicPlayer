@@ -1,8 +1,8 @@
 package view;
 
 import com.jfoenix.controls.JFXButton;
+import controller.RegisterController;
 import controller.StageManager;
-import controller.WelcomeController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,11 +11,11 @@ import javafx.stage.Stage;
 public class RegisterView {
 
 	Stage primaryStage;
-	WelcomeController controller;
+	RegisterController controller;
 
 	@FXML public JFXButton backBtn;
 
-	public RegisterView (Stage primaryStage, WelcomeController controller) {
+	public RegisterView (Stage primaryStage, RegisterController controller) {
 
 		this.primaryStage = primaryStage;
 		this.controller = controller;
@@ -35,7 +35,7 @@ public class RegisterView {
 	}
 
 	public void uploadProfilePic(ActionEvent actionEvent) {
-		controller.getProfilePic();
+
 	}
 
 	public void registerAccount(ActionEvent actionEvent) {

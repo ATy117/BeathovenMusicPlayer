@@ -8,11 +8,11 @@ import view.RegisterView;
 
 import java.io.IOException;
 
-public class WelcomeController {
+public class LoginController {
 
 	Stage primaryStage;
 
-	public WelcomeController(Stage primaryStage) throws IOException  {
+	public LoginController(Stage primaryStage)   {
 		this.primaryStage = primaryStage;
 		LoginView login = new LoginView(primaryStage, this);
 	}
@@ -29,23 +29,11 @@ public class WelcomeController {
 		return true;
 	}
 
-	public boolean registerUser(String username, String password, String pic) {
-		UserDAOLocal worker = new UserDAOLocal();
-		User dude = worker.getUser(username, password);
-		DashboardController controller  = new RegisteredUserController(primaryStage, dude);
-		return true;
-	}
 
 	public void changeToRegister() {
-		RegisterView reg = new RegisterView(primaryStage, this);
+		RegisterController register = new RegisterController(primaryStage);
 	}
 
-	public void changeToWelcome() {
-		LoginView login = new LoginView(primaryStage, this);
-	}
 
-	public boolean getProfilePic(){
-		return true;
-	}
 
 }

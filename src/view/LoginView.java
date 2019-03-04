@@ -4,18 +4,17 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import controller.StageManager;
-import controller.WelcomeController;
+import controller.LoginController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 public class LoginView  {
 
 	Stage primaryStage;
-	WelcomeController controller;
+	LoginController controller;
 	StageManager sm;
 
 	@FXML public JFXButton loginBtn;
@@ -24,7 +23,7 @@ public class LoginView  {
 	@FXML public JFXTextField usernameField;
 	@FXML public JFXPasswordField passwordField;
 
-	public LoginView(Stage primaryStage, WelcomeController controller) {
+	public LoginView(Stage primaryStage, LoginController controller) {
 
 		this.primaryStage = primaryStage;
 		this.controller = controller;

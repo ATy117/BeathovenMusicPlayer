@@ -6,17 +6,18 @@ import view.UploadSongsView;
 
 public class UploadSongController {
 
-	private Stage primaryStage;
+	private Stage uploadStage;
 
-	public UploadSongController(Stage primaryStage) {
-		this.primaryStage = primaryStage;
+	public UploadSongController() {
 
-		UploadSongsView upload = new UploadSongsView(primaryStage, this);
-    }
-    
-    public boolean getFile(){
-        return true;
+		uploadStage = new Stage();
+
+		UploadSongsView upload = new UploadSongsView(uploadStage, this);
     }
 
 
+	public boolean confirmDetails() {
+		uploadStage.close();
+		return true;
+	}
 }

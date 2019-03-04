@@ -10,22 +10,24 @@ import view.ShowProfileView;
 
 public class ShowProfileController {
 
-	private Stage primaryStage;
+	private Stage profileStage;
 	private ProfileModel profilemodel;
 
-	public ShowProfileController(Stage primaryStage, ProfileModel profilemodel) {
-		this.primaryStage = primaryStage;
+	public ShowProfileController(ProfileModel profilemodel) {
 		this.profilemodel = profilemodel;
 
-		ShowProfileView view = new ShowProfileView(primaryStage, profilemodel, this);
+		profileStage = new Stage();
+
+		ShowProfileView view = new ShowProfileView(profileStage, profilemodel, this);
 		profilemodel.Attach(view);
     }
-    
-    public void changeToDashboard() {
+
+    public void backToDashboard() {
+		profileStage.close();
     }
 
-    public void changeToLogin() {
-
+    public void logout() {
+		// dont forget save if ever
     }
 
     public boolean editUserDetails(){
