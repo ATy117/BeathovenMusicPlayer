@@ -16,6 +16,7 @@ public class DashboardView extends View {
 	private ProfileModel profilemodel;
 
 	@FXML JFXButton myProfileBtn;
+	@FXML JFXButton uploadAddSongsBtn;
 
 	public DashboardView (Stage stage, SongPlayerModel songplayermodel, LibraryModel librarymodel, DashboardController controller) {
 
@@ -56,6 +57,9 @@ public class DashboardView extends View {
 	public void changePane(ActionEvent actionEvent) {
 		if (actionEvent.getSource() == myProfileBtn) {
 			controller.viewProfile();
+		}
+		else if (actionEvent.getSource() == uploadAddSongsBtn) {
+			controller.uploadSong();
 		}
 	}
 

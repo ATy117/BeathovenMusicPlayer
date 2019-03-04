@@ -1,7 +1,6 @@
 package app;
 
-import controller.SongPlayerController;
-import controller.WelcomeController;
+import controller.LoginController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -10,7 +9,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        WelcomeController startup = new WelcomeController(primaryStage);
+        LoginController startup = new LoginController(primaryStage);
     }
 
     public static void main(String[] args) {

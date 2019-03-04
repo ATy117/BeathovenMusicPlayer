@@ -10,13 +10,13 @@ public class SongPlayerController {
 	private Stage playerStage;
 	private SongPlayerModel songplayermodel;
 
-	public SongPlayerController (Stage playerStage, SongPlayerModel songplayermodel) {
+	public SongPlayerController (SongPlayerModel songplayermodel) {
 		this.songplayermodel = songplayermodel;
-		this.playerStage = playerStage;
+
+		playerStage = new Stage();
 
 		SongPlayerView player = new SongPlayerView(playerStage, songplayermodel, this);
 		songplayermodel.Attach(player);
-
 	}
 
 	public boolean playPauseSong(){

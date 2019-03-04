@@ -10,20 +10,23 @@ public class GuestUserController extends DashboardController {
 	public GuestUserController(Stage primaryStage) {
 		songplayermodel = new SongPlayerModel();
 		librarymodel = new LibraryModel();
-		this.primaryStage = primaryStage;
 
 		View dashboard = new DashboardView(primaryStage, songplayermodel, librarymodel, this);
 		songplayermodel.Attach(dashboard);
 		librarymodel.Attach(dashboard);
 
-		playerStage = new Stage();
-		SongPlayerController player = new SongPlayerController(playerStage, songplayermodel);
+
+		SongPlayerController player = new SongPlayerController(songplayermodel);
 	}
 
 	@Override
 	public void viewProfile() {
-
+		Stage reg = new Stage();
+		RegisterController register = new RegisterController(reg);
 	}
+
+	@Override
+	public void uploadSong() {}
 
 	@Override
 	public void sayHi() {

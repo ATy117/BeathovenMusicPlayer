@@ -44,9 +44,9 @@ public class ShowProfileView extends View{
 
 	public void changePane(ActionEvent actionEvent) throws IOException {
 		if (actionEvent.getSource() == backBtn)
-			controller.changeToDashboard();
+			controller.backToDashboard();
 		else if (actionEvent.getSource() == logoutBtn)
-			controller.changeToLogin();
+			controller.logout();
 
 	}
 

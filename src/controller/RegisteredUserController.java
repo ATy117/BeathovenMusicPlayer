@@ -8,14 +8,11 @@ import view.View;
 
 public class RegisteredUserController extends DashboardController {
 
-
-
 	public RegisteredUserController(Stage primaryStage, User user) {
 
 		songplayermodel = new SongPlayerModel();
 		librarymodel = new LibraryModel();
 		profilemodel = new ProfileModel();
-		this.primaryStage = primaryStage;
 
 		profilemodel.setUser(user);
 
@@ -24,14 +21,19 @@ public class RegisteredUserController extends DashboardController {
 		librarymodel.Attach(dashboard);
 		profilemodel.Attach(dashboard);
 
-		playerStage = new Stage();
-		SongPlayerController player = new SongPlayerController(playerStage, songplayermodel);
+		SongPlayerController player = new SongPlayerController(songplayermodel);
 	}
 
 	@Override
 	public void viewProfile() {
-		ShowProfileController profileview = new ShowProfileController(primaryStage, profilemodel);
+		ShowProfileController profileview = new ShowProfileController(profilemodel);
 	}
+
+	@Override
+	public void uploadSong() {
+		UploadSongController upload = new UploadSongController();
+	}
+
 
 	@Override
 	public void sayHi() {
