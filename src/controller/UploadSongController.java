@@ -11,21 +11,23 @@ import view.UploadSongsView;
 import java.io.File;
 import java.sql.Connection;
 
-public class GuestUploadController extends UploadController {
+public class UploadSongController {
 
+	private Stage uploadStage;
+	private ProfileModel profilemodel;
+	private LibraryModel librarymodel;
 
-	public GuestUploadController(ProfileModel profilemodel, LibraryModel librarymodel, Connection connection) {
+	public UploadSongController(ProfileModel profilemodel, LibraryModel librarymodel, Connection connection) {
 
 		this.profilemodel = profilemodel;
 		this.librarymodel = librarymodel;
-		this.connection = connection;
 
 		uploadStage = new Stage();
 
 		UploadSongsView upload = new UploadSongsView(uploadStage, this);
     }
 
-    @Override
+    
 	public boolean uploadSong(String song_title, String artist_name, String album_name, String genre, String year, File file ) {
 		User user = profilemodel.getUser();
 		int user_id = user.getUser_id();

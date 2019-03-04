@@ -7,38 +7,33 @@ import view.View;
 
 import java.sql.Connection;
 
-public class RegisteredDashboardController extends DashboardController {
+public class GuestUserController extends DashboardController {
 
-	public RegisteredDashboardController(Stage primaryStage, Connection connection, User user) {
-		this.connection = connection;
+	public GuestUserController(Stage primaryStage, Connection connection) {
 		songplayermodel = new SongPlayerModel();
 		librarymodel = new LibraryModel();
 		profilemodel = new ProfileModel();
 
-
-		profilemodel.setUser(user);
+		this.connection = connection;
 
 		View dashboard = new DashboardView(primaryStage, songplayermodel, librarymodel, profilemodel, this);
 		songplayermodel.Attach(dashboard);
 		librarymodel.Attach(dashboard);
-		profilemodel.Attach(dashboard);
 
 		SongPlayerController player = new SongPlayerController(songplayermodel, connection);
 	}
 
 	@Override
 	public void viewProfile() {
-		ShowProfileController profileview = new ShowProfileController(profilemodel, connection);
+		Stage reg = new Stage();
+		RegisterController register = new RegisterController(reg, connection);
 	}
 
 	@Override
-	public void uploadSong() {
-		GuestUploadController upload = new GuestUploadController(profilemodel, librarymodel, connection);
-	}
-
+	public void uploadSong() {}
 
 	@Override
 	public void sayHi() {
-		System.out.println("Reg User says Hi");
+		System.out.println("Guest User says Hi");
 	}
 }
