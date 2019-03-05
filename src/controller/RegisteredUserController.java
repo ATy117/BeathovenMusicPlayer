@@ -16,6 +16,7 @@ public class RegisteredUserController extends DashboardController {
 		librarymodel = new LibraryModel();
 		profilemodel = new ProfileModel();
 
+		System.out.println(user.getUser_id());
 
 		profilemodel.setUser(user);
 

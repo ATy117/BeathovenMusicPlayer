@@ -36,7 +36,7 @@ public class SongDAODB implements SongDAO{
     public boolean addSong(Song song) {
         int songIDTemp = song.getSong_id();
         String songNameTemp = song.getSong_name();
-        //String aristNameTemp = song.getAlbum_name();
+        String aristNameTemp = song.getArtist_name();
         String genreTemp = song.getGenre();
         int yearTemp = song.getYear();
         int isFavorite = (song.isFavorite()) ? 1:0;
@@ -52,7 +52,7 @@ public class SongDAODB implements SongDAO{
         try{
             PreparedStatement statement = this.connection.prepareStatement(query);
             statement.setString(1, songNameTemp);
-            //statement.setString(2, aristNameTemp);
+            statement.setString(2, aristNameTemp);
             statement.setString(3, genreTemp);
             statement.setInt(4, yearTemp);
             statement.setInt(5, isFavorite);
@@ -314,22 +314,23 @@ public class SongDAODB implements SongDAO{
     // check song returns true if the existing song name under
     // the same user is found
     @Override
-    public boolean checkSong(int user_id, String song_name, String artist_name) {
+    public int checkSong(int user_id, String song_name, String artist_name) {
         String query = "SELECT * FROM " + this.TABLE + " WHERE " +
                         this.COL_USERID + " = " + user_id + " AND " +
-                        this.COL_SONGNAME + " = " + song_name + " AND " +
-                        this.COL_ARTISTNAME + " = " + artist_name;
+                        this.COL_SONGNAME + " = '" + song_name + "' AND " +
+                        this.COL_ARTISTNAME + " = '" + artist_name + "'";
+
 
         try{
             PreparedStatement statement = this.connection.prepareStatement(query);
             ResultSet rs = statement.executeQuery();
             if(rs.next()){
-                return true;
+                return rs.getInt(this.COL_SONGID);
             }
-            return false;
+            return -1;
         }catch (SQLException e){
             e.printStackTrace();
-            return false;
+            return -1;
         }
     }
 

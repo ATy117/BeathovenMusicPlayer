@@ -1,9 +1,6 @@
 package controller;
 
-import dbservice.AlbumDAO;
-import dbservice.AlbumDAOLocal;
-import dbservice.SongDAO;
-import dbservice.SongDAOLocal;
+import dbservice.*;
 import javafx.stage.Stage;
 import model_rework.*;
 import view.UploadSongsView;
@@ -16,6 +13,9 @@ public class UploadSongController {
 	private Stage uploadStage;
 	private ProfileModel profilemodel;
 	private LibraryModel librarymodel;
+	
+	private Connection connection;
+
 
 	public UploadSongController(ProfileModel profilemodel, LibraryModel librarymodel, Connection connection) {
 
@@ -31,10 +31,10 @@ public class UploadSongController {
 	public boolean uploadSong(String song_title, String artist_name, String album_name, String genre, String year, File file ) {
 		User user = profilemodel.getUser();
 		int user_id = user.getUser_id();
-		SongDAO sd = new SongDAOLocal();
-		AlbumDAO ad = new AlbumDAOLocal();
+		SongDAO sd = new SongDAODB(connection);
+		AlbumDAO ad = new AlbumDAODB(connection);
 
-		if (sd.checkSong(user_id, song_title, artist_name)){
+		if (sd.checkSong(user_id, song_title, artist_name) != -1){
 			System.out.println("Existing");
 		} else {
 			String legit = album_name.replaceAll("[^a-zA-Z]+", "");
@@ -76,10 +76,12 @@ public class UploadSongController {
 							.withFileCover(null)
 							.withOwner(user_id)
 							.build();
-					int newAlbumID = newAlbum.getAlbum_id();
+					ad.addAlbum(newAlbum);
+					int newAlbumID = ad.checkAlbum(user_id, album_name, artist_name);
+					System.out.println(newAlbumID);
 					SongBuilder newbuilder = new SongBuilder();
 					Song song = newbuilder
-							.withAlbumID(newAlbumID)
+							.withAlbumID(-1)
 							.withName(song_title)
 							.withArtistName(artist_name)
 							.withGenre(genre)
@@ -89,9 +91,9 @@ public class UploadSongController {
 							.withFile(file)
 							.withYear(Integer.parseInt(year))
 							.build();
-
-					ad.addAlbum(newAlbum);
 					sd.addSong(song);
+					int someint = sd.checkSong(user_id, song_title, artist_name);
+					sd.addSongToAlbum(someint, newAlbumID);
 				}
 			}
 		}

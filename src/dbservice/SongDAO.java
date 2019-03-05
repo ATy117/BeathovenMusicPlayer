@@ -21,6 +21,6 @@ public interface SongDAO {
     public List<Song> getFavoriteSong(int user_id);
     public Song getMostPlayed(int user_id);
 
-    public boolean checkSong(int user_id, String song_name, String artist_name);
+    public int checkSong(int user_id, String song_name, String artist_name);
     public boolean checkSongPlaylist(int user_id, int song_id, int playlist_id);
 }
