@@ -33,6 +33,7 @@ public class LoginController {
 	}
 
 	public boolean loginRegUser(String username, String password) {
+
 		UserDAO worker = new UserDAODB(connection);
 
 		RegisteredUser dude =(RegisteredUser) worker.getUser(username, password);
