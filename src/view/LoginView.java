@@ -38,7 +38,7 @@ public class LoginView  {
 
 	public void loginUser(javafx.event.ActionEvent actionEvent) throws IOException {
 		if (actionEvent.getSource() == loginBtn) {
-			controller.loginRegUser("Name", "Pass");
+			controller.loginRegUser(usernameField.getText(), passwordField.getText());
 		}
 		else if (actionEvent.getSource() == loginGuestBtn)
 			controller.loginGuestUser();

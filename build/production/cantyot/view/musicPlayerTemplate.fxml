@@ -30,17 +30,17 @@
             <Font name="Comfortaa Regular" size="12.0" />
          </font>
       </Text>
-      <JFXButton fx:id="playBtn" layoutX="131.0" layoutY="339.0" onAction="#playPause" text="Play" textFill="#f1f6f1">
+      <JFXButton fx:id="playBtn" layoutX="134.0" layoutY="339.0" onAction="#playPause" textFill="#f1f6f1">
          <font>
             <Font size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="ffBtn" layoutX="232.0" layoutY="339.0" onAction="#nextSong" text="&gt;&gt;" textFill="#f1f6f1">
+      <JFXButton fx:id="ffBtn" layoutX="216.0" layoutY="339.0" onAction="#nextSong" textFill="#f1f6f1">
          <font>
             <Font size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="rewindBtn" layoutX="34.0" layoutY="339.0" onAction="#prevSong" text="&lt;&lt;" textFill="#f1f6f1">
+      <JFXButton fx:id="rewindBtn" layoutX="34.0" layoutY="339.0" onAction="#prevSong" textFill="#f1f6f1">
          <font>
             <Font size="18.0" />
          </font>
