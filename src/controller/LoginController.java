@@ -20,7 +20,6 @@ public class LoginController {
 	private Connection connection;
 
 	public LoginController(Stage primaryStage)   {
-
 		dbConnection connector = new dbConnection();
 		connection = connector.getConnection();
 		this.primaryStage = primaryStage;

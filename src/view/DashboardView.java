@@ -87,6 +87,7 @@ public class DashboardView extends View {
 		});
 
 		controller.sayHi();
+
 	}
 
 	public void createPlaylistButton(String playlistName)

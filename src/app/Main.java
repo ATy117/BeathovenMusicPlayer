@@ -9,7 +9,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         LoginController startup = new LoginController(primaryStage);
-
     }
 
     public static void main(String[] args) {

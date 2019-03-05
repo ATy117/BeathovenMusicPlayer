@@ -5,11 +5,14 @@ import controller.FileUploader;
 import controller.PhotoUploader;
 import controller.RegisterController;
 import controller.StageManager;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.File;
 

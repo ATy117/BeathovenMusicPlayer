@@ -28,6 +28,7 @@ public class LoginView  {
 		this.primaryStage = primaryStage;
 		this.controller = controller;
 
+
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("loginPageTemplate.fxml"));
 		loader.setController(this);
 

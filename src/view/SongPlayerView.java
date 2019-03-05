@@ -29,7 +29,6 @@ public class SongPlayerView extends View{
 
 	public SongPlayerView (Stage playerStage, SongPlayerModel songplayermodel, SongPlayerController controller) {
 
-
 		this.playerStage = playerStage;
 		this.controller = controller;
 		this.songplayermodel = songplayermodel;

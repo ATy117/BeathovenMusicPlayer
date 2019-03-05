@@ -1,5 +1,6 @@
 package controller;
 
+import app.Main;
 import javafx.stage.Stage;
 import model_rework.ProfileModel;
 import view.ShowProfileView;
@@ -13,12 +14,14 @@ import java.sql.Connection;
 public class ShowProfileController {
 
 	private Stage profileStage;
+	private Stage primaryStage;
 	private ProfileModel profilemodel;
 	private Connection connection;
 
-	public ShowProfileController(ProfileModel profilemodel, Connection connection) {
+	public ShowProfileController(Stage primaryStage, ProfileModel profilemodel, Connection connection) {
 		this.profilemodel = profilemodel;
 		this.connection = connection;
+		this.primaryStage = primaryStage;
 
 		profileStage = new Stage();
 
@@ -31,6 +34,10 @@ public class ShowProfileController {
     }
 
     public void logout() {
+		primaryStage.close();
+		Stage jesus = new Stage();
+		jesus.show();
+
 		// dont forget save if ever
     }
 

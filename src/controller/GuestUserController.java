@@ -1,6 +1,9 @@
 package controller;
 
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import model_rework.*;
 import view.DashboardView;
 import view.View;
@@ -9,12 +12,15 @@ import java.sql.Connection;
 
 public class GuestUserController extends DashboardController {
 
+	Stage primaryStage;
+
 
 	public GuestUserController(Stage primaryStage, Connection connection) {
 		songplayermodel = new SongPlayerModel();
 		librarymodel = new LibraryModel();
 		profilemodel = new ProfileModel();
-
+		this.primaryStage = primaryStage;
+		primaryStage.setOnHidden(e -> Platform.exit());
 
 		this.connection = connection;
 
@@ -27,8 +33,7 @@ public class GuestUserController extends DashboardController {
 
 	@Override
 	public void viewProfile() {
-		Stage reg = new Stage();
-		RegisterController register = new RegisterController(reg, connection);
+		RegisterController register = new RegisterController(primaryStage, connection);
 	}
 
 
