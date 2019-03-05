@@ -10,4 +10,5 @@ public interface AlbumDAO {
     public void updateAlbum(Album album);
     public List<Album> getAlbums(int user_id);
     public int checkAlbum(int user_id, String album_name, String artist_name);
+    public Album getAlbum(int album_id);
 }

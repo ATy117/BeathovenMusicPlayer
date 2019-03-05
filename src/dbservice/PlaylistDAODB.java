@@ -152,6 +152,23 @@ public class PlaylistDAODB implements PlaylistDAO {
         return playlistsTemp;
     }
 
+    @Override
+    public Playlist getPlaylist(int playist_id) {
+        String query = "SELECT * FROM " + this.TABLE +
+                " WHERE " + this.COL_PLAYLISTID + " = " + playist_id;
+
+        try{
+            PreparedStatement statement = this.connection.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            Playlist playlistTemp = toPlaylist(rs);
+            return playlistTemp;
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     private Playlist toPlaylist(ResultSet rs) throws SQLException{
         Playlist playlist = new Playlist();
 

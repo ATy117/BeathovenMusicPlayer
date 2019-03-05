@@ -147,6 +147,24 @@ public class AlbumDAODB implements AlbumDAO{
         }
     }
 
+    @Override
+    public Album getAlbum(int album_id) {
+        String query = "SELECT * FROM " + this.TABLE +
+                        " WHERE " + this.COL_ALBUMID + " = " + album_id;
+
+        try{
+            PreparedStatement statement = this.connection.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+
+            Album albumTemp = toAlbum(rs);
+            return albumTemp;
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
     private byte[] toBlob(Object object){
         byte[] stream = null;

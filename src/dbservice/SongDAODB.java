@@ -356,6 +356,23 @@ public class SongDAODB implements SongDAO{
         }
     }
 
+    @Override
+    public Song getSong(int song_id) {
+        String query = "SELECT * FROM " + this.TABLE +
+                " WHERE " + this.COL_SONGID + " = " + song_id;
+
+        try{
+            PreparedStatement statement = this.connection.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            Song songTemp = toSong(rs);
+            return songTemp;
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     private Song toSong(ResultSet rs) throws SQLException{
         Song song = new Song();
 
