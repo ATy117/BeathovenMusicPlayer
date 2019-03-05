@@ -8,10 +8,12 @@ import view.DashboardView;
 import view.View;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 public class GuestUserController extends DashboardController {
 
 	private static int counter = 0;
+	private Connection connection;
 
 	public GuestUserController(Stage primaryStage, Connection connection) {
 		songplayermodel = new SongPlayerModel();
@@ -40,7 +42,12 @@ public class GuestUserController extends DashboardController {
 		View dashboard = new DashboardView(primaryStage, songplayermodel, librarymodel, profilemodel, this);
 		songplayermodel.Attach(dashboard);
 		librarymodel.Attach(dashboard);
+		profilemodel.Attach(dashboard);
 		profilemodel.setUser(GU);
+
+		librarymodel.setSongList(new ArrayList<>());
+		librarymodel.setPlaylistList(new ArrayList<>());
+		librarymodel.setAlbumList(new ArrayList<>());
 
 		SongPlayerController player = new SongPlayerController(songplayermodel, connection);
 	}
