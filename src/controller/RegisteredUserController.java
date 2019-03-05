@@ -11,11 +11,8 @@ import java.sql.Connection;
 
 public class RegisteredUserController extends DashboardController {
 
-<<<<<<< HEAD
-
-=======
 	private Stage primaryStage;
->>>>>>> parent of 2647d75... nak ng tokwa
+
 
 	public RegisteredUserController(Stage primaryStage, Connection connection, User user) {
 		this.connection = connection;
@@ -23,7 +20,7 @@ public class RegisteredUserController extends DashboardController {
 		librarymodel = new LibraryModel();
 		profilemodel = new ProfileModel();
 
-<<<<<<< HEAD
+
 		Stage profileStage = new Stage();
 		Stage playerStage = new Stage();
 		Stage uploadStage = new Stage();
@@ -36,22 +33,16 @@ public class RegisteredUserController extends DashboardController {
 			primaryStage.close();
 		});
 
-		mystages.add(primaryStage);
-		mystages.add(profileStage);
-		mystages.add(playerStage);
-		mystages.add(uploadStage);
 
-=======
 		this.primaryStage = primaryStage;
 		primaryStage.setOnHidden(e -> Platform.exit());
-		
->>>>>>> parent of 2647d75... nak ng tokwa
+
 
 		System.out.println(user.getUser_id());
 
 		profilemodel.setUser(user);
 
-		View dashboard = new DashboardView(mystages.get(0), songplayermodel, librarymodel, profilemodel, this);
+		View dashboard = new DashboardView(primaryStage, songplayermodel, librarymodel, profilemodel, this);
 		songplayermodel.Attach(dashboard);
 		librarymodel.Attach(dashboard);
 		profilemodel.Attach(dashboard);
@@ -61,11 +52,10 @@ public class RegisteredUserController extends DashboardController {
 
 	@Override
 	public void viewProfile() {
-<<<<<<< HEAD
-		ShowProfileController profileview = new ShowProfileController(mystages.get(0), mystages.get(1), profilemodel, connection);
-=======
+
+
 		ShowProfileController profileview = new ShowProfileController(primaryStage, profilemodel, connection);
->>>>>>> parent of 2647d75... nak ng tokwa
+
 	}
 
 

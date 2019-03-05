@@ -22,12 +22,12 @@ public class ShowProfileController {
 		this.profilemodel = profilemodel;
 		this.connection = connection;
 		this.primaryStage = primaryStage;
-<<<<<<< HEAD
+
 		this.profileStage = profileStage;
-=======
+
 
 		profileStage = new Stage();
->>>>>>> parent of 2647d75... nak ng tokwa
+
 
 		ShowProfileView view = new ShowProfileView(profileStage, profilemodel, this);
 		profilemodel.Attach(view);
@@ -39,14 +39,11 @@ public class ShowProfileController {
 
     public void logout() {
 		primaryStage.close();
-<<<<<<< HEAD
 
 	    LoginController login = new LoginController(primaryStage);
-=======
 		Stage jesus = new Stage();
 		jesus.show();
 
->>>>>>> parent of 2647d75... nak ng tokwa
 		// dont forget save if ever
     }
 

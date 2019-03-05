@@ -12,12 +12,12 @@ public abstract class DashboardController {
 	protected SongPlayerModel songplayermodel;
 	protected LibraryModel librarymodel;
 	protected ProfileModel profilemodel;
-	protected List<Stage> mystages;
+
 
 	public abstract void viewProfile();
 
 	public void uploadSong() {
-		UploadSongController upload = new UploadSongController(profilemodel, mystages.get(3), librarymodel, connection);
+		UploadSongController upload = new UploadSongController(profilemodel,librarymodel, connection);
 	}
 
 	public abstract void sayHi();
