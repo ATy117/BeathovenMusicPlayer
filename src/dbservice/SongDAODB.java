@@ -301,8 +301,11 @@ public class SongDAODB implements SongDAO{
         try{
             PreparedStatement statement = this.connection.prepareStatement(query);
             ResultSet rs = statement.executeQuery();
-            rs.next();
-            Song songTemp = toSong(rs);
+
+            Song songTemp = null;
+            if (rs.next()) {
+                songTemp = toSong(rs);
+            }
 
             statement.close();
             return songTemp;
