@@ -12,6 +12,8 @@ import java.sql.Connection;
 public class RegisteredUserController extends DashboardController {
 
 	private Stage primaryStage;
+	private Stage playerStage;
+	private Stage profileStage;
 
 	public RegisteredUserController(Stage primaryStage, Connection connection, User user) {
 		this.connection = connection;
@@ -19,9 +21,12 @@ public class RegisteredUserController extends DashboardController {
 		librarymodel = new LibraryModel();
 		profilemodel = new ProfileModel();
 
+
 		this.primaryStage = primaryStage;
-		primaryStage.setOnHidden(e -> Platform.exit());
-		
+		primaryStage.setOnHidden(e -> {
+			Platform.exit();
+		});
+
 
 		System.out.println(user.getUser_id());
 
@@ -37,7 +42,7 @@ public class RegisteredUserController extends DashboardController {
 
 	@Override
 	public void viewProfile() {
-		ShowProfileController profileview = new ShowProfileController(primaryStage, profilemodel, connection);
+		ShowProfileController profileview = new ShowProfileController(primaryStage, profileStage, profilemodel, connection);
 	}
 
 

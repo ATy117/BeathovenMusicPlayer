@@ -18,12 +18,13 @@ public class ShowProfileController {
 	private ProfileModel profilemodel;
 	private Connection connection;
 
-	public ShowProfileController(Stage primaryStage, ProfileModel profilemodel, Connection connection) {
+	public ShowProfileController(Stage primaryStage, Stage profileStage, ProfileModel profilemodel, Connection connection) {
 		this.profilemodel = profilemodel;
 		this.connection = connection;
 		this.primaryStage = primaryStage;
 
 		profileStage = new Stage();
+
 
 		ShowProfileView view = new ShowProfileView(profileStage, profilemodel, this);
 		profilemodel.Attach(view);
@@ -34,10 +35,7 @@ public class ShowProfileController {
     }
 
     public void logout() {
-		primaryStage.close();
-		Stage jesus = new Stage();
-		jesus.show();
-
+	    LoginController login = new LoginController(primaryStage);
 		// dont forget save if ever
     }
 

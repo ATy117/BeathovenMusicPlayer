@@ -18,7 +18,6 @@ public class SongPlayerController {
 		this.connection = connection;
 
 		playerStage = new Stage();
-
 		SongPlayerView player = new SongPlayerView(playerStage, songplayermodel, this);
 		songplayermodel.Attach(player);
 	}

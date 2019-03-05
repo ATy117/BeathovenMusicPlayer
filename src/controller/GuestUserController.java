@@ -12,8 +12,8 @@ import java.sql.Connection;
 
 public class GuestUserController extends DashboardController {
 
-	Stage primaryStage;
-
+	private Stage primaryStage;
+	private Stage playerStage;
 
 	public GuestUserController(Stage primaryStage, Connection connection) {
 		songplayermodel = new SongPlayerModel();
@@ -28,6 +28,7 @@ public class GuestUserController extends DashboardController {
 		songplayermodel.Attach(dashboard);
 		librarymodel.Attach(dashboard);
 
+		playerStage = new Stage();
 		SongPlayerController player = new SongPlayerController(songplayermodel, connection);
 	}
 
