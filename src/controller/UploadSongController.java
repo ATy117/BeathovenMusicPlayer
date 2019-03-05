@@ -1,10 +1,7 @@
 package controller;
 
 
-import dbservice.AlbumDAO;
-import dbservice.AlbumDAOLocal;
-import dbservice.SongDAO;
-import dbservice.SongDAOLocal;
+import dbservice.*;
 import javafx.event.ActionEvent;
 import javafx.stage.FileChooser;
 

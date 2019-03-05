@@ -13,7 +13,11 @@ public abstract class DashboardController {
 	protected ProfileModel profilemodel;
 
 	public abstract void viewProfile();
-	public abstract void uploadSong();
+
+	public void uploadSong() {
+		UploadSongController upload = new UploadSongController(profilemodel, librarymodel, connection);
+	}
+
 	public abstract void sayHi();
 
 }
