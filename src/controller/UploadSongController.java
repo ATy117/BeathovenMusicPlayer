@@ -28,6 +28,7 @@ public class UploadSongController {
 
 		this.profilemodel = profilemodel;
 		this.librarymodel = librarymodel;
+		this.connection = connection;
 
 		uploadStage = new Stage();
 
@@ -85,7 +86,6 @@ public class UploadSongController {
 							.build();
 					ad.addAlbum(newAlbum);
 					int newAlbumID = ad.checkAlbum(user_id, album_name, artist_name);
-					System.out.println(newAlbumID);
 					SongBuilder newbuilder = new SongBuilder();
 					Song song = newbuilder
 							.withAlbumID(-1)
