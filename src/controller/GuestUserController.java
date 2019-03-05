@@ -12,6 +12,11 @@ import java.sql.Connection;
 
 public class GuestUserController extends DashboardController {
 
+<<<<<<< HEAD
+=======
+	Stage primaryStage;
+
+>>>>>>> parent of 2647d75... nak ng tokwa
 
 	public GuestUserController(Stage primaryStage, Connection connection) {
 		songplayermodel = new SongPlayerModel();
@@ -35,7 +40,11 @@ public class GuestUserController extends DashboardController {
 		songplayermodel.Attach(dashboard);
 		librarymodel.Attach(dashboard);
 
+<<<<<<< HEAD
 		SongPlayerController player = new SongPlayerController(playerStage,songplayermodel, connection);
+=======
+		SongPlayerController player = new SongPlayerController(songplayermodel, connection);
+>>>>>>> parent of 2647d75... nak ng tokwa
 	}
 
 	@Override

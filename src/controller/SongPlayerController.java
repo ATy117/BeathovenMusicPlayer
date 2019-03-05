@@ -18,6 +18,11 @@ public class SongPlayerController {
 		this.connection = connection;
 		this.playerStage = playerStage;
 
+<<<<<<< HEAD
+=======
+		playerStage = new Stage();
+
+>>>>>>> parent of 2647d75... nak ng tokwa
 		SongPlayerView player = new SongPlayerView(playerStage, songplayermodel, this);
 		songplayermodel.Attach(player);
 	}
