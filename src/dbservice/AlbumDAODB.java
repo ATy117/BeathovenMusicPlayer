@@ -13,7 +13,7 @@ import java.util.List;
 public class AlbumDAODB implements AlbumDAO{
     private Connection connection;
     private final String TABLE = "album";
-    private final String COL_ALBUMID = "album.user_id";
+    private final String COL_ALBUMID = "album.album_id";
     private final String COL_ALBUMNAME = "album.album_name";
     private final String COL_USERID = "album.user_id";
     private final String COL_COVERURL = "album.cover_url";
@@ -30,7 +30,7 @@ public class AlbumDAODB implements AlbumDAO{
         int userIDTemp = album.getUser_id();
         byte[] coverURLBlob = toBlob(album.getCover_URL());
         int artistIDTemp = album.getArtist_id();
-        String artistNameTemp = album.getName();
+        String artistNameTemp = album.getArtist_name();
 
         String query = "INSERT INTO " +
                 this.TABLE +
@@ -140,11 +140,28 @@ public class AlbumDAODB implements AlbumDAO{
             if(rs.next() == false){
                 return -1;
             }
-
             return rs.getInt(this.COL_ALBUMID);
         }catch(SQLException e){
             e.printStackTrace();
             return -1;
+        }
+    }
+
+    @Override
+    public Album getAlbum(int album_id) {
+        String query = "SELECT * FROM " + this.TABLE +
+                        " WHERE " + this.COL_ALBUMID + " = " + album_id;
+
+        try{
+            PreparedStatement statement = this.connection.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+
+            Album albumTemp = toAlbum(rs);
+            return albumTemp;
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            return null;
         }
     }
 

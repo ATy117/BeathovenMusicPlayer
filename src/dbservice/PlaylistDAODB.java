@@ -90,7 +90,7 @@ public class PlaylistDAODB implements PlaylistDAO {
     }
 
     @Override
-    public boolean checkPlaylist(int user_id, String playlist_name) {
+    public int checkPlaylist(int user_id, String playlist_name) {
         String query = "SELECT * FROM " + this.TABLE + " WHERE " +
                 this.COL_USERID + " = ? AND "+
                 this.COL_PLAYLISTNAME + " = ?";
@@ -99,13 +99,13 @@ public class PlaylistDAODB implements PlaylistDAO {
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet rs = statement.executeQuery();
             if(rs.next() == false){
-                return true;
+                return rs.getInt(this.COL_PLAYLISTID);
             }
 
-            return false;
+            return -1;
         }catch(SQLException e){
             e.printStackTrace();
-            return false;
+            return -1;
         }
     }
 
@@ -150,6 +150,23 @@ public class PlaylistDAODB implements PlaylistDAO {
             return playlistsTemp;
         }
         return playlistsTemp;
+    }
+
+    @Override
+    public Playlist getPlaylist(int playist_id) {
+        String query = "SELECT * FROM " + this.TABLE +
+                " WHERE " + this.COL_PLAYLISTID + " = " + playist_id;
+
+        try{
+            PreparedStatement statement = this.connection.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            Playlist playlistTemp = toPlaylist(rs);
+            return playlistTemp;
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     private Playlist toPlaylist(ResultSet rs) throws SQLException{

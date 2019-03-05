@@ -3,6 +3,8 @@ package view;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import controller.FileUploader;
+import controller.MP3Uploader;
 import controller.StageManager;
 import controller.UploadSongController;
 import javafx.fxml.FXML;
@@ -39,8 +41,8 @@ public class UploadSongsView{
 	}
 
 	public void uploadSongFile(javafx.event.ActionEvent actionEvent) {
-	    System.out.println("Upload button!");
-		// file window
+		FileUploader file = new MP3Uploader(primaryStage);
+		File musicfile = file.getUploadedFile();
 	}
 
 
@@ -52,6 +54,7 @@ public class UploadSongsView{
 		    controller.uploadSong(titleField.getText(), artistField.getText(), albumField.getText(), genreField.getValue().toString(), yearField.getText(), file);
         }
 	}
+
 
 	public void init(){
 	    genreField.getItems().add("Pop");
