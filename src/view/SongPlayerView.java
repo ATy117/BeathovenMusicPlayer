@@ -6,6 +6,8 @@ import controller.SongPlayerController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
@@ -38,6 +40,24 @@ public class SongPlayerView extends View{
 		StageManager sm = new StageManager(playerStage);
 		sm.loadScene(loader);
 		sm.setWindowName("Beathoven Music Player");
+
+		Image play = new Image("resources/play.png");
+		ImageView playView = new ImageView(play);
+		playView.setFitHeight(30);
+		playView.setFitWidth(25);
+		playBtn.setGraphic(playView);
+
+		Image ff = new Image("resources/ff.png");
+		ImageView ffView = new ImageView(ff);
+		ffView.setFitHeight(28);
+		ffView.setFitWidth(40);
+		ffBtn.setGraphic(ffView);
+
+		Image rewind = new Image("resources/rewind.png");
+		ImageView rewindView = new ImageView(rewind);
+		rewindView.setFitHeight(28);
+		rewindView.setFitWidth(40);
+		rewindBtn.setGraphic(rewindView);
 	}
 
 	@Override

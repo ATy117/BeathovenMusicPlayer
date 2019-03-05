@@ -6,10 +6,15 @@ import com.jfoenix.controls.JFXTextField;
 import controller.DashboardController;
 import controller.StageManager;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -66,11 +71,35 @@ public class DashboardView extends View {
 	}
 
 	public void createPlaylist(ActionEvent actionEvent) {
-		JFXTextField playlistField = new JFXTextField("PlaylistName");
+		JFXTextField playlistField = new JFXTextField();
+		playlistField.setPromptText("Playlist Name");
 		//playlistField.getFocusColor(Color.getColor("#8ba0a9"));
 		playlistVbox.getChildren().add(playlistField);
+		playlistField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent event) {
+				if(event.getCode().equals(KeyCode.ENTER)) {
+					System.out.println(playlistField.getText());
+					playlistVbox.getChildren().remove(playlistField);
+					createPlaylistButton(playlistField.getText());
+				}
+			}
+		});
 
 		controller.sayHi();
+	}
+
+	public void createPlaylistButton(String playlistName)
+	{
+		JFXButton playlistButton = new JFXButton(playlistName);
+		//playlistButton.setRipplerFill(Color.white);
+		Image image = new Image("resources/upload.png");
+		ImageView imageView = new ImageView(image);
+
+		playlistButton.setGraphic(imageView);
+		playlistVbox.getChildren().add(playlistButton);
+		System.out.println("Button Created");
+
 	}
 
 	public void showMusicPlayer() {
@@ -81,9 +110,20 @@ public class DashboardView extends View {
 		for(Song s : songlist)
 		{
 			HBox hbox = new HBox();
-			Text text = new Text(s.getSong_name());
-			text.setFont(Font.font("Poppins", 14));
-			hbox.getChildren().add(text);
+			Text songName = new Text(s.getSong_name());
+			Text space = new Text("        ");
+			Text space2 = new Text("        ");
+			Text songArtist = new Text(s.getArtist_name());
+			JFXButton playButton = new JFXButton("Play");
+
+			songName.setFont(Font.font("Poppins", 14));
+			songArtist.setFont(Font.font("Poppins", 14));
+
+			hbox.getChildren().add(playButton);
+			hbox.getChildren().add(space2);
+			hbox.getChildren().add(songName);
+			hbox.getChildren().add(space);
+			hbox.getChildren().add(songArtist);
 			populateSongsList.getItems().add(hbox);
 		}
 
