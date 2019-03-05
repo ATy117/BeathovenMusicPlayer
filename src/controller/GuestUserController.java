@@ -9,10 +9,12 @@ import java.sql.Connection;
 
 public class GuestUserController extends DashboardController {
 
+
 	public GuestUserController(Stage primaryStage, Connection connection) {
 		songplayermodel = new SongPlayerModel();
 		librarymodel = new LibraryModel();
 		profilemodel = new ProfileModel();
+
 
 		this.connection = connection;
 
@@ -29,8 +31,6 @@ public class GuestUserController extends DashboardController {
 		RegisterController register = new RegisterController(reg, connection);
 	}
 
-	@Override
-	public void uploadSong() {}
 
 	@Override
 	public void sayHi() {
