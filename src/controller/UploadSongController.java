@@ -4,12 +4,17 @@ import dbservice.AlbumDAO;
 import dbservice.AlbumDAOLocal;
 import dbservice.SongDAO;
 import dbservice.SongDAOLocal;
+import javafx.event.ActionEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model_rework.*;
 import view.UploadSongsView;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.*;
 import java.sql.Connection;
+import java.util.List;
 
 public class UploadSongController {
 
@@ -99,4 +104,6 @@ public class UploadSongController {
 		uploadStage.close();
 		return true;
 	}
+
+
 }

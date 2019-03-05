@@ -30,20 +30,20 @@
          </font>
       </JFXTextField>
       <JFXComboBox fx:id="genreField" focusColor="#e9c582" layoutX="191.0" layoutY="251.0" prefHeight="25.0" prefWidth="164.0" promptText="Genre" unFocusColor="#eaa830" />
-      <JFXButton fx:id="uploadBtn" layoutX="193.0" layoutY="297.0" onAction="#uploadSongFile" prefHeight="30.0" prefWidth="164.0" style="-fx-background-color: #303030" text="Upload" textFill="#8ba0a9">
+      <JFXButton fx:id="uploadBtn" layoutX="193.0" layoutY="341.0" onAction="#uploadSongFile" prefHeight="30.0" prefWidth="164.0" style="-fx-background-color: #303030" text="Upload" textFill="#8ba0a9">
          <font>
             <Font name="Poppins Regular" size="14.0" />
          </font>
       </JFXButton>
-      <JFXTextField fx:id="fileField" focusColor="#e9c582" layoutX="175.0" layoutY="327.0" prefHeight="30.0" prefWidth="216.0" promptText="File" unFocusColor="#eaa830">
+      <JFXButton fx:id="doneBtn" layoutX="244.0" layoutY="380.0" onAction="#addEditSongDetails" style="-fx-background-color: #303030" text="Done" textFill="#8ba0a9">
+         <font>
+            <Font name="Poppins Regular" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXTextField fx:id="yearField" focusColor="#e9c582" layoutX="175.0" layoutY="300.0" prefHeight="30.0" prefWidth="201.0" promptText="Year" unFocusColor="#eaa830">
          <font>
             <Font name="Poppins Regular" size="14.0" />
          </font>
       </JFXTextField>
-      <JFXButton fx:id="doneBtn" layoutX="255.0" layoutY="374.0" onAction="#addEditSongDetails" style="-fx-background-color: #303030" text="Done" textFill="#8ba0a9">
-         <font>
-            <Font name="Poppins Regular" size="14.0" />
-         </font>
-      </JFXButton>
    </children>
 </AnchorPane>
