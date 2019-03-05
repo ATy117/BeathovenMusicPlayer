@@ -34,7 +34,7 @@ public class GuestUserController extends DashboardController {
 
 		counter++;
 		UD.addUser(guestUser);
-		GuestUser GU = (GuestUser) UD.getUser(username, password);
+		RegisteredUser GU = (RegisteredUser) UD.getUser(username, password);
 		System.out.println(GU.getUser_id());
 
 		this.connection = connection;
