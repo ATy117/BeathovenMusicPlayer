@@ -301,6 +301,7 @@ public class SongDAODB implements SongDAO{
         try{
             PreparedStatement statement = this.connection.prepareStatement(query);
             ResultSet rs = statement.executeQuery();
+            rs.next();
             Song songTemp = toSong(rs);
 
             statement.close();
@@ -398,7 +399,6 @@ public class SongDAODB implements SongDAO{
         }catch(ClassNotFoundException e){
             e.printStackTrace();
         }
-        System.out.println(file.toString());
         return file;
     }
 }

@@ -54,6 +54,8 @@ public class DashboardView extends View {
 		StageManager sm = new StageManager(stage);
 		sm.loadScene(loader);
 		sm.setWindowName("Beathoven");
+
+		populateSong((ArrayList<Song>)librarymodel.getSongList());
 	}
 
 	@Override
@@ -107,6 +109,7 @@ public class DashboardView extends View {
 	}
 
 	public void populateSong(ArrayList<Song> songlist){
+		populateSongsList.getItems().clear();
 		for(Song s : songlist)
 		{
 			HBox hbox = new HBox();
