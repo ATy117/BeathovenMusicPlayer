@@ -30,7 +30,7 @@ public class AlbumDAODB implements AlbumDAO{
         int userIDTemp = album.getUser_id();
         byte[] coverURLBlob = toBlob(album.getCover_URL());
         int artistIDTemp = album.getArtist_id();
-        String artistNameTemp = album.getName();
+        String artistNameTemp = album.getArtist_name();
 
         String query = "INSERT INTO " +
                 this.TABLE +
