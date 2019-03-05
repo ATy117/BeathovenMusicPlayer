@@ -39,12 +39,12 @@ public class PlaylistDAOLocal implements PlaylistDAO {
     }
 
     @Override
-    public boolean checkPlaylist(int user_id, String playlist_name) {
+    public int checkPlaylist(int user_id, String playlist_name) {
         for (Playlist p : playlists){
             if (p.getUser_id() == user_id && p.getName().equalsIgnoreCase(playlist_name))
-                return true;
+                return p.getPlaylist_id();
         }
-        return false;
+        return -1;
     }
 
     @Override

@@ -34,21 +34,13 @@ public class LoginController {
 
 	public boolean loginRegUser(String username, String password) {
 		UserDAO worker = new UserDAODB(connection);
-		//User dude = worker.getUser(username, password);
 
-		RegisteredUserBuilder rg = new RegisteredUserBuilder();
-		RegisteredUser dude = rg
-				.withAvatar(null)
-				.withFirstName(username)
-				.withLastName(password)
-				.withUsername(username)
-				.withPassword(password)
-				.build();
-
-		System.out.println(dude.getFirst_name() + dude.getLast_name() + dude.getPassword() + dude.getUsername());
-		worker.addUser(dude);
-		dude =(RegisteredUser) worker.getUser(username, password);
-		DashboardController controller  = new RegisteredUserController(primaryStage, connection, dude);
+		RegisteredUser dude =(RegisteredUser) worker.getUser(username, password);
+		if (dude != null) {
+			DashboardController controller = new RegisteredUserController(primaryStage, connection, dude);
+		} else {
+			System.out.println("Create Account First");
+		}
 		return true;
 	}
 
