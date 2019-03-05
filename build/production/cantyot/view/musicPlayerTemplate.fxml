@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="458.0" prefWidth="318.0" style="-fx-background-color: #454444" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Circle fx:id="songPic" fill="#b7b9bc" layoutX="159.0" layoutY="152.0" radius="97.0" stroke="#a19999" strokeType="INSIDE" />
+      <Text fx:id="genreText" fill="#8ba0a9" layoutX="274.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Genre">
+         <font>
+            <Font name="Poppins Regular" size="12.0" />
+         </font>
+      </Text>
+      <Text fx:id="titleText" fill="#eaa830" layoutX="139.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+         <font>
+            <Font name="Comfortaa Regular" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="artistText" fill="#e9c582" layoutX="133.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="by Artist">
+         <font>
+            <Font name="Comfortaa Regular" size="12.0" />
+         </font>
+      </Text>
+      <Text fx:id="albumText" fill="#e9c582" layoutX="123.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="from Album">
+         <font>
+            <Font name="Comfortaa Regular" size="12.0" />
+         </font>
+      </Text>
+      <JFXButton fx:id="playBtn" layoutX="134.0" layoutY="339.0" onAction="#playPause" textFill="#f1f6f1">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="ffBtn" layoutX="216.0" layoutY="339.0" onAction="#nextSong" textFill="#f1f6f1">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="rewindBtn" layoutX="34.0" layoutY="339.0" onAction="#prevSong" textFill="#f1f6f1">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="shuffleBtn" layoutX="83.0" layoutY="378.0" onAction="#shuffle" text="Shuffle" textFill="#8ba089" />
+      <JFXButton fx:id="repeatBtn" layoutX="188.0" layoutY="378.0" onAction="#repeat" text="Repeat" textFill="#8ba089" />
+      <JFXSlider fx:id="slider" layoutX="42.0" layoutY="413.0" onDragDetected="#goToDuration" prefHeight="14.0" prefWidth="242.0" />
+   </children>
+</AnchorPane>
