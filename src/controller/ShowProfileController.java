@@ -22,9 +22,7 @@ public class ShowProfileController {
 		this.profilemodel = profilemodel;
 		this.connection = connection;
 		this.primaryStage = primaryStage;
-
-		profileStage = new Stage();
-
+		this.profileStage = profileStage;
 
 		ShowProfileView view = new ShowProfileView(profileStage, profilemodel, this);
 		profilemodel.Attach(view);
@@ -35,6 +33,8 @@ public class ShowProfileController {
     }
 
     public void logout() {
+		primaryStage.close();
+
 	    LoginController login = new LoginController(primaryStage);
 		// dont forget save if ever
     }

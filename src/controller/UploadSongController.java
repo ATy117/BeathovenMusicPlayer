@@ -24,12 +24,11 @@ public class UploadSongController {
 	private Connection connection;
 
 
-	public UploadSongController(ProfileModel profilemodel, LibraryModel librarymodel, Connection connection) {
+	public UploadSongController(ProfileModel profilemodel, Stage uploadStage, LibraryModel librarymodel, Connection connection) {
 
 		this.profilemodel = profilemodel;
 		this.librarymodel = librarymodel;
 
-		uploadStage = new Stage();
 
 		UploadSongsView upload = new UploadSongsView(uploadStage, this);
     }

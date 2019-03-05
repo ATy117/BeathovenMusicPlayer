@@ -12,15 +12,22 @@ import java.sql.Connection;
 
 public class GuestUserController extends DashboardController {
 
-	private Stage primaryStage;
-	private Stage playerStage;
 
 	public GuestUserController(Stage primaryStage, Connection connection) {
 		songplayermodel = new SongPlayerModel();
 		librarymodel = new LibraryModel();
 		profilemodel = new ProfileModel();
-		this.primaryStage = primaryStage;
+
+		Stage profileStage = new Stage();
+		Stage playerStage = new Stage();
+		Stage uploadStage = new Stage();
+
 		primaryStage.setOnHidden(e -> Platform.exit());
+
+		mystages.add(primaryStage);
+		mystages.add(profileStage);
+		mystages.add(playerStage);
+		mystages.add(uploadStage);
 
 		this.connection = connection;
 
@@ -28,13 +35,12 @@ public class GuestUserController extends DashboardController {
 		songplayermodel.Attach(dashboard);
 		librarymodel.Attach(dashboard);
 
-		playerStage = new Stage();
-		SongPlayerController player = new SongPlayerController(songplayermodel, connection);
+		SongPlayerController player = new SongPlayerController(playerStage,songplayermodel, connection);
 	}
 
 	@Override
 	public void viewProfile() {
-		RegisterController register = new RegisterController(primaryStage, connection);
+		RegisterController register = new RegisterController(mystages.get(0), connection);
 	}
 
 

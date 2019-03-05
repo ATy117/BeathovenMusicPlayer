@@ -11,9 +11,7 @@ import java.sql.Connection;
 
 public class RegisteredUserController extends DashboardController {
 
-	private Stage primaryStage;
-	private Stage playerStage;
-	private Stage profileStage;
+
 
 	public RegisteredUserController(Stage primaryStage, Connection connection, User user) {
 		this.connection = connection;
@@ -21,28 +19,39 @@ public class RegisteredUserController extends DashboardController {
 		librarymodel = new LibraryModel();
 		profilemodel = new ProfileModel();
 
+		Stage profileStage = new Stage();
+		Stage playerStage = new Stage();
+		Stage uploadStage = new Stage();
 
-		this.primaryStage = primaryStage;
 		primaryStage.setOnHidden(e -> {
-			Platform.exit();
+			Platform.setImplicitExit(false);
+			profileStage.close();
+			playerStage.close();
+			uploadStage.close();
+			primaryStage.close();
 		});
+
+		mystages.add(primaryStage);
+		mystages.add(profileStage);
+		mystages.add(playerStage);
+		mystages.add(uploadStage);
 
 
 		System.out.println(user.getUser_id());
 
 		profilemodel.setUser(user);
 
-		View dashboard = new DashboardView(primaryStage, songplayermodel, librarymodel, profilemodel, this);
+		View dashboard = new DashboardView(mystages.get(0), songplayermodel, librarymodel, profilemodel, this);
 		songplayermodel.Attach(dashboard);
 		librarymodel.Attach(dashboard);
 		profilemodel.Attach(dashboard);
 
-		SongPlayerController player = new SongPlayerController(songplayermodel, connection);
+		SongPlayerController player = new SongPlayerController(playerStage, songplayermodel, connection);
 	}
 
 	@Override
 	public void viewProfile() {
-		ShowProfileController profileview = new ShowProfileController(primaryStage, profileStage, profilemodel, connection);
+		ShowProfileController profileview = new ShowProfileController(mystages.get(0), mystages.get(1), profilemodel, connection);
 	}
 
 
