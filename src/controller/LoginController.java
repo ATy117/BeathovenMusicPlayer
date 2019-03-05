@@ -1,12 +1,8 @@
 package controller;
 
-import dbservice.UserDAO;
-import dbservice.UserDAODB;
 import dbservice.UserDAOLocal;
 import dbservice.dbConnection;
 import javafx.stage.Stage;
-import model_rework.RegisteredUser;
-import model_rework.RegisteredUserBuilder;
 import model_rework.User;
 import view.LoginView;
 import view.RegisterView;
@@ -33,15 +29,9 @@ public class LoginController {
 	}
 
 	public boolean loginRegUser(String username, String password) {
-
-		UserDAO worker = new UserDAODB(connection);
-
-		RegisteredUser dude =(RegisteredUser) worker.getUser(username, password);
-		if (dude != null) {
-			DashboardController controller = new RegisteredUserController(primaryStage, connection, dude);
-		} else {
-			System.out.println("Create Account First");
-		}
+		UserDAOLocal worker = new UserDAOLocal();
+		User dude = worker.getUser(username, password);
+		DashboardController controller  = new RegisteredUserController(primaryStage, connection, dude);
 		return true;
 	}
 

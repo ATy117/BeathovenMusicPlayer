@@ -1,17 +1,12 @@
 package view;
 
 import com.jfoenix.controls.JFXButton;
-import controller.FileUploader;
-import controller.PhotoUploader;
 import controller.RegisterController;
 import controller.StageManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
-import java.io.File;
 
 public class RegisterView {
 
@@ -40,8 +35,7 @@ public class RegisterView {
 	}
 
 	public void uploadProfilePic(ActionEvent actionEvent) {
-		FileUploader uploader = new PhotoUploader(primaryStage);
-		File file = uploader.getUploadedFile();
+
 	}
 
 	public void registerAccount(ActionEvent actionEvent) {

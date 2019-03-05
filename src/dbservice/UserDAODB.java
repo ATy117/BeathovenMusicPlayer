@@ -29,7 +29,7 @@ public class UserDAODB implements UserDAO {
         String firstNameTemp = user.getFirst_name();
         byte[] avatarBlobTemp = toBlob(user.getAvatarURL());
 
-        System.out.println(usernameTemp + passwordTemp+ firstNameTemp + lastNameTemp);
+
         String query = "INSERT INTO " +
                 this.TABLE +
                 " VALUES(NULL,?,?,?,?,?)";
@@ -102,7 +102,6 @@ public class UserDAODB implements UserDAO {
         User user = new RegisteredUser();
         String query = "SELECT * FROM " + this.TABLE;
 
-        System.out.println(query);
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet rs = statement.executeQuery();
@@ -112,19 +111,16 @@ public class UserDAODB implements UserDAO {
                 String dbPassword = rs.getString(this.COL_PASSWORD);
                 if(dbUsername.equals(username) && dbPassword.equals(password)){
                     user = toUser(rs);
-                    rs.close();
-                    statement.close();
-                    System.out.println(user.getUser_id());
                     return user;
                 }
             }
 
             rs.close();
             statement.close();
-            return null;
+            return user;
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            return user;
         }
     }
 

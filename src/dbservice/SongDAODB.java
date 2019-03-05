@@ -36,7 +36,7 @@ public class SongDAODB implements SongDAO{
     public boolean addSong(Song song) {
         int songIDTemp = song.getSong_id();
         String songNameTemp = song.getSong_name();
-        String aristNameTemp = song.getArtist_name();
+        //String aristNameTemp = song.getAlbum_name();
         String genreTemp = song.getGenre();
         int yearTemp = song.getYear();
         int isFavorite = (song.isFavorite()) ? 1:0;
@@ -52,7 +52,7 @@ public class SongDAODB implements SongDAO{
         try{
             PreparedStatement statement = this.connection.prepareStatement(query);
             statement.setString(1, songNameTemp);
-            statement.setString(2, aristNameTemp);
+            //statement.setString(2, aristNameTemp);
             statement.setString(3, genreTemp);
             statement.setInt(4, yearTemp);
             statement.setInt(5, isFavorite);
@@ -314,23 +314,22 @@ public class SongDAODB implements SongDAO{
     // check song returns true if the existing song name under
     // the same user is found
     @Override
-    public int checkSong(int user_id, String song_name, String artist_name) {
+    public boolean checkSong(int user_id, String song_name, String artist_name) {
         String query = "SELECT * FROM " + this.TABLE + " WHERE " +
                         this.COL_USERID + " = " + user_id + " AND " +
-                        this.COL_SONGNAME + " = '" + song_name + "' AND " +
-                        this.COL_ARTISTNAME + " = '" + artist_name + "'";
-
+                        this.COL_SONGNAME + " = " + song_name + " AND " +
+                        this.COL_ARTISTNAME + " = " + artist_name;
 
         try{
             PreparedStatement statement = this.connection.prepareStatement(query);
             ResultSet rs = statement.executeQuery();
             if(rs.next()){
-                return rs.getInt(this.COL_SONGID);
+                return true;
             }
-            return -1;
+            return false;
         }catch (SQLException e){
             e.printStackTrace();
-            return -1;
+            return false;
         }
     }
 
@@ -353,23 +352,6 @@ public class SongDAODB implements SongDAO{
         }catch (SQLException e){
             e.printStackTrace();
             return false;
-        }
-    }
-
-    @Override
-    public Song getSong(int song_id) {
-        String query = "SELECT * FROM " + this.TABLE +
-                " WHERE " + this.COL_SONGID + " = " + song_id;
-
-        try{
-            PreparedStatement statement = this.connection.prepareStatement(query);
-            ResultSet rs = statement.executeQuery();
-            Song songTemp = toSong(rs);
-            return songTemp;
-
-        }catch (SQLException e){
-            e.printStackTrace();
-            return null;
         }
     }
 
@@ -415,7 +397,7 @@ public class SongDAODB implements SongDAO{
         }catch(ClassNotFoundException e){
             e.printStackTrace();
         }
-        System.out.println(file.toString());
+
         return file;
     }
 }
