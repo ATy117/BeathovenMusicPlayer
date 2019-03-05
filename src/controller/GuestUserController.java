@@ -19,10 +19,10 @@ public class GuestUserController extends DashboardController {
 		profilemodel = new ProfileModel();
 
 		UserDAO UD = new UserDAODB(connection);
-		GuestUserBuilder GU = new GuestUserBuilder();
+		GuestUserBuilder GUB = new GuestUserBuilder();
 		String username = "username" + counter;
 		String password = "password" + counter;
-		GuestUser guestUser = GU
+		GuestUser guestUser = GUB
 				.withAvatar(null)
 				.withFirstName("firstname" + counter)
 				.withLastName("lastname" + counter)
@@ -32,15 +32,15 @@ public class GuestUserController extends DashboardController {
 
 		counter++;
 		UD.addUser(guestUser);
-		RegisteredUser RU = (RegisteredUser) UD.getUser(username, password);
-		System.out.println(RU.getUser_id());
+		GuestUser GU = (GuestUser) UD.getUser(username, password);
+		System.out.println(GU.getUser_id());
 
 		this.connection = connection;
 
 		View dashboard = new DashboardView(primaryStage, songplayermodel, librarymodel, profilemodel, this);
 		songplayermodel.Attach(dashboard);
 		librarymodel.Attach(dashboard);
-		profilemodel.setUser(RU);
+		profilemodel.setUser(GU);
 
 		SongPlayerController player = new SongPlayerController(songplayermodel, connection);
 	}
