@@ -13,7 +13,7 @@ import java.util.List;
 public class AlbumDAODB implements AlbumDAO{
     private Connection connection;
     private final String TABLE = "album";
-    private final String COL_ALBUMID = "album.user_id";
+    private final String COL_ALBUMID = "album.album_id";
     private final String COL_ALBUMNAME = "album.album_name";
     private final String COL_USERID = "album.user_id";
     private final String COL_COVERURL = "album.cover_url";
@@ -140,7 +140,6 @@ public class AlbumDAODB implements AlbumDAO{
             if(rs.next() == false){
                 return -1;
             }
-
             return rs.getInt(this.COL_ALBUMID);
         }catch(SQLException e){
             e.printStackTrace();
