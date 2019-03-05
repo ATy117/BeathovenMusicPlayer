@@ -33,10 +33,7 @@ public class RegisteredUserController extends DashboardController {
 		ShowProfileController profileview = new ShowProfileController(profilemodel, connection);
 	}
 
-	@Override
-	public void uploadSong() {
-		UploadSongController upload = new UploadSongController(profilemodel, librarymodel, connection);
-	}
+
 
 
 	@Override
