@@ -1,12 +1,15 @@
 package view;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import controller.DashboardController;
 import controller.StageManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ListView;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -18,15 +21,19 @@ import model_rework.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+import static java.awt.Color.WHITE;
+
 public class DashboardView extends View {
 
 	private SongPlayerModel songplayermodel;
 	private LibraryModel librarymodel;
 	private ProfileModel profilemodel;
 
-	@FXML JFXButton myProfileBtn;
-	@FXML JFXButton uploadAddSongsBtn;
-	@FXML VBox playlistVbox;
+	@FXML public JFXButton myProfileBtn;
+	@FXML public JFXButton uploadAddSongsBtn;
+	@FXML public VBox playlistVbox;
+	@FXML public JFXListView populateSongsList;
+
 
 	public DashboardView (Stage stage, SongPlayerModel songplayermodel, LibraryModel librarymodel, ProfileModel profilemodel, DashboardController controller) {
 
@@ -77,7 +84,9 @@ public class DashboardView extends View {
 			Text text = new Text(s.getSong_name());
 			text.setFont(Font.font("Poppins", 14));
 			hbox.getChildren().add(text);
+			populateSongsList.getItems().add(hbox);
 		}
+
 	}
 
 

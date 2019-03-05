@@ -48,7 +48,6 @@ public class UploadSongsView{
 
 	    File file = new File("resources/beathoven.png");
 	    if(!(titleField.getText().isEmpty() || artistField.getText().isEmpty() || genreField.getValue().toString().isEmpty() || yearField.getText().isEmpty())) {
-	        System.out.println("It is not Empty!");
 	        primaryStage.close();
 		    controller.uploadSong(titleField.getText(), artistField.getText(), albumField.getText(), genreField.getValue().toString(), yearField.getText(), file);
         }
