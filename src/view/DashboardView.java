@@ -1,6 +1,7 @@
 package view;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import controller.DashboardController;
@@ -36,8 +37,10 @@ public class DashboardView extends View {
 
 	@FXML public JFXButton myProfileBtn;
 	@FXML public JFXButton uploadAddSongsBtn;
-	@FXML public VBox playlistVbox;
 	@FXML public JFXListView populateSongsList;
+	@FXML public VBox newPLaylistVbox;
+	@FXML public VBox albumsVbox;
+	@FXML public JFXComboBox filterCombo;
 
 
 	public DashboardView (Stage stage, SongPlayerModel songplayermodel, LibraryModel librarymodel, ProfileModel profilemodel, DashboardController controller) {
@@ -56,6 +59,8 @@ public class DashboardView extends View {
 		sm.setWindowName("Beathoven");
 
 		populateSong((ArrayList<Song>)librarymodel.getSongList());
+
+		init();
 	}
 
 	@Override
@@ -75,14 +80,13 @@ public class DashboardView extends View {
 	public void createPlaylist(ActionEvent actionEvent) {
 		JFXTextField playlistField = new JFXTextField();
 		playlistField.setPromptText("Playlist Name");
-		//playlistField.getFocusColor(Color.getColor("#8ba0a9"));
-		playlistVbox.getChildren().add(playlistField);
+		newPLaylistVbox.getChildren().add(playlistField);
 		playlistField.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
 				if(event.getCode().equals(KeyCode.ENTER)) {
 					System.out.println(playlistField.getText());
-					playlistVbox.getChildren().remove(playlistField);
+					newPLaylistVbox.getChildren().remove(playlistField);
 					createPlaylistButton(playlistField.getText());
 				}
 			}
@@ -93,15 +97,18 @@ public class DashboardView extends View {
 
 	public void createPlaylistButton(String playlistName)
 	{
+		newPLaylistVbox.getStylesheets().add("view/theme.css");
 		JFXButton playlistButton = new JFXButton(playlistName);
-		//playlistButton.setRipplerFill(Color.white);
-		Image image = new Image("resources/upload.png");
-		ImageView imageView = new ImageView(image);
-
-		playlistButton.setGraphic(imageView);
-		playlistVbox.getChildren().add(playlistButton);
+		newPLaylistVbox.getChildren().add(playlistButton);
 		System.out.println("Button Created");
 
+	}
+
+	public void albumCreated(String name)
+	{
+		albumsVbox.getStylesheets().add("view/theme.css");
+		JFXButton newAlbum = new JFXButton(name);
+		albumsVbox.getChildren().add(newAlbum);
 	}
 
 	public void showMusicPlayer() {
@@ -117,7 +124,12 @@ public class DashboardView extends View {
 			Text space = new Text("        ");
 			Text space2 = new Text("        ");
 			Text songArtist = new Text(s.getArtist_name());
-			JFXButton playButton = new JFXButton("Play");
+			JFXButton playButton = new JFXButton();
+			Image play = new Image("resources/play.png");
+			ImageView playView = new ImageView(play);
+			playView.setFitWidth(15);
+			playView.setFitHeight(20);
+			playButton.setGraphic(playView);
 
 			songName.setFont(Font.font("Poppins", 14));
 			songArtist.setFont(Font.font("Poppins", 14));
@@ -129,6 +141,14 @@ public class DashboardView extends View {
 			hbox.getChildren().add(songArtist);
 			populateSongsList.getItems().add(hbox);
 		}
+
+	}
+
+	public void init()
+	{
+		filterCombo.getItems().add("Genre");
+		filterCombo.getItems().add("Album");
+		filterCombo.getItems().add("Year");
 
 	}
 
