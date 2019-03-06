@@ -29,7 +29,7 @@
                   <Font name="Poppins Regular" size="16.0" />
                </font>
             </Text>
-            <JFXButton fx:id="logoutBtn" layoutX="760.0" layoutY="18.0" text="Log Out" textFill="#303030" style="-fx-background-color: #454444">
+            <JFXButton fx:id="logoutBtn" layoutX="760.0" layoutY="18.0" onAction="#logout" style="-fx-background-color: #454444" text="Log Out" textFill="#303030">
                <font>
                   <Font name="Poppins Regular" size="10.0" />
                </font>

@@ -16,11 +16,10 @@ public class ShowProfileController {
 	private ProfileModel profilemodel;
 	private Connection connection;
 
-	public ShowProfileController(ProfileModel profilemodel, Connection connection) {
+	public ShowProfileController(ProfileModel profilemodel, Connection connection, Stage profileStage) {
 		this.profilemodel = profilemodel;
 		this.connection = connection;
-
-		profileStage = new Stage();
+		this.profileStage=profileStage;
 
 		ShowProfileView view = new ShowProfileView(profileStage, profilemodel, this);
 		profilemodel.Attach(view);
