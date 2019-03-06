@@ -29,6 +29,11 @@
                   <Font name="Poppins Regular" size="16.0" />
                </font>
             </Text>
+            <JFXButton fx:id="logoutBtn" layoutX="760.0" layoutY="18.0" text="Log Out" textFill="#303030" style="-fx-background-color: #454444">
+               <font>
+                  <Font name="Poppins Regular" size="10.0" />
+               </font>
+            </JFXButton>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="songDetails" layoutY="485.0" prefHeight="69.0" prefWidth="826.0" style="-fx-background-color: #e9b350">
