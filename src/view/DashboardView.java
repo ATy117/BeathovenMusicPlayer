@@ -58,7 +58,7 @@ public class DashboardView extends View {
 		sm.loadScene(loader);
 		sm.setWindowName("Beathoven");
 
-		populateSong((ArrayList<Song>)librarymodel.getSongList());
+		Update();
 
 		init();
 	}
