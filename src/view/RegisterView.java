@@ -1,6 +1,7 @@
 package view;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import controller.FileUploader;
 import controller.PhotoUploader;
@@ -23,8 +24,8 @@ public class RegisterView {
 	@FXML private JFXTextField firstNameField;
 	@FXML private JFXTextField lastNameField;
 	@FXML private JFXTextField usernameField;
-	@FXML private JFXTextField passwordField;
-	@FXML private JFXTextField checkPasswordField;
+	@FXML private JFXPasswordField passwordField;
+	@FXML private JFXPasswordField checkPasswordField;
 
 	private File file = null;
 
