@@ -58,6 +58,18 @@ public class SongPlayerView extends View{
 		rewindView.setFitHeight(28);
 		rewindView.setFitWidth(40);
 		rewindBtn.setGraphic(rewindView);
+
+		Image shuffle = new Image("resources/Shuffle.png");
+		ImageView shuffleView = new ImageView(shuffle);
+		shuffleView.setFitHeight(16);
+		shuffleView.setFitWidth(20);
+		shuffleBtn.setGraphic(shuffleView);
+
+		Image replay = new Image("resources/repeat.png");
+		ImageView replayView = new ImageView(replay);
+		replayView.setFitHeight(16);
+		replayView.setFitWidth(20);
+		repeatBtn.setGraphic(replayView);
 	}
 
 	@Override

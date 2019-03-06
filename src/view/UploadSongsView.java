@@ -17,6 +17,7 @@ public class UploadSongsView{
 
 	Stage primaryStage;
 	UploadSongController controller;
+	File musicfile = null;
 
 	@FXML public JFXTextField titleField;
 	@FXML public  JFXTextField artistField;
@@ -42,17 +43,19 @@ public class UploadSongsView{
 
 	public void uploadSongFile(javafx.event.ActionEvent actionEvent) {
 		FileUploader file = new MP3Uploader(primaryStage);
-		File musicfile = file.getUploadedFile();
+		musicfile = file.getUploadedFile();
 	}
 
 
 	public void addEditSongDetails(javafx.event.ActionEvent actionEvent) {
 
-	    File file = new File("resources/beathoven.png");
-	    if(!(titleField.getText().isEmpty() || artistField.getText().isEmpty() || genreField.getValue().toString().isEmpty() || yearField.getText().isEmpty())) {
+	    if(!(titleField.getText().isEmpty() || artistField.getText().isEmpty() || genreField.getValue().toString().isEmpty() || yearField.getText().isEmpty() || musicfile == null)) {
 	        primaryStage.close();
-		    controller.uploadSong(titleField.getText(), artistField.getText(), albumField.getText(), genreField.getValue().toString(), yearField.getText(), file);
-        }
+		    controller.uploadSong(titleField.getText(), artistField.getText(), albumField.getText(), genreField.getValue().toString(), yearField.getText(), musicfile);
+        } else {
+			System.out.println("make sure all fields are filled");
+	    	primaryStage.close();
+		}
 	}
 
 
