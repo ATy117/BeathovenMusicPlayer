@@ -102,7 +102,6 @@ public class UserDAODB implements UserDAO {
         User user = new RegisteredUser();
         String query = "SELECT * FROM " + this.TABLE;
 
-        System.out.println(query);
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet rs = statement.executeQuery();
@@ -114,7 +113,6 @@ public class UserDAODB implements UserDAO {
                     user = toUser(rs);
                     rs.close();
                     statement.close();
-                    System.out.println(user.getUser_id());
                     return user;
                 }
             }
