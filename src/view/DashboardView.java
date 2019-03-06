@@ -66,6 +66,7 @@ public class DashboardView extends View {
 	@Override
 	public void Update() {
 		populateSong((ArrayList<Song>)librarymodel.getSongList());
+		populateAlbum((ArrayList<Album>)librarymodel.getAlbumList());
 	}
 
 	public void changePane(ActionEvent actionEvent) {
@@ -101,6 +102,17 @@ public class DashboardView extends View {
 		JFXButton playlistButton = new JFXButton(playlistName);
 		newPLaylistVbox.getChildren().add(playlistButton);
 		System.out.println("Button Created");
+
+	}
+
+	public void populateAlbum(ArrayList<Album> albumList)
+	{
+		albumsVbox.getStylesheets().add("view/theme.css");
+		albumsVbox.getChildren().clear();
+		for(Album a: albumList){
+			JFXButton newAlbumBtn = new JFXButton(a.getName());
+			albumsVbox.getChildren().add(newAlbumBtn);
+		}
 
 	}
 
