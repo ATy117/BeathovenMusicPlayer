@@ -13,9 +13,9 @@ import java.util.ArrayList;
 public class GuestUserController extends DashboardController {
 
 	private static int counter = 0;
-	private Connection connection;
 
 	public GuestUserController(Stage primaryStage, Connection connection) {
+		this.connection = connection;
 		songplayermodel = new SongPlayerModel();
 		librarymodel = new LibraryModel();
 		profilemodel = new ProfileModel();
@@ -37,7 +37,7 @@ public class GuestUserController extends DashboardController {
 		RegisteredUser GU = (RegisteredUser) UD.getUser(username, password);
 		System.out.println(GU.getUser_id());
 
-		this.connection = connection;
+
 
 		View dashboard = new DashboardView(primaryStage, songplayermodel, librarymodel, profilemodel, this);
 		songplayermodel.Attach(dashboard);
