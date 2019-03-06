@@ -45,7 +45,7 @@ public class UploadSongController {
 		if (sd.checkSong(user_id, song_title, artist_name) != -1){
 			System.out.println("Existing");
 		} else {
-			String legit = album_name.replaceAll("[^a-zA-Z]+", "");
+			String legit = album_name.replaceAll("\\s+", "");
 			if (legit.equals("")){
 				SongBuilder builder = new SongBuilder();
 				Song newSong = builder.withAlbumID(-1)

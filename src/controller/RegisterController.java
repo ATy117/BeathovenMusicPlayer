@@ -1,11 +1,14 @@
 package controller;
 
 
+import dbservice.UserDAO;
+import dbservice.UserDAODB;
 import dbservice.UserDAOLocal;
 import javafx.stage.Stage;
 import model_rework.User;
 import view.RegisterView;
 
+import java.io.File;
 import java.sql.Connection;
 
 public class RegisterController {
@@ -19,8 +22,8 @@ public class RegisterController {
 		RegisterView reg = new RegisterView(primaryStage, this);
 	}
 
-	public boolean registerUser(String username, String password, String pic) {
-		UserDAOLocal worker = new UserDAOLocal();
+	public boolean registerUser(String username, String password, String firstname, String lastname, File avatar) {
+		UserDAO worker = new UserDAODB(connection);
 		User dude = worker.getUser(username, password);
 		DashboardController controller  = new RegisteredUserController(primaryStage, connection, dude);
 		return true;
