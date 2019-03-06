@@ -1,6 +1,7 @@
 package controller;
 
 import dbservice.*;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 import model_rework.*;
 import view.DashboardView;
@@ -17,6 +18,12 @@ public class RegisteredUserController extends DashboardController {
 		songplayermodel = new SongPlayerModel();
 		librarymodel = new LibraryModel();
 		profilemodel = new ProfileModel();
+
+		this.primaryStage = primaryStage;
+		playerStage = new Stage();
+		profileStage = new Stage();
+		uploadStage = new Stage();
+
 
 		int user_id = user.getUser_id();
 
@@ -37,18 +44,21 @@ public class RegisteredUserController extends DashboardController {
 		librarymodel.Attach(dashboard);
 		profilemodel.Attach(dashboard);
 
-		SongPlayerController player = new SongPlayerController(songplayermodel, connection);
+		SongPlayerController player = new SongPlayerController(songplayermodel, connection, playerStage);
 	}
 
-	@Override
 	public void viewProfile() {
-		ShowProfileController profileview = new ShowProfileController(profilemodel, connection);
+		ShowProfileController profileview = new ShowProfileController(profilemodel, connection, profileStage);
 	}
 
 
+	public void logout() {
+		playerStage.close();
+		uploadStage.close();
+		profileStage.close();
+		LoginController login = new LoginController(primaryStage);
+	}
 
-
-	@Override
 	public void sayHi() {
 		System.out.println("Reg User says Hi");
 	}
