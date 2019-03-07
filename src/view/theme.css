@@ -5,3 +5,7 @@
     -fx-font-family: Poppins;
     -fx-font-size: 18;
 }
+
+.text-field{
+    -fx-text-fill: #E9C582;
+}
