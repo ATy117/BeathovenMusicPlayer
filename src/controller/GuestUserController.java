@@ -20,6 +20,11 @@ public class GuestUserController extends DashboardController {
 		librarymodel = new LibraryModel();
 		profilemodel = new ProfileModel();
 
+		this.primaryStage = primaryStage;
+		playerStage = new Stage();
+		profileStage = new Stage();
+		uploadStage = new Stage();
+
 		UserDAO UD = new UserDAODB(connection);
 		GuestUserBuilder GUB = new GuestUserBuilder();
 		String username = "username" + counter;
@@ -36,28 +41,33 @@ public class GuestUserController extends DashboardController {
 		UD.addUser(guestUser);
 		RegisteredUser GU = (RegisteredUser) UD.getUser(username, password);
 		System.out.println(GU.getUser_id());
-
+		guestUser.setUser_id(GU.getUser_id());
 
 
 		View dashboard = new DashboardView(primaryStage, songplayermodel, librarymodel, profilemodel, this);
 		songplayermodel.Attach(dashboard);
 		librarymodel.Attach(dashboard);
 		profilemodel.Attach(dashboard);
-		profilemodel.setUser(GU);
+		profilemodel.setUser(guestUser);
 
 		librarymodel.setSongList(new ArrayList<>());
 		librarymodel.setPlaylistList(new ArrayList<>());
 		librarymodel.setAlbumList(new ArrayList<>());
 
-		SongPlayerController player = new SongPlayerController(songplayermodel, connection);
+		SongPlayerController player = new SongPlayerController(songplayermodel, connection, playerStage);
 	}
 
 	@Override
 	public void viewProfile() {
-		Stage reg = new Stage();
-		RegisterController register = new RegisterController(reg, connection);
+		RegisterController register = new RegisterController(profileStage, connection);
 	}
 
+	public void logout(){
+		playerStage.close();
+		uploadStage.close();
+		profileStage.close();
+		LoginController login = new LoginController(primaryStage);
+	}
 
 	@Override
 	public void sayHi() {

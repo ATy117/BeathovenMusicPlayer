@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import controller.DashboardController;
+import controller.SongPlayerController;
 import controller.StageManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -58,7 +59,7 @@ public class DashboardView extends View {
 		sm.loadScene(loader);
 		sm.setWindowName("Beathoven");
 
-		populateSong((ArrayList<Song>)librarymodel.getSongList());
+		Update();
 
 		init();
 	}
@@ -124,7 +125,7 @@ public class DashboardView extends View {
 	}
 
 	public void showMusicPlayer() {
-		System.out.println("Show Music Player");
+		controller.showSongPlayer();
 	}
 
 	public void populateSong(ArrayList<Song> songlist){
@@ -165,5 +166,8 @@ public class DashboardView extends View {
 	}
 
 
+	public void logout(ActionEvent actionEvent) {
+		controller.logout();
+	}
 }
 

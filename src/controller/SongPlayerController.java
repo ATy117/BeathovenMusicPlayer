@@ -13,11 +13,10 @@ public class SongPlayerController {
 	private SongPlayerModel songplayermodel;
 	private Connection connection;
 
-	public SongPlayerController (SongPlayerModel songplayermodel, Connection connection) {
+	public SongPlayerController (SongPlayerModel songplayermodel, Connection connection, Stage playerStage) {
 		this.songplayermodel = songplayermodel;
 		this.connection = connection;
-
-		playerStage = new Stage();
+		this.playerStage = playerStage;
 
 		SongPlayerView player = new SongPlayerView(playerStage, songplayermodel, this);
 		songplayermodel.Attach(player);
