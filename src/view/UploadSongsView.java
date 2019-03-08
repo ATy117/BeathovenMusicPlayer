@@ -48,13 +48,23 @@ public class UploadSongsView{
 
 
 	public void addEditSongDetails(javafx.event.ActionEvent actionEvent) {
+		String songTitle = titleField.getText();
+		String artistName = artistField.getText();
+		String genre = genreField.getValue().toString();
+		String year = yearField.getText();
+		String album = albumField.getText();
 
-	    if(!(titleField.getText().isEmpty() || artistField.getText().isEmpty() || genreField.getValue().toString().isEmpty() || yearField.getText().isEmpty() || musicfile == null)) {
-	        primaryStage.close();
-		    controller.uploadSong(titleField.getText(), artistField.getText(), albumField.getText(), genreField.getValue().toString(), yearField.getText(), musicfile);
-        } else {
+		String songCheck = songTitle.replaceAll("\\s+", "");
+		String artistCheck = artistName.replaceAll("\\s+", "");
+		String genreCheck = genre.replaceAll("\\s+", "");
+		String yearCheck = year.replaceAll("\\s+", "");
+
+		if (songCheck.equals("") || artistCheck.equals("") || genreCheck.equals("") || yearCheck.equals("") || musicfile == null){
 			System.out.println("make sure all fields are filled");
 	    	primaryStage.close();
+		} else {
+			primaryStage.close();
+			controller.uploadSong(songTitle, artistName, album, genre, year, musicfile);
 		}
 	}
 
