@@ -169,7 +169,7 @@ public class DashboardView extends View {
 
 	}
 
-	public void init()
+	private void init()
 	{
 		filterCombo.getItems().add("Genre");
 		filterCombo.getItems().add("Album");

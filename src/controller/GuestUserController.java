@@ -63,6 +63,8 @@ public class GuestUserController extends DashboardController {
 	}
 
 	public void logout(){
+		UserDAO UD = new UserDAODB(connection);
+		UD.deleteUser(profilemodel.getUser().getUser_id());
 		playerStage.close();
 		uploadStage.close();
 		profileStage.close();
