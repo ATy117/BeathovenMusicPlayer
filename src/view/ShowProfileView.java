@@ -99,6 +99,7 @@ public class ShowProfileView extends View{
 		}
 		else if(editBtn.getText().equals("done"))
 		{
+			editBtn.setText("edit");
 			firstNameField.setEditable(false);
 			lastnameField.setEditable(false);
 			usernameField.setEditable(false);

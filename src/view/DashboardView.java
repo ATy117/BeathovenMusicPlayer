@@ -39,8 +39,8 @@ public class DashboardView extends View {
 	@FXML public JFXButton myProfileBtn;
 	@FXML public JFXButton uploadAddSongsBtn;
 	@FXML public JFXListView populateSongsList;
-	@FXML public VBox newPLaylistVbox;
-	@FXML public VBox albumsVbox;
+	@FXML public JFXListView newPLaylistVbox;
+	@FXML public JFXListView albumsVbox;
 	@FXML public JFXComboBox filterCombo;
 
 
@@ -81,14 +81,15 @@ public class DashboardView extends View {
 
 	public void createPlaylist(ActionEvent actionEvent) {
 		JFXTextField playlistField = new JFXTextField();
+		playlistField.setPrefWidth(50);
 		playlistField.setPromptText("Playlist Name");
-		newPLaylistVbox.getChildren().add(playlistField);
+		newPLaylistVbox.getItems().add(playlistField);
 		playlistField.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
 				if(event.getCode().equals(KeyCode.ENTER)) {
 					System.out.println(playlistField.getText());
-					newPLaylistVbox.getChildren().remove(playlistField);
+					newPLaylistVbox.getItems().remove(playlistField);
 					createPlaylistButton(playlistField.getText());
 				}
 			}
@@ -101,7 +102,7 @@ public class DashboardView extends View {
 	{
 		newPLaylistVbox.getStylesheets().add("view/theme.css");
 		JFXButton playlistButton = new JFXButton(playlistName);
-		newPLaylistVbox.getChildren().add(playlistButton);
+		newPLaylistVbox.getItems().add(playlistButton);
 		System.out.println("Button Created");
 
 	}
@@ -109,10 +110,10 @@ public class DashboardView extends View {
 	public void populateAlbum(ArrayList<Album> albumList)
 	{
 		albumsVbox.getStylesheets().add("view/theme.css");
-		albumsVbox.getChildren().clear();
+		albumsVbox.getItems().clear();
 		for(Album a: albumList){
 			JFXButton newAlbumBtn = new JFXButton(a.getName());
-			albumsVbox.getChildren().add(newAlbumBtn);
+			albumsVbox.getItems().add(newAlbumBtn);
 		}
 
 	}
@@ -121,7 +122,7 @@ public class DashboardView extends View {
 	{
 		albumsVbox.getStylesheets().add("view/theme.css");
 		JFXButton newAlbum = new JFXButton(name);
-		albumsVbox.getChildren().add(newAlbum);
+		albumsVbox.getItems().add(newAlbum);
 	}
 
 	public void showMusicPlayer() {
@@ -136,7 +137,12 @@ public class DashboardView extends View {
 			Text songName = new Text(s.getSong_name());
 			Text space = new Text("        ");
 			Text space2 = new Text("        ");
+			Text space3 = new Text("        ");
+			Text space4 = new Text("        ");
 			Text songArtist = new Text(s.getArtist_name());
+			Text genre = new Text(s.getGenre());
+			Text year = new Text(""+s.getYear());
+
 			JFXButton playButton = new JFXButton();
 			Image play = new Image("resources/play.png");
 			ImageView playView = new ImageView(play);
@@ -146,12 +152,18 @@ public class DashboardView extends View {
 
 			songName.setFont(Font.font("Poppins", 14));
 			songArtist.setFont(Font.font("Poppins", 14));
+			genre.setFont(Font.font("Poppins", 14));
+			year.setFont(Font.font("Poppins", 14));
 
 			hbox.getChildren().add(playButton);
 			hbox.getChildren().add(space2);
 			hbox.getChildren().add(songName);
 			hbox.getChildren().add(space);
 			hbox.getChildren().add(songArtist);
+			hbox.getChildren().add(space3);
+			hbox.getChildren().add(genre);
+			hbox.getChildren().add(space4);
+			hbox.getChildren().add(year);
 			populateSongsList.getItems().add(hbox);
 		}
 

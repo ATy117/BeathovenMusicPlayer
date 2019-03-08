@@ -96,8 +96,7 @@
                         <Font name="Poppins Regular" size="18.0" />
                      </font>
                   </Text>
-                  <VBox fx:id="albumsVbox" prefHeight="306.0" prefWidth="161.0" />
-                  <Label prefHeight="56.0" prefWidth="28.0" />
+                  <JFXListView fx:id="albumsVbox" style="-fx-background-color: #303030" />
                </children></VBox>
          </children></JFXScrollPane>
       <JFXScrollPane layoutX="683.0" layoutY="60.0" prefHeight="426.0" prefWidth="143.0">
@@ -114,7 +113,7 @@
                         <Font name="Poppins Regular" size="13.0" />
                      </font>
                   </JFXButton>
-                  <VBox fx:id="newPLaylistVbox" prefHeight="366.0" prefWidth="143.0" />
+                  <JFXListView fx:id="newPLaylistVbox" style="-fx-background-color: #303030" />
                </children></VBox>
          </children>
       </JFXScrollPane>
