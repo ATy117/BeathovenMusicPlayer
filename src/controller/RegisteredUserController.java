@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class RegisteredUserController extends DashboardController {
 
+
 	public RegisteredUserController(Stage primaryStage, Connection connection, User user) {
 		this.connection = connection;
 		songplayermodel = new SongPlayerModel();
@@ -44,7 +45,7 @@ public class RegisteredUserController extends DashboardController {
 		librarymodel.Attach(dashboard);
 		profilemodel.Attach(dashboard);
 
-		SongPlayerController player = new SongPlayerController(songplayermodel, connection, playerStage);
+		player = new SongPlayerController(songplayermodel, connection, playerStage);
 	}
 
 	public void viewProfile() {
@@ -56,6 +57,7 @@ public class RegisteredUserController extends DashboardController {
 		playerStage.close();
 		uploadStage.close();
 		profileStage.close();
+		player.endPlayer();
 		LoginController login = new LoginController(primaryStage);
 	}
 

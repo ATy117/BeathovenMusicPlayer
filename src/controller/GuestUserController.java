@@ -54,7 +54,7 @@ public class GuestUserController extends DashboardController {
 		librarymodel.setPlaylistList(new ArrayList<>());
 		librarymodel.setAlbumList(new ArrayList<>());
 
-		SongPlayerController player = new SongPlayerController(songplayermodel, connection, playerStage);
+		player = new SongPlayerController(songplayermodel, connection, playerStage);
 	}
 
 	@Override
@@ -66,6 +66,7 @@ public class GuestUserController extends DashboardController {
 		playerStage.close();
 		uploadStage.close();
 		profileStage.close();
+		player.endPlayer();
 		LoginController login = new LoginController(primaryStage);
 	}
 

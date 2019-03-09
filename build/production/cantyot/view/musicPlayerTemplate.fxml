@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXSlider?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
@@ -45,8 +46,9 @@
             <Font size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="shuffleBtn" layoutX="83.0" layoutY="378.0" onAction="#shuffle" text="Shuffle" textFill="#8ba089" />
-      <JFXButton fx:id="repeatBtn" layoutX="188.0" layoutY="378.0" onAction="#repeat" text="Repeat" textFill="#8ba089" />
+      <JFXButton fx:id="shuffleBtn" layoutX="83.0" layoutY="378.0" onAction="#shuffle" textFill="#8ba089" />
+      <JFXButton fx:id="repeatBtn" layoutX="188.0" layoutY="378.0" onAction="#repeat" textFill="#8ba089" />
       <JFXSlider fx:id="slider" layoutX="42.0" layoutY="413.0" onDragDetected="#goToDuration" prefHeight="14.0" prefWidth="242.0" />
+      <Label fx:id="timeStamp" layoutX="247.0" layoutY="429.0" text="Label" />
    </children>
 </AnchorPane>

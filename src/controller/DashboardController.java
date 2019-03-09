@@ -17,6 +17,8 @@ public abstract class DashboardController {
 	protected Stage profileStage;
 	protected Stage primaryStage;
 
+	protected SongPlayerController player;
+
 	public abstract void viewProfile();
 
 	public void uploadSong() {
