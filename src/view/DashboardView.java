@@ -74,6 +74,8 @@ public class DashboardView extends View {
 			populateSong((ArrayList<Song>) librarymodel.getSongList());
 		} else if (popSource == 1){
 			populateSongPlaylistVersion((ArrayList<Song>) librarymodel.getSongList());
+		} else if (popSource == 2){
+			populateSongAlbumVersion((ArrayList<Song>) librarymodel.getSongList());
 		}
 
 		populateAlbum((ArrayList<Album>)librarymodel.getAlbumList());
@@ -85,6 +87,7 @@ public class DashboardView extends View {
 			controller.viewProfile();
 		}
 		else if (actionEvent.getSource() == uploadAddSongsBtn) {
+			popSource = 0;
 			controller.uploadSong();
 		}
 	}
@@ -136,6 +139,14 @@ public class DashboardView extends View {
 		albumsVbox.getItems().clear();
 		for(Album a: albumList){
 			JFXButton newAlbumBtn = new JFXButton(a.getName());
+			newAlbumBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					popSource = 2;
+					controller.getAllSongsFromAlbum(profilemodel.getUser().getUser_id(), a.getAlbum_id());
+					headerLabelText.setText("Songs from Album " + a.getName());
+				}
+			});
 			albumsVbox.getItems().add(newAlbumBtn);
 		}
 
@@ -193,6 +204,45 @@ public class DashboardView extends View {
 	}
 
 	public void populateSongPlaylistVersion(ArrayList<Song> songlist){
+		populateSongsList.getItems().clear();
+		for(Song s : songlist)
+		{
+			HBox hbox = new HBox();
+			Text songName = new Text(s.getSong_name());
+			Text space = new Text("        ");
+			Text space2 = new Text("        ");
+			Text space3 = new Text("        ");
+			Text space4 = new Text("        ");
+			Text songArtist = new Text(s.getArtist_name());
+			Text genre = new Text(s.getGenre());
+			Text year = new Text(""+s.getYear());
+
+			JFXButton playButton = new JFXButton();
+			Image play = new Image("resources/play.png");
+			ImageView playView = new ImageView(play);
+			playView.setFitWidth(15);
+			playView.setFitHeight(20);
+			playButton.setGraphic(playView);
+
+			songName.setFont(Font.font("Poppins", 14));
+			songArtist.setFont(Font.font("Poppins", 14));
+			genre.setFont(Font.font("Poppins", 14));
+			year.setFont(Font.font("Poppins", 14));
+
+			hbox.getChildren().add(playButton);
+			hbox.getChildren().add(space2);
+			hbox.getChildren().add(songName);
+			hbox.getChildren().add(space);
+			hbox.getChildren().add(songArtist);
+			hbox.getChildren().add(space3);
+			hbox.getChildren().add(genre);
+			hbox.getChildren().add(space4);
+			hbox.getChildren().add(year);
+			populateSongsList.getItems().add(hbox);
+		}
+	}
+
+	public void populateSongAlbumVersion(ArrayList<Song> songlist){
 		populateSongsList.getItems().clear();
 		for(Song s : songlist)
 		{

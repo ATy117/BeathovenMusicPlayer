@@ -57,6 +57,11 @@ public abstract class DashboardController {
 		librarymodel.setSongList(SD.getPlaylistSong(user_id, playlist_id));
 	}
 
+	public void getAllSongsFromAlbum(int user_id, int album_id){
+		SongDAO SD = new SongDAODB (connection);
+		librarymodel.setSongList(SD.getAlbumSong(user_id, album_id));
+	}
+
 	public abstract void sayHi();
 
 	public abstract void logout();
