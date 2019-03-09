@@ -55,7 +55,7 @@ public class RegisteredUserController extends DashboardController {
 		playerStage.close();
 		uploadStage.close();
 		profileStage.close();
-		player.endPlayer();
+		//player.endPlayer();
 		LoginController login = new LoginController(primaryStage);
 	}
 
