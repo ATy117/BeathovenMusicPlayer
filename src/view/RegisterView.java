@@ -3,14 +3,10 @@ package view;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import controller.FileUploader;
-import controller.PhotoUploader;
-import controller.RegisterController;
-import controller.StageManager;
+import controller.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -18,7 +14,7 @@ import java.io.File;
 public class RegisterView {
 
 	Stage primaryStage;
-	RegisterController controller;
+	UserRegisterController controller;
 
 	@FXML private JFXButton backBtn;
 	@FXML private JFXTextField firstNameField;
@@ -29,7 +25,7 @@ public class RegisterView {
 
 	private File file = null;
 
-	public RegisterView (Stage primaryStage, RegisterController controller) {
+	public RegisterView (Stage primaryStage, UserRegisterController controller) {
 
 		this.primaryStage = primaryStage;
 		this.controller = controller;
@@ -43,9 +39,7 @@ public class RegisterView {
 	}
 
 	public void changePane(javafx.event.ActionEvent actionEvent) {
-		if (actionEvent.getSource() == backBtn) {
-			controller.changeToWelcome();
-		}
+
 	}
 
 	public void uploadProfilePic(ActionEvent actionEvent) {
@@ -77,8 +71,5 @@ public class RegisterView {
 			controller.registerUser(username, password, firstname, lastname, file);
 		}
 
-
 	}
-
-
 }

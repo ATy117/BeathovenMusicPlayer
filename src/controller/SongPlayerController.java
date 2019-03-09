@@ -12,13 +12,14 @@ public class SongPlayerController {
 	private Stage playerStage;
 	private SongPlayerModel songplayermodel;
 	private Connection connection;
+	private SongPlayerView player;
 
 	public SongPlayerController (SongPlayerModel songplayermodel, Connection connection, Stage playerStage) {
 		this.songplayermodel = songplayermodel;
 		this.connection = connection;
 		this.playerStage = playerStage;
 
-		SongPlayerView player = new SongPlayerView(playerStage, songplayermodel, this);
+		player = new SongPlayerView(playerStage, songplayermodel, this);
 		songplayermodel.Attach(player);
 	}
 
@@ -51,5 +52,9 @@ public class SongPlayerController {
 		return true;
 	}
 
-	public void duration(){}
+	public void endPlayer() {
+		player.endPlayer();
+	}
+
+
 }

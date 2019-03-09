@@ -2,16 +2,11 @@ package controller;
 
 import dbservice.UserDAO;
 import dbservice.UserDAODB;
-import dbservice.UserDAOLocal;
 import dbservice.dbConnection;
 import javafx.stage.Stage;
 import model_rework.RegisteredUser;
-import model_rework.RegisteredUserBuilder;
-import model_rework.User;
 import view.LoginView;
-import view.RegisterView;
 
-import java.io.IOException;
 import java.sql.Connection;
 
 public class LoginController {
@@ -47,7 +42,7 @@ public class LoginController {
 
 
 	public void changeToRegister() {
-		RegisterController register = new RegisterController(primaryStage, connection);
+		UserRegisterController register = new UserRegisterController(primaryStage, connection);
 	}
 
 

@@ -1,7 +1,12 @@
 
 .jfx-button{
     -fx-text-fill: #E9C582;
-    -fx-pref-width: 143;
+    -fx-pref-width: 100;
     -fx-font-family: Poppins;
     -fx-font-size: 18;
+    -fx-background-color: #303030;
+}
+
+.text-field{
+    -fx-text-fill: #E9C582;
 }

@@ -54,13 +54,14 @@ public class GuestUserController extends DashboardController {
 		librarymodel.setPlaylistList(new ArrayList<>());
 		librarymodel.setAlbumList(new ArrayList<>());
 
-		SongPlayerController player = new SongPlayerController(songplayermodel, connection, playerStage);
+		player = new SongPlayerController(songplayermodel, connection, playerStage);
 	}
 
 	@Override
 	public void viewProfile() {
-		RegisterController register = new RegisterController(profileStage, connection);
+		UserRegisterController register = new UserRegisterController(profileStage, playerStage, uploadStage, primaryStage, connection);
 	}
+
 
 	public void logout(){
 		UserDAO UD = new UserDAODB(connection);
@@ -68,6 +69,7 @@ public class GuestUserController extends DashboardController {
 		playerStage.close();
 		uploadStage.close();
 		profileStage.close();
+		player.endPlayer();
 		LoginController login = new LoginController(primaryStage);
 	}
 
