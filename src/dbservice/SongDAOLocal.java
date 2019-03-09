@@ -77,6 +77,11 @@ public class SongDAOLocal implements SongDAO {
     }
 
     @Override
+    public Song getSong(int song_id) {
+        return null;
+    }
+
+    @Override
     public List<Song> getAllSong(int user_id) {
         List<Song> userSongs = new ArrayList<>();
         for (Song s : songs){

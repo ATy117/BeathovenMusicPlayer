@@ -110,6 +110,24 @@ public class PlaylistDAODB implements PlaylistDAO {
     }
 
     @Override
+    public Playlist getPlaylist(int playlist_id) {
+        String query = "SELECT * FROM " + this.TABLE + " WHERE " + this.COL_PLAYLISTID + " = " + playlist_id;
+        try{
+            PreparedStatement statement = this.connection.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()){
+                Playlist playlistTemp = toPlaylist(rs);
+                return playlistTemp;
+            }else {
+                return null;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public List<Playlist> getPlaylists(int user_id) {
         List<Playlist> playlistsTemp = new ArrayList<>();
 

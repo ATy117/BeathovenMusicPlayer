@@ -15,6 +15,7 @@ public interface SongDAO {
 
     public void updateSong (Song song);
 
+    public Song getSong(int song_id);
     public List<Song> getAllSong(int user_id);
     public List<Song> getPlaylistSong(int user_id, int playlist_id);
     public List<Song> getAlbumSong(int user_id, int album_id);

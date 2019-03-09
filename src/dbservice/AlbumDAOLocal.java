@@ -31,6 +31,11 @@ public class AlbumDAOLocal implements AlbumDAO {
     }
 
     @Override
+    public Album getAlbum(int album_id) {
+        return null;
+    }
+
+    @Override
     public List<Album> getAlbums(int user_id) {
         List<Album> userAlbums = new ArrayList<>();
         for (Album a : albums){

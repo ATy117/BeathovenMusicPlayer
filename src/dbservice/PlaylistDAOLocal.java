@@ -48,6 +48,11 @@ public class PlaylistDAOLocal implements PlaylistDAO {
     }
 
     @Override
+    public Playlist getPlaylist(int playlist_id) {
+        return null;
+    }
+
+    @Override
     public List<Playlist> getPlaylists(int user_id) {
         List<Playlist> userPlaylists = new ArrayList<>();
         for (Playlist p : playlists){
