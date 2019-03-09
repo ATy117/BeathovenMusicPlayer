@@ -79,7 +79,7 @@
          <children>
             <VBox fx:id="songsVbox" prefHeight="417.0" prefWidth="161.0" style="-fx-background-color: #303030">
                <children>
-                  <JFXButton fx:id="songsBtn" prefHeight="39.0" prefWidth="166.0" text="Songs" textFill="#8ba0a9">
+                  <JFXButton fx:id="songsBtn" onAction="#getAllSongs" prefHeight="39.0" prefWidth="166.0" text="Songs" textFill="#8ba0a9">
                      <font>
                         <Font name="Poppins Regular" size="18.0" />
                      </font>

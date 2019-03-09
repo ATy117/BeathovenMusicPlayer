@@ -17,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -26,6 +27,7 @@ import javafx.stage.Stage;
 import model_rework.*;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import static java.awt.Color.WHITE;
@@ -42,6 +44,8 @@ public class DashboardView extends View {
 	@FXML public JFXListView newPLaylistVbox;
 	@FXML public JFXListView albumsVbox;
 	@FXML public JFXComboBox filterCombo;
+	@FXML public Text headerLabelText;
+	private int popSource = 0;
 
 
 	public DashboardView (Stage stage, SongPlayerModel songplayermodel, LibraryModel librarymodel, ProfileModel profilemodel, DashboardController controller) {
@@ -66,7 +70,12 @@ public class DashboardView extends View {
 
 	@Override
 	public void Update() {
-		populateSong((ArrayList<Song>)librarymodel.getSongList());
+		if (popSource == 0) {
+			populateSong((ArrayList<Song>) librarymodel.getSongList());
+		} else if (popSource == 1){
+			populateSongPlaylistVersion((ArrayList<Song>) librarymodel.getSongList());
+		}
+
 		populateAlbum((ArrayList<Album>)librarymodel.getAlbumList());
 		populatePlaylist((ArrayList<Playlist>)librarymodel.getPlaylistList());
 	}
@@ -100,7 +109,6 @@ public class DashboardView extends View {
 				}
 			}
 		});
-
 		controller.sayHi();
 	}
 
@@ -109,18 +117,18 @@ public class DashboardView extends View {
 		newPLaylistVbox.getItems().clear();
 		for (Playlist p: playlists){
 			JFXButton playlistButton = new JFXButton(p.getName());
+			playlistButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					popSource = 1;
+					controller.getAllSongsFromPlaylist(profilemodel.getUser().getUser_id(), p.getPlaylist_id());
+					headerLabelText.setText("Songs in Playlist " + p.getName());
+				}
+			});
 			newPLaylistVbox.getItems().add(playlistButton);
 		}
 	}
 
-	public void createPlaylistButton(String playlistName)
-	{
-		newPLaylistVbox.getStylesheets().add("view/theme.css");
-		JFXButton playlistButton = new JFXButton(playlistName);
-		newPLaylistVbox.getItems().add(playlistButton);
-		System.out.println("Button Created");
-
-	}
 
 	public void populateAlbum(ArrayList<Album> albumList)
 	{
@@ -184,12 +192,57 @@ public class DashboardView extends View {
 
 	}
 
+	public void populateSongPlaylistVersion(ArrayList<Song> songlist){
+		populateSongsList.getItems().clear();
+		for(Song s : songlist)
+		{
+			HBox hbox = new HBox();
+			Text songName = new Text(s.getSong_name());
+			Text space = new Text("        ");
+			Text space2 = new Text("        ");
+			Text space3 = new Text("        ");
+			Text space4 = new Text("        ");
+			Text songArtist = new Text(s.getArtist_name());
+			Text genre = new Text(s.getGenre());
+			Text year = new Text(""+s.getYear());
+
+			JFXButton playButton = new JFXButton();
+			Image play = new Image("resources/play.png");
+			ImageView playView = new ImageView(play);
+			playView.setFitWidth(15);
+			playView.setFitHeight(20);
+			playButton.setGraphic(playView);
+
+			songName.setFont(Font.font("Poppins", 14));
+			songArtist.setFont(Font.font("Poppins", 14));
+			genre.setFont(Font.font("Poppins", 14));
+			year.setFont(Font.font("Poppins", 14));
+
+			hbox.getChildren().add(playButton);
+			hbox.getChildren().add(space2);
+			hbox.getChildren().add(songName);
+			hbox.getChildren().add(space);
+			hbox.getChildren().add(songArtist);
+			hbox.getChildren().add(space3);
+			hbox.getChildren().add(genre);
+			hbox.getChildren().add(space4);
+			hbox.getChildren().add(year);
+			populateSongsList.getItems().add(hbox);
+		}
+	}
+
 	private void init()
 	{
 		filterCombo.getItems().add("Genre");
 		filterCombo.getItems().add("Album");
 		filterCombo.getItems().add("Year");
 
+	}
+
+	public void getAllSongs (ActionEvent actionEvent){
+		controller.getAllSongs(profilemodel.getUser().getUser_id());
+		popSource = 0;
+		headerLabelText.setText("All Songs");
 	}
 
 

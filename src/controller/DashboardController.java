@@ -2,6 +2,8 @@ package controller;
 
 import dbservice.PlaylistDAO;
 import dbservice.PlaylistDAODB;
+import dbservice.SongDAO;
+import dbservice.SongDAODB;
 import javafx.stage.Stage;
 import model_rework.*;
 
@@ -43,6 +45,16 @@ public abstract class DashboardController {
 			PD.addPlaylist(pl);
 
 		librarymodel.setPlaylistList(PD.getPlaylists(user_id));
+	}
+
+	public void getAllSongs(int user_id){
+		SongDAO SD = new SongDAODB (connection);
+		librarymodel.setSongList(SD.getAllSong(user_id));
+	}
+
+	public void getAllSongsFromPlaylist(int user_id, int playlist_id){
+		SongDAO SD = new SongDAODB (connection);
+		librarymodel.setSongList(SD.getPlaylistSong(user_id, playlist_id));
 	}
 
 	public abstract void sayHi();
