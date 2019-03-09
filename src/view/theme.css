@@ -1,12 +1,37 @@
 
-.jfx-button{
+.text-field{
+    -fx-text-fill: #E9C582;
+}
+
+.jfx-button-Playlist{
+    -fx-background-color: #303030;
     -fx-text-fill: #E9C582;
     -fx-pref-width: 100;
     -fx-font-family: Poppins;
-    -fx-font-size: 18;
-    -fx-background-color: #303030;
+    -fx-font-size: 16;
 }
 
-.text-field{
+.jfx-button-Album{
+    -fx-background-color: #303030;
     -fx-text-fill: #E9C582;
+    -fx-pref-width: 110;
+    -fx-font-family: Poppins;
+    -fx-font-size: 16;
+}
+
+.jfx-listView{
+    -fx-background-color: #303030;
+    -fx-control-inner-background: #303030;
+}
+
+.jfx-textField{
+    -fx-text-fill: #E9C582;
+}
+
+.anchorPane{
+    -fx-background-color: #454444;
+}
+
+.text-populate{
+    -fx-text-fill: #F1F6F1;
 }

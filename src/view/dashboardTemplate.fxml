@@ -117,9 +117,9 @@
                </children></VBox>
          </children>
       </JFXScrollPane>
-      <AnchorPane layoutX="160.0" layoutY="60.0" prefHeight="56.0" prefWidth="524.0">
+      <AnchorPane fx:id="headerInformation" layoutX="160.0" layoutY="60.0" prefHeight="56.0" prefWidth="524.0">
          <children>
-            <Text fx:id="headerLabelText" fill="#e9b350" layoutX="105.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="All Songs">
+            <Text fx:id="headerLabelText" fill="#e9b350" layoutX="105.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="All Songs">
                <font>
                   <Font name="Comfortaa Regular" size="21.0" />
                </font>
