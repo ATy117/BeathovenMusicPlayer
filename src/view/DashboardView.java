@@ -68,6 +68,7 @@ public class DashboardView extends View {
 	public void Update() {
 		populateSong((ArrayList<Song>)librarymodel.getSongList());
 		populateAlbum((ArrayList<Album>)librarymodel.getAlbumList());
+		populatePlaylist((ArrayList<Playlist>)librarymodel.getPlaylistList());
 	}
 
 	public void changePane(ActionEvent actionEvent) {
@@ -90,12 +91,26 @@ public class DashboardView extends View {
 				if(event.getCode().equals(KeyCode.ENTER)) {
 					System.out.println(playlistField.getText());
 					newPLaylistVbox.getItems().remove(playlistField);
-					createPlaylistButton(playlistField.getText());
+					String playlistName = playlistField.getText();
+					if (playlistName.replaceAll("\\s+", "").equals("")){
+						System.out.println("Empty playlist name field");
+					} else {
+						controller.addPlaylist(profilemodel.getUser().getUser_id(), playlistName);
+					}
 				}
 			}
 		});
 
 		controller.sayHi();
+	}
+
+	public void populatePlaylist(ArrayList<Playlist> playlists){
+		newPLaylistVbox.getStylesheets().add("view/theme.css");
+		newPLaylistVbox.getItems().clear();
+		for (Playlist p: playlists){
+			JFXButton playlistButton = new JFXButton(p.getName());
+			newPLaylistVbox.getItems().add(playlistButton);
+		}
 	}
 
 	public void createPlaylistButton(String playlistName)

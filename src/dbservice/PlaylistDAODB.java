@@ -92,13 +92,13 @@ public class PlaylistDAODB implements PlaylistDAO {
     @Override
     public int checkPlaylist(int user_id, String playlist_name) {
         String query = "SELECT * FROM " + this.TABLE + " WHERE " +
-                this.COL_USERID + " = ? AND "+
-                this.COL_PLAYLISTNAME + " = ?";
+                this.COL_USERID + " = " + user_id + " AND " +
+                this.COL_PLAYLISTNAME + " = '" + playlist_name + "'";
 
         try{
             PreparedStatement statement = connection.prepareStatement(query);
             ResultSet rs = statement.executeQuery();
-            if(rs.next() == false){
+            if(rs.next()){
                 return rs.getInt(this.COL_PLAYLISTID);
             }
 

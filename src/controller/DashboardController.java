@@ -1,5 +1,7 @@
 package controller;
 
+import dbservice.PlaylistDAO;
+import dbservice.PlaylistDAODB;
 import javafx.stage.Stage;
 import model_rework.*;
 
@@ -25,6 +27,22 @@ public abstract class DashboardController {
 
 	public void showSongPlayer() {
 		SongPlayerController player = new SongPlayerController(songplayermodel, connection, playerStage);
+	}
+
+	public void addPlaylist(int user_id , String playlistName){
+		PlaylistDAO PD = new PlaylistDAODB(connection);
+		PlaylistBuilder PB = new PlaylistBuilder();
+		Playlist pl = PB
+				.withFavoriteStatus(false)
+				.withName(playlistName)
+				.withOwner(user_id)
+				.build();
+		if (PD.checkPlaylist(user_id, playlistName) != -1)
+			System.out.println("Playlist Exists");
+		else
+			PD.addPlaylist(pl);
+
+		librarymodel.setPlaylistList(PD.getPlaylists(user_id));
 	}
 
 	public abstract void sayHi();
