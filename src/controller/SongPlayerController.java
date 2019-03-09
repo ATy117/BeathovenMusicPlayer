@@ -52,8 +52,6 @@ public class SongPlayerController {
 		return true;
 	}
 
-	public void duration(){}
-
 	public void endPlayer() {
 		player.endPlayer();
 	}

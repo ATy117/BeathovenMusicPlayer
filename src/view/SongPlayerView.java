@@ -263,9 +263,6 @@ public class SongPlayerView extends View{
 		controller.repeat();
 	}
 
-	public void goToDuration(MouseEvent mouseEvent) {
-		controller.duration();
-	}
 
 	public void endPlayer() {
 		mp3player.stop();

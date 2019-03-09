@@ -13,13 +13,23 @@ import view.RegisterView;
 import java.io.File;
 import java.sql.Connection;
 
-public class RegisterController {
+public class UserRegisterController {
 
 	private Stage primaryStage;
 	private Connection connection;
+	private Stage playerStage;
+	private Stage uploadStage;
 
-	public RegisterController(Stage primaryStage, Connection connection) {
+	public UserRegisterController(Stage primaryStage, Connection connection) {
 		this.primaryStage = primaryStage;
+		this.connection = connection;
+		RegisterView reg = new RegisterView(primaryStage, this);
+	}
+
+	public UserRegisterController(Stage primaryStage, Stage playerStage, Stage uploadStage, Connection connection) {
+		this.primaryStage = primaryStage;
+		this.playerStage = playerStage;
+		this.uploadStage = uploadStage;
 		this.connection = connection;
 		RegisterView reg = new RegisterView(primaryStage, this);
 	}
@@ -40,6 +50,15 @@ public class RegisterController {
 					.build();
 			worker.addUser(RU);
 			User dude = worker.getUser(username, password);
+
+			if(playerStage!= null) {
+				playerStage.close();
+			}
+
+			if(uploadStage != null) {
+				uploadStage.close();
+			}
+
 			DashboardController controller = new RegisteredUserController(primaryStage, connection, dude);
 			return true;
 		}

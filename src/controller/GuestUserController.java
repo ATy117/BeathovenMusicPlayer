@@ -59,8 +59,9 @@ public class GuestUserController extends DashboardController {
 
 	@Override
 	public void viewProfile() {
-		RegisterController register = new RegisterController(profileStage, connection);
+		UserRegisterController register = new UserRegisterController(primaryStage, playerStage, uploadStage, connection);
 	}
+
 
 	public void logout(){
 		playerStage.close();

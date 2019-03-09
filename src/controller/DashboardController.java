@@ -22,7 +22,7 @@ public abstract class DashboardController {
 	public abstract void viewProfile();
 
 	public void uploadSong() {
-		UploadSongController upload = new UploadSongController(profilemodel, librarymodel, connection, playerStage);
+		UploadSongController upload = new UploadSongController(profilemodel, librarymodel, connection, uploadStage);
 	}
 
 	public void showSongPlayer() {

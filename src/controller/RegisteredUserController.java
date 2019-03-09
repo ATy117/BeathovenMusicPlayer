@@ -25,7 +25,6 @@ public class RegisteredUserController extends DashboardController {
 		profileStage = new Stage();
 		uploadStage = new Stage();
 
-
 		int user_id = user.getUser_id();
 
 		SongDAO SD = new SongDAODB(connection);
@@ -51,7 +50,6 @@ public class RegisteredUserController extends DashboardController {
 	public void viewProfile() {
 		ShowProfileController profileview = new ShowProfileController(profilemodel, connection, profileStage);
 	}
-
 
 	public void logout() {
 		playerStage.close();
