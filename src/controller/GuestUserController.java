@@ -59,7 +59,7 @@ public class GuestUserController extends DashboardController {
 
 	@Override
 	public void viewProfile() {
-		UserRegisterController register = new UserRegisterController(primaryStage, playerStage, uploadStage, connection);
+		UserRegisterController register = new UserRegisterController(profileStage, playerStage, uploadStage, primaryStage, connection);
 	}
 
 

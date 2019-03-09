@@ -19,6 +19,7 @@ public class UserRegisterController {
 	private Connection connection;
 	private Stage playerStage;
 	private Stage uploadStage;
+	private Stage profileStage;
 
 	public UserRegisterController(Stage primaryStage, Connection connection) {
 		this.primaryStage = primaryStage;
@@ -26,12 +27,13 @@ public class UserRegisterController {
 		RegisterView reg = new RegisterView(primaryStage, this);
 	}
 
-	public UserRegisterController(Stage primaryStage, Stage playerStage, Stage uploadStage, Connection connection) {
+	public UserRegisterController(Stage profileStage, Stage playerStage, Stage uploadStage, Stage primaryStage, Connection connection) {
 		this.primaryStage = primaryStage;
 		this.playerStage = playerStage;
 		this.uploadStage = uploadStage;
+		this.profileStage = profileStage;
 		this.connection = connection;
-		RegisterView reg = new RegisterView(primaryStage, this);
+		RegisterView reg = new RegisterView(profileStage, this);
 	}
 
 	public boolean registerUser(String username, String password, String firstname, String lastname, File avatar) {
@@ -59,6 +61,10 @@ public class UserRegisterController {
 				uploadStage.close();
 			}
 
+			if(profileStage != null) {
+				profileStage.close();
+			}
+
 			DashboardController controller = new RegisteredUserController(primaryStage, connection, dude);
 			return true;
 		}
@@ -67,8 +73,5 @@ public class UserRegisterController {
 	public void changeToWelcome() {
 		LoginController login = new LoginController(primaryStage);
 	}
-
-
-
 
 }
