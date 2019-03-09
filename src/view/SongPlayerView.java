@@ -61,7 +61,6 @@ public class SongPlayerView extends View{
 		sm.loadScene(loader);
 		sm.setWindowName("Beathoven Music Player");
 
-		/*
 
 		Image play = new Image("/resources/play.png");
 		ImageView playView = new ImageView(play);
@@ -93,8 +92,7 @@ public class SongPlayerView extends View{
 		replayView.setFitWidth(20);
 		repeatBtn.setGraphic(replayView);
 
-		*/
-
+		/*
 		currentSong = new Media("file://" + filename);
 		mp3player = new MediaPlayer(currentSong);
 
@@ -148,8 +146,10 @@ public class SongPlayerView extends View{
 				}
 			}
 		});
+		*/
 	}
 
+	/*
 	protected void updateValues() {
 		if (timeStamp != null && slider != null) {
 			Platform.runLater(new Runnable() {
@@ -205,7 +205,9 @@ public class SongPlayerView extends View{
 						elapsedSeconds);
 			}
 		}
+
 	}
+	*/
 
 	@Override
 	public void Update(){
@@ -218,6 +220,7 @@ public class SongPlayerView extends View{
 
 		controller.playPauseSong();
 
+		/*
 		MediaPlayer.Status status = mp3player.getStatus();
 
 		if (status == MediaPlayer.Status.UNKNOWN  || status == MediaPlayer.Status.HALTED)
@@ -239,6 +242,7 @@ public class SongPlayerView extends View{
 		} else {
 			mp3player.pause();
 		}
+		*/
 	}
 
 	public void nextSong(ActionEvent actionEvent) {
