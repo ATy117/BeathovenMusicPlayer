@@ -1,9 +1,6 @@
 package controller;
 
-import dbservice.PlaylistDAO;
-import dbservice.PlaylistDAODB;
-import dbservice.SongDAO;
-import dbservice.SongDAODB;
+import dbservice.*;
 import javafx.stage.Stage;
 import model_rework.*;
 
@@ -62,6 +59,27 @@ public abstract class DashboardController {
 	public void getAllSongsFromAlbum(int user_id, int album_id){
 		SongDAO SD = new SongDAODB (connection);
 		librarymodel.setSongList(SD.getAlbumSong(user_id, album_id));
+	}
+
+	public void deleteSong(int user_id, int song_id, int album_id){
+		SongDAO SD = new SongDAODB(connection);
+		AlbumDAO AD = new AlbumDAODB(connection);
+
+		SD.deleteSong(song_id);
+
+		if (SD.getAlbumSong(user_id, album_id).isEmpty()){
+			AD.deleteAlbum(album_id);
+		}
+
+		librarymodel.setSongList(SD.getAllSong(user_id));
+		librarymodel.setAlbumList(AD.getAlbums(user_id));
+
+	}
+
+	public void editSong(Song s){
+		SongDAO SD = new SongDAODB(connection);
+		SD.updateSong(s);
+		librarymodel.setSongList(SD.getAllSong(s.getUploader_id()));
 	}
 
 	public abstract void sayHi();

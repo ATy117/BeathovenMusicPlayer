@@ -186,7 +186,7 @@ public class SongDAODB implements SongDAO{
         try{
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, songNameTemp);
-            //statement.setString(2, aristNameTemp);
+            statement.setString(2, aristNameTemp);
             statement.setString(3, genreTemp);
             statement.setInt(4, yearTemp);
             statement.setInt(5, isFavorite);

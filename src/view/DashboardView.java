@@ -239,7 +239,49 @@ public class DashboardView extends View {
 					if(event.getButton() == MouseButton.SECONDARY)
 					{
 						System.out.println("Detect right Click");
-						popUpInit();
+						vbox.getChildren().clear();
+
+						JFXButton delete = new JFXButton("Delete");
+						delete.setOnMouseClicked(new EventHandler<MouseEvent>() {
+							@Override
+							public void handle(MouseEvent event) {
+								songEdit.hide();
+								controller.deleteSong(s.getUploader_id(), s.getSong_id(), s.getAlbum_id());
+							}
+						});
+
+						JFXButton favorite = new JFXButton();
+						if (s.isFavorite()){
+							favorite.setText("Unfavorite");
+							favorite.setOnMouseClicked(new EventHandler<MouseEvent>() {
+								@Override
+								public void handle(MouseEvent event) {
+									s.setFavorite(false);
+									songEdit.hide();
+									controller.editSong(s);
+								}
+							});
+						} else {
+							favorite.setText("Favorite");
+							favorite.setOnMouseClicked(new EventHandler<MouseEvent>() {
+								@Override
+								public void handle(MouseEvent event) {
+									s.setFavorite(true);
+									songEdit.hide();
+									controller.editSong(s);
+								}
+							});
+						}
+
+
+						JFXButton addPlaylist = new JFXButton("Add to Playlist");
+
+						vbox.getChildren().add(delete);
+						vbox.getChildren().add(favorite);
+						vbox.getChildren().add(addPlaylist);
+						songEdit.setPopupContent(vbox);
+						songEdit.show(populateSongsList, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
+						//popUpInit();
 
 					}
 				}
@@ -248,20 +290,20 @@ public class DashboardView extends View {
 
 	}
 
-	private void popUpInit()
-	{
-		vbox.getChildren().clear();
-
-		JFXButton delete = new JFXButton("Delete");
-		JFXButton favorite = new JFXButton("Favorite");
-		JFXButton addPlaylist = new JFXButton("Add to Playlist");
-		vbox.getChildren().add(delete);
-		vbox.getChildren().add(favorite);
-		vbox.getChildren().add(addPlaylist);
-		songEdit.setPopupContent(vbox);
-		songEdit.show(populateSongsList, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
-
-	}
+//	private void popUpInit()
+//	{
+//		vbox.getChildren().clear();
+//
+//		JFXButton delete = new JFXButton("Delete");
+//		JFXButton favorite = new JFXButton("Favorite");
+//		JFXButton addPlaylist = new JFXButton("Add to Playlist");
+//		vbox.getChildren().add(delete);
+//		vbox.getChildren().add(favorite);
+//		vbox.getChildren().add(addPlaylist);
+//		songEdit.setPopupContent(vbox);
+//		songEdit.show(populateSongsList, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
+//
+//	}
 
 	public void populateSongPlaylistVersion(ArrayList<Song> songlist){
 		populateSongsList.getItems().clear();
