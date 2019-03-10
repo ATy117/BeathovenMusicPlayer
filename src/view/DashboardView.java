@@ -277,11 +277,11 @@ public class DashboardView extends View {
 						JFXButton addPlaylist = new JFXButton("Add to Playlist");
 
 						vbox.getChildren().add(delete);
-						vbox.getChildren().add(favorite);
+						if (profilemodel.getUser() instanceof RegisteredUser)
+							vbox.getChildren().add(favorite);
 						vbox.getChildren().add(addPlaylist);
 						songEdit.setPopupContent(vbox);
 						songEdit.show(populateSongsList, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
-						//popUpInit();
 
 					}
 				}
