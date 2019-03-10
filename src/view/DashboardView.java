@@ -233,7 +233,7 @@ public class DashboardView extends View {
 			populateSongsList.getStyleClass().add("anchorPane");
 			populateSongsList.getStyleClass().add("jfx-listView");
 
-			populateSongsList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			songAnchorPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {
 					if(event.getButton() == MouseButton.SECONDARY)
@@ -346,7 +346,7 @@ public class DashboardView extends View {
 	private void userInfo()
 	{
 		Image userPicImage;
-		if(profilemodel.getUser().getFirst_name().equals("firstname0"))
+		if(profilemodel.getUser() instanceof GuestUser)
 			userName.setText("Guest");
 		else
 			userName.setText(profilemodel.getUser().getFirst_name() + " " + profilemodel.getUser().getLast_name() );
@@ -369,8 +369,8 @@ public class DashboardView extends View {
 	}
 
 	public void getAllSongs (ActionEvent actionEvent){
-		controller.getAllSongs(profilemodel.getUser().getUser_id());
 		popSource = 0;
+		controller.getAllSongs(profilemodel.getUser().getUser_id());
 		headerLabelText.setText("All Songs");
 		headerInformation.getChildren().clear();
 		headerInformation.getChildren().add(uploadAddSongsBtn);
