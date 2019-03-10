@@ -1,9 +1,6 @@
 package view;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
 import controller.DashboardController;
 import controller.SongPlayerController;
 import controller.StageManager;
@@ -18,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -53,6 +51,10 @@ public class DashboardView extends View {
 	@FXML public AnchorPane headerInformation;
 	@FXML public Circle userPic;
 	@FXML public Text userName;
+
+
+	public JFXPopup songEdit = new JFXPopup();
+	public VBox vbox = new VBox();
 	private int popSource = 0;
 
 
@@ -230,7 +232,34 @@ public class DashboardView extends View {
 			populateSongsList.getStylesheets().add("view/theme.css");
 			populateSongsList.getStyleClass().add("anchorPane");
 			populateSongsList.getStyleClass().add("jfx-listView");
+
+			populateSongsList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					if(event.getButton() == MouseButton.SECONDARY)
+					{
+						System.out.println("Detect right Click");
+						popUpInit();
+
+					}
+				}
+			});
 		}
+
+	}
+
+	private void popUpInit()
+	{
+		vbox.getChildren().clear();
+
+		JFXButton delete = new JFXButton("Delete");
+		JFXButton favorite = new JFXButton("Favorite");
+		JFXButton addPlaylist = new JFXButton("Add to Playlist");
+		vbox.getChildren().add(delete);
+		vbox.getChildren().add(favorite);
+		vbox.getChildren().add(addPlaylist);
+		songEdit.setPopupContent(vbox);
+		songEdit.show(populateSongsList, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
 
 	}
 

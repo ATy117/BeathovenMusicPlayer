@@ -24,8 +24,13 @@
     -fx-control-inner-background: #303030;
 }
 
-.jfx-textField{
-    -fx-text-fill: #E9C582;
+.jfx-text-field-WhenDone{
+    -fx-text-fill: #e9c582;
+
+}
+
+.jfx-text-field-WhenEdit{
+    -fx-text-fill: #8ba0a9;
 }
 
 .anchorPane{
