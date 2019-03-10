@@ -80,6 +80,7 @@ public abstract class DashboardController {
 		SongDAO SD = new SongDAODB(connection);
 		SD.updateSong(s);
 		librarymodel.setSongList(SD.getAllSong(s.getUploader_id()));
+		profilemodel.setFavoriteSongs(SD.getFavoriteSong(s.getUploader_id()));
 	}
 
 	public abstract void sayHi();

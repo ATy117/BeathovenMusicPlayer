@@ -22,7 +22,6 @@ public abstract class Model {
     {
         for (View v: views)
         {
-            System.out.println("update");
             v.Update();
         }
     }

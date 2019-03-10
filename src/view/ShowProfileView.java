@@ -56,6 +56,7 @@ public class ShowProfileView extends View{
 		sm.loadScene(loader);
 		sm.setWindowName("My Profile");
 
+		Update();
 		init();
 	}
 
@@ -90,7 +91,10 @@ public class ShowProfileView extends View{
 
 
 	@Override
-	public void Update(){}
+	public void Update(){
+		populateFavoriteSong((ArrayList<Song>) profilemodel.getFavoriteSongs());
+		populateFavoritePlaylist((ArrayList<Playlist>) profilemodel.getFavoritePlaylists());
+	}
 
 	public void changePane(ActionEvent actionEvent) throws IOException {
 		if (actionEvent.getSource() == backBtn)
@@ -128,6 +132,7 @@ public class ShowProfileView extends View{
 
 	public void populateFavoritePlaylist(ArrayList<Playlist> playlists )
 	{
+		favePlaylistList.getItems().clear();
 		favePlaylistList.getStylesheets().add("view/theme.css");
 		for(Playlist p : playlists){
 			JFXButton playlistBtn = new JFXButton(p.getName());
@@ -141,6 +146,7 @@ public class ShowProfileView extends View{
 
 	public void populateFavoriteSong(ArrayList<Song> songList)
 	{
+		faveSongsList.getItems().clear();
 		for(Song s: songList){
 			AnchorPane songAnchorPane = new AnchorPane();
 			Image play = new Image("resources/play.png");
@@ -172,7 +178,7 @@ public class ShowProfileView extends View{
 			songAnchorPane.getChildren().add(playButton);
 			songAnchorPane.getChildren().add(SongName);
 			songAnchorPane.getChildren().add(SongArtist);
-
+			faveSongsList.getItems().add(songAnchorPane);
 		}
 	}
 }
