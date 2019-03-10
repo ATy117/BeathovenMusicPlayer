@@ -44,15 +44,15 @@ public class GuestUserController extends DashboardController {
 		guestUser.setUser_id(GU.getUser_id());
 
 
+		profilemodel.setUser(guestUser);
+		librarymodel.setSongList(new ArrayList<>());
+		librarymodel.setPlaylistList(new ArrayList<>());
+		librarymodel.setAlbumList(new ArrayList<>());
+
 		View dashboard = new DashboardView(primaryStage, songplayermodel, librarymodel, profilemodel, this);
 		songplayermodel.Attach(dashboard);
 		librarymodel.Attach(dashboard);
 		profilemodel.Attach(dashboard);
-		profilemodel.setUser(guestUser);
-
-		librarymodel.setSongList(new ArrayList<>());
-		librarymodel.setPlaylistList(new ArrayList<>());
-		librarymodel.setAlbumList(new ArrayList<>());
 
 		player = new SongPlayerController(songplayermodel, connection, playerStage);
 	}
