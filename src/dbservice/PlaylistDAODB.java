@@ -72,7 +72,7 @@ public class PlaylistDAODB implements PlaylistDAO {
                 this.COL_USERID + " = ?, " +
                 this.COL_PLAYLISTNAME + " = ?, " +
                 this.COL_ISFAVORITE + " = ? " +
-                "WHERE " + this.COL_USERID + " = " + playlistIDTemp;
+                "WHERE " + this.COL_PLAYLISTID + " = " + playlistIDTemp;
 
         try {
             PreparedStatement statement = connection.prepareStatement(query);
