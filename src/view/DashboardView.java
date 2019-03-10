@@ -2,6 +2,7 @@ package view;
 
 import com.jfoenix.controls.*;
 import controller.DashboardController;
+import controller.RegisteredUserController;
 import controller.SongPlayerController;
 import controller.StageManager;
 import javafx.event.ActionEvent;
@@ -55,6 +56,9 @@ public class DashboardView extends View {
 
 	public JFXPopup songEdit = new JFXPopup();
 	public VBox vbox = new VBox();
+
+	private VBox pbox = new VBox();
+	private JFXPopup playlistEdit = new JFXPopup();
 	private int popSource = 0;
 
 
@@ -135,10 +139,54 @@ public class DashboardView extends View {
 			playlistButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {
-					popSource = 1;
-					controller.getAllSongsFromPlaylist(profilemodel.getUser().getUser_id(), p.getPlaylist_id());
-					headerLabelText.setText(p.getName());
-					headerInformation.getChildren().remove(uploadAddSongsBtn);
+					if (event.getButton() == MouseButton.SECONDARY){
+						pbox.getChildren().clear();
+						System.out.println("Detect right Click");
+						JFXButton delete = new JFXButton("Delete");
+						delete.setOnMouseClicked(new EventHandler<MouseEvent>() {
+							@Override
+							public void handle(MouseEvent event) {
+								popSource = 0;
+								playlistEdit.hide();
+								controller.deletePlaylist(p.getUser_id(), p.getPlaylist_id());
+							}
+						});
+
+						JFXButton favorite = new JFXButton();
+						if (p.isFavorite()){
+							favorite.setText("Unfavorite");
+							favorite.setOnMouseClicked(new EventHandler<MouseEvent>() {
+								@Override
+								public void handle(MouseEvent event) {
+									p.setFavorite(false);
+									playlistEdit.hide();
+									controller.editPlaylist(p);
+								}
+							});
+						} else {
+							favorite.setText("Favorite");
+							favorite.setOnMouseClicked(new EventHandler<MouseEvent>() {
+								@Override
+								public void handle(MouseEvent event) {
+									p.setFavorite(true);
+									playlistEdit.hide();
+									controller.editPlaylist(p);
+								}
+							});
+						}
+
+						pbox.getChildren().add(delete);
+						if (profilemodel.getUser() instanceof RegisteredUser)
+							pbox.getChildren().add(favorite);
+
+						playlistEdit.setPopupContent(pbox);
+						playlistEdit.show(newPLaylistVbox, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
+					} else {
+						popSource = 1;
+						controller.getAllSongsFromPlaylist(profilemodel.getUser().getUser_id(), p.getPlaylist_id());
+						headerLabelText.setText(p.getName());
+						headerInformation.getChildren().remove(uploadAddSongsBtn);
+					}
 				}
 			});
 			newPLaylistVbox.getItems().add(playlistButton);

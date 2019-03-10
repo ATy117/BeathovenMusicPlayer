@@ -71,7 +71,7 @@ public class PlaylistDAODB implements PlaylistDAO {
         String query = "UPDATE " + this.TABLE + " SET " +
                 this.COL_USERID + " = ?, " +
                 this.COL_PLAYLISTNAME + " = ?, " +
-                this.COL_ISFAVORITE + " = ?, " +
+                this.COL_ISFAVORITE + " = ? " +
                 "WHERE " + this.COL_USERID + " = " + playlistIDTemp;
 
         try {
@@ -79,7 +79,6 @@ public class PlaylistDAODB implements PlaylistDAO {
             statement.setInt(1, userIDTemp);
             statement.setString(2, playlistNameTemp);
             statement.setInt(3, isFavoriteTemp);
-
             statement.executeUpdate();
             statement.close();
             return true;

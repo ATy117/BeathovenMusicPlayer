@@ -76,11 +76,29 @@ public abstract class DashboardController {
 
 	}
 
+	public void deletePlaylist(int user_id, int playlist_id){
+		PlaylistDAO PD = new PlaylistDAODB(connection);
+		SongDAO SD = new SongDAODB(connection);
+
+		PD.deletePlaylist(playlist_id);
+
+		librarymodel.setPlaylistList(PD.getPlaylists(user_id));
+		librarymodel.setSongList(SD.getAllSong(user_id));
+	}
+
+
 	public void editSong(Song s){
 		SongDAO SD = new SongDAODB(connection);
 		SD.updateSong(s);
 		librarymodel.setSongList(SD.getAllSong(s.getUploader_id()));
 		profilemodel.setFavoriteSongs(SD.getFavoriteSong(s.getUploader_id()));
+	}
+
+	public void editPlaylist(Playlist p){
+		PlaylistDAO PD = new PlaylistDAODB(connection);
+		PD.updatePlaylist(p);
+		librarymodel.setPlaylistList(PD.getPlaylists(p.getUser_id()));
+		profilemodel.setFavoritePlaylists(PD.getFavoritePlaylists(p.getUser_id()));
 	}
 
 	public abstract void sayHi();
