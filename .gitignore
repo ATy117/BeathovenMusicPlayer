@@ -6,6 +6,7 @@
 .idea
 *.iml
 out
+build
 gen### macOS template
 # General
 .DS_Store
