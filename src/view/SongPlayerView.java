@@ -61,7 +61,6 @@ public class SongPlayerView extends View{
 		sm.loadScene(loader);
 		sm.setWindowName("Beathoven Music Player");
 
-
 		Image play = new Image("/resources/play.png");
 		ImageView playView = new ImageView(play);
 		playView.setFitHeight(30);
