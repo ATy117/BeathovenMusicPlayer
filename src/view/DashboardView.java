@@ -329,7 +329,7 @@ public class DashboardView extends View {
 							vbox.getChildren().add(favorite);
 						vbox.getChildren().add(addPlaylist);
 						songEdit.setPopupContent(vbox);
-						songEdit.show(populateSongsList, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
+						songEdit.show(songAnchorPane, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
 
 					}
 				}
