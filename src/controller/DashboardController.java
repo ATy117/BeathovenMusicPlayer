@@ -101,6 +101,14 @@ public abstract class DashboardController {
 		profilemodel.setFavoritePlaylists(PD.getFavoritePlaylists(p.getUser_id()));
 	}
 
+	public void addSongToPlaylist(Song s, Playlist p){
+		System.out.println("Add " + s.getSong_name() + " to " + p.getName());
+	}
+
+	public void searchSong(String word){
+		System.out.println("Search: " + word);
+	}
+
 	public abstract void sayHi();
 
 	public abstract void logout();

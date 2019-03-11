@@ -7,6 +7,7 @@ import controller.StageManager;
 import controller.LoginController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,6 +23,7 @@ public class LoginView  {
 	@FXML public JFXButton registerBtn;
 	@FXML public JFXTextField usernameField;
 	@FXML public JFXPasswordField passwordField;
+	@FXML public AnchorPane loginAnchor;
 
 	public LoginView(Stage primaryStage, LoginController controller) {
 
@@ -34,6 +36,10 @@ public class LoginView  {
 		sm = new StageManager(primaryStage);
 		sm.loadScene(loader);
 		sm.setWindowName("Welcome to Beathoven");
+
+		loginAnchor.getStylesheets().add("view/theme.css");
+		usernameField.getStyleClass().add("jfx-text-field-LogIn");
+		passwordField.getStyleClass().add("jfx-text-field-LogIn");
 	}
 
 	public void loginUser(javafx.event.ActionEvent actionEvent) throws IOException {

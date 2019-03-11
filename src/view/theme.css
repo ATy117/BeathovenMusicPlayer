@@ -41,3 +41,11 @@
     -fx-text-fill: #F1F6F1;
 }
 
+.jfx-text-field-LogIn{
+    -fx-text-fill: #e9c582;
+}
+
+.jfx-text-field-Search{
+    -fx-text-fill: #8ba0a9;
+}
+
