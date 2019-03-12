@@ -5,11 +5,10 @@ import dbservice.AlbumDAODB;
 import dbservice.dbConnection;
 import model_rework.Album;
 import model_rework.Song;
-
-import java.beans.PropertyVetoException;
 import java.sql.Connection;
 
 public class SongComparatorByAlbum implements SongComparator {
+    private static SongComparatorByAlbum instance;
     @Override
     public int compare(Song o1, Song o2) {
         int id1 = o1.getAlbum_id();
@@ -31,6 +30,13 @@ public class SongComparatorByAlbum implements SongComparator {
     }
 
     public static SongComparatorByAlbum getInstance(){
-        return SongComparatorByAlbum.getInstance();
+        if(instance == null){
+            synchronized (SongComparatorByAlbum.class) {
+                if(instance == null){
+                    instance = new SongComparatorByAlbum();
+                }
+            }
+        }
+        return instance;
     }
 }
