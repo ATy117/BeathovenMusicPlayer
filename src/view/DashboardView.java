@@ -52,10 +52,13 @@ public class DashboardView extends View {
 	@FXML public AnchorPane headerInformation;
 	@FXML public Circle userPic;
 	@FXML public Text userName;
+	@FXML public VBox songsVbox;
 
 
 	public JFXPopup songEdit = new JFXPopup();
 	public VBox vbox = new VBox();
+	public JFXPopup addToPlaylistPop = new JFXPopup();
+	public VBox playlistVboxList = new VBox();
 
 	private VBox pbox = new VBox();
 	private JFXPopup playlistEdit = new JFXPopup();
@@ -77,6 +80,7 @@ public class DashboardView extends View {
 		sm.loadScene(loader);
 		sm.setWindowName("Beathoven");
 
+		searchSong();
 		Update();
 		init();
 		//userInfo();
@@ -323,6 +327,30 @@ public class DashboardView extends View {
 
 
 						JFXButton addPlaylist = new JFXButton("Add to Playlist");
+						addPlaylist.setOnMouseClicked(new EventHandler<MouseEvent>() {
+							@Override
+							public void handle(MouseEvent event) {
+								playlistVboxList.getChildren().clear();
+
+								for(Playlist p: librarymodel.getPlaylistList())
+								{
+									JFXButton playlistButton = new JFXButton(p.getName());
+									playlistVboxList.getChildren().add(playlistButton);
+
+									playlistButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+										@Override
+										public void handle(MouseEvent event) {
+											controller.addSongToPlaylist(s,p);
+											addToPlaylistPop.hide();
+
+										}
+									});
+								}
+								addToPlaylistPop.setPopupContent(playlistVboxList);
+								addToPlaylistPop.show(vbox, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.RIGHT);
+
+							}
+						});
 
 						vbox.getChildren().add(delete);
 						if (profilemodel.getUser() instanceof RegisteredUser)
@@ -450,6 +478,23 @@ public class DashboardView extends View {
 		userPic.setFill(new ImagePattern(userPicImage));
 	}
 
+	public void searchSong()
+	{
+		songsVbox.getStylesheets().add("view/theme.css");
+		searchSongField.getStyleClass().add("jfx-text-field-Search");
+
+		searchSongField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent event) {
+				if(event.getCode().equals(KeyCode.ENTER)) {
+					controller.searchSong(searchSongField.getText());
+					searchSongField.setText("");
+				}
+			}
+		});
+
+	}
+
 	private void init()
 	{
 		filterCombo.getItems().add("Title");
@@ -475,7 +520,6 @@ public class DashboardView extends View {
 		headerInformation.getChildren().add(filterCombo);
 
 	}
-
 
 	public void logout(ActionEvent actionEvent) {
 		controller.logout();

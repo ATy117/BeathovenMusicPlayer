@@ -135,6 +135,14 @@ public abstract class DashboardController {
 		ArrayList<Song> songs = (ArrayList<Song>)librarymodel.getSongList();
 		Collections.sort(songs, comparator);
 		librarymodel.setSongList(songs);
+
+	}	
+	public void addSongToPlaylist(Song s, Playlist p){
+		System.out.println("Add " + s.getSong_name() + " to " + p.getName());
+	}
+
+	public void searchSong(String word){
+		System.out.println("Search: " + word);
 	}
 
 	public abstract void sayHi();
