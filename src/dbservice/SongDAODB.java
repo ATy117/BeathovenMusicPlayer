@@ -363,8 +363,8 @@ public class SongDAODB implements SongDAO{
         String query = "SELECT * FROM " +
                         this.TABLE + " INNER JOIN " + this.PLCONTENTS_TABLE +
                         " ON " + this.COL_SONGID + " = " + this.PLCONTENTS_COL_SONGID +
-                        " WHERE " + COL_USERID + " = " + user_id +
-                        COL_SONGID + " = " + song_id +
+                        " WHERE " + COL_USERID + " = " + user_id + " AND " +
+                        COL_SONGID + " = " + song_id + " AND " +
                         PLCONTENTS_COL_PLAYLISTID + " = " + playlist_id;
 
         try{

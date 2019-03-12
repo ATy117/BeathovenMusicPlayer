@@ -337,7 +337,7 @@ public class DashboardView extends View {
 									playlistButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 										@Override
 										public void handle(MouseEvent event) {
-											controller.addSongToPlaylist(s.getSong_id(), p.getPlaylist_id());
+											controller.addSongToPlaylist(s.getUploader_id(), s.getSong_id(), p.getPlaylist_id());
 											addToPlaylistPop.hide();
 										}
 									});
