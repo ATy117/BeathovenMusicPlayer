@@ -144,7 +144,6 @@ public class DashboardView extends View {
 				public void handle(MouseEvent event) {
 					if (event.getButton() == MouseButton.SECONDARY){
 						pbox.getChildren().clear();
-						System.out.println("Detect right Click");
 						JFXButton delete = new JFXButton("Delete");
 						delete.setOnMouseClicked(new EventHandler<MouseEvent>() {
 							@Override
