@@ -43,12 +43,9 @@ public class SongPlayerView extends View{
 	private boolean stopRequested = false;
 	private boolean atEndOfMedia = false;
 	private Media currentSong;
-	private String filename = "/Users/gab/Downloads/toogs.mp3";
 
 
 	public SongPlayerView (Stage playerStage, SongPlayerModel songplayermodel, SongPlayerController controller) {
-
-
 
 		this.playerStage = playerStage;
 		this.controller = controller;
@@ -90,9 +87,11 @@ public class SongPlayerView extends View{
 		replayView.setFitHeight(16);
 		replayView.setFitWidth(20);
 		repeatBtn.setGraphic(replayView);
+	}
 
-		/*
-		currentSong = new Media("file://" + filename);
+	private void playSong(Media media) {
+
+		currentSong = media;
 		mp3player = new MediaPlayer(currentSong);
 
 		mp3player.currentTimeProperty().addListener(new InvalidationListener()
@@ -145,10 +144,11 @@ public class SongPlayerView extends View{
 				}
 			}
 		});
-		*/
+
+
 	}
 
-	/*
+
 	protected void updateValues() {
 		if (timeStamp != null && slider != null) {
 			Platform.runLater(new Runnable() {
@@ -206,7 +206,7 @@ public class SongPlayerView extends View{
 		}
 
 	}
-	*/
+
 
 	@Override
 	public void Update(){
@@ -219,7 +219,7 @@ public class SongPlayerView extends View{
 
 		controller.playPauseSong();
 
-		/*
+
 		MediaPlayer.Status status = mp3player.getStatus();
 
 		if (status == MediaPlayer.Status.UNKNOWN  || status == MediaPlayer.Status.HALTED)
@@ -241,7 +241,7 @@ public class SongPlayerView extends View{
 		} else {
 			mp3player.pause();
 		}
-		*/
+
 	}
 
 	public void nextSong(ActionEvent actionEvent) {
