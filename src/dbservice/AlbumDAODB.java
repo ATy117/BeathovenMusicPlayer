@@ -189,7 +189,7 @@ public class AlbumDAODB implements AlbumDAO{
         album.setUser_id(rs.getInt(this.COL_USERID));
         album.setCover_URL(toFile(rs));
         album.setArtist_id(rs.getInt(this.COL_ARTISTID));
-        album.setArtist_name(rs.getString(this.COL_ALBUMNAME));
+        album.setArtist_name(rs.getString(this.COL_ARTISTNAME));
         return album;
     }
 

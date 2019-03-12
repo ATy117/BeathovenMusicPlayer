@@ -6,10 +6,13 @@ import com.jfoenix.controls.JFXTextField;
 import controller.StageManager;
 import controller.ShowProfileController;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -116,6 +119,7 @@ public class ShowProfileView extends View{
 			firstNameField.setEditable(true);
 			lastnameField.setEditable(true);
 			usernameField.setEditable(true);
+
 		}
 		else if(editBtn.getText().equals("done"))
 		{
@@ -127,6 +131,14 @@ public class ShowProfileView extends View{
 			lastnameField.setEditable(false);
 			usernameField.setEditable(false);
 		}
+
+		profilePic.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				if(event.getButton() == MouseButton.SECONDARY)
+					System.out.println("Change Profile Photo");
+			}
+		});
 
 	}
 
