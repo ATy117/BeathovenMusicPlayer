@@ -23,7 +23,7 @@ public class SongPlayerModel extends Model {
 		finishedList = new ArrayList<>();
 		currentSong = this.currentList.get(0);
 		this.currentList.remove(0);
-		
+
 	}
 
 	public boolean playNextSong() {
