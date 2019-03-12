@@ -40,6 +40,11 @@ public class ShowProfileController {
 		profilemodel.Attach(view);
     }
 
+    public void getSongFromPlaylist(int user_id, int playlist_id){
+		SongDAO SD = new SongDAODB(connection);
+		profilemodel.setPlaylistSongs(SD.getPlaylistSong(user_id, playlist_id));
+	}
+
     public void backToDashboard() {
 		profileStage.close();
     }

@@ -97,6 +97,8 @@ public class ShowProfileView extends View{
 	public void Update(){
 		populateFavoriteSong((ArrayList<Song>) profilemodel.getFavoriteSongs());
 		populateFavoritePlaylist((ArrayList<Playlist>) profilemodel.getFavoritePlaylists());
+		populateSongFromPlayist((ArrayList<Song>) profilemodel.getPlaylistSongs());
+
 	}
 
 	public void changePane(ActionEvent actionEvent) throws IOException {
@@ -149,8 +151,16 @@ public class ShowProfileView extends View{
 		for(Playlist p : playlists){
 			JFXButton playlistBtn = new JFXButton(p.getName());
 			playlistBtn.getStyleClass().add("jfx-button-Playlist");
-			favePlaylistList.getStyleClass().add("jfx-listView");
 
+			playlistBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					controller.getSongFromPlaylist(profilemodel.getUser().getUser_id(), p.getPlaylist_id());
+
+				}
+			});
+
+			favePlaylistList.getStyleClass().add("jfx-listView");
 			favePlaylistList.getItems().add(playlistBtn);
 
 		}
@@ -192,5 +202,32 @@ public class ShowProfileView extends View{
 			songAnchorPane.getChildren().add(SongArtist);
 			faveSongsList.getItems().add(songAnchorPane);
 		}
+	}
+
+	public void populateSongFromPlayist(ArrayList<Song> playlistSongs)
+	{
+		songPlaylistList.getItems().clear();
+		for(Song s: playlistSongs){
+			AnchorPane songInfo = new AnchorPane();
+			JFXButton playBtn = new JFXButton();
+			Image play = new Image("resources/play.png");
+			ImageView playView = new ImageView(play);
+			Text songName = new Text(s.getSong_name());
+			Text artistName = new Text(s.getArtist_name());
+			playView.setFitWidth(15);
+			playView.setFitHeight(20);
+			playBtn.setGraphic(playView);
+
+			AnchorPane.setLeftAnchor(songName, 50.0);
+			AnchorPane.setBottomAnchor(songName, 15.0);
+			AnchorPane.setTopAnchor(artistName, 15.0);
+			AnchorPane.setLeftAnchor(artistName, 50.0);
+
+			songInfo.getChildren().add(playBtn);
+			songInfo.getChildren().add(songName);
+			songInfo.getChildren().add(artistName);
+			songPlaylistList.getItems().add(songInfo);
+		}
+
 	}
 }
