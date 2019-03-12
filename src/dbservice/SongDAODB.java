@@ -72,13 +72,16 @@ public class SongDAODB implements SongDAO{
 
     @Override
     public boolean addSongToPlaylist(int song_id, int playlist_id) {
-        String query = "INSERT INTO " + this.PLCONTENTS_TABLE +
+        String query = "INSERT INTO " + this.PLCONTENTS_TABLE + " (" +
+                        this.PLCONTENTS_COL_PLAYLISTID + ", " +
+                        this.PLCONTENTS_COL_SONGID + ") " +
                         "VALUES(?,?)";
 
+        //INSERT INTO `beathovendb`.`playlist_contents` (`playlist_id`, `song_id`) VALUES ('9', '52');
         try{
             PreparedStatement statement = this.connection.prepareStatement(query);
-            statement.setInt(1, song_id);
-            statement.setInt(2, playlist_id);
+            statement.setInt(1, playlist_id);
+            statement.setInt(2, song_id);
 
             statement.executeUpdate();
             statement.close();
@@ -252,7 +255,7 @@ public class SongDAODB implements SongDAO{
         try{
             PreparedStatement statement = this.connection.prepareStatement(query);
             ResultSet rs = statement.executeQuery();
-            if(rs.next()){
+            while(rs.next()){
                 songsTemp.add(toSong(rs));
             }
             return songsTemp;
@@ -360,8 +363,8 @@ public class SongDAODB implements SongDAO{
         String query = "SELECT * FROM " +
                         this.TABLE + " INNER JOIN " + this.PLCONTENTS_TABLE +
                         " ON " + this.COL_SONGID + " = " + this.PLCONTENTS_COL_SONGID +
-                        " WHERE " + COL_USERID + " = " + user_id +
-                        COL_SONGID + " = " + song_id +
+                        " WHERE " + COL_USERID + " = " + user_id + " AND " +
+                        COL_SONGID + " = " + song_id + " AND " +
                         PLCONTENTS_COL_PLAYLISTID + " = " + playlist_id;
 
         try{
