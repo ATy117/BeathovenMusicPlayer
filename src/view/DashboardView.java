@@ -131,7 +131,6 @@ public class DashboardView extends View {
 				}
 			}
 		});
-		controller.sayHi();
 	}
 
 	public void populatePlaylist(ArrayList<Playlist> playlists){
@@ -290,7 +289,6 @@ public class DashboardView extends View {
 				public void handle(MouseEvent event) {
 					if(event.getButton() == MouseButton.SECONDARY)
 					{
-						System.out.println("Detect right Click");
 						vbox.getChildren().clear();
 
 						JFXButton delete = new JFXButton("Delete");
