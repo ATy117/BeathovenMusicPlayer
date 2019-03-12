@@ -137,8 +137,9 @@ public abstract class DashboardController {
 		librarymodel.setSongList(songs);
 
 	}	
-	public void addSongToPlaylist(Song s, Playlist p){
-		System.out.println("Add " + s.getSong_name() + " to " + p.getName());
+	public void addSongToPlaylist(int song_id, int playlist_id){
+		SongDAO SD = new SongDAODB(connection);
+		SD.addSongToPlaylist(song_id, playlist_id);
 	}
 
 	public void searchSong(String word){
