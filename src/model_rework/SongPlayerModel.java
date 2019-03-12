@@ -23,6 +23,7 @@ public class SongPlayerModel extends Model {
 		finishedList = new ArrayList<>();
 		currentSong = this.currentList.get(0);
 		this.currentList.remove(0);
+		
 	}
 
 	public boolean playNextSong() {
@@ -52,6 +53,7 @@ public class SongPlayerModel extends Model {
 			}
 		}
 
+
 		return true;
 
 	}
@@ -72,6 +74,7 @@ public class SongPlayerModel extends Model {
 	public boolean playPreviousSong() {
 
 		if (!finishedList.isEmpty()) {
+			currentList.add(0, currentSong);
 			Song backsong = finishedList.get(finishedList.size() - 1);
 			finishedList.remove(finishedList.size() - 1);
 			currentSong = backsong;
@@ -79,6 +82,7 @@ public class SongPlayerModel extends Model {
 		else  {
 			return false;
 		}
+
 
 		return true;
 	}
