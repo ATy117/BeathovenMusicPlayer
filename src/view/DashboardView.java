@@ -452,10 +452,17 @@ public class DashboardView extends View {
 
 	private void init()
 	{
+		filterCombo.getItems().add("Title");
 		filterCombo.getItems().add("Genre");
 		filterCombo.getItems().add("Album");
 		filterCombo.getItems().add("Year");
-
+		filterCombo.getItems().add("Artist");
+		filterCombo.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				controller.sortSongs((String)filterCombo.getValue());
+			}
+		});
 	}
 
 	public void getAllSongs (ActionEvent actionEvent){
