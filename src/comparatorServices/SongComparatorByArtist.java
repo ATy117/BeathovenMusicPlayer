@@ -7,4 +7,8 @@ public class SongComparatorByArtist implements SongComparator {
     public int compare(Song o1, Song o2) {
         return o1.getArtist_name().compareTo(o2.getArtist_name());
     }
+
+    public static SongComparatorByArtist getInstance(){
+        return SongComparatorByArtist.getInstance();
+    }
 }

@@ -6,6 +6,7 @@ import dbservice.dbConnection;
 import model_rework.Album;
 import model_rework.Song;
 
+import java.beans.PropertyVetoException;
 import java.sql.Connection;
 
 public class SongComparatorByAlbum implements SongComparator {
@@ -27,5 +28,9 @@ public class SongComparatorByAlbum implements SongComparator {
             return album1.getName().compareTo(album2.getName());
         }
 
+    }
+
+    public static SongComparatorByAlbum getInstance(){
+        return SongComparatorByAlbum.getInstance();
     }
 }

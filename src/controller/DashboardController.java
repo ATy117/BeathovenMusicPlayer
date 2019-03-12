@@ -108,27 +108,27 @@ public abstract class DashboardController {
 		SongComparator comparator;
 		switch (category){
 			case "Genre":
-				comparator = new SongComparatorByGenre();
+				comparator = SongComparatorByGenre.getInstance();
 				break;
 
 			case "Title":
-				comparator = new SongComparatorByTitle();
+				comparator = SongComparatorByTitle.getInstance();
 				break;
 
 			case "Year":
-				comparator = new SongComparatorByYear();
+				comparator = SongComparatorByYear.getInstance();
 				break;
 
 			case "Artist":
-				comparator = new SongComparatorByArtist();
+				comparator = SongComparatorByArtist.getInstance();
 				break;
 
 			case "Album":
-				comparator = new SongComparatorByAlbum();
+				comparator = SongComparatorByAlbum.getInstance();
 				break;
 
 			default:
-				comparator = new SongComparatorByTitle();
+				comparator = SongComparatorByTitle.getInstance();
 				break;
 		}
 

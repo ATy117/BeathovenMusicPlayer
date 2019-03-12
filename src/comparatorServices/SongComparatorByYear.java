@@ -8,4 +8,8 @@ public class SongComparatorByYear implements SongComparator {
     public int compare(Song o1, Song o2) {
         return o1.getYear() - o2.getYear();
     }
+
+    public static SongComparatorByYear getInstance(){
+        return SongComparatorByYear.getInstance();
+    }
 }

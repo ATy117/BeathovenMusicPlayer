@@ -8,4 +8,8 @@ public class SongComparatorByGenre implements SongComparator {
     public int compare(Song o1, Song o2) {
         return o1.getGenre().compareTo(o2.getGenre());
     }
+
+    public static SongComparatorByGenre getInstance(){
+        return SongComparatorByGenre.getInstance();
+    }
 }
