@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import model_rework.Playlist;
 import model_rework.ProfileModel;
 import model_rework.Song;
+import model_rework.SongPlayerModel;
 import view.ShowProfileView;
 import view.DashboardView;
 import view.LoginView;
@@ -21,10 +22,12 @@ public class ShowProfileController {
 
 	private Stage profileStage;
 	private ProfileModel profilemodel;
+	private SongPlayerModel songplayermodel;
 	private Connection connection;
 
-	public ShowProfileController(ProfileModel profilemodel, Connection connection, Stage profileStage) {
+	public ShowProfileController(ProfileModel profilemodel, SongPlayerModel songplaymodel, Connection connection, Stage profileStage) {
 		this.profilemodel = profilemodel;
+		this.songplayermodel = songplaymodel;
 		this.connection = connection;
 		this.profileStage=profileStage;
 
@@ -57,4 +60,7 @@ public class ShowProfileController {
         return true;
     }
 
+	public void playSong(List<Song> playableList) {
+		songplayermodel.playSong(playableList);
+	}
 }

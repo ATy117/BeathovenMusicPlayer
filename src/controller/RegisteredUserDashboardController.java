@@ -48,7 +48,7 @@ public class RegisteredUserDashboardController extends DashboardController {
 	}
 
 	public void viewProfile() {
-		ShowProfileController profileview = new ShowProfileController(profilemodel, connection, profileStage);
+		ShowProfileController profileview = new ShowProfileController(profilemodel, songplayermodel, connection, profileStage);
 	}
 
 	public void logout() {
