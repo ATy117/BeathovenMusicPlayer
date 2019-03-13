@@ -106,7 +106,6 @@ public class ShowProfileView extends View{
 			controller.backToDashboard();
 		else if (actionEvent.getSource() == logoutBtn)
 			controller.logout();
-
 	}
 
 	public void editUserDetails(ActionEvent actionEvent) {

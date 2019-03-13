@@ -425,6 +425,7 @@ public class DashboardView extends View {
 	public void populateSongPlaylistVersion(ArrayList<Song> songlist){
 		populateSongsList.getItems().clear();
 		populateSongsList.getStylesheets().add("view/theme.css");
+		int index=0;
 		for(Song s : songlist)
 		{
 			AnchorPane songInfo = new AnchorPane();
@@ -454,7 +455,19 @@ public class DashboardView extends View {
 			AnchorPane.setLeftAnchor(songYear, 400.0);
 
 			playButton.setGraphic(playView);
+			int finalIndex = index;
+			playButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					List<Song> playableList = new ArrayList<>();
 
+					for (int i = finalIndex; i <songlist.size(); i++) {
+						playableList.add(songlist.get(i));
+					}
+					controller.playSong(playableList);
+
+				}
+			});
 			songInfo.getChildren().add(songYear);
 			songInfo.getChildren().add(songArtist);
 			songInfo.getChildren().add(songGenre);
@@ -484,11 +497,13 @@ public class DashboardView extends View {
 					}
 				}
 			});
+			index++;
 		}
 	}
 
 	public void populateSongAlbumVersion(ArrayList<Song> songlist){
 		populateSongsList.getItems().clear();
+		int index=0;
 		for(Song s : songlist)
 		{
 			AnchorPane songInfo = new AnchorPane();
@@ -500,7 +515,19 @@ public class DashboardView extends View {
 			playView.setFitWidth(15);
 
 			playBtn.setGraphic(playView);
+			int finalIndex = index;
+			playBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					List<Song> playableList = new ArrayList<>();
 
+					for (int i = finalIndex; i <songlist.size(); i++) {
+						playableList.add(songlist.get(i));
+					}
+					controller.playSong(playableList);
+
+				}
+			});
 			Text songTitle = new Text(s.getSong_name());
 			Text genre = new Text(s.getGenre());
 
@@ -516,7 +543,9 @@ public class DashboardView extends View {
 			songInfo.getChildren().add(playBtn);
 			songInfo.getChildren().add(songTitle);
 			populateSongsList.getItems().add(songInfo);
+			index++;
 		}
+
 	}
 
 	private void userInfo()

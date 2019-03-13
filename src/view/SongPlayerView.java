@@ -271,6 +271,7 @@ public class SongPlayerView extends View{
 
 
 	public void playPause(ActionEvent actionEvent) {
+
 		if (songplayermodel.getCurrentSong() != null ){
 			MediaPlayer.Status status = mp3player.getStatus();
 
@@ -297,6 +298,7 @@ public class SongPlayerView extends View{
 	}
 
 	public void nextSong(ActionEvent actionEvent) {
+
 		if (songplayermodel.getCurrentSong() != null) {
 			controller.playNextSong();
 		}
@@ -332,12 +334,12 @@ public class SongPlayerView extends View{
 		}
 	}
 
-	public void toggleToPlay() {
+	private void toggleToPlay() {
 		mp3player.play();
 		playBtn.setGraphic(pauseView);
 	}
 
-	public void toggleToPause() {
+	private void toggleToPause() {
 		mp3player.pause();
 		playBtn.setGraphic(playView);
 	}
