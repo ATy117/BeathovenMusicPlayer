@@ -84,7 +84,10 @@ public class ShowProfileView extends View{
 		firstNameField.setText(profilemodel.getUser().getFirst_name());
 		lastnameField.setText(profilemodel.getUser().getLast_name());
 		usernameField.setText(profilemodel.getUser().getUsername());
-		mostPlayedField.setText("0");
+		if (profilemodel.getMostPlayedSong() == null)
+			mostPlayedField.setText("None");
+		else
+			mostPlayedField.setText(profilemodel.getMostPlayedSong().getSong_name());
 
 		firstNameField.setEditable(false);
 		lastnameField.setEditable(false);
