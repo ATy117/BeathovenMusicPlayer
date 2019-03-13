@@ -96,3 +96,15 @@
 .anchorPane-Error{
     -fx-background-color: #303030;
 }
+
+.text-input-PopulateTitle{
+    -fx-font-family: Poppins;
+    -fx-font-size: 14;
+    -fx-fill: #f1f6f1;
+}
+
+.text-input-PopulateInfo{
+    -fx-font-size: 12;
+    -fx-font-family: Poppins;
+    -fx-fill: #f1f6f1;
+}

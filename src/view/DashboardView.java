@@ -309,6 +309,7 @@ public class DashboardView extends View {
 
 	public void populateSong(ArrayList<Song> songlist){
 		populateSongsList.getItems().clear();
+		populateSongsList.getStyleClass().add("view/theme.css");
 		int index = 0;
 		for(Song s : songlist)
 		{
@@ -359,6 +360,11 @@ public class DashboardView extends View {
 			songAnchorPane.getChildren().add(songYear);
 			songAnchorPane.getChildren().add(SongName);
 			songAnchorPane.getChildren().add(playButton);
+			SongName.getStyleClass().add("text-input-PopulateTitle");
+			songGenre.getStyleClass().add("text-input-PopulateInfo");
+			songYear.getStyleClass().add("text-input-PopulateInfo");
+			SongArtist.getStyleClass().add("text-input-PopulateInfo");
+
 			populateSongsList.getItems().add(songAnchorPane);
 			populateSongsList.getStylesheets().add("view/theme.css");
 			populateSongsList.getStyleClass().add("anchorPane");

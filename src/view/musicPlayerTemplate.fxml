@@ -16,17 +16,17 @@
             <Font name="Poppins Regular" size="12.0" />
          </font>
       </Text>
-      <Text fx:id="titleText" fill="#eaa830" layoutX="139.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+      <Text fx:id="titleText" fill="#eaa830" layoutX="64.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Supermarket Flowers">
          <font>
             <Font name="Comfortaa Regular" size="18.0" />
          </font>
       </Text>
-      <Text fx:id="artistText" fill="#e9c582" layoutX="133.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="by Artist">
+      <Text fx:id="artistText" fill="#e9c582" layoutX="113.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="by Ed Sheeran">
          <font>
             <Font name="Comfortaa Regular" size="12.0" />
          </font>
       </Text>
-      <Text fx:id="albumText" fill="#e9c582" layoutX="123.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="from Album">
+      <Text fx:id="albumText" fill="#e9c582" layoutX="101.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="from Divide Album">
          <font>
             <Font name="Comfortaa Regular" size="12.0" />
          </font>
