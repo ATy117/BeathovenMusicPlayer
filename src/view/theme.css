@@ -86,3 +86,13 @@
 .jfx-text-field-Register{
     -fx-text-fill: #8BA0A9;
 }
+
+.text-input-Error{
+    -fx-font-family: Poppins;
+    -fx-font-size: 18;
+    -fx-fill: #8ba0a9;
+}
+
+.anchorPane-Error{
+    -fx-background-color: #303030;
+}

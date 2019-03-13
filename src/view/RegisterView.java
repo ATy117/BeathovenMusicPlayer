@@ -2,17 +2,20 @@ package view;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXPopup;
 import com.jfoenix.controls.JFXTextField;
 import controller.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import javax.swing.text.html.ImageView;
+
 import java.io.File;
 
 public class RegisterView {
@@ -28,6 +31,9 @@ public class RegisterView {
 	@FXML private JFXPasswordField checkPasswordField;
 	@FXML private AnchorPane registerAnchorPane;
 	@FXML private Circle circlePic;
+
+	private JFXPopup errorPopup = new JFXPopup();
+	private AnchorPane errorAnchor = new AnchorPane();
 
 	private File file = null;
 
@@ -79,12 +85,34 @@ public class RegisterView {
 			file = new File("resources/user.png");
 
 		if (firstCheck.equals("") || lastCheck.equals("") || userCheck.equals("") || passCheck.equals("") || passCheckCheck.equals("")){
-			System.out.println("Put shit on all fields");
+			popUpError("Some fields are Missing");
 		} else if ( ! password.equals(checkpassword)) {
-			System.out.println("Passwords do not match");
+			popUpError("Passwords do not match");
 		} else {
 			controller.registerUser(username, password, firstname, lastname, file);
 		}
 
+	}
+
+	public void popUpError(String inputErrorMessage)
+	{
+		errorAnchor.getStylesheets().add("view/theme.css");
+		errorAnchor.getStyleClass().add("anchorPane-Error");
+
+		Image error = new Image("resources/error.png");
+		ImageView errorView = new ImageView(error);
+		Text errorMessage = new Text(inputErrorMessage);
+		errorMessage.getStyleClass().add("text-input-Error");
+		AnchorPane.setTopAnchor(errorMessage, 93.0);
+		AnchorPane.setLeftAnchor(errorMessage, 23.0);
+		AnchorPane.setTopAnchor(errorView, 30.0);
+		AnchorPane.setLeftAnchor(errorView, 43.0);
+		errorAnchor.getChildren().add(errorView);
+		errorAnchor.getChildren().add(errorMessage);
+
+		errorAnchor.setMinSize(260.0, 150.0);
+		errorAnchor.setMaxSize(260.0, 150.0);
+		errorPopup.setPopupContent(errorAnchor);
+		errorPopup.show(registerAnchorPane, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
 	}
 }
