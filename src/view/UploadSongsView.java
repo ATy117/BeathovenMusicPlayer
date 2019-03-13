@@ -59,17 +59,35 @@ public class UploadSongsView{
 	public void addEditSongDetails(javafx.event.ActionEvent actionEvent) {
 		String songTitle = titleField.getText();
 		String artistName = artistField.getText();
-		String year = yearField.getText();
 		String album = albumField.getText();
-		String genre = genreField.getValue().toString();
 
+		String genre = "";
+		boolean nullGenre = false;
+		if (genreField.getValue() == null){
+			nullGenre = true;
+		} else {
+			genre = genreField.getValue().toString();
+		}
+
+		String year = yearField.getText();
+		String yearCheck = year.replaceAll("\\s+", "");
+		boolean badYear = false;
+		if (yearCheck.equals("")){
+			badYear = true;
+		} else {
+			try {
+				int i = Integer.parseInt(year);
+			} catch (NumberFormatException | NullPointerException exception) {
+				badYear = true;
+			}
+		}
+		
 
 		String songCheck = songTitle.replaceAll("\\s+", "");
 		String artistCheck = artistName.replaceAll("\\s+", "");
-		String genreCheck = genre.replaceAll("\\s+", "");
-		String yearCheck = year.replaceAll("\\s+", "");
 
-		if (songCheck.equals("") || artistCheck.equals("") || genreCheck.equals("") || yearCheck.equals("") || musicfile == null){
+
+		if (songCheck.equals("") || artistCheck.equals("") || nullGenre || badYear || musicfile == null){
 			System.out.println("make sure all fields are filled");
 
 			errorAnchor.getStylesheets().add("view/theme.css");
