@@ -84,6 +84,7 @@ public class RegisterView {
 		if (file == null)
 			file = new File("resources/user.png");
 
+
 		if (firstCheck.equals("") || lastCheck.equals("") || userCheck.equals("") || passCheck.equals("") || passCheckCheck.equals("")){
 			popUpError("Some fields are Missing");
 		} else if ( ! password.equals(checkpassword)) {
