@@ -48,6 +48,11 @@ public class SongPlayerModel extends Model {
 				currentSong = currentList.get(randomindex);
 				currentList.remove(randomindex);
 			}
+			else if (currentList.isEmpty() && repeating) {
+				repeatFinishedSongs();
+				currentSong = currentList.get(0);
+				currentList.remove(0);
+			}
 			else {
 				return false;
 			}
@@ -82,10 +87,9 @@ public class SongPlayerModel extends Model {
 		else  {
 			return false;
 		}
+		Notify();
 		return true;
 	}
-
-
 
 	private void repeatFinishedSongs () {
 		currentList = new ArrayList<>(finishedList);
@@ -125,8 +129,5 @@ public class SongPlayerModel extends Model {
 	public void setShuffle(boolean shuffled) {
 		this.shuffle = shuffled;
 	}
-
-
-
 
 }

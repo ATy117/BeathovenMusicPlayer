@@ -22,7 +22,6 @@ public class SongPlayerController {
 			playerStage.hide();
 		});
 
-
 		player = new SongPlayerView(playerStage, songplayermodel, this);
 		songplayermodel.Attach(player);
 	}
@@ -31,39 +30,44 @@ public class SongPlayerController {
 		playerStage.show();
 	}
 
-
-	public boolean playPauseSong(){
-		return true;
-	}
-
 	public boolean playNextSong(){
-		return true;
-	}
-
-	public boolean fastForward(){
-		/*kahit 5 secs lang*/
-		return true;
+		if (songplayermodel.playNextSong()) {
+			return true;
+		}
+		return false;
 	}
 
 	public boolean playPrevSong(){
-		return true;
+		if (songplayermodel.playPreviousSong()) {
+			return true;
+		}
+		return false;
 	}
 
-	public boolean rewind(){
-		return true;
+	public void shuffle(){
+		if (songplayermodel.isShuffle()) {
+			System.out.println("shuffle is false");
+			songplayermodel.setShuffle(false);
+		}
+		else {
+			System.out.println("shuffle is true");
+			songplayermodel.setShuffle(true);
+		}
 	}
 
-	public boolean shuffle(){
-		return true;
-	}
-
-	public boolean repeat(){
-		return true;
+	public void repeat(){
+		if (songplayermodel.isRepeating()) {
+			System.out.println("repeat is false" );
+			songplayermodel.setRepeating(false);
+		}
+		else {
+			System.out.println("repeat is true");
+			songplayermodel.setRepeating(true);
+		}
 	}
 
 	public void endPlayer() {
 		player.endPlayer();
 	}
-
 
 }

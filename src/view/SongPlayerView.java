@@ -27,6 +27,11 @@ import java.io.File;
 
 public class SongPlayerView extends View{
 
+	@FXML public Text titleText;
+	@FXML public Text artistText;
+	@FXML public Text albumText;
+	@FXML public Text genreText;
+	@FXML public Circle songPic;
 	private Stage playerStage;
 	private SongPlayerController controller;
 	private SongPlayerModel songplayermodel;
@@ -159,6 +164,11 @@ public class SongPlayerView extends View{
 		}
 
 		if (songplayermodel.getCurrentSong() != null) {
+
+			titleText.setText(songplayermodel.getCurrentSong().getSong_name());
+			artistText.setText(songplayermodel.getCurrentSong().getArtist_name());
+			genreText.setText(songplayermodel.getCurrentSong().getGenre());
+
 			currentSongMedia = new Media(songplayermodel.getCurrentSong().getSong_URL().toURI().toString());
 			mp3player = new MediaPlayer(currentSongMedia);
 			mp3player.play();
@@ -220,9 +230,6 @@ public class SongPlayerView extends View{
 
 	public void playPause(ActionEvent actionEvent) {
 
-		controller.playPauseSong();
-
-
 		MediaPlayer.Status status = mp3player.getStatus();
 
 		if (status == MediaPlayer.Status.UNKNOWN  || status == MediaPlayer.Status.HALTED)
@@ -251,14 +258,14 @@ public class SongPlayerView extends View{
 		/*if ffBtn double click*/
 		controller.playNextSong();
 		/*else if ffBtn click once*/
-		controller.fastForward();
+		//ontroller.fastForward();
 	}
 
 	public void prevSong(ActionEvent actionEvent) {
 		/* if rewindBtn doublic click*/
 		controller.playPrevSong();
 		/*else if rewindBtn clicked once*/
-		controller.rewind();
+		//controller.rewind();
 	}
 
 	public void shuffle(ActionEvent actionEvent) {
