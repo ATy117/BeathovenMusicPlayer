@@ -8,6 +8,7 @@ import model_rework.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public abstract class DashboardController {
 
@@ -161,4 +162,7 @@ public abstract class DashboardController {
 
 	public abstract void logout();
 
+	public void playSong(List<Song> playableList) {
+		songplayermodel.playSong(playableList);
+	}
 }

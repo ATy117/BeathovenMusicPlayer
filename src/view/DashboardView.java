@@ -32,6 +32,7 @@ import model_rework.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import static java.awt.Color.WHITE;
 
@@ -280,6 +281,7 @@ public class DashboardView extends View {
 
 	public void populateSong(ArrayList<Song> songlist){
 		populateSongsList.getItems().clear();
+		int index = 0;
 		for(Song s : songlist)
 		{
 			AnchorPane songAnchorPane = new AnchorPane();
@@ -309,6 +311,20 @@ public class DashboardView extends View {
 			AnchorPane.setLeftAnchor(songYear, 400.0);
 
 			playButton.setGraphic(playView);
+
+			int finalIndex = index;
+			playButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					List<Song> playableList = new ArrayList<>();
+
+					for (int i = finalIndex; i <songlist.size(); i++) {
+						playableList.add(songlist.get(i));
+					}
+					controller.playSong(playableList);
+				}
+			});
+
 			songAnchorPane.getChildren().add(SongArtist);
 			songAnchorPane.getChildren().add(songGenre);
 			songAnchorPane.getChildren().add(songYear);
@@ -394,6 +410,7 @@ public class DashboardView extends View {
 					}
 				}
 			});
+			index++;
 		}
 
 	}

@@ -42,7 +42,7 @@ public class SongPlayerView extends View{
 	private final boolean repeat = false;
 	private boolean stopRequested = false;
 	private boolean atEndOfMedia = false;
-	private Media currentSong;
+	private Media currentSongMedia;
 
 
 	public SongPlayerView (Stage playerStage, SongPlayerModel songplayermodel, SongPlayerController controller) {
@@ -89,64 +89,6 @@ public class SongPlayerView extends View{
 		repeatBtn.setGraphic(replayView);
 	}
 
-	private void playSong(Media media) {
-
-		currentSong = media;
-		mp3player = new MediaPlayer(currentSong);
-
-		mp3player.currentTimeProperty().addListener(new InvalidationListener()
-		{
-			public void invalidated(Observable ov) {
-				updateValues();
-			}
-		});
-
-		mp3player.setOnPlaying(new Runnable() {
-			public void run() {
-				if (stopRequested) {
-					mp3player.pause();
-					stopRequested = false;
-				} else {
-
-				}
-			}
-		});
-
-		mp3player.setOnPaused(new Runnable() {
-			public void run() {
-				System.out.println("onPaused");
-			}
-		});
-
-		mp3player.setOnReady(new Runnable() {
-			public void run() {
-				duration = mp3player.getMedia().getDuration();
-				updateValues();
-			}
-		});
-
-		mp3player.setCycleCount(repeat ? MediaPlayer.INDEFINITE : 1);
-		mp3player.setOnEndOfMedia(new Runnable() {
-			public void run() {
-				if (!repeat) {
-					//playButton.setText(">");
-					stopRequested = true;
-					atEndOfMedia = true;
-				}
-			}
-		});
-
-		slider.valueProperty().addListener(new InvalidationListener() {
-			public void invalidated(Observable ov) {
-				if (slider.isValueChanging()) {
-					// multiply duration by percentage calculated by slider position
-					mp3player.seek(duration.multiply(slider.getValue() / 100.0));
-				}
-			}
-		});
-
-
-	}
 
 
 	protected void updateValues() {
@@ -210,8 +152,66 @@ public class SongPlayerView extends View{
 
 	@Override
 	public void Update(){
-		//if (songplayermodel.getCurrentSong != null)
-			// currentSong = ^^
+		currentSongMedia = new Media(songplayermodel.getCurrentSong().getSong_URL().toURI().toString());
+
+		if (mp3player != null) {
+			mp3player.dispose();
+			mp3player = null;
+		}
+
+		mp3player = new MediaPlayer(currentSongMedia);
+		mp3player.play();
+
+		mp3player.currentTimeProperty().addListener(new InvalidationListener()
+		{
+			public void invalidated(Observable ov) {
+				updateValues();
+			}
+		});
+
+		mp3player.setOnPlaying(new Runnable() {
+			public void run() {
+				if (stopRequested) {
+					mp3player.pause();
+					stopRequested = false;
+				} else {
+
+				}
+			}
+		});
+
+		mp3player.setOnPaused(new Runnable() {
+			public void run() {
+				System.out.println("onPaused");
+			}
+		});
+
+		mp3player.setOnReady(new Runnable() {
+			public void run() {
+				duration = mp3player.getMedia().getDuration();
+				updateValues();
+			}
+		});
+
+		mp3player.setCycleCount(repeat ? MediaPlayer.INDEFINITE : 1);
+		mp3player.setOnEndOfMedia(new Runnable() {
+			public void run() {
+				if (!repeat) {
+					//playButton.setText(">");
+					stopRequested = true;
+					atEndOfMedia = true;
+				}
+			}
+		});
+
+		slider.valueProperty().addListener(new InvalidationListener() {
+			public void invalidated(Observable ov) {
+				if (slider.isValueChanging()) {
+					// multiply duration by percentage calculated by slider position
+					mp3player.seek(duration.multiply(slider.getValue() / 100.0));
+				}
+			}
+		});
 	}
 
 
