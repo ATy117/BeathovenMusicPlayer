@@ -68,7 +68,7 @@
                   <Font name="Poppins Regular" size="14.0" />
                </font>
             </JFXButton>
-            <Circle fx:id="userPic1" fill="#979ca1" layoutX="62.0" layoutY="35.0" radius="27.0" stroke="#0000000a" strokeType="INSIDE" />
+            <Circle fx:id="songPic" fill="#979ca1" layoutX="62.0" layoutY="35.0" radius="27.0" stroke="#0000000a" strokeType="INSIDE" />
             <JFXButton fx:id="showMusicPlayerBtn" layoutX="669.0" layoutY="3.0" onAction="#showMusicPlayer" style="-fx-background-color: #eaa830" text="Show Music PLayer" textFill="#303030">
                <font>
                   <Font name="Poppins Regular" size="14.0" />

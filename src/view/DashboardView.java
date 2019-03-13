@@ -27,6 +27,13 @@ import java.util.List;
 
 public class DashboardView extends View {
 
+	public Text statusSongText;
+	public Text songTitleText;
+	public Text singerText;
+	public Text albumText;
+	public Text genreText;
+	public Circle songPic;
+
 	private SongPlayerModel songplayermodel;
 	private LibraryModel librarymodel;
 	private ProfileModel profilemodel;
@@ -67,12 +74,15 @@ public class DashboardView extends View {
 		this.profilemodel = profilemodel;
 		this.stage = stage;
 
+
+
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboardTemplate.fxml"));
 		loader.setController(this);
 
 		StageManager sm = new StageManager(stage);
 		sm.loadScene(loader);
 		sm.setWindowName("Beathoven");
+
 
 		searchSong();
 		Update();
@@ -93,6 +103,18 @@ public class DashboardView extends View {
 		populateAlbum((ArrayList<Album>)librarymodel.getAlbumList());
 		populatePlaylist((ArrayList<Playlist>)librarymodel.getPlaylistList());
 		userInfo();
+		setSongInfo();
+	}
+
+	private void setSongInfo() {
+		if (songplayermodel.getCurrentSong() != null) {
+			statusSongText.setText("Now Playing");
+			songTitleText.setText(songplayermodel.getCurrentSong().getSong_name());
+			singerText.setText(songplayermodel.getCurrentSong().getArtist_name());
+			//albumText;
+			genreText.setText(songplayermodel.getCurrentSong().getGenre());
+			//songPic.setGraphic;
+		}
 	}
 
 	public void changePane(ActionEvent actionEvent) {
@@ -583,6 +605,12 @@ public class DashboardView extends View {
 
 	private void init()
 	{
+		statusSongText.setText("No Song Playing");
+		songTitleText.setText("");
+		albumText.setText("");
+		genreText.setText("");
+		singerText.setText("");
+
 		headerInformation.getStylesheets().add("view/theme.css");
 		filterCombo.getStyleClass().add("jfx-combo-box-Filter");
 		filterCombo.getItems().add("Title");
