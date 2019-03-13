@@ -20,6 +20,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model_rework.Album;
 import model_rework.SongPlayerModel;
 
 import java.io.File;
@@ -168,6 +169,16 @@ public class SongPlayerView extends View{
 			titleText.setText(songplayermodel.getCurrentSong().getSong_name());
 			artistText.setText(songplayermodel.getCurrentSong().getArtist_name());
 			genreText.setText(songplayermodel.getCurrentSong().getGenre());
+
+			Album album = controller.getAlbumOfSong(songplayermodel.getCurrentSong().getAlbum_id());
+
+			if (album != null) {
+				albumText.setText(album.getName());
+			}
+			else {
+				albumText.setText("");
+			}
+
 
 			currentSongMedia = new Media(songplayermodel.getCurrentSong().getSong_URL().toURI().toString());
 			mp3player = new MediaPlayer(currentSongMedia);

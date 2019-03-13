@@ -1,5 +1,8 @@
 package model_rework;
 
+import controller.SongPlayerController;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,6 +20,7 @@ public class SongPlayerModel extends Model {
 		repeating = false;
 		shuffle = false;
 	}
+
 
 	public void playSong(List<Song> currentList) {
 		this.currentList = new ArrayList<>(currentList);
@@ -62,6 +66,7 @@ public class SongPlayerModel extends Model {
 		return true;
 
 	}
+
 
 	private int getRandonIndexInCurList() {
 
@@ -129,5 +134,5 @@ public class SongPlayerModel extends Model {
 	public void setShuffle(boolean shuffled) {
 		this.shuffle = shuffled;
 	}
-
+	
 }

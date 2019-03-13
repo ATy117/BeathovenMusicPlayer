@@ -323,6 +323,7 @@ public class DashboardView extends View {
 						playableList.add(songlist.get(i));
 					}
 					controller.playSong(playableList);
+
 				}
 			});
 
