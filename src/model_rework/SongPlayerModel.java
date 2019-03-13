@@ -25,8 +25,7 @@ public class SongPlayerModel extends Model {
 	public void playSong(List<Song> currentList) {
 		this.currentList = new ArrayList<>(currentList);
 		finishedList = new ArrayList<>();
-		currentSong = this.currentList.get(0);
-		this.currentList.remove(0);
+		playNextSong();
 		Notify();
 	}
 
