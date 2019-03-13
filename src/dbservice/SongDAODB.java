@@ -40,7 +40,14 @@ public class SongDAODB implements SongDAO{
         String genreTemp = song.getGenre();
         int yearTemp = song.getYear();
         int isFavorite = (song.isFavorite()) ? 1:0;
-        byte[] songURLTemp = toBlob(song.getSong_URL());
+
+        FileInputStream songStream = null;
+        try {
+            songStream = new FileInputStream(song.getSong_URL());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
         int userIDTemp = song.getUploader_id();
         int albumIDTemp = song.getAlbum_id();
         long timesPlayedTemp = song.getTimes_played();
@@ -56,7 +63,7 @@ public class SongDAODB implements SongDAO{
             statement.setString(3, genreTemp);
             statement.setInt(4, yearTemp);
             statement.setInt(5, isFavorite);
-            statement.setBytes(6, songURLTemp);
+            statement.setBinaryStream(6, songStream);
             statement.setInt(7, userIDTemp);
             statement.setInt(8, albumIDTemp);
             statement.setLong(9, timesPlayedTemp);
@@ -169,7 +176,13 @@ public class SongDAODB implements SongDAO{
         String genreTemp = song.getGenre();
         int yearTemp = song.getYear();
         int isFavorite = (song.isFavorite()) ? 1:0;
-        byte[] songURLTemp = toBlob(song.getSong_URL());
+
+        FileInputStream songStream = null;
+        try {
+            songStream = new FileInputStream(song.getSong_URL());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         int userIDTemp = song.getUploader_id();
         int albumIDTemp = song.getAlbum_id();
         long timesPlayedTemp = song.getTimes_played();
@@ -193,7 +206,7 @@ public class SongDAODB implements SongDAO{
             statement.setString(3, genreTemp);
             statement.setInt(4, yearTemp);
             statement.setInt(5, isFavorite);
-            statement.setBytes(6, songURLTemp);
+            statement.setBinaryStream(6, songStream);
             statement.setInt(7, userIDTemp);
             statement.setInt(8, albumIDTemp);
             statement.setLong(9, timesPlayedTemp);
@@ -212,7 +225,12 @@ public class SongDAODB implements SongDAO{
             PreparedStatement statement = this.connection.prepareStatement(query);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                Song songTemp = toSong(rs);
+                Song songTemp = null;
+                try {
+                    songTemp = toSong(rs);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 return songTemp;
             } else {
                 return null;
@@ -233,7 +251,11 @@ public class SongDAODB implements SongDAO{
             ResultSet rs = statement.executeQuery();
 
             while(rs.next()){
-                songsTemp.add(toSong(rs));
+                try {
+                    songsTemp.add(toSong(rs));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
             return songsTemp;
@@ -256,7 +278,11 @@ public class SongDAODB implements SongDAO{
             PreparedStatement statement = this.connection.prepareStatement(query);
             ResultSet rs = statement.executeQuery();
             while(rs.next()){
-                songsTemp.add(toSong(rs));
+                try {
+                    songsTemp.add(toSong(rs));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             return songsTemp;
         }catch (SQLException e){
@@ -278,7 +304,11 @@ public class SongDAODB implements SongDAO{
             ResultSet rs = statement.executeQuery();
 
             while(rs.next()){
-                songsTemp.add(toSong(rs));
+                try {
+                    songsTemp.add(toSong(rs));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
             return songsTemp;
@@ -301,7 +331,11 @@ public class SongDAODB implements SongDAO{
             ResultSet rs = statement.executeQuery();
 
             while(rs.next()){
-                songsTemp.add(toSong(rs));
+                try {
+                    songsTemp.add(toSong(rs));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
             return songsTemp;
@@ -324,7 +358,11 @@ public class SongDAODB implements SongDAO{
 
             Song songTemp = null;
             if (rs.next()) {
-                songTemp = toSong(rs);
+                try {
+                    songTemp = toSong(rs);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
             statement.close();
@@ -380,7 +418,7 @@ public class SongDAODB implements SongDAO{
         }
     }
 
-    private Song toSong(ResultSet rs) throws SQLException{
+    private Song toSong(ResultSet rs) throws SQLException, IOException {
         Song song = new Song();
 
         song.setSong_id(rs.getInt(this.COL_SONGID));
@@ -397,31 +435,16 @@ public class SongDAODB implements SongDAO{
         return song;
     }
 
-    private byte[] toBlob(Object object){
-        byte[] stream = null;
-        // This is used to convert Java objects into OutputStream
-        try(ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ObjectOutputStream oos = new ObjectOutputStream(baos)){
-            oos.writeObject(object);
-            stream=baos.toByteArray();
-        }catch(IOException e){
-            // Error in serialization
-            e.printStackTrace();
-        }
 
-        return stream;
-    }
-
-    private File toFile(ResultSet rs) throws SQLException{
-        File file = null;
-        try(ByteArrayInputStream bais = new ByteArrayInputStream(rs.getBytes(this.COL_SONGURL));
-            ObjectInputStream ois = new ObjectInputStream(bais);){
-            file = (File) ois.readObject();
-        }catch(IOException e){
-            e.printStackTrace();
-        }catch(ClassNotFoundException e){
-            e.printStackTrace();
+    private File toFile(ResultSet rs) throws SQLException, IOException {
+        File file = new File(rs.getString(this.COL_SONGNAME));
+        OutputStream outputStream = new FileOutputStream(file);
+        InputStream inputStream = rs.getBinaryStream(this.COL_SONGURL);
+        byte[] buffer = new byte[4096];
+        while (inputStream.read(buffer) > 0){
+            outputStream.write(buffer);
         }
+        System.out.println(file.getAbsolutePath());
         return file;
     }
 }
