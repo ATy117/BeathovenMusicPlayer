@@ -49,3 +49,17 @@
     -fx-text-fill: #8ba0a9;
 }
 
+.jfx-popup-Pop{
+    -fx-background-color: #E9B350;
+}
+.vBox-Pop{
+    -fx-background-color: #E9B350;
+}
+
+.jfx-button-RightClick{
+    -fx-background-color: #E9B350;
+    -fx-text-fill: #303030;
+    -fx-font-family: Poppins;
+    -fx-font-size: 12;
+}
+
