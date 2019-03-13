@@ -9,6 +9,7 @@ public class ProfileModel extends Model {
     private List<Playlist> favoritePlaylists = new ArrayList<>();
     private List<Song> favoriteSongs = new ArrayList<>();
     private Song mostPlayedSong;
+    private List<Song> playlistSongs = new ArrayList<>();
 
     public User getUser() {
         return user;
@@ -25,6 +26,8 @@ public class ProfileModel extends Model {
     public Song getMostPlayedSong() {
         return mostPlayedSong;
     }
+
+    public List<Song> getPlaylistSongs(){return playlistSongs;}
 
     public void setUser(User user) {
         this.user = user;
@@ -43,6 +46,11 @@ public class ProfileModel extends Model {
 
     public void setMostPlayedSong(Song mostPlayedSong) {
         this.mostPlayedSong = mostPlayedSong;
+        Notify();
+    }
+
+    public void setPlaylistSongs(List<Song> playlistSongs){
+        this.playlistSongs = playlistSongs;
         Notify();
     }
 }

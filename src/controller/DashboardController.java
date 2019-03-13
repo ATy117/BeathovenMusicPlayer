@@ -5,6 +5,7 @@ import dbservice.*;
 import javafx.stage.Stage;
 import model_rework.*;
 
+import java.io.File;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -105,6 +106,21 @@ public abstract class DashboardController {
 		librarymodel.setSongList(SD.getAllSong(user_id));
 	}
 
+	public void editAlbum(Album a){
+		FileUploader uploader = new PhotoUploader(primaryStage);
+		File photoFile = uploader.getUploadedFile();
+
+		if (photoFile == null)
+			photoFile = a.getCover_URL();
+		else
+			a.setCover_URL(photoFile);
+
+		AlbumDAO AD = new AlbumDAODB(connection);
+
+		AD.updateAlbum(a);
+
+		librarymodel.setAlbumList(AD.getAlbums(a.getUser_id()));
+	}
 
 	public void editSong(Song s){
 		SongDAO SD = new SongDAODB(connection);
@@ -158,6 +174,7 @@ public abstract class DashboardController {
 		if (!SD.checkSongPlaylist(user_id, song_id, playlist_id))
 			SD.addSongToPlaylist(song_id, playlist_id);
 	}
+
 
 	public void searchSong(String word){
 		System.out.println("Search: " + word);

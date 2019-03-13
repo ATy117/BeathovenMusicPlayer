@@ -242,13 +242,14 @@ public class DashboardView extends View {
 						public void handle(MouseEvent event) {
 							if(event.getButton() == MouseButton.SECONDARY)
 								System.out.println("Change Photo");
+								controller.editAlbum(a);
 						}
 					});
 
 					if(a.getCover_URL() == null)
 						imageAlbum = new Image("resources/music.png");
 					else
-						imageAlbum = new Image(a.getCover_URL().toString());
+						imageAlbum = new Image("resources/music.png");
 
 					albumArtist = new Text(a.getArtist_name());
 
