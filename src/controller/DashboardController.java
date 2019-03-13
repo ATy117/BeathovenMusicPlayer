@@ -79,6 +79,16 @@ public abstract class DashboardController {
 
 	}
 
+	public void deleteSongFromPlaylist(int user_id, int song_id, String playlist_name){
+		PlaylistDAO PD = new PlaylistDAODB(connection);
+		SongDAO SD = new SongDAODB(connection);
+
+		int playlist_id = PD.checkPlaylist(user_id, playlist_name);
+		SD.deleteSongFromPlaylist(song_id, playlist_id);
+
+		librarymodel.setSongList(SD.getPlaylistSong(user_id,playlist_id));
+	}
+
 	public void deletePlaylist(int user_id, int playlist_id){
 		PlaylistDAO PD = new PlaylistDAODB(connection);
 		SongDAO SD = new SongDAODB(connection);

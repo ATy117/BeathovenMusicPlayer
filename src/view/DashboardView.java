@@ -443,7 +443,15 @@ public class DashboardView extends View {
 				@Override
 				public void handle(MouseEvent event) {
 					if(event.getButton()== MouseButton.SECONDARY) {
+						vboxSongPlaylist.getChildren().clear();
 						JFXButton delete = new JFXButton("Delete from Playlist");
+						delete.setOnMouseClicked(new EventHandler<MouseEvent>() {
+							@Override
+							public void handle(MouseEvent event) {
+								controller.deleteSongFromPlaylist(s.getUploader_id(), s.getSong_id(), headerLabelText.getText());
+								songPlaylist.hide();
+							}
+						});
 						vboxSongPlaylist.getChildren().add(delete);
 						songPlaylist.setPopupContent(vboxSongPlaylist);
 						songPlaylist.show(songInfo, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
