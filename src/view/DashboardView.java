@@ -114,7 +114,6 @@ public class DashboardView extends View {
 			@Override
 			public void handle(KeyEvent event) {
 				if(event.getCode().equals(KeyCode.ENTER)) {
-					System.out.println(playlistField.getText());
 					newPLaylistVbox.getItems().remove(playlistField);
 					String playlistName = playlistField.getText();
 					if (playlistName.replaceAll("\\s+", "").equals("")){

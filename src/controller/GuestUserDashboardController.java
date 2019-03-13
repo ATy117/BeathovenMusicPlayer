@@ -21,6 +21,10 @@ public class GuestUserDashboardController extends DashboardController {
 		profilemodel = new ProfileModel();
 
 		this.primaryStage = primaryStage;
+		this.primaryStage.setOnCloseRequest(e -> {
+			UserDAO UD = new UserDAODB(connection);
+			UD.deleteUser(profilemodel.getUser().getUser_id());
+		});
 		playerStage = new Stage();
 		profileStage = new Stage();
 		uploadStage = new Stage();
@@ -40,9 +44,7 @@ public class GuestUserDashboardController extends DashboardController {
 		counter++;
 		UD.addUser(guestUser);
 		RegisteredUser GU = (RegisteredUser) UD.getUser(username, password);
-		System.out.println(GU.getUser_id());
 		guestUser.setUser_id(GU.getUser_id());
-
 
 		profilemodel.setUser(guestUser);
 		librarymodel.setSongList(new ArrayList<>());
@@ -59,7 +61,7 @@ public class GuestUserDashboardController extends DashboardController {
 
 	@Override
 	public void viewProfile() {
-		UserRegisterController register = new GuestUserRegisterController(profileStage, playerStage, uploadStage, primaryStage, connection);
+		UserRegisterController register = new GuestUserRegisterController(profilemodel.getUser().getUser_id(), profileStage, playerStage, uploadStage, primaryStage, connection);
 	}
 
 	public void logout(){
