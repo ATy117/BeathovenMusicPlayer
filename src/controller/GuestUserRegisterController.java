@@ -43,6 +43,7 @@ public class GuestUserRegisterController extends UserRegisterController{
 				.build();
 		UD.updateUser(RU);
 		profileStage.close();
+		playerStage.close();
 		DashboardController controller = new RegisteredUserDashboardController(primaryStage, connection, RU);
 		return true;
 	}
