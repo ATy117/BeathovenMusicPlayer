@@ -31,7 +31,12 @@ public abstract class DashboardController {
 	}
 
 	public void showSongPlayer() {
-		SongPlayerController player = new SongPlayerController(songplayermodel, connection, playerStage);
+		if (player == null) {
+			SongPlayerController player = new SongPlayerController(songplayermodel, connection, playerStage);
+		}
+		else {
+			player.showMusicPlayer();
+		}
 	}
 
 	public void addPlaylist(int user_id , String playlistName){

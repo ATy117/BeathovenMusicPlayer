@@ -18,10 +18,19 @@ public class SongPlayerController {
 		this.songplayermodel = songplayermodel;
 		this.connection = connection;
 		this.playerStage = playerStage;
+		this.playerStage.setOnCloseRequest(e -> {
+			playerStage.hide();
+		});
+
 
 		player = new SongPlayerView(playerStage, songplayermodel, this);
 		songplayermodel.Attach(player);
 	}
+
+	public void showMusicPlayer() {
+		playerStage.show();
+	}
+
 
 	public boolean playPauseSong(){
 		return true;
