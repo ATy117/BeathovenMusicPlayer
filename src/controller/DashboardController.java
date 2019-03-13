@@ -9,6 +9,7 @@ import java.io.File;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public abstract class DashboardController {
 
@@ -31,7 +32,12 @@ public abstract class DashboardController {
 	}
 
 	public void showSongPlayer() {
-		SongPlayerController player = new SongPlayerController(songplayermodel, connection, playerStage);
+		if (player == null) {
+			SongPlayerController player = new SongPlayerController(songplayermodel, connection, playerStage);
+		}
+		else {
+			player.showMusicPlayer();
+		}
 	}
 
 	public void addPlaylist(int user_id , String playlistName){
@@ -178,4 +184,7 @@ public abstract class DashboardController {
 
 	public abstract void logout();
 
+	public void playSong(List<Song> playableList) {
+		songplayermodel.playSong(playableList);
+	}
 }

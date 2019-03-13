@@ -27,6 +27,11 @@ import java.io.File;
 
 public class SongPlayerView extends View{
 
+	@FXML public Text titleText;
+	@FXML public Text artistText;
+	@FXML public Text albumText;
+	@FXML public Text genreText;
+	@FXML public Circle songPic;
 	private Stage playerStage;
 	private SongPlayerController controller;
 	private SongPlayerModel songplayermodel;
@@ -42,7 +47,7 @@ public class SongPlayerView extends View{
 	private final boolean repeat = false;
 	private boolean stopRequested = false;
 	private boolean atEndOfMedia = false;
-	private Media currentSong;
+	private Media currentSongMedia;
 
 
 	public SongPlayerView (Stage playerStage, SongPlayerModel songplayermodel, SongPlayerController controller) {
@@ -89,64 +94,6 @@ public class SongPlayerView extends View{
 		repeatBtn.setGraphic(replayView);
 	}
 
-	private void playSong(Media media) {
-
-		currentSong = media;
-		mp3player = new MediaPlayer(currentSong);
-
-		mp3player.currentTimeProperty().addListener(new InvalidationListener()
-		{
-			public void invalidated(Observable ov) {
-				updateValues();
-			}
-		});
-
-		mp3player.setOnPlaying(new Runnable() {
-			public void run() {
-				if (stopRequested) {
-					mp3player.pause();
-					stopRequested = false;
-				} else {
-
-				}
-			}
-		});
-
-		mp3player.setOnPaused(new Runnable() {
-			public void run() {
-				System.out.println("onPaused");
-			}
-		});
-
-		mp3player.setOnReady(new Runnable() {
-			public void run() {
-				duration = mp3player.getMedia().getDuration();
-				updateValues();
-			}
-		});
-
-		mp3player.setCycleCount(repeat ? MediaPlayer.INDEFINITE : 1);
-		mp3player.setOnEndOfMedia(new Runnable() {
-			public void run() {
-				if (!repeat) {
-					//playButton.setText(">");
-					stopRequested = true;
-					atEndOfMedia = true;
-				}
-			}
-		});
-
-		slider.valueProperty().addListener(new InvalidationListener() {
-			public void invalidated(Observable ov) {
-				if (slider.isValueChanging()) {
-					// multiply duration by percentage calculated by slider position
-					mp3player.seek(duration.multiply(slider.getValue() / 100.0));
-				}
-			}
-		});
-
-
-	}
 
 
 	protected void updateValues() {
@@ -210,15 +157,78 @@ public class SongPlayerView extends View{
 
 	@Override
 	public void Update(){
-		//if (songplayermodel.getCurrentSong != null)
-			// currentSong = ^^
+
+		if (mp3player != null) {
+			mp3player.dispose();
+			mp3player = null;
+		}
+
+		if (songplayermodel.getCurrentSong() != null) {
+
+			titleText.setText(songplayermodel.getCurrentSong().getSong_name());
+			artistText.setText(songplayermodel.getCurrentSong().getArtist_name());
+			genreText.setText(songplayermodel.getCurrentSong().getGenre());
+
+			currentSongMedia = new Media(songplayermodel.getCurrentSong().getSong_URL().toURI().toString());
+			mp3player = new MediaPlayer(currentSongMedia);
+			mp3player.play();
+
+			mp3player.currentTimeProperty().addListener(new InvalidationListener()
+			{
+				public void invalidated(Observable ov) {
+					updateValues();
+				}
+			});
+
+			mp3player.setOnPlaying(new Runnable() {
+				public void run() {
+					if (stopRequested) {
+						mp3player.pause();
+						stopRequested = false;
+					} else {
+
+					}
+				}
+			});
+
+			mp3player.setOnPaused(new Runnable() {
+				public void run() {
+					System.out.println("onPaused");
+				}
+			});
+
+			mp3player.setOnReady(new Runnable() {
+				public void run() {
+					duration = mp3player.getMedia().getDuration();
+					updateValues();
+				}
+			});
+
+			mp3player.setCycleCount(repeat ? MediaPlayer.INDEFINITE : 1);
+			mp3player.setOnEndOfMedia(new Runnable() {
+				public void run() {
+					if (!repeat) {
+						//playButton.setText(">");
+						stopRequested = true;
+						atEndOfMedia = true;
+					}
+				}
+			});
+
+			slider.valueProperty().addListener(new InvalidationListener() {
+				public void invalidated(Observable ov) {
+					if (slider.isValueChanging()) {
+						// multiply duration by percentage calculated by slider position
+						mp3player.seek(duration.multiply(slider.getValue() / 100.0));
+					}
+				}
+			});
+		}
+
 	}
 
 
 	public void playPause(ActionEvent actionEvent) {
-
-		controller.playPauseSong();
-
 
 		MediaPlayer.Status status = mp3player.getStatus();
 
@@ -248,14 +258,14 @@ public class SongPlayerView extends View{
 		/*if ffBtn double click*/
 		controller.playNextSong();
 		/*else if ffBtn click once*/
-		controller.fastForward();
+		//ontroller.fastForward();
 	}
 
 	public void prevSong(ActionEvent actionEvent) {
 		/* if rewindBtn doublic click*/
 		controller.playPrevSong();
 		/*else if rewindBtn clicked once*/
-		controller.rewind();
+		//controller.rewind();
 	}
 
 	public void shuffle(ActionEvent actionEvent) {

@@ -11,6 +11,7 @@ public abstract class Model {
     public void Attach(View view)
     {
         views.add(view);
+        Notify();
     }
 
     public void Detach(View view)

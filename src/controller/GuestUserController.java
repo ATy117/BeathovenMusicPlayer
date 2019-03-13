@@ -62,14 +62,13 @@ public class GuestUserController extends DashboardController {
 		UserRegisterController register = new UserRegisterController(profileStage, playerStage, uploadStage, primaryStage, connection);
 	}
 
-
 	public void logout(){
 		UserDAO UD = new UserDAODB(connection);
 		UD.deleteUser(profilemodel.getUser().getUser_id());
 		playerStage.close();
 		uploadStage.close();
 		profileStage.close();
-		//player.endPlayer();
+		player.endPlayer();
 		LoginController login = new LoginController(primaryStage);
 	}
 
