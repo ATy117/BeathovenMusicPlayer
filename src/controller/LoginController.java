@@ -36,6 +36,7 @@ public class LoginController {
 			DashboardController controller = new RegisteredUserDashboardController(primaryStage, connection, dude);
 		} else {
 			System.out.println("Create Account First");
+			return false;
 		}
 		return true;
 	}
