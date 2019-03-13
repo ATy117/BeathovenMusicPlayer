@@ -209,6 +209,16 @@ public class DashboardView extends View {
 						headerLabelText.setText(p.getName());
 
 						JFXButton play = new JFXButton();
+
+						play.setOnMouseClicked(new EventHandler<MouseEvent>() {
+							@Override
+							public void handle(MouseEvent event) {
+								List<Song> playablelist = librarymodel.getSongList();
+								controller.playSong(playablelist);
+
+							}
+						});
+
 						Image playImg = new Image("resources/circlePlay.png");
 						ImageView playView = new ImageView(playImg);
 						play.setGraphic(playView);
@@ -485,6 +495,10 @@ public class DashboardView extends View {
 					for (int i = finalIndex; i <songlist.size(); i++) {
 						playableList.add(songlist.get(i));
 					}
+
+					for (int i = 0; i<finalIndex; i++) {
+						playableList.add(songlist.get(i));
+					}
 					controller.playSong(playableList);
 
 				}
@@ -545,6 +559,11 @@ public class DashboardView extends View {
 					for (int i = finalIndex; i <songlist.size(); i++) {
 						playableList.add(songlist.get(i));
 					}
+
+					for (int i = 0; i<finalIndex; i++) {
+						playableList.add(songlist.get(i));
+					}
+
 					controller.playSong(playableList);
 
 				}
