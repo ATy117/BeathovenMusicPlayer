@@ -1,6 +1,9 @@
 package controller;
 
+import dbservice.AlbumDAO;
+import dbservice.AlbumDAODB;
 import javafx.stage.Stage;
+import model_rework.Album;
 import model_rework.Song;
 import model_rework.SongPlayerModel;
 import view.SongPlayerView;
@@ -68,6 +71,12 @@ public class SongPlayerController {
 
 	public void endPlayer() {
 		player.endPlayer();
+	}
+
+	public Album getAlbumOfSong(int albumID) {
+		AlbumDAO dao = new AlbumDAODB(connection);
+		Album album = dao.getAlbum(albumID);
+		return album;
 	}
 
 }
