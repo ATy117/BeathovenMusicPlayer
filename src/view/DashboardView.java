@@ -22,6 +22,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model_rework.*;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,6 +62,7 @@ public class DashboardView extends View {
 	public JFXPopup songPlaylist = new JFXPopup();
 	public VBox vboxSongPlaylist = new VBox();
 
+	public JFXButton edit;
 
 	private VBox pbox = new VBox();
 	private JFXPopup playlistEdit = new JFXPopup();
@@ -450,10 +452,20 @@ public class DashboardView extends View {
 							}
 						});
 						addPlaylist.getStyleClass().add("jfx-button-RightClick");
+
+						edit = new JFXButton("Edit");
+						edit.setOnMouseClicked(new EventHandler<MouseEvent>() {
+							@Override
+							public void handle(MouseEvent event) {
+								controller.editSong(s);
+							}
+						});
+						edit.getStyleClass().add("jfx-button-RightClick");
 						vbox.getChildren().add(delete);
 						if (profilemodel.getUser() instanceof RegisteredUser)
 							vbox.getChildren().add(favorite);
 						vbox.getChildren().add(addPlaylist);
+						vbox.getChildren().add(edit);
 						songEdit.setPopupContent(vbox);
 						songEdit.show(songAnchorPane, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
 

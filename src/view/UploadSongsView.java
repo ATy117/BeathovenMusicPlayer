@@ -2,6 +2,7 @@ package view;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXPopup;
 import com.jfoenix.controls.JFXTextField;
 import controller.FileUploader;
 import controller.MP3Uploader;
@@ -9,6 +10,10 @@ import controller.StageManager;
 import controller.UploadSongController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -26,6 +31,10 @@ public class UploadSongsView{
 	@FXML public JFXTextField yearField;
 	@FXML public JFXButton uploadBtn;
 	@FXML public JFXButton doneBtn;
+	@FXML public AnchorPane addSongAnchor;
+
+	public JFXPopup errorPopup = new JFXPopup();
+	public AnchorPane errorAnchor = new AnchorPane();
 
 	public UploadSongsView (Stage primaryStage, UploadSongController controller) {
 
@@ -50,9 +59,10 @@ public class UploadSongsView{
 	public void addEditSongDetails(javafx.event.ActionEvent actionEvent) {
 		String songTitle = titleField.getText();
 		String artistName = artistField.getText();
-		String genre = genreField.getValue().toString();
 		String year = yearField.getText();
 		String album = albumField.getText();
+		String genre = genreField.getValue().toString();
+
 
 		String songCheck = songTitle.replaceAll("\\s+", "");
 		String artistCheck = artistName.replaceAll("\\s+", "");
@@ -61,7 +71,27 @@ public class UploadSongsView{
 
 		if (songCheck.equals("") || artistCheck.equals("") || genreCheck.equals("") || yearCheck.equals("") || musicfile == null){
 			System.out.println("make sure all fields are filled");
-	    	primaryStage.close();
+
+			errorAnchor.getStylesheets().add("view/theme.css");
+			errorAnchor.getStyleClass().add("anchorPane-Error");
+
+			Image error = new Image("resources/error.png");
+			ImageView errorView = new ImageView(error);
+			Text errorMessage = new Text("Make sure all fields are Filled");
+			errorMessage.getStyleClass().add("text-input-Error");
+			AnchorPane.setTopAnchor(errorMessage, 93.0);
+			AnchorPane.setLeftAnchor(errorMessage, 20.0);
+			AnchorPane.setTopAnchor(errorView, 30.0);
+			AnchorPane.setLeftAnchor(errorView, 70.0);
+			errorAnchor.getChildren().add(errorView);
+			errorAnchor.getChildren().add(errorMessage);
+
+			errorAnchor.setMinSize(280.0, 150.0);
+			errorAnchor.setMaxSize(280.0, 150.0);
+			errorPopup.setPopupContent(errorAnchor);
+			errorPopup.show(addSongAnchor, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
+
+	    	//primaryStage.close();
 		} else {
 			primaryStage.close();
 			controller.uploadSong(songTitle, artistName, album, genre, year, musicfile);

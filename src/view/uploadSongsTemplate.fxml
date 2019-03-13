@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="435.0" prefWidth="546.0" style="-fx-background-color: #454444" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="addSongAnchor" prefHeight="435.0" prefWidth="546.0" style="-fx-background-color: #454444" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Text fx:id="addEditSong" fill="#eaa830" layoutX="227.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Song">
          <font>
