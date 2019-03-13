@@ -11,4 +11,6 @@ public abstract class UserRegisterController {
 	protected Connection connection;
 
 	public abstract boolean registerUser(String username, String password, String firstname, String lastname, File file);
+
+	public abstract void backPane ();
 }

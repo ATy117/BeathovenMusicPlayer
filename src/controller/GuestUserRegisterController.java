@@ -32,8 +32,9 @@ public class GuestUserRegisterController extends UserRegisterController{
 		return true;
 	}
 
-	public void changeToWelcome() {
-		LoginController login = new LoginController(primaryStage);
+	@Override
+	public void backPane() {
+		profileStage.close();
 	}
 
 }

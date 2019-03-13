@@ -43,4 +43,9 @@ public class NewUserRegisterController extends UserRegisterController {
 			return true;
 		}
 	}
+
+	@Override
+	public void backPane() {
+		LoginController login = new LoginController(primaryStage);
+	}
 }
