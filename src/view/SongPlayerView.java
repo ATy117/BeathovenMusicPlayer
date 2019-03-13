@@ -49,6 +49,12 @@ public class SongPlayerView extends View{
 	private boolean stopRequested = false;
 	private boolean atEndOfMedia = false;
 	private Media currentSongMedia;
+	private ImageView playView;
+	private ImageView pauseView;
+	private ImageView replayClickedView;
+	private ImageView replayView;
+	private ImageView shuffleView;
+	private ImageView shuffleClickedView;
 
 
 	public SongPlayerView (Stage playerStage, SongPlayerModel songplayermodel, SongPlayerController controller) {
@@ -65,9 +71,16 @@ public class SongPlayerView extends View{
 		sm.setWindowName("Beathoven Music Player");
 
 		Image play = new Image("/resources/play.png");
-		ImageView playView = new ImageView(play);
+
+		playView = new ImageView(play);
 		playView.setFitHeight(30);
 		playView.setFitWidth(25);
+
+		Image pause = new Image("/resources/pause.png");
+		pauseView = new ImageView(pause);
+		pauseView.setFitHeight(30);
+		pauseView.setFitWidth(25);
+
 		playBtn.setGraphic(playView);
 
 		Image ff = new Image("/resources/ff.png");
@@ -83,16 +96,35 @@ public class SongPlayerView extends View{
 		rewindBtn.setGraphic(rewindView);
 
 		Image shuffle = new Image("/resources/Shuffle.png");
-		ImageView shuffleView = new ImageView(shuffle);
+
+		shuffleView = new ImageView(shuffle);
 		shuffleView.setFitHeight(16);
 		shuffleView.setFitWidth(20);
+
+		Image shuffleClicked = new Image("/resources/ShuffleClick.png");
+		shuffleClickedView = new ImageView(shuffleClicked);
+		shuffleClickedView.setFitHeight(16);
+		shuffleClickedView.setFitWidth(20);
+
 		shuffleBtn.setGraphic(shuffleView);
 
 		Image replay = new Image("/resources/repeat.png");
-		ImageView replayView = new ImageView(replay);
+		replayView = new ImageView(replay);
 		replayView.setFitHeight(16);
 		replayView.setFitWidth(20);
+
+		Image replayClicked = new Image("/resources/repeatClick.png");
+		replayClickedView = new ImageView(replayClicked);
+		replayClickedView.setFitHeight(16);
+		replayClickedView.setFitWidth(20);
+
 		repeatBtn.setGraphic(replayView);
+
+		titleText.setText("No Song Playing");
+		artistText.setText("");
+		albumText.setText("");
+		genreText.setText("");
+		timeStamp.setText("");
 	}
 
 
@@ -167,22 +199,21 @@ public class SongPlayerView extends View{
 		if (songplayermodel.getCurrentSong() != null) {
 
 			titleText.setText(songplayermodel.getCurrentSong().getSong_name());
-			artistText.setText(songplayermodel.getCurrentSong().getArtist_name());
+			artistText.setText("by " + songplayermodel.getCurrentSong().getArtist_name());
 			genreText.setText(songplayermodel.getCurrentSong().getGenre());
 
 			Album album = controller.getAlbumOfSong(songplayermodel.getCurrentSong().getAlbum_id());
 
 			if (album != null) {
-				albumText.setText(album.getName());
+				albumText.setText("Album: " + album.getName());
 			}
 			else {
-				albumText.setText("");
+				albumText.setText("Album: None");
 			}
-
 
 			currentSongMedia = new Media(songplayermodel.getCurrentSong().getSong_URL().toURI().toString());
 			mp3player = new MediaPlayer(currentSongMedia);
-			mp3player.play();
+			toggleToPlay();
 
 			mp3player.currentTimeProperty().addListener(new InvalidationListener()
 			{
@@ -194,7 +225,7 @@ public class SongPlayerView extends View{
 			mp3player.setOnPlaying(new Runnable() {
 				public void run() {
 					if (stopRequested) {
-						mp3player.pause();
+						toggleToPause();
 						stopRequested = false;
 					} else {
 
@@ -204,7 +235,7 @@ public class SongPlayerView extends View{
 
 			mp3player.setOnPaused(new Runnable() {
 				public void run() {
-					System.out.println("onPaused");
+
 				}
 			});
 
@@ -219,7 +250,7 @@ public class SongPlayerView extends View{
 			mp3player.setOnEndOfMedia(new Runnable() {
 				public void run() {
 					if (!repeat) {
-						//playButton.setText(">");
+						playBtn.setGraphic(playView);
 						stopRequested = true;
 						atEndOfMedia = true;
 					}
@@ -241,54 +272,75 @@ public class SongPlayerView extends View{
 
 	public void playPause(ActionEvent actionEvent) {
 
-		MediaPlayer.Status status = mp3player.getStatus();
+		if (songplayermodel.getCurrentSong() != null ){
+			MediaPlayer.Status status = mp3player.getStatus();
 
-		if (status == MediaPlayer.Status.UNKNOWN  || status == MediaPlayer.Status.HALTED)
-		{
-			// don't do anything in these states
-			return;
-		}
-
-		if ( status == MediaPlayer.Status.PAUSED
-				|| status == MediaPlayer.Status.READY
-				|| status == MediaPlayer.Status.STOPPED)
-		{
-			// rewind the movie if we're sitting at the end
-			if (atEndOfMedia) {
-				mp3player.seek(mp3player.getStartTime());
-				atEndOfMedia = false;
+			if (status == MediaPlayer.Status.UNKNOWN  || status == MediaPlayer.Status.HALTED)
+			{
+				// don't do anything in these states
+				return;
 			}
-			mp3player.play();
-		} else {
-			mp3player.pause();
-		}
 
+			if ( status == MediaPlayer.Status.PAUSED
+					|| status == MediaPlayer.Status.READY
+					|| status == MediaPlayer.Status.STOPPED)
+			{
+				// rewind the movie if we're sitting at the end
+				if (atEndOfMedia) {
+					mp3player.seek(mp3player.getStartTime());
+					atEndOfMedia = false;
+				}
+				toggleToPlay();
+			} else {
+				toggleToPause();
+			}
+		}
 	}
 
 	public void nextSong(ActionEvent actionEvent) {
-		/*if ffBtn double click*/
-		controller.playNextSong();
-		/*else if ffBtn click once*/
-		//ontroller.fastForward();
+
+		if (songplayermodel.getCurrentSong() != null) {
+			controller.playNextSong();
+		}
 	}
 
 	public void prevSong(ActionEvent actionEvent) {
-		/* if rewindBtn doublic click*/
-		controller.playPrevSong();
-		/*else if rewindBtn clicked once*/
-		//controller.rewind();
+		if (songplayermodel.getCurrentSong()!= null) {
+			controller.playPrevSong();
+		}
 	}
 
 	public void shuffle(ActionEvent actionEvent) {
-		controller.shuffle();
+		if(controller.toggleShuffle()) {
+			shuffleBtn.setGraphic(shuffleClickedView);
+		}
+		else {
+			shuffleBtn.setGraphic(shuffleView);
+		}
 	}
 
 	public void repeat(ActionEvent actionEvent) {
-		controller.repeat();
+		if(controller.toggleRepeat()) {
+			repeatBtn.setGraphic(replayClickedView);
+		}
+		else {
+			repeatBtn.setGraphic(replayView);
+		}
 	}
 
-
 	public void endPlayer() {
-		mp3player.stop();
+		if (mp3player != null) {
+			mp3player.stop();
+		}
+	}
+
+	private void toggleToPlay() {
+		mp3player.play();
+		playBtn.setGraphic(pauseView);
+	}
+
+	private void toggleToPause() {
+		mp3player.pause();
+		playBtn.setGraphic(playView);
 	}
 }

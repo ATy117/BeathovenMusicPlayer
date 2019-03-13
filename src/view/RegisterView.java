@@ -58,7 +58,7 @@ public class RegisterView {
 	}
 
 	public void changePane(javafx.event.ActionEvent actionEvent) {
-
+		controller.backPane();
 	}
 
 	public void uploadProfilePic(ActionEvent actionEvent) {

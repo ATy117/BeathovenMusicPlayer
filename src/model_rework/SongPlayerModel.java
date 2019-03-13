@@ -134,5 +134,5 @@ public class SongPlayerModel extends Model {
 	public void setShuffle(boolean shuffled) {
 		this.shuffle = shuffled;
 	}
-	
+
 }

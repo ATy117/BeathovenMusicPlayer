@@ -47,25 +47,29 @@ public class SongPlayerController {
 		return false;
 	}
 
-	public void shuffle(){
+	public boolean toggleShuffle(){
 		if (songplayermodel.isShuffle()) {
 			System.out.println("shuffle is false");
 			songplayermodel.setShuffle(false);
+			return false;
 		}
 		else {
 			System.out.println("shuffle is true");
 			songplayermodel.setShuffle(true);
+			return true;
 		}
 	}
 
-	public void repeat(){
+	public boolean toggleRepeat(){
 		if (songplayermodel.isRepeating()) {
 			System.out.println("repeat is false" );
 			songplayermodel.setRepeating(false);
+			return false;
 		}
 		else {
 			System.out.println("repeat is true");
 			songplayermodel.setRepeating(true);
+			return true;
 		}
 	}
 

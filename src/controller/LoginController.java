@@ -23,7 +23,7 @@ public class LoginController {
 	}
 
 	public boolean loginGuestUser() {
-		DashboardController controller  = new GuestUserController(primaryStage, connection);
+		DashboardController controller  = new GuestUserDashboardController(primaryStage, connection);
 		return true;
 	}
 
@@ -33,7 +33,7 @@ public class LoginController {
 
 		RegisteredUser dude =(RegisteredUser) worker.getUser(username, password);
 		if (dude != null) {
-			DashboardController controller = new RegisteredUserController(primaryStage, connection, dude);
+			DashboardController controller = new RegisteredUserDashboardController(primaryStage, connection, dude);
 		} else {
 			System.out.println("Create Account First");
 			return false;
@@ -43,7 +43,7 @@ public class LoginController {
 
 
 	public void changeToRegister() {
-		UserRegisterController register = new UserRegisterController(primaryStage, connection);
+		UserRegisterController register = new NewUserRegisterController(primaryStage, connection);
 	}
 
 

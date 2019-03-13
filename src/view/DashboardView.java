@@ -2,16 +2,11 @@ package view;
 
 import com.jfoenix.controls.*;
 import controller.DashboardController;
-import controller.RegisteredUserController;
-import controller.SongPlayerController;
 import controller.StageManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -19,22 +14,16 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import model_rework.*;
 
-import java.awt.*;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.awt.Color.WHITE;
 
 public class DashboardView extends View {
 
@@ -125,7 +114,6 @@ public class DashboardView extends View {
 			@Override
 			public void handle(KeyEvent event) {
 				if(event.getCode().equals(KeyCode.ENTER)) {
-					System.out.println(playlistField.getText());
 					newPLaylistVbox.getItems().remove(playlistField);
 					String playlistName = playlistField.getText();
 					if (playlistName.replaceAll("\\s+", "").equals("")){
@@ -436,6 +424,7 @@ public class DashboardView extends View {
 	public void populateSongPlaylistVersion(ArrayList<Song> songlist){
 		populateSongsList.getItems().clear();
 		populateSongsList.getStylesheets().add("view/theme.css");
+		int index=0;
 		for(Song s : songlist)
 		{
 			AnchorPane songInfo = new AnchorPane();
@@ -465,7 +454,19 @@ public class DashboardView extends View {
 			AnchorPane.setLeftAnchor(songYear, 400.0);
 
 			playButton.setGraphic(playView);
+			int finalIndex = index;
+			playButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					List<Song> playableList = new ArrayList<>();
 
+					for (int i = finalIndex; i <songlist.size(); i++) {
+						playableList.add(songlist.get(i));
+					}
+					controller.playSong(playableList);
+
+				}
+			});
 			songInfo.getChildren().add(songYear);
 			songInfo.getChildren().add(songArtist);
 			songInfo.getChildren().add(songGenre);
@@ -495,11 +496,13 @@ public class DashboardView extends View {
 					}
 				}
 			});
+			index++;
 		}
 	}
 
 	public void populateSongAlbumVersion(ArrayList<Song> songlist){
 		populateSongsList.getItems().clear();
+		int index=0;
 		for(Song s : songlist)
 		{
 			AnchorPane songInfo = new AnchorPane();
@@ -511,7 +514,19 @@ public class DashboardView extends View {
 			playView.setFitWidth(15);
 
 			playBtn.setGraphic(playView);
+			int finalIndex = index;
+			playBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					List<Song> playableList = new ArrayList<>();
 
+					for (int i = finalIndex; i <songlist.size(); i++) {
+						playableList.add(songlist.get(i));
+					}
+					controller.playSong(playableList);
+
+				}
+			});
 			Text songTitle = new Text(s.getSong_name());
 			Text genre = new Text(s.getGenre());
 
@@ -527,7 +542,9 @@ public class DashboardView extends View {
 			songInfo.getChildren().add(playBtn);
 			songInfo.getChildren().add(songTitle);
 			populateSongsList.getItems().add(songInfo);
+			index++;
 		}
+
 	}
 
 	private void userInfo()
