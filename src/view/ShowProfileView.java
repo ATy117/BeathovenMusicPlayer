@@ -230,6 +230,7 @@ public class ShowProfileView extends View{
 	public void populateSongFromPlayist(ArrayList<Song> playlistSongs)
 	{
 		songPlaylistList.getItems().clear();
+		int index=0;
 		for(Song s: playlistSongs){
 			AnchorPane songInfo = new AnchorPane();
 			JFXButton playBtn = new JFXButton();
@@ -239,7 +240,28 @@ public class ShowProfileView extends View{
 			Text artistName = new Text(s.getArtist_name());
 			playView.setFitWidth(15);
 			playView.setFitHeight(20);
+
 			playBtn.setGraphic(playView);
+			int finalIndex = index;
+			playBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					List<Song> playableList = new ArrayList<>();
+
+					for (int i = finalIndex; i <playlistSongs.size(); i++) {
+						playableList.add(playlistSongs.get(i));
+					}
+
+					for (int i = 0; i<finalIndex; i++) {
+						playableList.add(playlistSongs.get(i));
+					}
+
+					controller.playSong(playableList);
+
+				}
+			});
+
+			index++;
 
 			AnchorPane.setLeftAnchor(songName, 50.0);
 			AnchorPane.setBottomAnchor(songName, 15.0);
