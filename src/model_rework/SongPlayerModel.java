@@ -32,35 +32,25 @@ public class SongPlayerModel extends Model {
 
 	public boolean playNextSong() {
 
-		finishedList.add(currentSong);
+		if (currentList.isEmpty() && repeating) {
+			repeatFinishedSongs();
+		}
 
-		if (!shuffle) {
-			if (!currentList.isEmpty()) {
+		if (!currentList.isEmpty()) {
+			finishedList.add(currentSong);
+			if (!shuffle) {
 				currentSong = currentList.get(0);
 				currentList.remove(0);
-			} else if (currentList.isEmpty() && repeating) {
-				repeatFinishedSongs();
-				currentSong = currentList.get(0);
-				currentList.remove(0);
-			}
-			else {
-				return false;
-			}
-		} else {
-			if (!currentList.isEmpty()) {
+			} else {
 				int randomindex = getRandonIndexInCurList();
 				currentSong = currentList.get(randomindex);
 				currentList.remove(randomindex);
 			}
-			else if (currentList.isEmpty() && repeating) {
-				repeatFinishedSongs();
-				currentSong = currentList.get(0);
-				currentList.remove(0);
-			}
-			else {
-				return false;
-			}
 		}
+		else {
+			return false;
+		}
+
 		Notify();
 
 		return true;

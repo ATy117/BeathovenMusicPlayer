@@ -25,6 +25,7 @@ import model_rework.Song;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ShowProfileView extends View{
 
@@ -168,6 +169,7 @@ public class ShowProfileView extends View{
 	public void populateFavoriteSong(ArrayList<Song> songList)
 	{
 		faveSongsList.getItems().clear();
+		int index=0;
 		for(Song s: songList){
 			AnchorPane songAnchorPane = new AnchorPane();
 			Image play = new Image("resources/play.png");
@@ -196,6 +198,28 @@ public class ShowProfileView extends View{
 			AnchorPane.setLeftAnchor(songYear, 400.0);
 
 			playButton.setGraphic(playView);
+
+			int finalIndex = index;
+			playButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					List<Song> playableList = new ArrayList<>();
+
+					for (int i = finalIndex; i <songList.size(); i++) {
+						playableList.add(songList.get(i));
+					}
+
+					for (int i = 0; i<finalIndex; i++) {
+						playableList.add(songList.get(i));
+					}
+
+					controller.playSong(playableList);
+
+				}
+			});
+
+			index++;
+
 			songAnchorPane.getChildren().add(playButton);
 			songAnchorPane.getChildren().add(SongName);
 			songAnchorPane.getChildren().add(SongArtist);
@@ -206,6 +230,7 @@ public class ShowProfileView extends View{
 	public void populateSongFromPlayist(ArrayList<Song> playlistSongs)
 	{
 		songPlaylistList.getItems().clear();
+		int index=0;
 		for(Song s: playlistSongs){
 			AnchorPane songInfo = new AnchorPane();
 			JFXButton playBtn = new JFXButton();
@@ -215,7 +240,28 @@ public class ShowProfileView extends View{
 			Text artistName = new Text(s.getArtist_name());
 			playView.setFitWidth(15);
 			playView.setFitHeight(20);
+
 			playBtn.setGraphic(playView);
+			int finalIndex = index;
+			playBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					List<Song> playableList = new ArrayList<>();
+
+					for (int i = finalIndex; i <playlistSongs.size(); i++) {
+						playableList.add(playlistSongs.get(i));
+					}
+
+					for (int i = 0; i<finalIndex; i++) {
+						playableList.add(playlistSongs.get(i));
+					}
+
+					controller.playSong(playableList);
+
+				}
+			});
+
+			index++;
 
 			AnchorPane.setLeftAnchor(songName, 50.0);
 			AnchorPane.setBottomAnchor(songName, 15.0);

@@ -76,7 +76,6 @@ public class DashboardView extends View {
 		this.stage = stage;
 
 
-
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboardTemplate.fxml"));
 		loader.setController(this);
 
@@ -109,11 +108,13 @@ public class DashboardView extends View {
 
 	private void setSongInfo() {
 		if (songplayermodel.getCurrentSong() != null) {
+			String year = String.valueOf(songplayermodel.getCurrentSong().getYear());
 			statusSongText.setText("Now Playing");
 			songTitleText.setText(songplayermodel.getCurrentSong().getSong_name());
 			singerText.setText(songplayermodel.getCurrentSong().getArtist_name());
 			//albumText;
 			genreText.setText(songplayermodel.getCurrentSong().getGenre());
+			yearText.setText(year);
 			//songPic.setGraphic;
 		}
 	}
@@ -350,6 +351,11 @@ public class DashboardView extends View {
 					for (int i = finalIndex; i <songlist.size(); i++) {
 						playableList.add(songlist.get(i));
 					}
+
+					for (int i = 0; i<finalIndex; i++) {
+						playableList.add(songlist.get(i));
+					}
+
 					controller.playSong(playableList);
 
 				}
@@ -636,6 +642,7 @@ public class DashboardView extends View {
 		albumText.setText("");
 		genreText.setText("");
 		singerText.setText("");
+		yearText.setText("");
 
 		headerInformation.getStylesheets().add("view/theme.css");
 		filterCombo.getStyleClass().add("jfx-combo-box-Filter");
