@@ -27,7 +27,12 @@ public class UserDAODB implements UserDAO {
         String passwordTemp = user.getPassword();
         String lastNameTemp = user.getLast_name();
         String firstNameTemp = user.getFirst_name();
-        byte[] avatarBlobTemp = toBlob(user.getAvatarURL());
+        FileInputStream userStream = null;
+        try {
+            userStream = new FileInputStream(user.getAvatarURL());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         System.out.println(usernameTemp + passwordTemp+ firstNameTemp + lastNameTemp);
         String query = "INSERT INTO " +
@@ -39,7 +44,7 @@ public class UserDAODB implements UserDAO {
             statement.setString(2, passwordTemp);
             statement.setString(3, lastNameTemp);
             statement.setString(4, firstNameTemp);
-            statement.setBytes(5, avatarBlobTemp);
+            statement.setBinaryStream(5, userStream);
 
             statement.executeUpdate();
             statement.close();
@@ -72,7 +77,12 @@ public class UserDAODB implements UserDAO {
         String passwordTemp = user.getPassword();
         String lastNameTemp = user.getLast_name();
         String firstNameTemp = user.getFirst_name();
-        byte[] avatarBlobTemp = toBlob(user.getAvatarURL());
+        FileInputStream userStream = null;
+        try {
+            userStream = new FileInputStream(user.getAvatarURL());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         String query = "UPDATE " + this.TABLE + " SET " +
                 this.COL_USERNAME + " = ?, " +
@@ -88,7 +98,7 @@ public class UserDAODB implements UserDAO {
             statement.setString(2, passwordTemp);
             statement.setString(3, lastNameTemp);
             statement.setString(4, firstNameTemp);
-            statement.setBytes(5, avatarBlobTemp);
+            statement.setBinaryStream(5, userStream);
 
             statement.executeUpdate();
             statement.close();
@@ -110,7 +120,11 @@ public class UserDAODB implements UserDAO {
                 String dbUsername = rs.getString(this.COL_USERNAME);
                 String dbPassword = rs.getString(this.COL_PASSWORD);
                 if(dbUsername.equals(username) && dbPassword.equals(password)){
-                    user = toUser(rs);
+                    try {
+                        user = toUser(rs);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     rs.close();
                     statement.close();
                     return user;
@@ -126,7 +140,7 @@ public class UserDAODB implements UserDAO {
         }
     }
 
-    private User toUser(ResultSet rs) throws SQLException{
+    private User toUser(ResultSet rs) throws SQLException, IOException {
         User user = new RegisteredUser();
 
         user.setUser_id(rs.getInt(this.COL_USERID));
@@ -139,17 +153,15 @@ public class UserDAODB implements UserDAO {
         return user;
     }
 
-    private File toFile(ResultSet rs) throws SQLException{
-        File file = null;
-        try(ByteArrayInputStream bais = new ByteArrayInputStream(rs.getBytes(this.COL_AVATARURL));
-            ObjectInputStream ois = new ObjectInputStream(bais);){
-            file = (File) ois.readObject();
-        }catch(IOException e){
-            e.printStackTrace();
-        }catch(ClassNotFoundException e){
-            e.printStackTrace();
+    private File toFile(ResultSet rs) throws SQLException, IOException {
+        File file = new File(rs.getString(this.COL_USERNAME)+".png");
+        OutputStream outputStream = new FileOutputStream(file);
+        InputStream inputStream = rs.getBinaryStream(this.COL_AVATARURL);
+        byte[] buffer = new byte[4096];
+        while (inputStream.read(buffer) > 0){
+            outputStream.write(buffer);
         }
-
+        System.out.println(file.getAbsolutePath());
         return file;
     }
 
@@ -178,18 +190,4 @@ public class UserDAODB implements UserDAO {
         }
     }
 
-    private byte[] toBlob(Object object){
-        byte[] stream = null;
-        // This is used to convert Java objects into OutputStream
-        try(ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ObjectOutputStream oos = new ObjectOutputStream(baos)){
-            oos.writeObject(object);
-            stream=baos.toByteArray();
-        }catch(IOException e){
-            // Error in serialization
-            e.printStackTrace();
-        }
-
-        return stream;
-    }
 }

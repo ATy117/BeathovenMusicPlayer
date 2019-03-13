@@ -31,6 +31,8 @@ import model_rework.*;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import static java.awt.Color.WHITE;
@@ -234,7 +236,7 @@ public class DashboardView extends View {
 
 					Circle albumPic = new Circle();
 					Text albumArtist;
-					Image imageAlbum;
+					Image imageAlbum = null;
 
 					albumPic.setOnMouseClicked(new EventHandler<MouseEvent>() {
 						@Override
@@ -245,10 +247,17 @@ public class DashboardView extends View {
 						}
 					});
 
-					if(a.getCover_URL() == null)
-						imageAlbum = new Image("resources/music.png");
-					else
-						imageAlbum = new Image("resources/music.png");
+					try {
+						FileInputStream inputStream = new FileInputStream(a.getCover_URL());
+						imageAlbum = new Image(inputStream);
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
+					}
+//					if(a.getCover_URL() == null)
+//						imageAlbum = new Image("resources/music.png");
+//					else
+//						imageAlbum = new Image("resources/music.png");
+
 
 					albumArtist = new Text(a.getArtist_name());
 

@@ -75,12 +75,13 @@ public class UploadSongController {
 							.build();
 					sd.addSong(newSong);
 				} else {
+					File imageFile = new File("default.png");
 					AlbumBuilder albumBuilder = new AlbumBuilder();
 					Album newAlbum = albumBuilder
 							.withName(album_name)
 							.withArtist(artist_name)
 							.withArtistID(-1)
-							.withFileCover(null)
+							.withFileCover(imageFile)
 							.withOwner(user_id)
 							.build();
 					ad.addAlbum(newAlbum);
