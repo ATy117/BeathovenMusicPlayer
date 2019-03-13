@@ -75,3 +75,14 @@
     -fx-font-size: 12;
     -fx-pref-width: 115;
 }
+.jfx-combo-box-Filter .cell{
+    -fx-background-color: #303030;
+    -fx-text-fill: #F1F6F1;
+    -fx-font-family: Poppins;
+    -fx-font-size: 12;
+
+}
+
+.jfx-text-field-Register{
+    -fx-text-fill: #8BA0A9;
+}

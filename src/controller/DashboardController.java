@@ -138,36 +138,36 @@ public abstract class DashboardController {
 
 	public void sortSongs (String category){
 		SongComparator comparator;
-		switch (category){
-			case "Genre":
-				comparator = new SongComparatorByGenre();
-				break;
+		if (category != null) {
+			switch (category) {
+				case "Genre":
+					comparator = new SongComparatorByGenre();
+					break;
 
-			case "Title":
-				comparator = new SongComparatorByTitle();
-				break;
+				case "Title":
+					comparator = new SongComparatorByTitle();
+					break;
 
-			case "Year":
-				comparator = new SongComparatorByYear();
-				break;
+				case "Year":
+					comparator = new SongComparatorByYear();
+					break;
 
-			case "Artist":
-				comparator = new SongComparatorByArtist();
-				break;
+				case "Artist":
+					comparator = new SongComparatorByArtist();
+					break;
 
-			case "Album":
-				comparator = new SongComparatorByAlbum();
-				break;
+				case "Album":
+					comparator = new SongComparatorByAlbum();
+					break;
 
-			default:
-				comparator = new SongComparatorByTitle();
-				break;
+				default:
+					comparator = new SongComparatorByTitle();
+					break;
+			}
+			ArrayList<Song> songs = (ArrayList<Song>)librarymodel.getSongList();
+			Collections.sort(songs, comparator);
+			librarymodel.setSongList(songs);
 		}
-
-		ArrayList<Song> songs = (ArrayList<Song>)librarymodel.getSongList();
-		Collections.sort(songs, comparator);
-		librarymodel.setSongList(songs);
-
 	}	
 	public void addSongToPlaylist(int user_id, int song_id, int playlist_id){
 		SongDAO SD = new SongDAODB(connection);

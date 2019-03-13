@@ -199,21 +199,23 @@ public class DashboardView extends View {
 						headerLabelText.setText(p.getName());
 
 						JFXButton play = new JFXButton();
-						Image playImg = new Image("resources/play.png");
+						Image playImg = new Image("resources/circlePlay.png");
 						ImageView playView = new ImageView(playImg);
 						play.setGraphic(playView);
 
-						playView.setFitHeight(40);
-						playView.setFitWidth(30);
+						playView.setFitHeight(50);
+						playView.setFitWidth(50);
 
-						AnchorPane.setLeftAnchor(play, 25.0);
-						AnchorPane.setTopAnchor(play, 4.0);
+
+						AnchorPane.setLeftAnchor(play, 32.0);
+						AnchorPane.setTopAnchor(play, 6.0);
 
 						headerInformation.getChildren().clear();
 						headerInformation.getChildren().add(play);
 						headerInformation.getChildren().remove(uploadAddSongsBtn);
 						headerInformation.getChildren().add(headerLabelText);
 						headerInformation.getChildren().add(filterCombo);
+						filterCombo.setValue(null);
 					}
 				}
 			});
@@ -563,6 +565,8 @@ public class DashboardView extends View {
 
 	private void init()
 	{
+		headerInformation.getStylesheets().add("view/theme.css");
+		filterCombo.getStyleClass().add("jfx-combo-box-Filter");
 		filterCombo.getItems().add("Title");
 		filterCombo.getItems().add("Genre");
 		filterCombo.getItems().add("Album");
@@ -584,6 +588,7 @@ public class DashboardView extends View {
 		headerInformation.getChildren().add(uploadAddSongsBtn);
 		headerInformation.getChildren().add(headerLabelText);
 		headerInformation.getChildren().add(filterCombo);
+		filterCombo.setValue(null);
 
 	}
 

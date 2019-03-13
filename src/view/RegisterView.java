@@ -7,8 +7,12 @@ import controller.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
+import javax.swing.text.html.ImageView;
 import java.io.File;
 
 public class RegisterView {
@@ -22,6 +26,8 @@ public class RegisterView {
 	@FXML private JFXTextField usernameField;
 	@FXML private JFXPasswordField passwordField;
 	@FXML private JFXPasswordField checkPasswordField;
+	@FXML private AnchorPane registerAnchorPane;
+	@FXML private Circle circlePic;
 
 	private File file = null;
 
@@ -36,6 +42,13 @@ public class RegisterView {
 		StageManager sm = new StageManager(primaryStage);
 		sm.loadScene(loader);
 		sm.setWindowName("Register an Account");
+
+		registerAnchorPane.getStylesheets().add("view/theme.css");
+		firstNameField.getStyleClass().add("jfx-text-field-Register");
+		lastNameField.getStyleClass().add("jfx-text-field-Register");
+		usernameField.getStyleClass().add("jfx-text-field-Register");
+		passwordField.getStyleClass().add("jfx-text-field-Register");
+		checkPasswordField.getStyleClass().add("jfx-text-field-Register");
 	}
 
 	public void changePane(javafx.event.ActionEvent actionEvent) {
@@ -45,9 +58,11 @@ public class RegisterView {
 	public void uploadProfilePic(ActionEvent actionEvent) {
 		FileUploader uploader = new PhotoUploader(primaryStage);
 		file = uploader.getUploadedFile();
+		
 	}
 
 	public void registerAccount(ActionEvent actionEvent) {
+
 		String firstname = firstNameField.getText();
 		String lastname = lastNameField.getText();
 		String username = usernameField.getText();

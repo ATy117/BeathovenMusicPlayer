@@ -129,7 +129,7 @@
                   <Font name="Poppins Regular" size="13.0" />
                </font>
             </JFXButton>
-            <JFXComboBox fx:id="filterCombo" focusColor="#8ba0a9" layoutX="381.0" layoutY="6.0" prefHeight="25.0" prefWidth="109.0" promptText="Filter" unFocusColor="#8ba0a9" />
+            <JFXComboBox fx:id="filterCombo" focusColor="#e9c582" layoutX="381.0" layoutY="6.0" prefHeight="25.0" prefWidth="109.0" promptText="Filter" unFocusColor="#8ba0a9" />
          </children>
       </AnchorPane>
       <JFXListView fx:id="populateSongsList" layoutX="163.0" layoutY="125.0" prefHeight="359.0" prefWidth="518.0" style="-fx-background-color: #3d3d3d;" />
