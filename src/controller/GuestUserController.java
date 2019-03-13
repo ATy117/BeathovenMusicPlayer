@@ -16,6 +16,7 @@ public class GuestUserController extends DashboardController {
 
 	public GuestUserController(Stage primaryStage, Connection connection) {
 		this.connection = connection;
+		setAppDirectory();
 		songplayermodel = new SongPlayerModel();
 		librarymodel = new LibraryModel();
 		profilemodel = new ProfileModel();

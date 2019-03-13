@@ -178,4 +178,12 @@ public abstract class DashboardController {
 
 	public abstract void logout();
 
+	public void setAppDirectory(){
+		String appDirectory = System.getProperty("user.home")+ "/Documents/Beathoven/";
+		File appFolder = new File(appDirectory);
+		if(!appFolder.exists()){
+			appFolder.mkdir();
+		}
+	}
+
 }

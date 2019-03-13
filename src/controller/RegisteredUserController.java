@@ -16,6 +16,7 @@ public class RegisteredUserController extends DashboardController {
 
 	public RegisteredUserController(Stage primaryStage, Connection connection, User user) {
 		this.connection = connection;
+		setAppDirectory();
 		songplayermodel = new SongPlayerModel();
 		librarymodel = new LibraryModel();
 		profilemodel = new ProfileModel();
