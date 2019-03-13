@@ -150,6 +150,8 @@ public class DashboardView extends View {
 				public void handle(MouseEvent event) {
 					if (event.getButton() == MouseButton.SECONDARY){
 						pbox.getChildren().clear();
+						pbox.getStylesheets().add("view/theme.css");
+						pbox.getStyleClass().add("vBox-Pop");
 						JFXButton delete = new JFXButton("Delete");
 						delete.setOnMouseClicked(new EventHandler<MouseEvent>() {
 							@Override
@@ -159,6 +161,7 @@ public class DashboardView extends View {
 								controller.deletePlaylist(p.getUser_id(), p.getPlaylist_id());
 							}
 						});
+						delete.getStyleClass().add("jfx-button-RightClick");
 
 						JFXButton favorite = new JFXButton();
 						if (p.isFavorite()){
@@ -182,6 +185,7 @@ public class DashboardView extends View {
 								}
 							});
 						}
+						favorite.getStyleClass().add("jfx-button-RightClick");
 
 						pbox.getChildren().add(delete);
 						if (profilemodel.getUser() instanceof RegisteredUser)
@@ -336,13 +340,16 @@ public class DashboardView extends View {
 			populateSongsList.getStylesheets().add("view/theme.css");
 			populateSongsList.getStyleClass().add("anchorPane");
 			populateSongsList.getStyleClass().add("jfx-listView");
-
+			songAnchorPane.getStylesheets().add("view/theme.css");
+			songEdit.getStyleClass().add("jfx-popup-Pop");
 			songAnchorPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {
 					if(event.getButton() == MouseButton.SECONDARY)
 					{
 						vbox.getChildren().clear();
+						vbox.getStylesheets().add("view/theme.css");
+						vbox.getStyleClass().add("vBox-Pop");
 
 						JFXButton delete = new JFXButton("Delete");
 						delete.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -352,6 +359,7 @@ public class DashboardView extends View {
 								controller.deleteSong(s.getUploader_id(), s.getSong_id(), s.getAlbum_id());
 							}
 						});
+						delete.getStyleClass().add("jfx-button-RightClick");
 
 						JFXButton favorite = new JFXButton();
 						if (s.isFavorite()){
@@ -375,19 +383,22 @@ public class DashboardView extends View {
 								}
 							});
 						}
-
+						favorite.getStyleClass().add("jfx-button-RightClick");
 
 						JFXButton addPlaylist = new JFXButton("Add to Playlist");
 						addPlaylist.setOnMouseClicked(new EventHandler<MouseEvent>() {
 							@Override
 							public void handle(MouseEvent event) {
 								playlistVboxList.getChildren().clear();
+								playlistVboxList.getStylesheets().add("view/theme.css");
+								playlistVboxList.getStyleClass().add("vBox-PopPlaylist");
 
 								for(Playlist p: librarymodel.getPlaylistList())
 								{
 									JFXButton playlistButton = new JFXButton(p.getName());
 									playlistVboxList.getChildren().add(playlistButton);
 
+									playlistButton.getStyleClass().add("jfx-button-RightPlaylist");
 									playlistButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 										@Override
 										public void handle(MouseEvent event) {
@@ -396,12 +407,14 @@ public class DashboardView extends View {
 										}
 									});
 								}
+
+
 								addToPlaylistPop.setPopupContent(playlistVboxList);
 								addToPlaylistPop.show(vbox, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.RIGHT);
 
 							}
 						});
-
+						addPlaylist.getStyleClass().add("jfx-button-RightClick");
 						vbox.getChildren().add(delete);
 						if (profilemodel.getUser() instanceof RegisteredUser)
 							vbox.getChildren().add(favorite);
@@ -463,6 +476,8 @@ public class DashboardView extends View {
 				public void handle(MouseEvent event) {
 					if(event.getButton()== MouseButton.SECONDARY) {
 						vboxSongPlaylist.getChildren().clear();
+						vboxSongPlaylist.getStylesheets().add("view/theme.css");
+						vboxSongPlaylist.getStyleClass().add("vBox-Pop");
 						JFXButton delete = new JFXButton("Delete from Playlist");
 						delete.setOnMouseClicked(new EventHandler<MouseEvent>() {
 							@Override
@@ -471,6 +486,7 @@ public class DashboardView extends View {
 								songPlaylist.hide();
 							}
 						});
+						delete.getStyleClass().add("jfx-button-RightClick");
 						vboxSongPlaylist.getChildren().add(delete);
 						songPlaylist.setPopupContent(vboxSongPlaylist);
 						songPlaylist.show(songInfo, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
