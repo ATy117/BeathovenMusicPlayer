@@ -72,20 +72,20 @@ public class AlbumDAODB implements AlbumDAO{
 
     @Override
     public void updateAlbum(Album album) {
-        int albumIDTemp = album.getUser_id();
+        int albumIDTemp = album.getAlbum_id();
         String albumNameTemp = album.getName();
         int userIDTemp = album.getUser_id();
         byte[] coverURLBlob = toBlob(album.getCover_URL());
         int artistIDTemp = album.getArtist_id();
-        String artistNameTemp = album.getName();
+        String artistNameTemp = album.getArtist_name();
 
         String query = "UPDATE " + this.TABLE + " SET " +
                 this.COL_ALBUMNAME + " = ?, " +
                 this.COL_USERID + " = ?, " +
                 this.COL_COVERURL + " = ?, " +
-                this.COL_ARTISTID + " = ? " +
-                this.COL_ARTISTNAME + " = ?, " +
-                "WHERE " + this.COL_USERID + " = " + albumIDTemp;
+                this.COL_ARTISTID + " = ?, " +
+                this.COL_ARTISTNAME + " = ? " +
+                "WHERE " + this.COL_ALBUMID + " = " + albumIDTemp;
 
         try {
             PreparedStatement statement = connection.prepareStatement(query);
