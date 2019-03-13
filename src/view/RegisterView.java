@@ -7,12 +7,10 @@ import controller.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-import javax.swing.text.html.ImageView;
 import java.io.File;
 
 public class RegisterView {

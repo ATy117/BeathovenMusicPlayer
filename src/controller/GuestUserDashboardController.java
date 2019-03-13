@@ -10,11 +10,11 @@ import view.View;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-public class GuestUserController extends DashboardController {
+public class GuestUserDashboardController extends DashboardController {
 
 	private static int counter = 0;
 
-	public GuestUserController(Stage primaryStage, Connection connection) {
+	public GuestUserDashboardController(Stage primaryStage, Connection connection) {
 		this.connection = connection;
 		songplayermodel = new SongPlayerModel();
 		librarymodel = new LibraryModel();
@@ -59,7 +59,7 @@ public class GuestUserController extends DashboardController {
 
 	@Override
 	public void viewProfile() {
-		UserRegisterController register = new UserRegisterController(profileStage, playerStage, uploadStage, primaryStage, connection);
+		UserRegisterController register = new GuestUserRegisterController(profileStage, playerStage, uploadStage, primaryStage, connection);
 	}
 
 	public void logout(){

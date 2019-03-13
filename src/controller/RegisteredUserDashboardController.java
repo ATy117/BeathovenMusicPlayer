@@ -11,10 +11,10 @@ import view.View;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-public class RegisteredUserController extends DashboardController {
+public class RegisteredUserDashboardController extends DashboardController {
 
 
-	public RegisteredUserController(Stage primaryStage, Connection connection, User user) {
+	public RegisteredUserDashboardController(Stage primaryStage, Connection connection, User user) {
 		this.connection = connection;
 		songplayermodel = new SongPlayerModel();
 		librarymodel = new LibraryModel();

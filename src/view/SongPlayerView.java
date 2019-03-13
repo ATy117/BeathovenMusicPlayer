@@ -327,7 +327,9 @@ public class SongPlayerView extends View{
 	}
 
 	public void endPlayer() {
-		mp3player.stop();
+		if (mp3player != null) {
+			mp3player.stop();
+		}
 	}
 
 	public void toggleToPlay() {
