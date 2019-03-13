@@ -50,6 +50,7 @@ public class DashboardView extends View {
 	@FXML public Circle userPic;
 	@FXML public Text userName;
 	@FXML public VBox songsVbox;
+	@FXML public Text yearText;
 
 
 	public JFXPopup songEdit = new JFXPopup();

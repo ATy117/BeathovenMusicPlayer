@@ -74,6 +74,11 @@
                   <Font name="Poppins Regular" size="14.0" />
                </font>
             </JFXButton>
+            <Text fx:id="yearText" fill="#454444" layoutX="409.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="year">
+               <font>
+                  <Font name="Poppins Regular" size="14.0" />
+               </font>
+            </Text>
          </children></AnchorPane>
       <JFXScrollPane fx:id="songsScroll" layoutY="60.0" prefHeight="426.0" prefWidth="161.0" style="-fx-background-color: #303030">
          <children>
