@@ -59,6 +59,7 @@ public class DashboardView extends View {
 	@FXML public VBox songsVbox;
 	@FXML public Text yearText;
 	@FXML public VBox playlistVbox;
+	@FXML private JFXButton songsBtn;
 
 
 	private VBox pbox = new VBox();
@@ -365,6 +366,7 @@ public class DashboardView extends View {
 			@Override
 			public void handle(KeyEvent event) {
 				if(event.getCode().equals(KeyCode.ENTER)) {
+					songsBtn.fire();
 					controller.searchSong(searchSongField.getText());
 					searchSongField.setText("");
 				}
