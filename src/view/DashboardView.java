@@ -187,7 +187,6 @@ public class DashboardView extends View {
 						errorAnchor.setMaxSize(220.0, 150.0);
 						errorPopup.setPopupContent(errorAnchor);
 						errorPopup.show(mainPane, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
-						System.out.println("Empty playlist name field");
 					} else {
 						controller.addPlaylist(profilemodel.getUser().getUser_id(), playlistName);
 					}
@@ -318,15 +317,13 @@ public class DashboardView extends View {
 					albumPic.setOnMouseClicked(new EventHandler<MouseEvent>() {
 						@Override
 						public void handle(MouseEvent event) {
-							if(event.getButton() == MouseButton.SECONDARY)
-								System.out.println("Change Photo");
-								File photofile = controller.selectPhoto();
-								if (photofile !=  null){
-									popSource = 2;
-									a.setCover_URL(photofile);
-									controller.editAlbum(a);
-									newAlbumBtn.fire();
-								}
+							File photofile = controller.selectPhoto();
+							if (photofile != null) {
+								popSource = 2;
+								a.setCover_URL(photofile);
+								controller.editAlbum(a);
+								newAlbumBtn.fire();
+							}
 						}
 					});
 

@@ -100,7 +100,6 @@ public class ShowProfileView extends View{
 					u.setAvatarURL(photoFile);
 					controller.editUser(u);
 				}
-
 			}
 		});
 	}
@@ -170,7 +169,6 @@ public class ShowProfileView extends View{
 				errorAnchor.setMaxSize(220.0, 150.0);
 				errorPopup.setPopupContent(errorAnchor);
 				errorPopup.show(myProfilePane, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
-				System.out.println("Empty Fields");
 			} else {
 				User RU = profilemodel.getUser();
 				RU.setFirst_name(newfirst);
