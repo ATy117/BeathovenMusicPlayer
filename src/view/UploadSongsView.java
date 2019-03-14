@@ -53,6 +53,10 @@ public class UploadSongsView{
 	public void uploadSongFile(javafx.event.ActionEvent actionEvent) {
 		FileUploader file = new MP3Uploader(primaryStage);
 		musicfile = file.getUploadedFile();
+		if(musicfile != null){
+			addSongAnchor.getStylesheets().add("view/theme.css");
+			uploadBtn.setText("File Uploaded!");
+		}
 	}
 
 

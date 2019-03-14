@@ -2,6 +2,7 @@ package view;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXPopup;
 import com.jfoenix.controls.JFXTextField;
 import controller.StageManager;
 import controller.ShowProfileController;
@@ -47,6 +48,8 @@ public class ShowProfileView extends View{
 	@FXML public AnchorPane myProfilePane;
 	@FXML public Circle profilePic;
 
+	private JFXPopup errorPopup = new JFXPopup();
+	private AnchorPane errorAnchor = new AnchorPane();
 
 	public ShowProfileView (Stage primaryStage, ProfileModel profilemodel, ShowProfileController controller) {
 
@@ -60,6 +63,14 @@ public class ShowProfileView extends View{
 		StageManager sm = new StageManager(primaryStage);
 		sm.loadScene(loader);
 		sm.setWindowName("My Profile");
+
+		profilePic.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				if(event.getButton() == MouseButton.SECONDARY)
+					System.out.println("Change Profile Photo");
+			}
+		});
 
 		Update();
 		init();
@@ -78,7 +89,7 @@ public class ShowProfileView extends View{
 			profilePic.setFill(new ImagePattern(defaultPic));
 		}
 		else{
-			Image userPic = new Image("src/resources/"+profilemodel.getUser().getAvatarURL().getName());
+			Image userPic = new Image("resources/"+profilemodel.getUser().getAvatarURL().getName());
 			profilePic.setFill(new ImagePattern(userPic));
 		}
 
@@ -116,6 +127,7 @@ public class ShowProfileView extends View{
 	public void editUserDetails(ActionEvent actionEvent) {
 		controller.editUserDetails();
 
+
 		if(editBtn.getText().equals("edit"))
 		{
 			firstNameField.getStyleClass().add("jfx-text-field-WhenEdit");
@@ -140,6 +152,24 @@ public class ShowProfileView extends View{
 			String lastcheck = newlast.replaceAll("\\s+", "");
 
 			if (firstcheck.equals("") || lastcheck.equals("")){
+				errorAnchor.getStylesheets().add("view/theme.css");
+				errorAnchor.getStyleClass().add("anchorPane-Error");
+
+				Image error = new Image("resources/error.png");
+				ImageView errorView = new ImageView(error);
+				Text errorMessage = new Text("Empty Fields");
+				errorMessage.getStyleClass().add("text-input-Error");
+				AnchorPane.setTopAnchor(errorMessage, 93.0);
+				AnchorPane.setLeftAnchor(errorMessage, 50.0);
+				AnchorPane.setTopAnchor(errorView, 30.0);
+				AnchorPane.setLeftAnchor(errorView, 27.0);
+				errorAnchor.getChildren().add(errorView);
+				errorAnchor.getChildren().add(errorMessage);
+
+				errorAnchor.setMinSize(220.0, 150.0);
+				errorAnchor.setMaxSize(220.0, 150.0);
+				errorPopup.setPopupContent(errorAnchor);
+				errorPopup.show(myProfilePane, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
 				System.out.println("Empty Fields");
 			} else {
 				User RU = profilemodel.getUser();
@@ -149,13 +179,7 @@ public class ShowProfileView extends View{
 			}
 		}
 
-		profilePic.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				if(event.getButton() == MouseButton.SECONDARY)
-					System.out.println("Change Profile Photo");
-			}
-		});
+
 
 	}
 

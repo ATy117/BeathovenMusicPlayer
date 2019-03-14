@@ -53,6 +53,7 @@ public class DashboardView extends View {
 	@FXML public JFXTextField searchSongField;
 	@FXML public Text headerLabelText;
 	@FXML public AnchorPane headerInformation;
+	@FXML public AnchorPane mainPane;
 	@FXML public Circle userPic;
 	@FXML public Text userName;
 	@FXML public VBox songsVbox;
@@ -63,6 +64,9 @@ public class DashboardView extends View {
 	private VBox pbox = new VBox();
 	private JFXPopup playlistEdit = new JFXPopup();
 	private int popSource = 0;
+
+	private JFXPopup errorPopup = new JFXPopup();
+	private AnchorPane errorAnchor = new AnchorPane();
 
 	private PopulateSongs<AnchorPane> populateSongs;
 
@@ -153,6 +157,24 @@ public class DashboardView extends View {
 					playlistVbox.getChildren().add(newPLaylistVbox);
 					String playlistName = playlistField.getText();
 					if (playlistName.replaceAll("\\s+", "").equals("")){
+						errorAnchor.getStylesheets().add("view/theme.css");
+						errorAnchor.getStyleClass().add("anchorPane-Error");
+
+						Image error = new Image("resources/error.png");
+						ImageView errorView = new ImageView(error);
+						Text errorMessage = new Text("Empty Playlist Name");
+						errorMessage.getStyleClass().add("text-input-Error");
+						AnchorPane.setTopAnchor(errorMessage, 93.0);
+						AnchorPane.setLeftAnchor(errorMessage, 20.0);
+						AnchorPane.setTopAnchor(errorView, 30.0);
+						AnchorPane.setLeftAnchor(errorView, 27.0);
+						errorAnchor.getChildren().add(errorView);
+						errorAnchor.getChildren().add(errorMessage);
+
+						errorAnchor.setMinSize(220.0, 150.0);
+						errorAnchor.setMaxSize(220.0, 150.0);
+						errorPopup.setPopupContent(errorAnchor);
+						errorPopup.show(mainPane, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
 						System.out.println("Empty playlist name field");
 					} else {
 						controller.addPlaylist(profilemodel.getUser().getUser_id(), playlistName);
