@@ -64,8 +64,11 @@ public class RegisterView {
 
 	public void uploadProfilePic(ActionEvent actionEvent) {
 		file = controller.getPhotoFile();
-		Image uploaded = new Image(file.toURI().toString());
-		circlePic.setFill(new ImagePattern(uploaded));
+
+		if (file!=null) {
+			Image uploaded = new Image(file.toURI().toString());
+			circlePic.setFill(new ImagePattern(uploaded));
+		}
 	}
 
 	public void registerAccount(ActionEvent actionEvent) {
