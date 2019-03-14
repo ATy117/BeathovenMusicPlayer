@@ -3,7 +3,7 @@
     -fx-text-fill: #E9C582;
 }
 
-.jfx-button-Playlist{
+.jfx-button-Playlist {
     -fx-background-color: #303030;
     -fx-text-fill: #E9C582;
     -fx-pref-width: 100;
@@ -27,9 +27,14 @@
     -fx-font-size: 16;
 }
 
-.jfx-listView{
+.jfx-list-cell{
     -fx-background-color: #303030;
     -fx-control-inner-background: #303030;
+
+}
+
+.jfx-list-cell .jfx-rippler{
+    -jfx-rippler-fill: #E9C582;
 }
 
 .jfx-text-field-WhenDone{
@@ -55,7 +60,11 @@
 
 .jfx-text-field-Search{
     -fx-text-fill: #8ba0a9;
+    -fx-font-family: Poppins;
+    -fx-font-size: 13;
+
 }
+
 
 .jfx-popup-Pop{
     -fx-background-color: #E9B350;
@@ -121,4 +130,25 @@
     -fx-font-size: 14;
     -fx-font-family: Poppins;
     -fx-fill: #E9C582;
+}
+
+.jfx-slider .track{
+    -fx-background-color:  #E9C582;
+}
+
+.jfx-slider .thumb{
+    -fx-background-color: #E9B350;
+}
+
+.jfx-slider .colored-track{
+    -fx-background-color: #EAA830;
+}
+
+.jfx-slider .slider-value{
+    -fx-fill: #303030;
+    -fx-stroke: #303030;
+}
+
+.jfx-slider .animated-thumb{
+    -fx-background-color: #E9B350;
 }
