@@ -318,10 +318,9 @@ public class DashboardView extends View {
 			userName.setText(profilemodel.getUser().getFirst_name() + " " + profilemodel.getUser().getLast_name() );
 		if(profilemodel.getUser().getAvatarURL() == null){
 			userPicImage = new Image("src/resources/user.png");
-
 		}
 		else {
-			userPicImage = new Image("resources/" +profilemodel.getUser().getAvatarURL().getName());
+			userPicImage = new Image("resources/" + profilemodel.getUser().getAvatarURL().getName());
 		}
 
 		userPic.setFill(new ImagePattern(userPicImage));
