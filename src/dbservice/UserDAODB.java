@@ -18,6 +18,7 @@ public class UserDAODB implements UserDAO {
 
     public UserDAODB(Connection connection) {
         this.connection = connection;
+        setAppDirectory();
     }
 
     @Override
@@ -154,7 +155,7 @@ public class UserDAODB implements UserDAO {
     }
 
     private File toFile(ResultSet rs) throws SQLException, IOException {
-        File file = new File(System.getProperty("user.home") + "/Documents/Beathoven/" + rs.getString(this.COL_USERNAME)+".png");
+        File file = new File("src/resources/" + rs.getString(this.COL_USERNAME)+".png");
         OutputStream outputStream = new FileOutputStream(file);
         InputStream inputStream = rs.getBinaryStream(this.COL_AVATARURL);
         byte[] buffer = new byte[4096];
@@ -187,6 +188,14 @@ public class UserDAODB implements UserDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    private void setAppDirectory() {
+        String appdirectory = System.getProperty("user.home") + "/Documents/Beathoven/";
+        File appfolder = new File(appdirectory);
+        if(!appfolder.exists()) {
+            appfolder.mkdir();
         }
     }
 
