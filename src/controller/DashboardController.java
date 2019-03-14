@@ -160,11 +160,10 @@ public abstract class DashboardController {
 				default:
 					comparator = SongComparatorByTitle.getInstance();
 					break;
-			
-				ArrayList<Song> songs = (ArrayList<Song>)librarymodel.getSongList();
-				Collections.sort(songs, comparator);
-				librarymodel.setSongList(songs);
 			}
+			ArrayList<Song> songs = (ArrayList<Song>)librarymodel.getSongList();
+			Collections.sort(songs, comparator);
+			librarymodel.setSongList(songs);
 		}
 	}	
 	public void addSongToPlaylist(int user_id, int song_id, int playlist_id){
