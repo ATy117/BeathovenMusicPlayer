@@ -44,6 +44,8 @@ public class SongPlayerView extends View{
 	@FXML public JFXButton rewindBtn;
 	@FXML public JFXButton shuffleBtn;
 	@FXML public JFXButton repeatBtn;
+	@FXML public JFXButton volumeDown;
+	@FXML public JFXButton volumeUp;
 	private Duration duration;
 	private final boolean repeat = false;
 	private boolean stopRequested = false;
@@ -119,6 +121,19 @@ public class SongPlayerView extends View{
 		replayClickedView.setFitWidth(20);
 
 		repeatBtn.setGraphic(replayView);
+
+		Image down = new Image("resources/volDown.png");
+		ImageView downView = new ImageView(down);
+		volumeDown.setGraphic(downView);
+		downView.setFitHeight(17);
+		downView.setFitWidth(15);
+
+		Image up  = new Image("resources/volUp.png");
+		ImageView upView = new ImageView(up);
+		volumeUp.setGraphic(upView);
+		upView.setFitWidth(15);
+		upView.setFitHeight(17);
+
 
 		titleText.setText("No Song Playing");
 		artistText.setText("");
@@ -342,5 +357,13 @@ public class SongPlayerView extends View{
 	private void toggleToPause() {
 		mp3player.pause();
 		playBtn.setGraphic(playView);
+	}
+
+	public void turnVolumeUp(ActionEvent actionEvent){
+		System.out.println("VolumeUp");
+	}
+
+	public void turnVolumeDown(ActionEvent actionEvent){
+		System.out.println("VolumeDown");
 	}
 }
