@@ -30,6 +30,8 @@ import java.util.List;
 
 public class DashboardView extends View {
 
+
+
 	public Text statusSongText;
 	public Text songTitleText;
 	public Text singerText;
@@ -63,7 +65,6 @@ public class DashboardView extends View {
 	private int popSource = 0;
 
 	private PopulateSongs<AnchorPane> populateSongs;
-
 
 	public DashboardView (Stage stage, SongPlayerModel songplayermodel, LibraryModel librarymodel, ProfileModel profilemodel, DashboardController controller) {
 
@@ -277,6 +278,9 @@ public class DashboardView extends View {
 					Text albumArtist;
 					Image imageAlbum;
 
+					imageAlbum = new Image(a.getCover_URL().toURI().toString());
+
+
 					albumPic.setOnMouseClicked(new EventHandler<MouseEvent>() {
 						@Override
 						public void handle(MouseEvent event) {
@@ -286,10 +290,6 @@ public class DashboardView extends View {
 						}
 					});
 
-					if(a.getCover_URL() == null)
-						imageAlbum = new Image("resources/music.png");
-					else
-						imageAlbum = new Image("resources/music.png");
 
 					albumArtist = new Text("by " + a.getArtist_name());
 					albumArtist.getStyleClass().add("text-input-Artist");

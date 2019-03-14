@@ -111,10 +111,7 @@ public abstract class DashboardController {
 		FileUploader uploader = new PhotoUploader(primaryStage);
 		File photoFile = uploader.getUploadedFile();
 
-		if (photoFile == null)
-			photoFile = a.getCover_URL();
-		else
-			a.setCover_URL(photoFile);
+		a.setCover_URL(photoFile);
 
 		AlbumDAO AD = new AlbumDAODB(connection);
 

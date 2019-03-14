@@ -17,9 +17,6 @@ public abstract class View {
 		this.controller = controller;
 	}
 
-	public void viewProfile() {
-		controller.viewProfile();
-	}
 
 
 
