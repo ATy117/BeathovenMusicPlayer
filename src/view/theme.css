@@ -2,6 +2,10 @@
 .text-field{
     -fx-text-fill: #E9C582;
 }
+.jfx-button-Upload{
+    -fx-background-color: #e9c592;
+    -fx-text-fill: #303030;
+}
 
 .jfx-button-Playlist {
     -fx-background-color: #303030;
