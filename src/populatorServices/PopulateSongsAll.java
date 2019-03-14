@@ -203,7 +203,7 @@ public class PopulateSongsAll implements PopulateSongs<AnchorPane> {
                         if (profilemodel.getUser() instanceof RegisteredUser)
                             vbox.getChildren().add(favorite);
                         vbox.getChildren().add(addPlaylist);
-                        vbox.getChildren().add(edit);
+                        //vbox.getChildren().add(edit);
                         songEdit.setPopupContent(vbox);
                         songEdit.show(songAnchorPane, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
                     }
