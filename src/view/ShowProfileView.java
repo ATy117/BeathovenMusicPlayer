@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 import model_rework.Playlist;
 import model_rework.ProfileModel;
 import model_rework.Song;
+import model_rework.User;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -131,6 +132,21 @@ public class ShowProfileView extends View{
 			editBtn.setText("edit");
 			firstNameField.setEditable(false);
 			lastnameField.setEditable(false);
+
+			String newfirst = firstNameField.getText();
+			String newlast = lastnameField.getText();
+
+			String firstcheck = newfirst.replaceAll("\\s+", "");
+			String lastcheck = newlast.replaceAll("\\s+", "");
+
+			if (firstcheck.equals("") || lastcheck.equals("")){
+				System.out.println("Empty Fields");
+			} else {
+				User RU = profilemodel.getUser();
+				RU.setFirst_name(newfirst);
+				RU.setLast_name(newlast);
+				controller.editUser(RU);
+			}
 		}
 
 		profilePic.setOnMouseClicked(new EventHandler<MouseEvent>() {

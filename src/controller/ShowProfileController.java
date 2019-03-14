@@ -1,14 +1,8 @@
 package controller;
 
-import dbservice.PlaylistDAO;
-import dbservice.PlaylistDAODB;
-import dbservice.SongDAO;
-import dbservice.SongDAODB;
+import dbservice.*;
 import javafx.stage.Stage;
-import model_rework.Playlist;
-import model_rework.ProfileModel;
-import model_rework.Song;
-import model_rework.SongPlayerModel;
+import model_rework.*;
 import view.ShowProfileView;
 import view.DashboardView;
 import view.LoginView;
@@ -46,6 +40,13 @@ public class ShowProfileController {
     public void getSongFromPlaylist(int user_id, int playlist_id){
 		SongDAO SD = new SongDAODB(connection);
 		profilemodel.setPlaylistSongs(SD.getPlaylistSong(user_id, playlist_id));
+	}
+
+	public boolean editUser(User RU){
+		UserDAO UD = new UserDAODB(connection);
+		UD.updateUser(RU);
+		profilemodel.setUser(UD.getUser(RU.getUsername(), RU.getPassword()));
+		return true;
 	}
 
     public void backToDashboard() {
