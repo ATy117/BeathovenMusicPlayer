@@ -27,6 +27,7 @@ public class StageManager {
 
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
+		stage.setResizable(false);
 		stage.show();
 
 		return true;
