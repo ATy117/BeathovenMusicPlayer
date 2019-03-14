@@ -80,7 +80,7 @@ public class UploadSongController {
 							.withName(album_name)
 							.withArtist(artist_name)
 							.withArtistID(-1)
-							.withFileCover(null)
+							.withFileCover(new File("src/resources/music.png"))
 							.withOwner(user_id)
 							.build();
 					ad.addAlbum(newAlbum);
@@ -104,6 +104,7 @@ public class UploadSongController {
 			}
 		}
 		librarymodel.setSongList(sd.getAllSong(user_id));
+		System.out.println(librarymodel.getSongList().size());
 		librarymodel.setAlbumList(ad.getAlbums(user_id));
 		uploadStage.close();
 		return true;

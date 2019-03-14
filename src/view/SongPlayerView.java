@@ -10,16 +10,21 @@ import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model_rework.Album;
 import model_rework.SongPlayerModel;
 
 import java.io.File;
@@ -27,6 +32,11 @@ import java.io.File;
 
 public class SongPlayerView extends View{
 
+	@FXML public Label titleText;
+	@FXML public Label artistText;
+	@FXML public Label albumText;
+	@FXML public Text genreText;
+	@FXML public Circle songPic;
 	private Stage playerStage;
 	private SongPlayerController controller;
 	private SongPlayerModel songplayermodel;
@@ -38,11 +48,21 @@ public class SongPlayerView extends View{
 	@FXML public JFXButton rewindBtn;
 	@FXML public JFXButton shuffleBtn;
 	@FXML public JFXButton repeatBtn;
+	@FXML public JFXButton volumeDown;
+	@FXML public JFXButton volumeUp;
+	@FXML public AnchorPane songPlayerAnchor;
 	private Duration duration;
 	private final boolean repeat = false;
 	private boolean stopRequested = false;
 	private boolean atEndOfMedia = false;
-	private Media currentSong;
+	private Media currentSongMedia;
+	private ImageView playView;
+	private ImageView pauseView;
+	private ImageView replayClickedView;
+	private ImageView replayView;
+	private ImageView shuffleView;
+	private ImageView shuffleClickedView;
+	private double volume;
 
 
 	public SongPlayerView (Stage playerStage, SongPlayerModel songplayermodel, SongPlayerController controller) {
@@ -59,9 +79,16 @@ public class SongPlayerView extends View{
 		sm.setWindowName("Beathoven Music Player");
 
 		Image play = new Image("/resources/play.png");
-		ImageView playView = new ImageView(play);
+
+		playView = new ImageView(play);
 		playView.setFitHeight(30);
 		playView.setFitWidth(25);
+
+		Image pause = new Image("/resources/pause.png");
+		pauseView = new ImageView(pause);
+		pauseView.setFitHeight(30);
+		pauseView.setFitWidth(25);
+
 		playBtn.setGraphic(playView);
 
 		Image ff = new Image("/resources/ff.png");
@@ -77,76 +104,66 @@ public class SongPlayerView extends View{
 		rewindBtn.setGraphic(rewindView);
 
 		Image shuffle = new Image("/resources/Shuffle.png");
-		ImageView shuffleView = new ImageView(shuffle);
+
+		shuffleView = new ImageView(shuffle);
 		shuffleView.setFitHeight(16);
 		shuffleView.setFitWidth(20);
+
+		Image shuffleClicked = new Image("/resources/ShuffleClick.png");
+		shuffleClickedView = new ImageView(shuffleClicked);
+		shuffleClickedView.setFitHeight(16);
+		shuffleClickedView.setFitWidth(20);
+
 		shuffleBtn.setGraphic(shuffleView);
 
 		Image replay = new Image("/resources/repeat.png");
-		ImageView replayView = new ImageView(replay);
+		replayView = new ImageView(replay);
 		replayView.setFitHeight(16);
 		replayView.setFitWidth(20);
+
+		Image replayClicked = new Image("/resources/repeatClick.png");
+		replayClickedView = new ImageView(replayClicked);
+		replayClickedView.setFitHeight(16);
+		replayClickedView.setFitWidth(20);
+
 		repeatBtn.setGraphic(replayView);
+
+		Image down = new Image("resources/volDown.png");
+		ImageView downView = new ImageView(down);
+		volumeDown.setGraphic(downView);
+		downView.setFitHeight(17);
+		downView.setFitWidth(15);
+
+		Image up  = new Image("resources/volUp.png");
+		ImageView upView = new ImageView(up);
+		volumeUp.setGraphic(upView);
+		upView.setFitWidth(15);
+		upView.setFitHeight(17);
+
+		titleText.setMaxWidth(Double.MAX_VALUE);
+		titleText.setAlignment(Pos.CENTER);
+		artistText.setMaxWidth(Double.MAX_VALUE);
+		artistText.setAlignment(Pos.CENTER);
+		albumText.setMaxWidth(Double.MAX_VALUE);
+		albumText.setAlignment(Pos.CENTER);
+
+        titleText.setText("No Song Playing");
+        artistText.setText("");
+        albumText.setText("");
+        genreText.setText("");
+        timeStamp.setText("");
+
+		songPlayerAnchor.getStylesheets().add("view/theme.css");
+		slider.getStyleClass().add("jfx-slider");
+
+		titleText.setText("No Song Playing");
+		artistText.setText("");
+		albumText.setText("");
+		genreText.setText("");
+		timeStamp.setText("");
+		volume =0.5;
 	}
 
-	private void playSong(Media media) {
-
-		currentSong = media;
-		mp3player = new MediaPlayer(currentSong);
-
-		mp3player.currentTimeProperty().addListener(new InvalidationListener()
-		{
-			public void invalidated(Observable ov) {
-				updateValues();
-			}
-		});
-
-		mp3player.setOnPlaying(new Runnable() {
-			public void run() {
-				if (stopRequested) {
-					mp3player.pause();
-					stopRequested = false;
-				} else {
-
-				}
-			}
-		});
-
-		mp3player.setOnPaused(new Runnable() {
-			public void run() {
-				System.out.println("onPaused");
-			}
-		});
-
-		mp3player.setOnReady(new Runnable() {
-			public void run() {
-				duration = mp3player.getMedia().getDuration();
-				updateValues();
-			}
-		});
-
-		mp3player.setCycleCount(repeat ? MediaPlayer.INDEFINITE : 1);
-		mp3player.setOnEndOfMedia(new Runnable() {
-			public void run() {
-				if (!repeat) {
-					//playButton.setText(">");
-					stopRequested = true;
-					atEndOfMedia = true;
-				}
-			}
-		});
-
-		slider.valueProperty().addListener(new InvalidationListener() {
-			public void invalidated(Observable ov) {
-				if (slider.isValueChanging()) {
-					// multiply duration by percentage calculated by slider position
-					mp3player.seek(duration.multiply(slider.getValue() / 100.0));
-				}
-			}
-		});
-
-
-	}
 
 
 	protected void updateValues() {
@@ -210,64 +227,181 @@ public class SongPlayerView extends View{
 
 	@Override
 	public void Update(){
-		//if (songplayermodel.getCurrentSong != null)
-			// currentSong = ^^
-	}
 
-
-	public void playPause(ActionEvent actionEvent) {
-
-		controller.playPauseSong();
-
-
-		MediaPlayer.Status status = mp3player.getStatus();
-
-		if (status == MediaPlayer.Status.UNKNOWN  || status == MediaPlayer.Status.HALTED)
-		{
-			// don't do anything in these states
-			return;
+		if (mp3player != null) {
+			mp3player.dispose();
+			mp3player = null;
 		}
 
-		if ( status == MediaPlayer.Status.PAUSED
-				|| status == MediaPlayer.Status.READY
-				|| status == MediaPlayer.Status.STOPPED)
-		{
-			// rewind the movie if we're sitting at the end
-			if (atEndOfMedia) {
-				mp3player.seek(mp3player.getStartTime());
-				atEndOfMedia = false;
+		if (songplayermodel.getCurrentSong() != null) {
+			titleText.setText(songplayermodel.getCurrentSong().getSong_name());
+			artistText.setText("by " + songplayermodel.getCurrentSong().getArtist_name());
+			genreText.setText(songplayermodel.getCurrentSong().getGenre());
+
+			Image albpic = controller.getImageFromAlbum(songplayermodel.getCurrentSong().getAlbum_id());
+			songPic.setFill(new ImagePattern(albpic));
+
+			Album album = controller.getAlbumOfSong(songplayermodel.getCurrentSong().getAlbum_id());
+
+			if (album != null) {
+				albumText.setText("Album: " + album.getName());
 			}
-			mp3player.play();
-		} else {
-			mp3player.pause();
+			else {
+				albumText.setText("Album: None");
+			}
+
+			currentSongMedia = new Media(songplayermodel.getCurrentSong().getSong_URL().toURI().toString());
+			mp3player = new MediaPlayer(currentSongMedia);
+			toggleToPlay();
+			setPlayerFunctionality();
 		}
 
 	}
 
 	public void nextSong(ActionEvent actionEvent) {
-		/*if ffBtn double click*/
-		controller.playNextSong();
-		/*else if ffBtn click once*/
-		controller.fastForward();
+
+		if (songplayermodel.getCurrentSong() != null) {
+			controller.playNextSong();
+		}
 	}
 
 	public void prevSong(ActionEvent actionEvent) {
-		/* if rewindBtn doublic click*/
-		controller.playPrevSong();
-		/*else if rewindBtn clicked once*/
-		controller.rewind();
+		if (songplayermodel.getCurrentSong()!= null) {
+			controller.playPrevSong();
+		}
 	}
 
 	public void shuffle(ActionEvent actionEvent) {
-		controller.shuffle();
+		if(controller.toggleShuffle()) {
+			shuffleBtn.setGraphic(shuffleClickedView);
+		}
+		else {
+			shuffleBtn.setGraphic(shuffleView);
+		}
 	}
 
 	public void repeat(ActionEvent actionEvent) {
-		controller.repeat();
+		if(controller.toggleRepeat()) {
+			repeatBtn.setGraphic(replayClickedView);
+		}
+		else {
+			repeatBtn.setGraphic(replayView);
+		}
+	}
+
+	public void endPlayer() {
+		if (mp3player != null) {
+			mp3player.stop();
+		}
+	}
+
+	private void toggleToPlay() {
+		mp3player.play();
+		playBtn.setGraphic(pauseView);
+	}
+
+	private void toggleToPause() {
+		mp3player.pause();
+		playBtn.setGraphic(playView);
+	}
+
+	public void turnVolumeUp(ActionEvent actionEvent){
+		if (mp3player!= null) {
+			if (volume < 1) {
+				volume += 0.1;
+				System.out.println("VolumeUp");
+				mp3player.setVolume(volume);
+			}
+		}
+
+	}
+
+	public void turnVolumeDown(ActionEvent actionEvent){
+
+		if (mp3player!=null) {
+			if (volume > 0) {
+				volume -= 0.1;
+				System.out.println("VolumeDown");
+				mp3player.setVolume(volume);
+			}
+		}
+	}
+
+	private void setPlayerFunctionality() {
+		mp3player.currentTimeProperty().addListener(new InvalidationListener()
+		{
+			public void invalidated(Observable ov) {
+				updateValues();
+			}
+		});
+
+		mp3player.setOnPlaying(new Runnable() {
+			public void run() {
+				if (stopRequested) {
+					toggleToPause();
+					stopRequested = false;
+				} else {
+
+				}
+			}
+		});
+
+		mp3player.setOnPaused(new Runnable() {
+			public void run() {
+
+			}
+		});
+
+		mp3player.setOnReady(new Runnable() {
+			public void run() {
+				duration = mp3player.getMedia().getDuration();
+				updateValues();
+			}
+		});
+
+		mp3player.setCycleCount(repeat ? MediaPlayer.INDEFINITE : 1);
+		mp3player.setOnEndOfMedia(new Runnable() {
+			public void run() {
+				playBtn.setGraphic(playView);
+				controller.playNextSong();
+			}
+		});
+
+		slider.valueProperty().addListener(new InvalidationListener() {
+			public void invalidated(Observable ov) {
+				if (slider.isValueChanging()) {
+					// multiply duration by percentage calculated by slider position
+					mp3player.seek(duration.multiply(slider.getValue() / 100.0));
+				}
+			}
+		});
 	}
 
 
-	public void endPlayer() {
-		mp3player.stop();
+	public void playPause(ActionEvent actionEvent) {
+
+		if (songplayermodel.getCurrentSong() != null ){
+			MediaPlayer.Status status = mp3player.getStatus();
+
+			if (status == MediaPlayer.Status.UNKNOWN  || status == MediaPlayer.Status.HALTED)
+			{
+				// don't do anything in these states
+				return;
+			}
+
+			if ( status == MediaPlayer.Status.PAUSED
+					|| status == MediaPlayer.Status.READY
+					|| status == MediaPlayer.Status.STOPPED)
+			{
+				// rewind the movie if we're sitting at the end
+				if (atEndOfMedia) {
+					mp3player.seek(mp3player.getStartTime());
+					atEndOfMedia = false;
+				}
+				toggleToPlay();
+			} else {
+				toggleToPause();
+			}
+		}
 	}
 }

@@ -11,16 +11,20 @@ import view.View;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-public class RegisteredUserController extends DashboardController {
+public class RegisteredUserDashboardController extends DashboardController {
 
 
-	public RegisteredUserController(Stage primaryStage, Connection connection, User user) {
+	public RegisteredUserDashboardController(Stage primaryStage, Connection connection, User user) {
 		this.connection = connection;
 		songplayermodel = new SongPlayerModel();
 		librarymodel = new LibraryModel();
 		profilemodel = new ProfileModel();
 
 		this.primaryStage = primaryStage;
+		this.primaryStage.setOnCloseRequest(e -> {
+			Platform.exit();
+		});
+
 		playerStage = new Stage();
 		profileStage = new Stage();
 		uploadStage = new Stage();
@@ -48,14 +52,14 @@ public class RegisteredUserController extends DashboardController {
 	}
 
 	public void viewProfile() {
-		ShowProfileController profileview = new ShowProfileController(profilemodel, connection, profileStage);
+		ShowProfileController profileview = new ShowProfileController(profilemodel, songplayermodel, connection, profileStage);
 	}
 
 	public void logout() {
 		playerStage.close();
 		uploadStage.close();
 		profileStage.close();
-		//player.endPlayer();
+		player.endPlayer();
 		LoginController login = new LoginController(primaryStage);
 	}
 

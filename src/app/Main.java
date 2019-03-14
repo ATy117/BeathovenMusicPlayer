@@ -13,9 +13,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setOnCloseRequest(e -> {
-            Platform.exit();
-        });
         LoginController startup = new LoginController(primaryStage);
     }
 

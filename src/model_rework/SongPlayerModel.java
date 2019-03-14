@@ -1,5 +1,8 @@
 package model_rework;
 
+import controller.SongPlayerController;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -18,45 +21,41 @@ public class SongPlayerModel extends Model {
 		shuffle = false;
 	}
 
+
 	public void playSong(List<Song> currentList) {
 		this.currentList = new ArrayList<>(currentList);
 		finishedList = new ArrayList<>();
 		currentSong = this.currentList.get(0);
 		this.currentList.remove(0);
-
+		Notify();
 	}
 
 	public boolean playNextSong() {
 
-		finishedList.add(currentSong);
+		if (currentList.isEmpty() && repeating) {
+			repeatFinishedSongs();
+		}
 
-		if (!shuffle) {
-			if (!currentList.isEmpty()) {
-				currentSong = currentList.get(0);
-				currentList.remove(0);
-			} else if (currentList.isEmpty() && repeating) {
-				repeatFinishedSongs();
+		if (!currentList.isEmpty()) {
+			finishedList.add(currentSong);
+			if(!shuffle) {
 				currentSong = currentList.get(0);
 				currentList.remove(0);
 			}
 			else {
-				return false;
-			}
-		} else {
-			if (!currentList.isEmpty()) {
 				int randomindex = getRandonIndexInCurList();
 				currentSong = currentList.get(randomindex);
 				currentList.remove(randomindex);
 			}
-			else {
-				return false;
-			}
 		}
-
+		else {
+			return false;
+		}
+		Notify();
 
 		return true;
-
 	}
+
 
 	private int getRandonIndexInCurList() {
 
@@ -75,19 +74,14 @@ public class SongPlayerModel extends Model {
 
 		if (!finishedList.isEmpty()) {
 			currentList.add(0, currentSong);
-			Song backsong = finishedList.get(finishedList.size() - 1);
-			finishedList.remove(finishedList.size() - 1);
-			currentSong = backsong;
-		}
-		else  {
-			return false;
+			currentSong = finishedList.get(finishedList.size()-1);
+			finishedList.remove(finishedList.size()-1);
 		}
 
+		Notify();
 
 		return true;
 	}
-
-
 
 	private void repeatFinishedSongs () {
 		currentList = new ArrayList<>(finishedList);
@@ -127,8 +121,5 @@ public class SongPlayerModel extends Model {
 	public void setShuffle(boolean shuffled) {
 		this.shuffle = shuffled;
 	}
-
-
-
 
 }

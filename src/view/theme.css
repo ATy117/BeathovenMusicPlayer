@@ -2,13 +2,25 @@
 .text-field{
     -fx-text-fill: #E9C582;
 }
+.jfx-button-Upload{
+    -fx-background-color: #e9c592;
+    -fx-text-fill: #303030;
+}
 
-.jfx-button-Playlist{
+.jfx-button-Playlist {
     -fx-background-color: #303030;
     -fx-text-fill: #E9C582;
     -fx-pref-width: 100;
     -fx-font-family: Poppins;
     -fx-font-size: 16;
+}
+
+.jfx-button-FavePlaylist{
+    -fx-background-color: #303030;
+    -fx-text-fill: #E9C582;
+    -fx-pref-width: 90;
+    -fx-font-family: Poppins;
+    -fx-font-size: 14;
 }
 
 .jfx-button-Album{
@@ -19,9 +31,14 @@
     -fx-font-size: 16;
 }
 
-.jfx-listView{
+.jfx-list-cell{
     -fx-background-color: #303030;
     -fx-control-inner-background: #303030;
+
+}
+
+.jfx-list-cell .jfx-rippler{
+    -jfx-rippler-fill: #E9C582;
 }
 
 .jfx-text-field-WhenDone{
@@ -47,5 +64,95 @@
 
 .jfx-text-field-Search{
     -fx-text-fill: #8ba0a9;
+    -fx-font-family: Poppins;
+    -fx-font-size: 13;
+
 }
 
+
+.jfx-popup-Pop{
+    -fx-background-color: #E9B350;
+}
+.vBox-Pop{
+    -fx-background-color: #E9B350;
+}
+
+.jfx-button-RightClick{
+    -fx-background-color: #E9B350;
+    -fx-text-fill: #303030;
+    -fx-font-family: Poppins;
+    -fx-font-size: 12;
+    -fx-pref-width: 130;
+}
+
+.vBox-PopPlaylist{
+    -fx-background-color: #8ba0a9;
+}
+
+.jfx-button-RightPlaylist{
+    -fx-background-color: #8ba0a9;
+    -fx-text-fill: #303030;
+    -fx-font-family: Poppins;
+    -fx-font-size: 12;
+    -fx-pref-width: 115;
+}
+.jfx-combo-box-Filter .cell{
+    -fx-background-color: #303030;
+    -fx-text-fill: #F1F6F1;
+    -fx-font-family: Poppins;
+    -fx-font-size: 12;
+
+}
+
+.jfx-text-field-Register{
+    -fx-text-fill: #8BA0A9;
+}
+
+.text-input-Error{
+    -fx-font-family: Poppins;
+    -fx-font-size: 18;
+    -fx-fill: #8ba0a9;
+}
+
+.anchorPane-Error{
+    -fx-background-color: #303030;
+}
+
+.text-input-PopulateTitle{
+    -fx-font-family: Poppins;
+    -fx-font-size: 14;
+    -fx-fill: #f1f6f1;
+}
+
+.text-input-PopulateInfo{
+    -fx-font-size: 12;
+    -fx-font-family: Poppins;
+    -fx-fill: #f1f6f1;
+}
+
+.text-input-Artist{
+    -fx-font-size: 14;
+    -fx-font-family: Poppins;
+    -fx-fill: #E9C582;
+}
+
+.jfx-slider .track{
+    -fx-background-color:  #E9C582;
+}
+
+.jfx-slider .thumb{
+    -fx-background-color: #E9B350;
+}
+
+.jfx-slider .colored-track{
+    -fx-background-color: #EAA830;
+}
+
+.jfx-slider .slider-value{
+    -fx-fill: #303030;
+    -fx-stroke: #303030;
+}
+
+.jfx-slider .animated-thumb{
+    -fx-background-color: #E9B350;
+}

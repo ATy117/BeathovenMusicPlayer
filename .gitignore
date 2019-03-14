@@ -6,6 +6,7 @@
 .idea
 *.iml
 out
+src/resources
 build
 gen### macOS template
 # General

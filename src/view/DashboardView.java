@@ -2,16 +2,11 @@ package view;
 
 import com.jfoenix.controls.*;
 import controller.DashboardController;
-import controller.RegisteredUserController;
-import controller.SongPlayerController;
 import controller.StageManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -19,23 +14,31 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import model_rework.*;
+import populatorServices.PopulateSongs;
+import populatorServices.PopulateSongsAlbum;
+import populatorServices.PopulateSongsAll;
+import populatorServices.PopulateSongsPlaylist;
 
-import java.awt.*;
-import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
-
-import static java.awt.Color.WHITE;
+import java.util.List;
 
 public class DashboardView extends View {
+
+
+
+	public Text statusSongText;
+	public Text songTitleText;
+	public Text singerText;
+	public Text albumText;
+	public Text genreText;
+	public Circle songPic;
 
 	private SongPlayerModel songplayermodel;
 	private LibraryModel librarymodel;
@@ -43,27 +46,30 @@ public class DashboardView extends View {
 
 	@FXML public JFXButton myProfileBtn;
 	@FXML public JFXButton uploadAddSongsBtn;
-	@FXML public JFXListView populateSongsList;
+	@FXML public JFXButton addPlaylistBtn;
+	@FXML public JFXListView<AnchorPane> populateSongsList;
 	@FXML public JFXListView newPLaylistVbox;
 	@FXML public JFXListView albumsVbox;
 	@FXML public JFXComboBox filterCombo;
 	@FXML public JFXTextField searchSongField;
 	@FXML public Text headerLabelText;
 	@FXML public AnchorPane headerInformation;
+	@FXML public AnchorPane mainPane;
 	@FXML public Circle userPic;
 	@FXML public Text userName;
 	@FXML public VBox songsVbox;
+	@FXML public Text yearText;
+	@FXML public VBox playlistVbox;
 
-
-	public JFXPopup songEdit = new JFXPopup();
-	public VBox vbox = new VBox();
-	public JFXPopup addToPlaylistPop = new JFXPopup();
-	public VBox playlistVboxList = new VBox();
 
 	private VBox pbox = new VBox();
 	private JFXPopup playlistEdit = new JFXPopup();
 	private int popSource = 0;
 
+	private JFXPopup errorPopup = new JFXPopup();
+	private AnchorPane errorAnchor = new AnchorPane();
+
+	private PopulateSongs<AnchorPane> populateSongs;
 
 	public DashboardView (Stage stage, SongPlayerModel songplayermodel, LibraryModel librarymodel, ProfileModel profilemodel, DashboardController controller) {
 
@@ -73,12 +79,14 @@ public class DashboardView extends View {
 		this.profilemodel = profilemodel;
 		this.stage = stage;
 
+
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("dashboardTemplate.fxml"));
 		loader.setController(this);
 
 		StageManager sm = new StageManager(stage);
 		sm.loadScene(loader);
 		sm.setWindowName("Beathoven");
+
 
 		searchSong();
 		Update();
@@ -89,16 +97,46 @@ public class DashboardView extends View {
 	@Override
 	public void Update() {
 		if (popSource == 0) {
-			populateSong((ArrayList<Song>) librarymodel.getSongList());
+			populateSongs = new PopulateSongsAll(controller, librarymodel, profilemodel);
 		} else if (popSource == 1){
-			populateSongPlaylistVersion((ArrayList<Song>) librarymodel.getSongList());
+			populateSongs = new PopulateSongsPlaylist(controller, headerLabelText.getText());
 		} else if (popSource == 2){
-			populateSongAlbumVersion((ArrayList<Song>) librarymodel.getSongList());
+			populateSongs = new PopulateSongsAlbum(controller);
 		}
+
+		populateSongsList.getItems().clear();
+		populateSongsList.getStylesheets().add("view/theme.css");
+		populateSongsList.getStyleClass().add("jfx-list-cell");
+		populateSongsList.getItems().addAll(populateSongs.populateListView(librarymodel.getSongList()));
 
 		populateAlbum((ArrayList<Album>)librarymodel.getAlbumList());
 		populatePlaylist((ArrayList<Playlist>)librarymodel.getPlaylistList());
 		userInfo();
+		setSongInfo();
+	}
+
+	private void setSongInfo() {
+		if (songplayermodel.getCurrentSong() != null) {
+			String year = String.valueOf(songplayermodel.getCurrentSong().getYear());
+			statusSongText.setText("Now Playing");
+			songTitleText.setText(songplayermodel.getCurrentSong().getSong_name());
+			singerText.setText(songplayermodel.getCurrentSong().getArtist_name());
+
+			Album album = controller.getAlbumOfSong(songplayermodel.getCurrentSong().getAlbum_id());
+
+			if (album != null) {
+				albumText.setText("Album: " + album.getName());
+			}
+			else {
+				albumText.setText("Album: None");
+			}
+
+			genreText.setText(songplayermodel.getCurrentSong().getGenre());
+			yearText.setText(year);
+
+			Image albumpic = controller.getImageFromAlbum(songplayermodel.getCurrentSong().getAlbum_id());
+			songPic.setFill(new ImagePattern(albumpic));
+		}
 	}
 
 	public void changePane(ActionEvent actionEvent) {
@@ -112,19 +150,43 @@ public class DashboardView extends View {
 	}
 
 	public void createPlaylist(ActionEvent actionEvent) {
+		playlistVbox.getStylesheets().add("view/theme.css");
+		playlistVbox.getChildren().remove(addPlaylistBtn);
+		playlistVbox.getChildren().remove(newPLaylistVbox);
 		JFXTextField playlistField = new JFXTextField();
 		playlistField.setPrefWidth(50);
 		playlistField.setPromptText("Playlist Name");
-		newPLaylistVbox.getItems().add(playlistField);
+		playlistField.getStyleClass().add("jfx-text-field-Search");
+		playlistVbox.getChildren().add(playlistField);
+		playlistVbox.getChildren().add(newPLaylistVbox);
 		playlistField.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
 				if(event.getCode().equals(KeyCode.ENTER)) {
-					System.out.println(playlistField.getText());
-					newPLaylistVbox.getItems().remove(playlistField);
+					playlistVbox.getChildren().remove(playlistField);
+					playlistVbox.getChildren().remove(newPLaylistVbox);
+					playlistVbox.getChildren().add(addPlaylistBtn);
+					playlistVbox.getChildren().add(newPLaylistVbox);
 					String playlistName = playlistField.getText();
 					if (playlistName.replaceAll("\\s+", "").equals("")){
-						System.out.println("Empty playlist name field");
+						errorAnchor.getStylesheets().add("view/theme.css");
+						errorAnchor.getStyleClass().add("anchorPane-Error");
+
+						Image error = new Image("resources/error.png");
+						ImageView errorView = new ImageView(error);
+						Text errorMessage = new Text("Empty Playlist Name");
+						errorMessage.getStyleClass().add("text-input-Error");
+						AnchorPane.setTopAnchor(errorMessage, 93.0);
+						AnchorPane.setLeftAnchor(errorMessage, 20.0);
+						AnchorPane.setTopAnchor(errorView, 30.0);
+						AnchorPane.setLeftAnchor(errorView, 27.0);
+						errorAnchor.getChildren().add(errorView);
+						errorAnchor.getChildren().add(errorMessage);
+
+						errorAnchor.setMinSize(220.0, 150.0);
+						errorAnchor.setMaxSize(220.0, 150.0);
+						errorPopup.setPopupContent(errorAnchor);
+						errorPopup.show(mainPane, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
 					} else {
 						controller.addPlaylist(profilemodel.getUser().getUser_id(), playlistName);
 					}
@@ -134,9 +196,11 @@ public class DashboardView extends View {
 	}
 
 	public void populatePlaylist(ArrayList<Playlist> playlists){
+
 		newPLaylistVbox.getStylesheets().add("view/theme.css");
 		newPLaylistVbox.getItems().clear();
 		for (Playlist p: playlists){
+			AnchorPane playlistAnchor = new AnchorPane();
 			JFXButton playlistButton = new JFXButton(p.getName());
 			playlistButton.getStyleClass().add("jfx-button-Playlist");
 			playlistButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -144,6 +208,8 @@ public class DashboardView extends View {
 				public void handle(MouseEvent event) {
 					if (event.getButton() == MouseButton.SECONDARY){
 						pbox.getChildren().clear();
+						pbox.getStylesheets().add("view/theme.css");
+						pbox.getStyleClass().add("vBox-Pop");
 						JFXButton delete = new JFXButton("Delete");
 						delete.setOnMouseClicked(new EventHandler<MouseEvent>() {
 							@Override
@@ -153,6 +219,7 @@ public class DashboardView extends View {
 								controller.deletePlaylist(p.getUser_id(), p.getPlaylist_id());
 							}
 						});
+						delete.getStyleClass().add("jfx-button-RightClick");
 
 						JFXButton favorite = new JFXButton();
 						if (p.isFavorite()){
@@ -176,53 +243,107 @@ public class DashboardView extends View {
 								}
 							});
 						}
+						favorite.getStyleClass().add("jfx-button-RightClick");
 
 						pbox.getChildren().add(delete);
 						if (profilemodel.getUser() instanceof RegisteredUser)
 							pbox.getChildren().add(favorite);
 
 						playlistEdit.setPopupContent(pbox);
-						playlistEdit.show(newPLaylistVbox, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
+						playlistEdit.show(playlistAnchor, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
 					} else {
 						popSource = 1;
 						controller.getAllSongsFromPlaylist(profilemodel.getUser().getUser_id(), p.getPlaylist_id());
 						headerLabelText.setText(p.getName());
+
+						JFXButton play = new JFXButton();
+
+						play.setOnMouseClicked(new EventHandler<MouseEvent>() {
+							@Override
+							public void handle(MouseEvent event) {
+								List<Song> playablelist = librarymodel.getSongList();
+								controller.playSong(playablelist);
+
+							}
+						});
+
+						Image playImg = new Image("resources/circlePlay.png");
+						ImageView playView = new ImageView(playImg);
+						play.setGraphic(playView);
+
+						playView.setFitHeight(50);
+						playView.setFitWidth(50);
+
+
+						AnchorPane.setLeftAnchor(play, 32.0);
+						AnchorPane.setTopAnchor(play, 6.0);
+
+						headerInformation.getChildren().clear();
+						headerInformation.getChildren().add(play);
 						headerInformation.getChildren().remove(uploadAddSongsBtn);
+						headerInformation.getChildren().add(headerLabelText);
+						headerInformation.getChildren().add(filterCombo);
+						filterCombo.setValue(null);
 					}
 				}
 			});
-			newPLaylistVbox.getItems().add(playlistButton);
+			playlistAnchor.getChildren().add(playlistButton);
+			newPLaylistVbox.getItems().add(playlistAnchor);
 			newPLaylistVbox.getStyleClass().add("jfx-listView");
 		}
 	}
 
 
-	public void populateAlbum(ArrayList<Album> albumList)
-	{
+	public void populateAlbum(ArrayList<Album> albumList) {
 		albumsVbox.getStylesheets().add("view/theme.css");
 		albumsVbox.getItems().clear();
 		for(Album a: albumList){
 			JFXButton newAlbumBtn = new JFXButton(a.getName());
 			newAlbumBtn.getStyleClass().add("jfx-button-Album");
-			newAlbumBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			newAlbumBtn.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
-				public void handle(MouseEvent event) {
+				public void handle(ActionEvent event) {
 					popSource = 2;
 					controller.getAllSongsFromAlbum(profilemodel.getUser().getUser_id(), a.getAlbum_id());
+					headerInformation.getChildren().clear();
+
 					Circle albumPic = new Circle();
+					Text albumArtist;
 					Image imageAlbum;
-					if(a.getCover_URL() == null)
-						imageAlbum = new Image("resources/music.png");
-					else
-						imageAlbum = new Image(a.getCover_URL().toString());
+
+					imageAlbum = new Image(a.getCover_URL().toURI().toString());
+
+
+					albumPic.setOnMouseClicked(new EventHandler<MouseEvent>() {
+						@Override
+						public void handle(MouseEvent event) {
+							File photofile = controller.selectPhoto();
+							if (photofile != null) {
+								popSource = 2;
+								a.setCover_URL(photofile);
+								controller.editAlbum(a);
+								newAlbumBtn.fire();
+							}
+						}
+					});
+
+
+					albumArtist = new Text("by " + a.getArtist_name());
+					albumArtist.getStyleClass().add("text-input-Artist");
 
 					albumPic.setFill(new ImagePattern(imageAlbum));
 					albumPic.setRadius(25);
 					AnchorPane.setLeftAnchor(albumPic, 40.0);
 					AnchorPane.setTopAnchor(albumPic, 10.0);
+					AnchorPane.setLeftAnchor(albumArtist,130.0 );
+					AnchorPane.setTopAnchor(albumArtist, 33.0);
+
+					headerLabelText.setText(a.getName());
+					headerInformation.getChildren().add(albumArtist);
+					headerInformation.getChildren().add(headerLabelText);
 					headerInformation.getChildren().add(albumPic);
 					headerInformation.getChildren().remove(uploadAddSongsBtn);
-					headerLabelText.setText(a.getName());
+
 				}
 			});
 			albumsVbox.getItems().add(newAlbumBtn);
@@ -231,245 +352,22 @@ public class DashboardView extends View {
 
 	}
 
-	/*public void albumCreated(String name)
-	{
-		albumsVbox.getStylesheets().add("view/theme.css");
-		JFXButton newAlbum = new JFXButton(name);
-		albumsVbox.getItems().add(newAlbum);
-	}*/
-
 	public void showMusicPlayer() {
 		controller.showSongPlayer();
 	}
 
-	public void populateSong(ArrayList<Song> songlist){
-		populateSongsList.getItems().clear();
-		for(Song s : songlist)
-		{
-			AnchorPane songAnchorPane = new AnchorPane();
-			Image play = new Image("resources/play.png");
-			ImageView playView = new ImageView(play);
-			JFXButton playButton = new JFXButton();
-			Text SongName = new Text(s.getSong_name());
-			Text SongArtist = new Text("by " + s.getArtist_name());
-			Text songYear = new Text(s.getYear()+"");
-			Text songGenre = new Text(s.getGenre());
-
-			SongName.setFont(Font.font("Poppins", 14));
-			SongArtist.setFont(Font.font("Poppins", 12));
-			songGenre.setFont(Font.font("Poppins", 12));
-			songYear.setFont(Font.font("Poppins", 12));
-
-			playView.setFitWidth(16);
-			playView.setFitHeight(20);
-
-			AnchorPane.setLeftAnchor(SongName, 50.0);
-			AnchorPane.setBottomAnchor(SongName, 15.0);
-			AnchorPane.setTopAnchor(SongArtist, 15.0);
-			AnchorPane.setLeftAnchor(SongArtist, 50.0);
-			AnchorPane.setLeftAnchor(songGenre, 400.0);
-			AnchorPane.setBottomAnchor(songGenre, 15.0);
-			AnchorPane.setTopAnchor(songYear, 15.0);
-			AnchorPane.setLeftAnchor(songYear, 400.0);
-
-			playButton.setGraphic(playView);
-			songAnchorPane.getChildren().add(SongArtist);
-			songAnchorPane.getChildren().add(songGenre);
-			songAnchorPane.getChildren().add(songYear);
-			songAnchorPane.getChildren().add(SongName);
-			songAnchorPane.getChildren().add(playButton);
-			populateSongsList.getItems().add(songAnchorPane);
-			populateSongsList.getStylesheets().add("view/theme.css");
-			populateSongsList.getStyleClass().add("anchorPane");
-			populateSongsList.getStyleClass().add("jfx-listView");
-
-			songAnchorPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-					if(event.getButton() == MouseButton.SECONDARY)
-					{
-						vbox.getChildren().clear();
-
-						JFXButton delete = new JFXButton("Delete");
-						delete.setOnMouseClicked(new EventHandler<MouseEvent>() {
-							@Override
-							public void handle(MouseEvent event) {
-								songEdit.hide();
-								controller.deleteSong(s.getUploader_id(), s.getSong_id(), s.getAlbum_id());
-							}
-						});
-
-						JFXButton favorite = new JFXButton();
-						if (s.isFavorite()){
-							favorite.setText("Unfavorite");
-							favorite.setOnMouseClicked(new EventHandler<MouseEvent>() {
-								@Override
-								public void handle(MouseEvent event) {
-									s.setFavorite(false);
-									songEdit.hide();
-									controller.editSong(s);
-								}
-							});
-						} else {
-							favorite.setText("Favorite");
-							favorite.setOnMouseClicked(new EventHandler<MouseEvent>() {
-								@Override
-								public void handle(MouseEvent event) {
-									s.setFavorite(true);
-									songEdit.hide();
-									controller.editSong(s);
-								}
-							});
-						}
-
-
-						JFXButton addPlaylist = new JFXButton("Add to Playlist");
-						addPlaylist.setOnMouseClicked(new EventHandler<MouseEvent>() {
-							@Override
-							public void handle(MouseEvent event) {
-								playlistVboxList.getChildren().clear();
-
-								for(Playlist p: librarymodel.getPlaylistList())
-								{
-									JFXButton playlistButton = new JFXButton(p.getName());
-									playlistVboxList.getChildren().add(playlistButton);
-
-									playlistButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-										@Override
-										public void handle(MouseEvent event) {
-											controller.addSongToPlaylist(s.getUploader_id(), s.getSong_id(), p.getPlaylist_id());
-											addToPlaylistPop.hide();
-										}
-									});
-								}
-								addToPlaylistPop.setPopupContent(playlistVboxList);
-								addToPlaylistPop.show(vbox, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.RIGHT);
-
-							}
-						});
-
-						vbox.getChildren().add(delete);
-						if (profilemodel.getUser() instanceof RegisteredUser)
-							vbox.getChildren().add(favorite);
-						vbox.getChildren().add(addPlaylist);
-						songEdit.setPopupContent(vbox);
-						songEdit.show(songAnchorPane, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
-
-					}
-				}
-			});
-		}
-
-	}
-
-//	private void popUpInit()
-//	{
-//		vbox.getChildren().clear();
-//
-//		JFXButton delete = new JFXButton("Delete");
-//		JFXButton favorite = new JFXButton("Favorite");
-//		JFXButton addPlaylist = new JFXButton("Add to Playlist");
-//		vbox.getChildren().add(delete);
-//		vbox.getChildren().add(favorite);
-//		vbox.getChildren().add(addPlaylist);
-//		songEdit.setPopupContent(vbox);
-//		songEdit.show(populateSongsList, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
-//
-//	}
-
-	public void populateSongPlaylistVersion(ArrayList<Song> songlist){
-		populateSongsList.getItems().clear();
-		populateSongsList.getStylesheets().add("view/theme.css");
-		for(Song s : songlist)
-		{
-			HBox hbox = new HBox();
-			Text songName = new Text(s.getSong_name());
-			Text space = new Text("        ");
-			Text space2 = new Text("        ");
-			Text space3 = new Text("        ");
-			Text space4 = new Text("        ");
-			Text songArtist = new Text(s.getArtist_name());
-			Text genre = new Text(s.getGenre());
-			Text year = new Text(""+s.getYear());
-
-			JFXButton playButton = new JFXButton();
-			Image play = new Image("resources/play.png");
-			ImageView playView = new ImageView(play);
-			playView.setFitWidth(15);
-			playView.setFitHeight(20);
-			playButton.setGraphic(playView);
-
-			songName.setFont(Font.font("Poppins", 14));
-			songArtist.setFont(Font.font("Poppins", 14));
-			genre.setFont(Font.font("Poppins", 14));
-			year.setFont(Font.font("Poppins", 14));
-
-			hbox.getChildren().add(playButton);
-			hbox.getChildren().add(space2);
-			hbox.getChildren().add(songName);
-			hbox.getChildren().add(space);
-			hbox.getChildren().add(songArtist);
-			hbox.getChildren().add(space3);
-			hbox.getChildren().add(genre);
-			hbox.getChildren().add(space4);
-			hbox.getChildren().add(year);
-			populateSongsList.getItems().add(hbox);
-		}
-	}
-
-	public void populateSongAlbumVersion(ArrayList<Song> songlist){
-		populateSongsList.getItems().clear();
-		for(Song s : songlist)
-		{
-			HBox hbox = new HBox();
-			Text songName = new Text(s.getSong_name());
-			Text space = new Text("        ");
-			Text space2 = new Text("        ");
-			Text space3 = new Text("        ");
-			Text space4 = new Text("        ");
-			Text songArtist = new Text(s.getArtist_name());
-			Text genre = new Text(s.getGenre());
-			Text year = new Text(""+s.getYear());
-
-			JFXButton playButton = new JFXButton();
-			Image play = new Image("resources/play.png");
-			ImageView playView = new ImageView(play);
-			playView.setFitWidth(15);
-			playView.setFitHeight(20);
-			playButton.setGraphic(playView);
-
-			songName.setFont(Font.font("Poppins", 14));
-			songArtist.setFont(Font.font("Poppins", 14));
-			genre.setFont(Font.font("Poppins", 14));
-			year.setFont(Font.font("Poppins", 14));
-
-
-			hbox.getChildren().add(playButton);
-			hbox.getChildren().add(space2);
-			hbox.getChildren().add(songName);
-			hbox.getChildren().add(space);
-			hbox.getChildren().add(songArtist);
-			hbox.getChildren().add(space3);
-			hbox.getChildren().add(genre);
-			hbox.getChildren().add(space4);
-			hbox.getChildren().add(year);
-			populateSongsList.getItems().add(hbox);
-		}
-	}
 
 	private void userInfo()
 	{
-		Image userPicImage;
+
 		if(profilemodel.getUser() instanceof GuestUser)
 			userName.setText("Guest");
 		else
 			userName.setText(profilemodel.getUser().getFirst_name() + " " + profilemodel.getUser().getLast_name() );
-		if(profilemodel.getUser().getAvatarURL() == null){
-			userPicImage = new Image("resources/user.png");
 
-		}
-		else
-			userPicImage = new Image(profilemodel.getUser().getAvatarURL().toString());
+
+		Image userPicImage = controller.getImageFromUser(profilemodel.getUser());
+
 
 		userPic.setFill(new ImagePattern(userPicImage));
 	}
@@ -493,6 +391,15 @@ public class DashboardView extends View {
 
 	private void init()
 	{
+		statusSongText.setText("No Song Playing");
+		songTitleText.setText("");
+		albumText.setText("");
+		genreText.setText("");
+		singerText.setText("");
+		yearText.setText("");
+
+		headerInformation.getStylesheets().add("view/theme.css");
+		filterCombo.getStyleClass().add("jfx-combo-box-Filter");
 		filterCombo.getItems().add("Title");
 		filterCombo.getItems().add("Genre");
 		filterCombo.getItems().add("Album");
@@ -514,6 +421,7 @@ public class DashboardView extends View {
 		headerInformation.getChildren().add(uploadAddSongsBtn);
 		headerInformation.getChildren().add(headerLabelText);
 		headerInformation.getChildren().add(filterCombo);
+		filterCombo.setValue(null);
 
 	}
 

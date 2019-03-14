@@ -29,6 +29,12 @@ public class AlbumDAODB implements AlbumDAO{
         String albumNameTemp = album.getName();
         int userIDTemp = album.getUser_id();
         byte[] coverURLBlob = toBlob(album.getCover_URL());
+        FileInputStream albumCoverStream = null;
+        try {
+            albumCoverStream = new FileInputStream(album.getCover_URL());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         int artistIDTemp = album.getArtist_id();
         String artistNameTemp = album.getArtist_name();
 
@@ -41,7 +47,7 @@ public class AlbumDAODB implements AlbumDAO{
 
             statement.setString(1, albumNameTemp);
             statement.setInt(2, userIDTemp);
-            statement.setBytes(3, coverURLBlob);
+            statement.setBinaryStream(3, albumCoverStream);
             statement.setInt(4, artistIDTemp);
             statement.setString(5, artistNameTemp);
 
@@ -72,26 +78,32 @@ public class AlbumDAODB implements AlbumDAO{
 
     @Override
     public void updateAlbum(Album album) {
-        int albumIDTemp = album.getUser_id();
+        int albumIDTemp = album.getAlbum_id();
         String albumNameTemp = album.getName();
         int userIDTemp = album.getUser_id();
         byte[] coverURLBlob = toBlob(album.getCover_URL());
+        FileInputStream albumCoverStream = null;
+        try {
+            albumCoverStream = new FileInputStream(album.getCover_URL());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         int artistIDTemp = album.getArtist_id();
-        String artistNameTemp = album.getName();
+        String artistNameTemp = album.getArtist_name();
 
         String query = "UPDATE " + this.TABLE + " SET " +
                 this.COL_ALBUMNAME + " = ?, " +
                 this.COL_USERID + " = ?, " +
                 this.COL_COVERURL + " = ?, " +
-                this.COL_ARTISTID + " = ? " +
-                this.COL_ARTISTNAME + " = ?, " +
-                "WHERE " + this.COL_USERID + " = " + albumIDTemp;
+                this.COL_ARTISTID + " = ?, " +
+                this.COL_ARTISTNAME + " = ? " +
+                "WHERE " + this.COL_ALBUMID + " = " + albumIDTemp;
 
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, albumNameTemp);
             statement.setInt(2, userIDTemp);
-            statement.setBytes(3, coverURLBlob);
+            statement.setBinaryStream(3, albumCoverStream);
             statement.setInt(4, artistIDTemp);
             statement.setString(5, artistNameTemp);
 
@@ -109,7 +121,12 @@ public class AlbumDAODB implements AlbumDAO{
             PreparedStatement statement = this.connection.prepareStatement(query);
             ResultSet rs = statement.executeQuery();
             if (rs.next()){
-                Album albumTemp = toAlbum(rs);
+                Album albumTemp = null;
+                try {
+                    albumTemp = toAlbum(rs);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 return albumTemp;
             }else {
                 return null;
@@ -132,7 +149,11 @@ public class AlbumDAODB implements AlbumDAO{
             ResultSet rs = statement.executeQuery();
 
             while(rs.next()){
-                albumsTemp.add(toAlbum(rs));
+                try {
+                    albumsTemp.add(toAlbum(rs));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }catch (SQLException e){
             e.printStackTrace();
@@ -181,7 +202,7 @@ public class AlbumDAODB implements AlbumDAO{
         return stream;
     }
 
-    private Album toAlbum(ResultSet rs) throws SQLException{
+    private Album toAlbum(ResultSet rs) throws SQLException, IOException {
         Album album = new Album();
 
         album.setAlbum_id(rs.getInt(this.COL_ALBUMID));
@@ -189,19 +210,17 @@ public class AlbumDAODB implements AlbumDAO{
         album.setUser_id(rs.getInt(this.COL_USERID));
         album.setCover_URL(toFile(rs));
         album.setArtist_id(rs.getInt(this.COL_ARTISTID));
-        album.setArtist_name(rs.getString(this.COL_ALBUMNAME));
+        album.setArtist_name(rs.getString(this.COL_ARTISTNAME));
         return album;
     }
 
-    private File toFile(ResultSet rs) throws SQLException{
-        File file = null;
-        try(ByteArrayInputStream bais = new ByteArrayInputStream(rs.getBytes(this.COL_COVERURL));
-            ObjectInputStream ois = new ObjectInputStream(bais);){
-            file = (File) ois.readObject();
-        }catch(IOException e){
-            e.printStackTrace();
-        }catch(ClassNotFoundException e){
-            e.printStackTrace();
+    private File toFile(ResultSet rs) throws SQLException, IOException {
+        File file = new File("src/resources/" + rs.getString(this.COL_ALBUMNAME) + " - " + rs.getString(this.COL_ARTISTNAME)+".png");
+        OutputStream outputStream = new FileOutputStream(file);
+        InputStream inputStream = rs.getBinaryStream(this.COL_COVERURL);
+        byte[] buffer = new byte[4096];
+        while (inputStream.read(buffer) > 0){
+            outputStream.write(buffer);
         }
 
         return file;
