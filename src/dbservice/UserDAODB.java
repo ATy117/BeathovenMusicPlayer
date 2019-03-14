@@ -154,7 +154,7 @@ public class UserDAODB implements UserDAO {
     }
 
     private File toFile(ResultSet rs) throws SQLException, IOException {
-        File file = new File(rs.getString(this.COL_USERNAME)+".png");
+        File file = new File(System.getProperty("user.home") + "/Documents/Beathoven/" + rs.getString(this.COL_USERNAME)+".png");
         OutputStream outputStream = new FileOutputStream(file);
         InputStream inputStream = rs.getBinaryStream(this.COL_AVATARURL);
         byte[] buffer = new byte[4096];
