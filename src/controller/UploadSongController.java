@@ -80,7 +80,7 @@ public class UploadSongController {
 							.withName(album_name)
 							.withArtist(artist_name)
 							.withArtistID(-1)
-							.withFileCover(null)
+							.withFileCover(new File("src/resources/music.png"))
 							.withOwner(user_id)
 							.build();
 					ad.addAlbum(newAlbum);
