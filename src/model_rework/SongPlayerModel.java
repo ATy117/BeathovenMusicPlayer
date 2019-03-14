@@ -25,7 +25,8 @@ public class SongPlayerModel extends Model {
 	public void playSong(List<Song> currentList) {
 		this.currentList = new ArrayList<>(currentList);
 		finishedList = new ArrayList<>();
-		playNextSong();
+		currentSong = this.currentList.get(0);
+		this.currentList.remove(0);
 		Notify();
 	}
 
@@ -37,10 +38,11 @@ public class SongPlayerModel extends Model {
 
 		if (!currentList.isEmpty()) {
 			finishedList.add(currentSong);
-			if (!shuffle) {
+			if(!shuffle) {
 				currentSong = currentList.get(0);
 				currentList.remove(0);
-			} else {
+			}
+			else {
 				int randomindex = getRandonIndexInCurList();
 				currentSong = currentList.get(randomindex);
 				currentList.remove(randomindex);
@@ -49,11 +51,9 @@ public class SongPlayerModel extends Model {
 		else {
 			return false;
 		}
-
 		Notify();
 
 		return true;
-
 	}
 
 
@@ -74,14 +74,12 @@ public class SongPlayerModel extends Model {
 
 		if (!finishedList.isEmpty()) {
 			currentList.add(0, currentSong);
-			Song backsong = finishedList.get(finishedList.size() - 1);
-			finishedList.remove(finishedList.size() - 1);
-			currentSong = backsong;
+			currentSong = finishedList.get(finishedList.size()-1);
+			finishedList.remove(finishedList.size()-1);
 		}
-		else  {
-			return false;
-		}
+
 		Notify();
+
 		return true;
 	}
 
