@@ -25,6 +25,7 @@ import populatorServices.PopulateSongsAlbum;
 import populatorServices.PopulateSongsAll;
 import populatorServices.PopulateSongsPlaylist;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -289,9 +290,9 @@ public class DashboardView extends View {
 		for(Album a: albumList){
 			JFXButton newAlbumBtn = new JFXButton(a.getName());
 			newAlbumBtn.getStyleClass().add("jfx-button-Album");
-			newAlbumBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			newAlbumBtn.setOnAction(new EventHandler<ActionEvent>() {
 				@Override
-				public void handle(MouseEvent event) {
+				public void handle(ActionEvent event) {
 					popSource = 2;
 					controller.getAllSongsFromAlbum(profilemodel.getUser().getUser_id(), a.getAlbum_id());
 					headerInformation.getChildren().clear();
@@ -308,7 +309,13 @@ public class DashboardView extends View {
 						public void handle(MouseEvent event) {
 							if(event.getButton() == MouseButton.SECONDARY)
 								System.out.println("Change Photo");
-								controller.editAlbum(a);
+								File photofile = controller.selectPhoto();
+								if (photofile !=  null){
+									popSource = 2;
+									a.setCover_URL(photofile);
+									controller.editAlbum(a);
+									newAlbumBtn.fire();
+								}
 						}
 					});
 

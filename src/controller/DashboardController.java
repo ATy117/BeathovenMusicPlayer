@@ -107,16 +107,15 @@ public abstract class DashboardController {
 		librarymodel.setSongList(SD.getAllSong(user_id));
 	}
 
-	public void editAlbum(Album a){
+	public File selectPhoto(){
 		FileUploader uploader = new PhotoUploader(primaryStage);
-		File photoFile = uploader.getUploadedFile();
+		return uploader.getUploadedFile();
+	}
 
-		a.setCover_URL(photoFile);
+	public void editAlbum(Album a){
 
 		AlbumDAO AD = new AlbumDAODB(connection);
-
 		AD.updateAlbum(a);
-
 		librarymodel.setAlbumList(AD.getAlbums(a.getUser_id()));
 	}
 
