@@ -444,7 +444,6 @@ public class SongDAODB implements SongDAO{
         while (inputStream.read(buffer) > 0){
             outputStream.write(buffer);
         }
-        System.out.println(file.getAbsolutePath());
         return file;
     }
 }

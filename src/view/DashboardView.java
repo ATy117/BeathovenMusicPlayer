@@ -625,7 +625,7 @@ public class DashboardView extends View {
 
 		}
 		else
-			userPicImage = new Image(profilemodel.getUser().getAvatarURL().toString());
+			userPicImage = new Image("src/resources/user.png");
 
 		userPic.setFill(new ImagePattern(userPicImage));
 	}
