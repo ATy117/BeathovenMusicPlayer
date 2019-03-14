@@ -45,6 +45,7 @@ public class DashboardView extends View {
 
 	@FXML public JFXButton myProfileBtn;
 	@FXML public JFXButton uploadAddSongsBtn;
+	@FXML public JFXButton addPlaylistBtn;
 	@FXML public JFXListView<AnchorPane> populateSongsList;
 	@FXML public JFXListView newPLaylistVbox;
 	@FXML public JFXListView albumsVbox;
@@ -56,6 +57,7 @@ public class DashboardView extends View {
 	@FXML public Text userName;
 	@FXML public VBox songsVbox;
 	@FXML public Text yearText;
+	@FXML public VBox playlistVbox;
 
 
 	private VBox pbox = new VBox();
@@ -100,7 +102,7 @@ public class DashboardView extends View {
 
 		populateSongsList.getItems().clear();
 		populateSongsList.getStylesheets().add("view/theme.css");
-		populateSongsList.getStyleClass().add("jfx-listView");
+		populateSongsList.getStyleClass().add("jfx-list-cell");
 		populateSongsList.getItems().addAll(populateSongs.populateListView(librarymodel.getSongList()));
 
 		populateAlbum((ArrayList<Album>)librarymodel.getAlbumList());
@@ -133,15 +135,23 @@ public class DashboardView extends View {
 	}
 
 	public void createPlaylist(ActionEvent actionEvent) {
+		playlistVbox.getStylesheets().add("view/theme.css");
+		playlistVbox.getChildren().remove(addPlaylistBtn);
+		playlistVbox.getChildren().remove(newPLaylistVbox);
 		JFXTextField playlistField = new JFXTextField();
 		playlistField.setPrefWidth(50);
 		playlistField.setPromptText("Playlist Name");
-		newPLaylistVbox.getItems().add(playlistField);
+		playlistField.getStyleClass().add("jfx-text-field-Search");
+		playlistVbox.getChildren().add(playlistField);
+		playlistVbox.getChildren().add(newPLaylistVbox);
 		playlistField.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
 				if(event.getCode().equals(KeyCode.ENTER)) {
-					newPLaylistVbox.getItems().remove(playlistField);
+					playlistVbox.getChildren().remove(playlistField);
+					playlistVbox.getChildren().remove(newPLaylistVbox);
+					playlistVbox.getChildren().add(addPlaylistBtn);
+					playlistVbox.getChildren().add(newPLaylistVbox);
 					String playlistName = playlistField.getText();
 					if (playlistName.replaceAll("\\s+", "").equals("")){
 						System.out.println("Empty playlist name field");
@@ -158,6 +168,7 @@ public class DashboardView extends View {
 		newPLaylistVbox.getStylesheets().add("view/theme.css");
 		newPLaylistVbox.getItems().clear();
 		for (Playlist p: playlists){
+			AnchorPane playlistAnchor = new AnchorPane();
 			JFXButton playlistButton = new JFXButton(p.getName());
 			playlistButton.getStyleClass().add("jfx-button-Playlist");
 			playlistButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -207,7 +218,7 @@ public class DashboardView extends View {
 							pbox.getChildren().add(favorite);
 
 						playlistEdit.setPopupContent(pbox);
-						playlistEdit.show(newPLaylistVbox, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
+						playlistEdit.show(playlistAnchor, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
 					} else {
 						popSource = 1;
 						controller.getAllSongsFromPlaylist(profilemodel.getUser().getUser_id(), p.getPlaylist_id());
@@ -244,7 +255,8 @@ public class DashboardView extends View {
 					}
 				}
 			});
-			newPLaylistVbox.getItems().add(playlistButton);
+			playlistAnchor.getChildren().add(playlistButton);
+			newPLaylistVbox.getItems().add(playlistAnchor);
 			newPLaylistVbox.getStyleClass().add("jfx-listView");
 		}
 	}
