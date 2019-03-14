@@ -2,6 +2,8 @@ package controller;
 
 import dbservice.AlbumDAO;
 import dbservice.AlbumDAODB;
+import dbservice.SongDAO;
+import dbservice.SongDAODB;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model_rework.Album;
@@ -72,6 +74,12 @@ public class SongPlayerController {
 			songplayermodel.setRepeating(true);
 			return true;
 		}
+	}
+
+	public void trackSong (Song s){
+		SongDAO SD = new SongDAODB(connection);
+		s.increment();
+		SD.updateSong(s);
 	}
 
 	public void endPlayer() {

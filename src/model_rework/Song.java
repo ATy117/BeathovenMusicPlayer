@@ -20,13 +20,16 @@ public class Song {
     private boolean favorite;
     private File song_URL;
 
-    private int times_played;
+    private int times_played = 0;
 
     public Song(){
         this.song_id = instances;
         instances++;
     }
 
+    public void increment(){
+        times_played++;
+    }
 
     public int getSong_id() {
         return song_id;

@@ -363,6 +363,7 @@ public class SongPlayerView extends View{
 		mp3player.setOnEndOfMedia(new Runnable() {
 			public void run() {
 				playBtn.setGraphic(playView);
+				controller.trackSong(songplayermodel.getCurrentSong());
 				controller.playNextSong();
 			}
 		});
