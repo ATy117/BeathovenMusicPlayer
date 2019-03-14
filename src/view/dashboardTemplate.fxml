@@ -80,7 +80,7 @@
                </font>
             </Text>
          </children></AnchorPane>
-      <JFXScrollPane fx:id="songsScroll" layoutY="60.0" prefHeight="426.0" prefWidth="161.0" style="-fx-background-color: #303030">
+      <JFXScrollPane fx:id="songsScroll" layoutY="60.0" prefHeight="424.0" prefWidth="161.0" style="-fx-background-color: #303030">
          <children>
             <VBox fx:id="songsVbox" prefHeight="417.0" prefWidth="161.0" style="-fx-background-color: #303030">
                <children>
@@ -104,7 +104,7 @@
                   <JFXListView fx:id="albumsVbox" style="-fx-background-color: #303030" />
                </children></VBox>
          </children></JFXScrollPane>
-      <JFXScrollPane layoutX="683.0" layoutY="60.0" prefHeight="426.0" prefWidth="143.0">
+      <JFXScrollPane fx:id="playlistScroll" layoutX="683.0" layoutY="60.0" prefHeight="424.0" prefWidth="143.0">
          <children>
             <VBox fx:id="playlistVbox" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #303030">
                <children>

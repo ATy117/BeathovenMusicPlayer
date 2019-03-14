@@ -8,27 +8,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="458.0" prefWidth="318.0" style="-fx-background-color: #454444" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="songPlayerAnchor" prefHeight="458.0" prefWidth="318.0" style="-fx-background-color: #454444" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Circle fx:id="songPic" fill="#b7b9bc" layoutX="159.0" layoutY="152.0" radius="97.0" stroke="#a19999" strokeType="INSIDE" />
       <Text fx:id="genreText" fill="#8ba0a9" layoutX="274.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Genre">
          <font>
             <Font name="Poppins Regular" size="12.0" />
-         </font>
-      </Text>
-      <Text fx:id="titleText" fill="#eaa830" layoutX="64.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Supermarket Flowers">
-         <font>
-            <Font name="Comfortaa Regular" size="18.0" />
-         </font>
-      </Text>
-      <Text fx:id="artistText" fill="#e9c582" layoutX="113.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="by Ed Sheeran">
-         <font>
-            <Font name="Comfortaa Regular" size="12.0" />
-         </font>
-      </Text>
-      <Text fx:id="albumText" fill="#e9c582" layoutX="101.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="from Divide Album">
-         <font>
-            <Font name="Comfortaa Regular" size="12.0" />
          </font>
       </Text>
       <JFXButton fx:id="playBtn" layoutX="134.0" layoutY="339.0" onAction="#playPause" textFill="#f1f6f1">
@@ -49,8 +34,26 @@
       <JFXButton fx:id="shuffleBtn" layoutX="83.0" layoutY="378.0" onAction="#shuffle" textFill="#8ba089" />
       <JFXButton fx:id="repeatBtn" layoutX="188.0" layoutY="378.0" onAction="#repeat" textFill="#8ba089" />
       <JFXSlider fx:id="slider" layoutX="42.0" layoutY="413.0" prefHeight="14.0" prefWidth="242.0" />
-      <Label fx:id="timeStamp" layoutX="247.0" layoutY="429.0" text="Label" />
+      <Label fx:id="timeStamp" layoutX="140.0" layoutY="434.0" text="Label" textFill="#e9c582">
+         <font>
+            <Font name="Poppins Regular" size="12.0" />
+         </font></Label>
       <JFXButton fx:id="volumeDown" layoutX="8.0" layoutY="9.0" onAction="#turnVolumeDown" prefHeight="17.0" prefWidth="20.0" textFill="#8ba089" />
       <JFXButton fx:id="volumeUp" layoutX="33.0" layoutY="9.0" onAction="#turnVolumeUp" prefHeight="17.0" prefWidth="20.0" textFill="#8ba089" />
+      <Label fx:id="titleText" layoutX="60.0" layoutY="262.0" maxWidth="200.0" minWidth="200.0" text="No Songs Playing" textAlignment="CENTER" textFill="#e9b350">
+         <font>
+            <Font name="Comfortaa Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="artistText" layoutX="54.0" layoutY="290.0" maxWidth="200.0" minWidth="200.0" text="by Ed Sheeran" textAlignment="CENTER" textFill="#e9c582">
+         <font>
+            <Font name="Comfortaa Regular" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="albumText" layoutX="53.0" layoutY="306.0" maxWidth="200.0" minWidth="200.0" text="from Album" textAlignment="CENTER" textFill="#e9c582">
+         <font>
+            <Font name="Comfortaa Regular" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
