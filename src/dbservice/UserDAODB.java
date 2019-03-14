@@ -36,7 +36,6 @@ public class UserDAODB implements UserDAO {
             e.printStackTrace();
         }
 
-        System.out.println(usernameTemp + passwordTemp+ firstNameTemp + lastNameTemp);
 
         String query = "INSERT INTO " +
                 this.TABLE +

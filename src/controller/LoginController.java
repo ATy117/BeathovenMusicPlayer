@@ -3,6 +3,7 @@ package controller;
 import dbservice.UserDAO;
 import dbservice.UserDAODB;
 import dbservice.dbConnection;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 import model_rework.RegisteredUser;
 import view.LoginView;
@@ -13,9 +14,13 @@ public class LoginController extends Controller{
 
 	public LoginController(Stage primaryStage)   {
 
+
 		dbConnection connector = new dbConnection();
 		connection = connector.getConnection();
 		this.primaryStage = primaryStage;
+		this.primaryStage.setOnCloseRequest(e -> {
+			Platform.exit();
+		});
 		LoginView login = new LoginView(primaryStage, this);
 	}
 
