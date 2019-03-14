@@ -29,8 +29,7 @@ public class UserDAODB implements UserDAO {
         String lastNameTemp = user.getLast_name();
         String firstNameTemp = user.getFirst_name();
         byte[] avatarBlobTemp = toBlob(user.getAvatarURL());
-
-        System.out.println(usernameTemp + passwordTemp+ firstNameTemp + lastNameTemp);
+        
         String query = "INSERT INTO " +
                 this.TABLE +
                 " VALUES(NULL,?,?,?,?,?)";
