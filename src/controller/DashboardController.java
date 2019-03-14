@@ -31,7 +31,7 @@ public abstract class DashboardController extends Controller{
 		}
 	}
 
-	public void addPlaylist(int user_id , String playlistName){
+	public boolean addPlaylist(int user_id , String playlistName){
 		PlaylistDAO PD = new PlaylistDAODB(connection);
 		PlaylistBuilder PB = new PlaylistBuilder();
 		Playlist pl = PB
@@ -39,12 +39,16 @@ public abstract class DashboardController extends Controller{
 				.withName(playlistName)
 				.withOwner(user_id)
 				.build();
-		if (PD.checkPlaylist(user_id, playlistName) != -1)
+		if (PD.checkPlaylist(user_id, playlistName) != -1) {
 			System.out.println("Playlist Exists");
-		else
+			return false;
+		}
+		else {
 			PD.addPlaylist(pl);
+			librarymodel.setPlaylistList(PD.getPlaylists(user_id));
+			return true;
+		}
 
-		librarymodel.setPlaylistList(PD.getPlaylists(user_id));
 	}
 
 	public void getAllSongs(int user_id){
@@ -62,18 +66,26 @@ public abstract class DashboardController extends Controller{
 		librarymodel.setSongList(SD.getAlbumSong(user_id, album_id));
 	}
 
-	public void deleteSong(int user_id, int song_id, int album_id){
+	public boolean deleteSong(int user_id, int song_id, int album_id){
 		SongDAO SD = new SongDAODB(connection);
 		AlbumDAO AD = new AlbumDAODB(connection);
 
-		SD.deleteSong(song_id);
-
-		if (SD.getAlbumSong(user_id, album_id).isEmpty()){
-			AD.deleteAlbum(album_id);
+		if(songplayermodel.getCurrentSong()!=null && songplayermodel.getCurrentSong().getSong_id() == song_id) {
+			return false;
 		}
+		else{
 
-		librarymodel.setSongList(SD.getAllSong(user_id));
-		librarymodel.setAlbumList(AD.getAlbums(user_id));
+			SD.deleteSong(song_id);
+
+			if (SD.getAlbumSong(user_id, album_id).isEmpty()){
+				AD.deleteAlbum(album_id);
+			}
+
+			librarymodel.setSongList(SD.getAllSong(user_id));
+			librarymodel.setAlbumList(AD.getAlbums(user_id));
+
+			return true;
+		}
 
 	}
 

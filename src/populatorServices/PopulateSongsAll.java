@@ -22,6 +22,9 @@ public class PopulateSongsAll implements PopulateSongs<AnchorPane> {
     private LibraryModel librarymodel;
     private ProfileModel profilemodel;
 
+    private JFXPopup errorPopup = new JFXPopup();
+    private AnchorPane errorAnchor = new AnchorPane();
+
     public PopulateSongsAll(DashboardController controller, LibraryModel librarymodel, ProfileModel profileModel) {
         this.controller = controller;
         this.librarymodel = librarymodel;
@@ -108,7 +111,27 @@ public class PopulateSongsAll implements PopulateSongs<AnchorPane> {
                             @Override
                             public void handle(MouseEvent event) {
                                 songEdit.hide();
-                                controller.deleteSong(s.getUploader_id(), s.getSong_id(), s.getAlbum_id());
+                                if(controller.deleteSong(s.getUploader_id(), s.getSong_id(), s.getAlbum_id())== false)
+                                {
+                                    errorAnchor.getStylesheets().add("view/theme.css");
+                                    errorAnchor.getStyleClass().add("anchorPane-Error");
+
+                                    Image error = new Image("resources/error.png");
+                                    ImageView errorView = new ImageView(error);
+                                    Text errorMessage = new Text("Song is Currently Playing");
+                                    errorMessage.getStyleClass().add("text-input-Error");
+                                    AnchorPane.setTopAnchor(errorMessage, 93.0);
+                                    AnchorPane.setLeftAnchor(errorMessage, 10.0);
+                                    AnchorPane.setTopAnchor(errorView, 30.0);
+                                    AnchorPane.setLeftAnchor(errorView, 27.0);
+                                    errorAnchor.getChildren().add(errorView);
+                                    errorAnchor.getChildren().add(errorMessage);
+
+                                    errorAnchor.setMinSize(240.0, 150.0);
+                                    errorAnchor.setMaxSize(240.0, 150.0);
+                                    errorPopup.setPopupContent(errorAnchor);
+                                    errorPopup.show(songAnchorPane, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
+                                }
                             }
                         });
                         delete.getStyleClass().add("jfx-button-RightClick");

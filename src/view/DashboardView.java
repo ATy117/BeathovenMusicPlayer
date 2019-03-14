@@ -168,26 +168,11 @@ public class DashboardView extends View {
 					playlistVbox.getChildren().add(newPLaylistVbox);
 					String playlistName = playlistField.getText();
 					if (playlistName.replaceAll("\\s+", "").equals("")){
-						errorAnchor.getStylesheets().add("view/theme.css");
-						errorAnchor.getStyleClass().add("anchorPane-Error");
-
-						Image error = new Image("resources/error.png");
-						ImageView errorView = new ImageView(error);
-						Text errorMessage = new Text("Empty Playlist Name");
-						errorMessage.getStyleClass().add("text-input-Error");
-						AnchorPane.setTopAnchor(errorMessage, 93.0);
-						AnchorPane.setLeftAnchor(errorMessage, 20.0);
-						AnchorPane.setTopAnchor(errorView, 30.0);
-						AnchorPane.setLeftAnchor(errorView, 27.0);
-						errorAnchor.getChildren().add(errorView);
-						errorAnchor.getChildren().add(errorMessage);
-
-						errorAnchor.setMinSize(220.0, 150.0);
-						errorAnchor.setMaxSize(220.0, 150.0);
-						errorPopup.setPopupContent(errorAnchor);
-						errorPopup.show(mainPane, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
+						popUpError("Empty Playlist Name");
 					} else {
-						controller.addPlaylist(profilemodel.getUser().getUser_id(), playlistName);
+						if(controller.addPlaylist(profilemodel.getUser().getUser_id(), playlistName)== false){
+							popUpError("Playlist already Exists");
+						}
 					}
 				}
 			}
@@ -426,6 +411,28 @@ public class DashboardView extends View {
 
 	public void logout(ActionEvent actionEvent) {
 		controller.logout();
+	}
+
+	public void popUpError(String errorMessageText)
+	{
+		errorAnchor.getStylesheets().add("view/theme.css");
+		errorAnchor.getStyleClass().add("anchorPane-Error");
+
+		Image error = new Image("resources/error.png");
+		ImageView errorView = new ImageView(error);
+		Text errorMessage = new Text(errorMessageText);
+		errorMessage.getStyleClass().add("text-input-Error");
+		AnchorPane.setTopAnchor(errorMessage, 93.0);
+		AnchorPane.setLeftAnchor(errorMessage, 20.0);
+		AnchorPane.setTopAnchor(errorView, 30.0);
+		AnchorPane.setLeftAnchor(errorView, 27.0);
+		errorAnchor.getChildren().add(errorView);
+		errorAnchor.getChildren().add(errorMessage);
+
+		errorAnchor.setMinSize(220.0, 150.0);
+		errorAnchor.setMaxSize(220.0, 150.0);
+		errorPopup.setPopupContent(errorAnchor);
+		errorPopup.show(mainPane, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
 	}
 }
 
