@@ -18,7 +18,6 @@ public class UserDAODB implements UserDAO {
 
     public UserDAODB(Connection connection) {
         this.connection = connection;
-        setAppDirectory();
     }
 
     @Override
@@ -191,12 +190,5 @@ public class UserDAODB implements UserDAO {
         }
     }
 
-    private void setAppDirectory() {
-        String appdirectory = System.getProperty("user.home") + "/Documents/Beathoven/";
-        File appfolder = new File(appdirectory);
-        if(!appfolder.exists()) {
-            appfolder.mkdir();
-        }
-    }
 
 }

@@ -304,7 +304,6 @@ public class SongPlayerView extends View{
 		if (mp3player!= null) {
 			if (volume < 1) {
 				volume += 0.1;
-				System.out.println("VolumeUp");
 				mp3player.setVolume(volume);
 			}
 		}
@@ -316,7 +315,6 @@ public class SongPlayerView extends View{
 		if (mp3player!=null) {
 			if (volume > 0) {
 				volume -= 0.1;
-				System.out.println("VolumeDown");
 				mp3player.setVolume(volume);
 			}
 		}
