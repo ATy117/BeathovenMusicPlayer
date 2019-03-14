@@ -2,6 +2,7 @@ package controller;
 
 import comparatorServices.*;
 import dbservice.*;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model_rework.*;
 
@@ -187,5 +188,19 @@ public abstract class DashboardController {
 	public void playSong(List<Song> playableList) {
 
 		songplayermodel.playSong(playableList);
+	}
+
+	public Image getImageFromUser(User dude) {
+		Image img;
+
+		if(dude instanceof GuestUser){
+			img = new Image("/resources/user.png");
+		}
+		else {
+			System.out.println(dude.getAvatarURL());
+			img = new Image(dude.getAvatarURL().toURI().toString());
+		}
+
+		return img;
 	}
 }
