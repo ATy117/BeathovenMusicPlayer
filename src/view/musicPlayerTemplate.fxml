@@ -11,7 +11,7 @@
 <AnchorPane fx:id="songPlayerAnchor" prefHeight="458.0" prefWidth="318.0" style="-fx-background-color: #454444" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Circle fx:id="songPic" fill="#b7b9bc" layoutX="159.0" layoutY="152.0" radius="97.0" stroke="#a19999" strokeType="INSIDE" />
-      <Text fx:id="genreText" fill="#8ba0a9" layoutX="274.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Genre">
+      <Text fx:id="genreText" fill="#8ba0a9" layoutX="244.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hip-Hop">
          <font>
             <Font name="Poppins Regular" size="12.0" />
          </font>
