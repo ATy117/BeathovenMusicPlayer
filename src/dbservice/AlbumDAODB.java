@@ -222,7 +222,7 @@ public class AlbumDAODB implements AlbumDAO{
         while (inputStream.read(buffer) > 0){
             outputStream.write(buffer);
         }
-        System.out.println(file.getAbsolutePath());
+
         return file;
     }
 }

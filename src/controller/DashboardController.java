@@ -194,7 +194,6 @@ public abstract class DashboardController {
 			img = new Image("/resources/useryellowbluedefaultpic.png");
 		}
 		else {
-			System.out.println(dude.getAvatarURL());
 			img = new Image(dude.getAvatarURL().toURI().toString());
 		}
 
