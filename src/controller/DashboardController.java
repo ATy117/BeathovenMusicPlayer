@@ -12,17 +12,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public abstract class DashboardController {
-
-	protected Connection connection;
-	protected SongPlayerModel songplayermodel;
-	protected LibraryModel librarymodel;
-	protected ProfileModel profilemodel;
-
-	protected Stage uploadStage;
-	protected Stage playerStage;
-	protected Stage profileStage;
-	protected Stage primaryStage;
+public abstract class DashboardController extends Controller{
 
 	protected SongPlayerController player;
 
@@ -147,30 +137,30 @@ public abstract class DashboardController {
 
 	public void sortSongs (String category){
 		SongComparator comparator;
-		if (category != null) {
-			switch (category) {
+		if(category!=null){
+			switch (category){
 				case "Genre":
-					comparator = new SongComparatorByGenre();
+					comparator = SongComparatorByGenre.getInstance();
 					break;
 
 				case "Title":
-					comparator = new SongComparatorByTitle();
+					comparator = SongComparatorByTitle.getInstance();
 					break;
 
 				case "Year":
-					comparator = new SongComparatorByYear();
+					comparator = SongComparatorByYear.getInstance();
 					break;
 
 				case "Artist":
-					comparator = new SongComparatorByArtist();
+					comparator = SongComparatorByArtist.getInstance();
 					break;
 
 				case "Album":
-					comparator = new SongComparatorByAlbum();
+					comparator = SongComparatorByAlbum.getInstance();
 					break;
 
 				default:
-					comparator = new SongComparatorByTitle();
+					comparator = SongComparatorByTitle.getInstance();
 					break;
 			}
 			ArrayList<Song> songs = (ArrayList<Song>)librarymodel.getSongList();

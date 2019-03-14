@@ -15,14 +15,7 @@ import java.nio.file.*;
 import java.sql.Connection;
 import java.util.List;
 
-public class UploadSongController {
-
-	private Stage uploadStage;
-	private ProfileModel profilemodel;
-	private LibraryModel librarymodel;
-	
-	private Connection connection;
-
+public class UploadSongController extends Controller{
 
 	public UploadSongController(ProfileModel profilemodel, LibraryModel librarymodel, Connection connection, Stage uploadStage) {
 

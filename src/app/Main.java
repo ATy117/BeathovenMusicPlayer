@@ -1,3 +1,15 @@
+/*
+    References:
+    Guava Library: https://github.com/google/guava
+    JFoenix: https://github.com/jfoenixadmin/JFoenix
+    ControlsFX: https://github.com/controlsfx/controlsfx
+    AnimateFX: https://github.com/Typhon0/AnimateFX
+    JDBC: https://dev.mysql.com/downloads/connector/j/
+
+    MUSIC PLAYER: https://docs.oracle.com/javase/8/javafx/media-tutorial/playercontrol.htm
+ */
+
+
 package app;
 
 import controller.LoginController;
