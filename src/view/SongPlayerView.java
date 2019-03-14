@@ -18,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -236,6 +237,9 @@ public class SongPlayerView extends View{
 			titleText.setText(songplayermodel.getCurrentSong().getSong_name());
 			artistText.setText("by " + songplayermodel.getCurrentSong().getArtist_name());
 			genreText.setText(songplayermodel.getCurrentSong().getGenre());
+
+			Image albpic = controller.getImageFromAlbum(songplayermodel.getCurrentSong().getAlbum_id());
+			songPic.setFill(new ImagePattern(albpic));
 
 			Album album = controller.getAlbumOfSong(songplayermodel.getCurrentSong().getAlbum_id());
 

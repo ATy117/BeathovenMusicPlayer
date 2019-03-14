@@ -2,6 +2,7 @@ package controller;
 
 import dbservice.AlbumDAO;
 import dbservice.AlbumDAODB;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model_rework.Album;
 import model_rework.Song;
@@ -81,6 +82,21 @@ public class SongPlayerController {
 		AlbumDAO dao = new AlbumDAODB(connection);
 		Album album = dao.getAlbum(albumID);
 		return album;
+	}
+
+	public Image getImageFromAlbum(int album_id) {
+		Image pic;
+
+		if (album_id == -1) {
+			pic = new Image("/resources/music.png");
+		}
+		else {
+			AlbumDAO dao = new AlbumDAODB(connection);
+			Album selected = dao.getAlbum(album_id);
+			pic = new Image(selected.getCover_URL().toURI().toString());
+		}
+
+		return pic;
 	}
 
 }

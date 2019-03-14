@@ -121,10 +121,21 @@ public class DashboardView extends View {
 			statusSongText.setText("Now Playing");
 			songTitleText.setText(songplayermodel.getCurrentSong().getSong_name());
 			singerText.setText(songplayermodel.getCurrentSong().getArtist_name());
-			//albumText;
+
+			Album album = controller.getAlbumOfSong(songplayermodel.getCurrentSong().getAlbum_id());
+
+			if (album != null) {
+				albumText.setText("Album: " + album.getName());
+			}
+			else {
+				albumText.setText("Album: None");
+			}
+
 			genreText.setText(songplayermodel.getCurrentSong().getGenre());
 			yearText.setText(year);
-			//songPic.setGraphic;
+
+			Image albumpic = controller.getImageFromAlbum(songplayermodel.getCurrentSong().getAlbum_id());
+			songPic.setFill(new ImagePattern(albumpic));
 		}
 	}
 
