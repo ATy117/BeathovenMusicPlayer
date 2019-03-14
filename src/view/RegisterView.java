@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -64,7 +65,8 @@ public class RegisterView {
 	public void uploadProfilePic(ActionEvent actionEvent) {
 		FileUploader uploader = new PhotoUploader(primaryStage);
 		file = uploader.getUploadedFile();
-		
+		Image uploaded = new Image(file.toURI().toString());
+		circlePic.setFill(new ImagePattern(uploaded));
 	}
 
 	public void registerAccount(ActionEvent actionEvent) {
