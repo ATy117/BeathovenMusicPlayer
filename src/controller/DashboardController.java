@@ -191,10 +191,11 @@ public abstract class DashboardController {
 	}
 
 	public Image getImageFromUser(User dude) {
+
 		Image img;
 
 		if(dude instanceof GuestUser){
-			img = new Image("/resources/user.png");
+			img = new Image("/resources/useryellowbluedefaultpic.png");
 		}
 		else {
 			System.out.println(dude.getAvatarURL());
