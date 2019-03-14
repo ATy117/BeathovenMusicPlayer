@@ -99,6 +99,8 @@ public class DashboardView extends View {
 		}
 
 		populateSongsList.getItems().clear();
+		populateSongsList.getStylesheets().add("view/theme.css");
+		populateSongsList.getStyleClass().add("jfx-listView");
 		populateSongsList.getItems().addAll(populateSongs.populateListView(librarymodel.getSongList()));
 
 		populateAlbum((ArrayList<Album>)librarymodel.getAlbumList());

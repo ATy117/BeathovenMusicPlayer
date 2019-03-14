@@ -122,3 +122,24 @@
     -fx-font-family: Poppins;
     -fx-fill: #E9C582;
 }
+
+.jfx-slider .track{
+    -fx-background-color:  #E9C582;
+}
+
+.jfx-slider .thumb{
+    -fx-background-color: #E9B350;
+}
+
+.jfx-slider .colored-track{
+    -fx-background-color: #EAA830;
+}
+
+.jfx-slider .slider-value{
+    -fx-fill: #303030;
+    -fx-stroke: #303030;
+}
+
+.jfx-slider .animated-thumb{
+    -fx-background-color: #E9B350;
+}
