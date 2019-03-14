@@ -26,6 +26,7 @@ import populatorServices.PopulateSongsAlbum;
 import populatorServices.PopulateSongsAll;
 import populatorServices.PopulateSongsPlaylist;
 
+import javax.imageio.stream.FileImageInputStream;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
@@ -319,8 +320,9 @@ public class DashboardView extends View {
 			userPicImage = new Image("resources/user.png");
 
 		}
-		else
-			userPicImage = new Image(profilemodel.getUser().getAvatarURL().toString());
+		else {
+			userPicImage = new Image("resources/" +profilemodel.getUser().getAvatarURL().getName());
+		}
 
 		userPic.setFill(new ImagePattern(userPicImage));
 	}

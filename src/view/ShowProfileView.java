@@ -78,7 +78,7 @@ public class ShowProfileView extends View{
 			profilePic.setFill(new ImagePattern(defaultPic));
 		}
 		else{
-			Image userPic = new Image(profilemodel.getUser().getAvatarURL().toString());
+			Image userPic = new Image("resources/"+profilemodel.getUser().getAvatarURL().getName());
 			profilePic.setFill(new ImagePattern(userPic));
 		}
 
