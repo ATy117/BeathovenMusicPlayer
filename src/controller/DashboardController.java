@@ -176,7 +176,16 @@ public abstract class DashboardController extends Controller{
 
 
 	public void searchSong(String word){
-		System.out.println("Search: " + word);
+		List<Song> foundSongs = new ArrayList<>();
+
+		for (Song s: librarymodel.getSongList()){
+			String songName = s.getSong_name().toLowerCase();
+			String artist = s.getArtist_name().toLowerCase();
+			String wordLower = word.toLowerCase();
+			if (songName.contains(wordLower) || artist.contains(wordLower))
+				foundSongs.add(s);
+		}
+		librarymodel.setSongList(foundSongs);
 	}
 
 	public abstract void sayHi();
