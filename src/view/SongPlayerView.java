@@ -14,10 +14,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model_rework.Album;
@@ -28,7 +30,7 @@ import java.io.File;
 
 public class SongPlayerView extends View{
 
-	@FXML public Text titleText;
+	@FXML public Label titleText;
 	@FXML public Text artistText;
 	@FXML public Text albumText;
 	@FXML public Text genreText;
@@ -46,6 +48,7 @@ public class SongPlayerView extends View{
 	@FXML public JFXButton repeatBtn;
 	@FXML public JFXButton volumeDown;
 	@FXML public JFXButton volumeUp;
+	@FXML public AnchorPane songPlayerAnchor;
 	private Duration duration;
 	private final boolean repeat = false;
 	private boolean stopRequested = false;
@@ -134,12 +137,17 @@ public class SongPlayerView extends View{
 		upView.setFitWidth(15);
 		upView.setFitHeight(17);
 
+        titleText.setTextAlignment(TextAlignment.CENTER);
+        AnchorPane.setLeftAnchor(titleText, 90.0);
 
-		titleText.setText("No Song Playing");
-		artistText.setText("");
-		albumText.setText("");
-		genreText.setText("");
-		timeStamp.setText("");
+        titleText.setText("No Song Playing");
+        artistText.setText("");
+        albumText.setText("");
+        genreText.setText("");
+        timeStamp.setText("");
+
+
+
 	}
 
 
