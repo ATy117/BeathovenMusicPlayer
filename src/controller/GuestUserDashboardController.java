@@ -37,7 +37,7 @@ public class GuestUserDashboardController extends DashboardController {
 		String username = "username" + counter;
 		String password = "password" + counter;
 		GuestUser guestUser = GUB
-				.withAvatar(new File("src/resources/user.png"))
+				.withAvatar(new File("src/resources/useryellowbluedefaultpic.png"))
 				.withFirstName("firstname" + counter)
 				.withLastName("lastname" + counter)
 				.withUsername(username)

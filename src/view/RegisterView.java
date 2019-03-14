@@ -84,7 +84,7 @@ public class RegisterView {
 		String passCheckCheck = checkpassword.replaceAll("\\s+", "");
 
 		if (file == null)
-			file = new File("src/resources/user.png");
+			file = new File("src/resources/useryellowbluedefaultpic.png");
 
 
 		if (firstCheck.equals("") || lastCheck.equals("") || userCheck.equals("") || passCheck.equals("") || passCheckCheck.equals("")){
