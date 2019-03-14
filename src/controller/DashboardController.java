@@ -12,17 +12,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public abstract class DashboardController {
-
-	protected Connection connection;
-	protected SongPlayerModel songplayermodel;
-	protected LibraryModel librarymodel;
-	protected ProfileModel profilemodel;
-
-	protected Stage uploadStage;
-	protected Stage playerStage;
-	protected Stage profileStage;
-	protected Stage primaryStage;
+public abstract class DashboardController extends Controller{
 
 	protected SongPlayerController player;
 

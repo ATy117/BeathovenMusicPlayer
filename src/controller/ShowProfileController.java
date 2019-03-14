@@ -15,12 +15,7 @@ import java.sql.Connection;
 import java.util.List;
 
 
-public class ShowProfileController {
-
-	private Stage profileStage;
-	private ProfileModel profilemodel;
-	private SongPlayerModel songplayermodel;
-	private Connection connection;
+public class ShowProfileController extends Controller {
 
 	public ShowProfileController(ProfileModel profilemodel, SongPlayerModel songplaymodel, Connection connection, Stage profileStage) {
 		this.profilemodel = profilemodel;

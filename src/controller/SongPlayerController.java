@@ -11,11 +11,8 @@ import view.SongPlayerView;
 
 import java.sql.Connection;
 
-public class SongPlayerController {
+public class SongPlayerController extends Controller{
 
-	private Stage playerStage;
-	private SongPlayerModel songplayermodel;
-	private Connection connection;
 	private SongPlayerView player;
 
 	public SongPlayerController (SongPlayerModel songplayermodel, Connection connection, Stage playerStage) {

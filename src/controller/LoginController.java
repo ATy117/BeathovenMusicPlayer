@@ -9,10 +9,7 @@ import view.LoginView;
 
 import java.sql.Connection;
 
-public class LoginController {
-
-	private Stage primaryStage;
-	private Connection connection;
+public class LoginController extends Controller{
 
 	public LoginController(Stage primaryStage)   {
 
