@@ -1,6 +1,8 @@
 package controller;
 
 import dbservice.*;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
 import model_rework.*;
 import view.ShowProfileView;
@@ -8,6 +10,7 @@ import view.DashboardView;
 import view.LoginView;
 import view.ShowProfileView;
 
+import java.io.File;
 import java.sql.Connection;
 import java.util.List;
 
@@ -42,6 +45,11 @@ public class ShowProfileController {
 		profilemodel.setPlaylistSongs(SD.getPlaylistSong(user_id, playlist_id));
 	}
 
+	public File selectPhoto(){
+		FileUploader uploader = new PhotoUploader(profileStage);
+		return uploader.getUploadedFile();
+	}
+
 	public boolean editUser(User RU){
 		UserDAO UD = new UserDAODB(connection);
 		UD.updateUser(RU);
@@ -63,5 +71,19 @@ public class ShowProfileController {
 
 	public void playSong(List<Song> playableList) {
 		songplayermodel.playSong(playableList);
+	}
+
+	public Image getImageFromUser(User user) {
+
+		Image pic;
+
+		if(user.getAvatarURL() == null) {
+			pic = new Image("resources/user.png");
+		}
+		else{
+			pic = new Image(user.getAvatarURL().toURI().toString());
+		}
+
+		return pic;
 	}
 }

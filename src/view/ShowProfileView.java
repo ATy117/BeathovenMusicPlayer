@@ -25,6 +25,7 @@ import model_rework.ProfileModel;
 import model_rework.Song;
 import model_rework.User;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,14 +65,6 @@ public class ShowProfileView extends View{
 		sm.loadScene(loader);
 		sm.setWindowName("My Profile");
 
-		profilePic.setOnMouseClicked(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				if(event.getButton() == MouseButton.SECONDARY)
-					System.out.println("Change Profile Photo");
-			}
-		});
-
 		Update();
 		init();
 	}
@@ -84,14 +77,6 @@ public class ShowProfileView extends View{
 		lastnameField.getStyleClass().add("jfx-text-field-WhenDone");
 		usernameField.getStyleClass().add("jfx-text-field-WhenDone");
 
-		if(profilemodel.getUser().getAvatarURL() == null) {
-			Image defaultPic = new Image("resources/user.png");
-			profilePic.setFill(new ImagePattern(defaultPic));
-		}
-		else{
-			Image userPic = new Image("resources/"+profilemodel.getUser().getAvatarURL().getName());
-			profilePic.setFill(new ImagePattern(userPic));
-		}
 
 		firstNameField.setText(profilemodel.getUser().getFirst_name());
 		lastnameField.setText(profilemodel.getUser().getLast_name());
@@ -105,6 +90,19 @@ public class ShowProfileView extends View{
 		lastnameField.setEditable(false);
 		usernameField.setEditable(false);
 		mostPlayedField.setEditable(false);
+
+		profilePic.setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				File photoFile = controller.selectPhoto();
+				if (photoFile != null){
+					User u = profilemodel.getUser();
+					u.setAvatarURL(photoFile);
+					controller.editUser(u);
+				}
+
+			}
+		});
 	}
 
 
@@ -115,6 +113,8 @@ public class ShowProfileView extends View{
 		populateFavoritePlaylist((ArrayList<Playlist>) profilemodel.getFavoritePlaylists());
 		populateSongFromPlayist((ArrayList<Song>) profilemodel.getPlaylistSongs());
 
+		Image userPic = controller.getImageFromUser(profilemodel.getUser());
+		profilePic.setFill(new ImagePattern(userPic));
 	}
 
 	public void changePane(ActionEvent actionEvent) throws IOException {
