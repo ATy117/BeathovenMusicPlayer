@@ -18,14 +18,16 @@ public class GuestUserRegisterController extends UserRegisterController{
 	private Stage playerStage;
 	private Stage uploadStage;
 	private Stage profileStage;
+	private SongPlayerController player;
 	private int user_id;
 
-	public GuestUserRegisterController(int n, Stage profileStage, Stage playerStage, Stage uploadStage, Stage primaryStage, Connection connection) {
+	public GuestUserRegisterController(int n, Stage profileStage, Stage playerStage, Stage uploadStage, Stage primaryStage, Connection connection, SongPlayerController player) {
 		this.primaryStage = primaryStage;
 		this.playerStage = playerStage;
 		this.uploadStage = uploadStage;
 		this.profileStage = profileStage;
 		this.connection = connection;
+		this.player = player;
 		user_id = n;
 		RegisterView reg = new RegisterView(profileStage, this);
 	}
@@ -42,9 +44,11 @@ public class GuestUserRegisterController extends UserRegisterController{
 				.withPassword(password)
 				.build();
 		UD.updateUser(RU);
+
 		uploadStage.close();
 		profileStage.close();
 		playerStage.close();
+		player.endPlayer();
 		DashboardController controller = new RegisteredUserDashboardController(primaryStage, connection, RU);
 		return true;
 	}

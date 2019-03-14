@@ -51,6 +51,7 @@ public class RegisteredUserDashboardController extends DashboardController {
 		player = new SongPlayerController(songplayermodel, connection, playerStage);
 	}
 
+
 	public void viewProfile() {
 		ShowProfileController profileview = new ShowProfileController(profilemodel, songplayermodel, connection, profileStage);
 	}
