@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 public abstract class View {
 
 	public abstract void Update();
-	public Controller controller;
+	public DashboardController controller;
 	public Stage stage;
 
 	public View() {

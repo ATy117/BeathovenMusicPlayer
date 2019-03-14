@@ -2,7 +2,6 @@ package view;
 
 import com.jfoenix.controls.*;
 import controller.DashboardController;
-import controller.StageManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;

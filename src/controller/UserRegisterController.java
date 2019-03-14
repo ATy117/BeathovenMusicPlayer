@@ -1,9 +1,9 @@
 package controller;
 
-import javafx.stage.Stage;
+import FileUploaderService.FileUploader;
+import FileUploaderService.PhotoUploader;
 
 import java.io.File;
-import java.sql.Connection;
 
 public abstract class UserRegisterController extends Controller{
 

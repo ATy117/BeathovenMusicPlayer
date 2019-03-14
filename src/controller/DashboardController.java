@@ -1,13 +1,13 @@
 package controller;
 
+import FileUploaderService.FileUploader;
+import FileUploaderService.PhotoUploader;
 import comparatorServices.*;
 import dbservice.*;
 import javafx.scene.image.Image;
-import javafx.stage.Stage;
 import model_rework.*;
 
 import java.io.File;
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

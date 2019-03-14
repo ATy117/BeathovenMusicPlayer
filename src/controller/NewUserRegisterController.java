@@ -13,7 +13,6 @@ import java.sql.Connection;
 
 public class NewUserRegisterController extends UserRegisterController {
 
-
 	public NewUserRegisterController (Stage primaryStage, Connection connection) {
 		this.primaryStage = primaryStage;
 		this.connection = connection;

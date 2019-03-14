@@ -1,13 +1,11 @@
 package controller;
 
+import FileUploaderService.FileUploader;
+import FileUploaderService.PhotoUploader;
 import dbservice.*;
 import javafx.scene.image.Image;
-import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
 import model_rework.*;
-import view.ShowProfileView;
-import view.DashboardView;
-import view.LoginView;
 import view.ShowProfileView;
 
 import java.io.File;

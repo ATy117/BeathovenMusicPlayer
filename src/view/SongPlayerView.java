@@ -2,7 +2,6 @@ package view;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSlider;
-import controller.StageManager;
 import controller.SongPlayerController;
 import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
@@ -14,20 +13,16 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model_rework.Album;
 import model_rework.SongPlayerModel;
-
-import java.io.File;
 
 
 public class SongPlayerView extends View{
