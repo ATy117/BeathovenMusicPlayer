@@ -118,6 +118,12 @@ public class UploadSongsView{
 
 
 	public void init(){
+		addSongAnchor.getStylesheets().add("view/theme.css");
+		titleField.getStyleClass().add("jfx-text-field-LogIn");
+		artistField.getStyleClass().add("jfx-text-field-LogIn");
+		albumField.getStyleClass().add("jfx-text-field-LogIn");
+		yearField.getStyleClass().add("jfx-text-field-LogIn");
+		genreField.getStyleClass().add("jfx-combo-box-Filter");
 	    genreField.getItems().add("Pop");
 	    genreField.getItems().add("Rock");
 	    genreField.getItems().add("Country");

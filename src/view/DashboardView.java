@@ -281,19 +281,18 @@ public class DashboardView extends View {
 					else
 						imageAlbum = new Image("resources/music.png");
 
-					albumArtist = new Text(a.getArtist_name());
-
-					albumArtist.setFont(Font.font("Poppins", 14.0));
+					albumArtist = new Text("by " + a.getArtist_name());
+					albumArtist.getStyleClass().add("text-input-Artist");
 
 					albumPic.setFill(new ImagePattern(imageAlbum));
 					albumPic.setRadius(25);
 					AnchorPane.setLeftAnchor(albumPic, 40.0);
 					AnchorPane.setTopAnchor(albumPic, 10.0);
 					AnchorPane.setLeftAnchor(albumArtist,130.0 );
-					AnchorPane.setTopAnchor(albumArtist, 35.0);
+					AnchorPane.setTopAnchor(albumArtist, 33.0);
 
-					headerInformation.getChildren().add(albumArtist);
 					headerLabelText.setText(a.getName());
+					headerInformation.getChildren().add(albumArtist);
 					headerInformation.getChildren().add(headerLabelText);
 					headerInformation.getChildren().add(albumPic);
 					headerInformation.getChildren().remove(uploadAddSongsBtn);
@@ -324,11 +323,6 @@ public class DashboardView extends View {
 			Text SongArtist = new Text("by " + s.getArtist_name());
 			Text songYear = new Text(s.getYear()+"");
 			Text songGenre = new Text(s.getGenre());
-
-			SongName.setFont(Font.font("Poppins", 14));
-			SongArtist.setFont(Font.font("Poppins", 12));
-			songGenre.setFont(Font.font("Poppins", 12));
-			songYear.setFont(Font.font("Poppins", 12));
 
 			playView.setFitWidth(16);
 			playView.setFitHeight(20);
@@ -368,6 +362,7 @@ public class DashboardView extends View {
 			songAnchorPane.getChildren().add(songYear);
 			songAnchorPane.getChildren().add(SongName);
 			songAnchorPane.getChildren().add(playButton);
+
 			SongName.getStyleClass().add("text-input-PopulateTitle");
 			songGenre.getStyleClass().add("text-input-PopulateInfo");
 			songYear.getStyleClass().add("text-input-PopulateInfo");
@@ -493,10 +488,10 @@ public class DashboardView extends View {
 			Text songArtist = new Text(s.getArtist_name());
 			Text songYear = new Text(s.getYear() + "");
 
-			songName.setFont(Font.font("Poppins", 14));
-			songGenre.setFont(Font.font("Poppins", 12));
-			songArtist.setFont(Font.font("Poppins", 12));
-			songYear.setFont(Font.font("Poppins", 12));
+			songName.getStyleClass().add("text-input-PopulateTitle");
+			songGenre.getStyleClass().add("text-input-PopulateInfo");
+			songArtist.getStyleClass().add("text-input-PopulateInfo");
+			songYear.getStyleClass().add("text-input-PopulateInfo");
 
 			playView.setFitWidth(15);
 			playView.setFitHeight(20);
@@ -563,6 +558,7 @@ public class DashboardView extends View {
 
 	public void populateSongAlbumVersion(ArrayList<Song> songlist){
 		populateSongsList.getItems().clear();
+		populateSongsList.getStyleClass().add("view/theme.css");
 		int index=0;
 		for(Song s : songlist)
 		{
@@ -596,13 +592,17 @@ public class DashboardView extends View {
 			Text songTitle = new Text(s.getSong_name());
 			Text genre = new Text(s.getGenre());
 
-			songTitle.setFont(Font.font("Poppins", 14));
-			genre.setFont(Font.font("Poppins", 12));
+			songTitle.getStyleClass().add("text-input-PopulateTitle");
+			genre.getStyleClass().add("text-input-PopulateInfo");
+
 
 			AnchorPane.setLeftAnchor(songTitle, 45.0);
 			AnchorPane.setTopAnchor(songTitle, 5.0);
-			AnchorPane.setLeftAnchor(genre, 450.0);
+			AnchorPane.setLeftAnchor(genre, 380.0);
 			AnchorPane.setTopAnchor(genre, 5.0);
+
+			songInfo.setPrefWidth(400.0);
+			songInfo.setMaxWidth(400.0);
 
 			songInfo.getChildren().add(genre);
 			songInfo.getChildren().add(playBtn);

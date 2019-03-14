@@ -104,6 +104,7 @@ public class UploadSongController {
 			}
 		}
 		librarymodel.setSongList(sd.getAllSong(user_id));
+		System.out.println(librarymodel.getSongList().size());
 		librarymodel.setAlbumList(ad.getAlbums(user_id));
 		uploadStage.close();
 		return true;

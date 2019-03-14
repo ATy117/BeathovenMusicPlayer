@@ -11,6 +11,14 @@
     -fx-font-size: 16;
 }
 
+.jfx-button-FavePlaylist{
+    -fx-background-color: #303030;
+    -fx-text-fill: #E9C582;
+    -fx-pref-width: 90;
+    -fx-font-family: Poppins;
+    -fx-font-size: 14;
+}
+
 .jfx-button-Album{
     -fx-background-color: #303030;
     -fx-text-fill: #E9C582;
@@ -107,4 +115,10 @@
     -fx-font-size: 12;
     -fx-font-family: Poppins;
     -fx-fill: #f1f6f1;
+}
+
+.text-input-Artist{
+    -fx-font-size: 14;
+    -fx-font-family: Poppins;
+    -fx-fill: #E9C582;
 }

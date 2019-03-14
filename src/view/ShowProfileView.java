@@ -119,22 +119,18 @@ public class ShowProfileView extends View{
 		{
 			firstNameField.getStyleClass().add("jfx-text-field-WhenEdit");
 			lastnameField.getStyleClass().add("jfx-text-field-WhenEdit");
-			usernameField.getStyleClass().add("jfx-text-field-WhenEdit");
 			editBtn.setText("done");
 			firstNameField.setEditable(true);
 			lastnameField.setEditable(true);
-			usernameField.setEditable(true);
 
 		}
 		else if(editBtn.getText().equals("done"))
 		{
 			firstNameField.getStyleClass().remove("jfx-text-field-WhenEdit");
 			lastnameField.getStyleClass().remove("jfx-text-field-WhenEdit");
-			usernameField.getStyleClass().remove("jfx-text-field-WhenEdit");
 			editBtn.setText("edit");
 			firstNameField.setEditable(false);
 			lastnameField.setEditable(false);
-			usernameField.setEditable(false);
 		}
 
 		profilePic.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -153,7 +149,7 @@ public class ShowProfileView extends View{
 		favePlaylistList.getStylesheets().add("view/theme.css");
 		for(Playlist p : playlists){
 			JFXButton playlistBtn = new JFXButton(p.getName());
-			playlistBtn.getStyleClass().add("jfx-button-Playlist");
+			playlistBtn.getStyleClass().add("jfx-button-FavePlaylist");
 
 			playlistBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
 				@Override
@@ -172,6 +168,8 @@ public class ShowProfileView extends View{
 	public void populateFavoriteSong(ArrayList<Song> songList)
 	{
 		faveSongsList.getItems().clear();
+		faveSongsList.getStylesheets().add("view/theme.css");
+		faveSongsList.getStyleClass().add("jfx-listView");
 		int index=0;
 		for(Song s: songList){
 			AnchorPane songAnchorPane = new AnchorPane();
@@ -180,13 +178,11 @@ public class ShowProfileView extends View{
 			JFXButton playButton = new JFXButton();
 			Text SongName = new Text(s.getSong_name());
 			Text SongArtist = new Text("by " + s.getArtist_name());
-			Text songYear = new Text(s.getYear()+"");
-			Text songGenre = new Text(s.getGenre());
 
 			SongName.setFont(Font.font("Poppins", 14));
 			SongArtist.setFont(Font.font("Poppins", 12));
-			songGenre.setFont(Font.font("Poppins", 12));
-			songYear.setFont(Font.font("Poppins", 12));
+			SongName.getStyleClass().add("text-input-PopulateTitle");
+			SongArtist.getStyleClass().add("text-input-PopulateInfo");
 
 			playView.setFitWidth(16);
 			playView.setFitHeight(20);
@@ -195,10 +191,6 @@ public class ShowProfileView extends View{
 			AnchorPane.setBottomAnchor(SongName, 15.0);
 			AnchorPane.setTopAnchor(SongArtist, 15.0);
 			AnchorPane.setLeftAnchor(SongArtist, 50.0);
-			AnchorPane.setLeftAnchor(songGenre, 400.0);
-			AnchorPane.setBottomAnchor(songGenre, 15.0);
-			AnchorPane.setTopAnchor(songYear, 15.0);
-			AnchorPane.setLeftAnchor(songYear, 400.0);
 
 			playButton.setGraphic(playView);
 
@@ -233,6 +225,8 @@ public class ShowProfileView extends View{
 	public void populateSongFromPlayist(ArrayList<Song> playlistSongs)
 	{
 		songPlaylistList.getItems().clear();
+		songPlaylistList.getStylesheets().add("view/theme.css");
+		songPlaylistList.getStyleClass().add("jfx-listView");
 		int index=0;
 		for(Song s: playlistSongs){
 			AnchorPane songInfo = new AnchorPane();
@@ -243,6 +237,9 @@ public class ShowProfileView extends View{
 			Text artistName = new Text(s.getArtist_name());
 			playView.setFitWidth(15);
 			playView.setFitHeight(20);
+
+			songName.getStyleClass().add("text-input-PopulateTitle");
+			artistName.getStyleClass().add("text-input-PopulateInfo");
 
 			playBtn.setGraphic(playView);
 			int finalIndex = index;
