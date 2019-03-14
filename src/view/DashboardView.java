@@ -17,7 +17,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model_rework.*;
@@ -26,7 +25,6 @@ import populatorServices.PopulateSongsAlbum;
 import populatorServices.PopulateSongsAll;
 import populatorServices.PopulateSongsPlaylist;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -324,17 +322,15 @@ public class DashboardView extends View {
 
 	private void userInfo()
 	{
-		Image userPicImage;
+
 		if(profilemodel.getUser() instanceof GuestUser)
 			userName.setText("Guest");
 		else
 			userName.setText(profilemodel.getUser().getFirst_name() + " " + profilemodel.getUser().getLast_name() );
-		if(profilemodel.getUser().getAvatarURL() == null){
-			userPicImage = new Image("resources/user.png");
 
-		}
-		else
-			userPicImage = new Image(profilemodel.getUser().getAvatarURL().toString());
+
+		Image userPicImage = controller.getImageFromUser(profilemodel.getUser());
+
 
 		userPic.setFill(new ImagePattern(userPicImage));
 	}

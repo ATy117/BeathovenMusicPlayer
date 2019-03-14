@@ -437,14 +437,13 @@ public class SongDAODB implements SongDAO{
 
 
     private File toFile(ResultSet rs) throws SQLException, IOException {
-        File file = new File(System.getProperty("user.home") + "/Documents/Beathoven/" + rs.getString(this.COL_SONGNAME)+" - "+rs.getString(this.COL_ARTISTNAME));
+        File file = new File("src/resources/" + rs.getString(this.COL_SONGNAME)+" - "+rs.getString(this.COL_ARTISTNAME)+".mp3");
         OutputStream outputStream = new FileOutputStream(file);
         InputStream inputStream = rs.getBinaryStream(this.COL_SONGURL);
         byte[] buffer = new byte[4096];
         while (inputStream.read(buffer) > 0){
             outputStream.write(buffer);
         }
-        System.out.println(file.getAbsolutePath());
         return file;
     }
 }

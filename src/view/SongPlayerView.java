@@ -61,6 +61,7 @@ public class SongPlayerView extends View{
 	private ImageView replayView;
 	private ImageView shuffleView;
 	private ImageView shuffleClickedView;
+	private double volume;
 
 
 	public SongPlayerView (Stage playerStage, SongPlayerModel songplayermodel, SongPlayerController controller) {
@@ -154,6 +155,12 @@ public class SongPlayerView extends View{
 		songPlayerAnchor.getStylesheets().add("view/theme.css");
 		slider.getStyleClass().add("jfx-slider");
 
+		titleText.setText("No Song Playing");
+		artistText.setText("");
+		albumText.setText("");
+		genreText.setText("");
+		timeStamp.setText("");
+		volume =0.5;
 	}
 
 
@@ -371,10 +378,19 @@ public class SongPlayerView extends View{
 	}
 
 	public void turnVolumeUp(ActionEvent actionEvent){
-		System.out.println("VolumeUp");
+		if (volume < 1) {
+			volume+=0.1;
+			System.out.println("VolumeUp");
+			mp3player.setVolume(volume);
+		}
+
 	}
 
 	public void turnVolumeDown(ActionEvent actionEvent){
-		System.out.println("VolumeDown");
+		if (volume > 0) {
+			volume-=0.1;
+			System.out.println("VolumeDown");
+			mp3player.setVolume(volume);
+		}
 	}
 }

@@ -8,6 +8,7 @@ import model_rework.*;
 import view.DashboardView;
 import view.View;
 
+import java.io.File;
 import java.sql.Connection;
 import java.util.ArrayList;
 
@@ -36,7 +37,7 @@ public class GuestUserDashboardController extends DashboardController {
 		String username = "username" + counter;
 		String password = "password" + counter;
 		GuestUser guestUser = GUB
-				.withAvatar(null)
+				.withAvatar(new File("src/resources/user.png"))
 				.withFirstName("firstname" + counter)
 				.withLastName("lastname" + counter)
 				.withUsername(username)
