@@ -2,6 +2,7 @@ package controller;
 
 import dbservice.UserDAO;
 import dbservice.UserDAODB;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 import model_rework.*;
 import view.DashboardView;
@@ -24,6 +25,7 @@ public class GuestUserDashboardController extends DashboardController {
 		this.primaryStage.setOnCloseRequest(e -> {
 			UserDAO UD = new UserDAODB(connection);
 			UD.deleteUser(profilemodel.getUser().getUser_id());
+			Platform.exit();
 		});
 		playerStage = new Stage();
 		profileStage = new Stage();

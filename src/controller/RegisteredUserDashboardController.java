@@ -21,6 +21,10 @@ public class RegisteredUserDashboardController extends DashboardController {
 		profilemodel = new ProfileModel();
 
 		this.primaryStage = primaryStage;
+		this.primaryStage.setOnCloseRequest(e -> {
+			Platform.exit();
+		});
+
 		playerStage = new Stage();
 		profileStage = new Stage();
 		uploadStage = new Stage();
