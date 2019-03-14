@@ -317,7 +317,7 @@ public class DashboardView extends View {
 		else
 			userName.setText(profilemodel.getUser().getFirst_name() + " " + profilemodel.getUser().getLast_name() );
 		if(profilemodel.getUser().getAvatarURL() == null){
-			userPicImage = new Image("resources/user.png");
+			userPicImage = new Image("src/resources/user.png");
 
 		}
 		else {
