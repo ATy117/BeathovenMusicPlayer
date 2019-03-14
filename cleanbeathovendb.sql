@@ -1,3 +1,6 @@
+CREATE DATABASE  IF NOT EXISTS `beathovendb` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `beathovendb`;
+
 -- MySQL dump 10.13  Distrib 8.0.15, for macos10.14 (x86_64)
 --
 -- Host: localhost    Database: beathovendb
