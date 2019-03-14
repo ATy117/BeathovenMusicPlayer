@@ -272,11 +272,8 @@ public class SongPlayerView extends View{
 			mp3player.setCycleCount(repeat ? MediaPlayer.INDEFINITE : 1);
 			mp3player.setOnEndOfMedia(new Runnable() {
 				public void run() {
-					if (!repeat) {
-						playBtn.setGraphic(playView);
-						stopRequested = true;
-						atEndOfMedia = true;
-					}
+					playBtn.setGraphic(playView);
+					controller.playNextSong();
 				}
 			});
 

@@ -21,6 +21,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model_rework.*;
+import populatorServices.PopulateSongs;
+import populatorServices.PopulateSongsAlbum;
+import populatorServices.PopulateSongsAll;
+import populatorServices.PopulateSongsPlaylist;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
@@ -41,7 +45,7 @@ public class DashboardView extends View {
 
 	@FXML public JFXButton myProfileBtn;
 	@FXML public JFXButton uploadAddSongsBtn;
-	@FXML public JFXListView populateSongsList;
+	@FXML public JFXListView<AnchorPane> populateSongsList;
 	@FXML public JFXListView newPLaylistVbox;
 	@FXML public JFXListView albumsVbox;
 	@FXML public JFXComboBox filterCombo;
@@ -54,19 +58,11 @@ public class DashboardView extends View {
 	@FXML public Text yearText;
 
 
-	public JFXPopup songEdit = new JFXPopup();
-	public VBox vbox = new VBox();
-	public JFXPopup addToPlaylistPop = new JFXPopup();
-	public VBox playlistVboxList = new VBox();
-
-	public JFXPopup songPlaylist = new JFXPopup();
-	public VBox vboxSongPlaylist = new VBox();
-
-	public JFXButton edit;
-
 	private VBox pbox = new VBox();
 	private JFXPopup playlistEdit = new JFXPopup();
 	private int popSource = 0;
+
+	private PopulateSongs<AnchorPane> populateSongs;
 
 
 	public DashboardView (Stage stage, SongPlayerModel songplayermodel, LibraryModel librarymodel, ProfileModel profilemodel, DashboardController controller) {
@@ -95,12 +91,15 @@ public class DashboardView extends View {
 	@Override
 	public void Update() {
 		if (popSource == 0) {
-			populateSong((ArrayList<Song>) librarymodel.getSongList());
+			populateSongs = new PopulateSongsAll(controller, librarymodel, profilemodel);
 		} else if (popSource == 1){
-			populateSongPlaylistVersion((ArrayList<Song>) librarymodel.getSongList());
+			populateSongs = new PopulateSongsPlaylist(controller, headerLabelText.getText());
 		} else if (popSource == 2){
-			populateSongAlbumVersion((ArrayList<Song>) librarymodel.getSongList());
+			populateSongs = new PopulateSongsAlbum(controller);
 		}
+
+		populateSongsList.getItems().clear();
+		populateSongsList.getItems().addAll(populateSongs.populateListView(librarymodel.getSongList()));
 
 		populateAlbum((ArrayList<Album>)librarymodel.getAlbumList());
 		populatePlaylist((ArrayList<Playlist>)librarymodel.getPlaylistList());
@@ -249,8 +248,7 @@ public class DashboardView extends View {
 	}
 
 
-	public void populateAlbum(ArrayList<Album> albumList)
-	{
+	public void populateAlbum(ArrayList<Album> albumList) {
 		albumsVbox.getStylesheets().add("view/theme.css");
 		albumsVbox.getItems().clear();
 		for(Album a: albumList){
@@ -309,309 +307,6 @@ public class DashboardView extends View {
 		controller.showSongPlayer();
 	}
 
-	public void populateSong(ArrayList<Song> songlist){
-		populateSongsList.getItems().clear();
-		populateSongsList.getStyleClass().add("view/theme.css");
-		int index = 0;
-		for(Song s : songlist)
-		{
-			AnchorPane songAnchorPane = new AnchorPane();
-			Image play = new Image("resources/play.png");
-			ImageView playView = new ImageView(play);
-			JFXButton playButton = new JFXButton();
-			Text SongName = new Text(s.getSong_name());
-			Text SongArtist = new Text("by " + s.getArtist_name());
-			Text songYear = new Text(s.getYear()+"");
-			Text songGenre = new Text(s.getGenre());
-
-			playView.setFitWidth(16);
-			playView.setFitHeight(20);
-
-			AnchorPane.setLeftAnchor(SongName, 50.0);
-			AnchorPane.setBottomAnchor(SongName, 15.0);
-			AnchorPane.setTopAnchor(SongArtist, 15.0);
-			AnchorPane.setLeftAnchor(SongArtist, 50.0);
-			AnchorPane.setLeftAnchor(songGenre, 400.0);
-			AnchorPane.setBottomAnchor(songGenre, 15.0);
-			AnchorPane.setTopAnchor(songYear, 15.0);
-			AnchorPane.setLeftAnchor(songYear, 400.0);
-
-			playButton.setGraphic(playView);
-
-			int finalIndex = index;
-			playButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-					List<Song> playableList = new ArrayList<>();
-
-					for (int i = finalIndex; i <songlist.size(); i++) {
-						playableList.add(songlist.get(i));
-					}
-
-					for (int i = 0; i<finalIndex; i++) {
-						playableList.add(songlist.get(i));
-					}
-
-					controller.playSong(playableList);
-
-				}
-			});
-
-			songAnchorPane.getChildren().add(SongArtist);
-			songAnchorPane.getChildren().add(songGenre);
-			songAnchorPane.getChildren().add(songYear);
-			songAnchorPane.getChildren().add(SongName);
-			songAnchorPane.getChildren().add(playButton);
-
-			SongName.getStyleClass().add("text-input-PopulateTitle");
-			songGenre.getStyleClass().add("text-input-PopulateInfo");
-			songYear.getStyleClass().add("text-input-PopulateInfo");
-			SongArtist.getStyleClass().add("text-input-PopulateInfo");
-
-			populateSongsList.getItems().add(songAnchorPane);
-			populateSongsList.getStylesheets().add("view/theme.css");
-			populateSongsList.getStyleClass().add("anchorPane");
-			populateSongsList.getStyleClass().add("jfx-listView");
-			songAnchorPane.getStylesheets().add("view/theme.css");
-			songEdit.getStyleClass().add("jfx-popup-Pop");
-			songAnchorPane.setOnMouseClicked(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-					if(event.getButton() == MouseButton.SECONDARY)
-					{
-						vbox.getChildren().clear();
-						vbox.getStylesheets().add("view/theme.css");
-						vbox.getStyleClass().add("vBox-Pop");
-
-						JFXButton delete = new JFXButton("Delete");
-						delete.setOnMouseClicked(new EventHandler<MouseEvent>() {
-							@Override
-							public void handle(MouseEvent event) {
-								songEdit.hide();
-								controller.deleteSong(s.getUploader_id(), s.getSong_id(), s.getAlbum_id());
-							}
-						});
-						delete.getStyleClass().add("jfx-button-RightClick");
-
-						JFXButton favorite = new JFXButton();
-						if (s.isFavorite()){
-							favorite.setText("Unfavorite");
-							favorite.setOnMouseClicked(new EventHandler<MouseEvent>() {
-								@Override
-								public void handle(MouseEvent event) {
-									s.setFavorite(false);
-									songEdit.hide();
-									controller.editSong(s);
-								}
-							});
-						} else {
-							favorite.setText("Favorite");
-							favorite.setOnMouseClicked(new EventHandler<MouseEvent>() {
-								@Override
-								public void handle(MouseEvent event) {
-									s.setFavorite(true);
-									songEdit.hide();
-									controller.editSong(s);
-								}
-							});
-						}
-						favorite.getStyleClass().add("jfx-button-RightClick");
-
-						JFXButton addPlaylist = new JFXButton("Add to Playlist");
-						addPlaylist.setOnMouseClicked(new EventHandler<MouseEvent>() {
-							@Override
-							public void handle(MouseEvent event) {
-								playlistVboxList.getChildren().clear();
-								playlistVboxList.getStylesheets().add("view/theme.css");
-								playlistVboxList.getStyleClass().add("vBox-PopPlaylist");
-
-								for(Playlist p: librarymodel.getPlaylistList())
-								{
-									JFXButton playlistButton = new JFXButton(p.getName());
-									playlistVboxList.getChildren().add(playlistButton);
-
-									playlistButton.getStyleClass().add("jfx-button-RightPlaylist");
-									playlistButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-										@Override
-										public void handle(MouseEvent event) {
-											controller.addSongToPlaylist(s.getUploader_id(), s.getSong_id(), p.getPlaylist_id());
-											addToPlaylistPop.hide();
-										}
-									});
-								}
-
-
-								addToPlaylistPop.setPopupContent(playlistVboxList);
-								addToPlaylistPop.show(vbox, JFXPopup.PopupVPosition.BOTTOM, JFXPopup.PopupHPosition.RIGHT);
-
-							}
-						});
-						addPlaylist.getStyleClass().add("jfx-button-RightClick");
-
-						edit = new JFXButton("Edit");
-						edit.setOnMouseClicked(new EventHandler<MouseEvent>() {
-							@Override
-							public void handle(MouseEvent event) {
-								controller.editSong(s);
-							}
-						});
-						edit.getStyleClass().add("jfx-button-RightClick");
-						vbox.getChildren().add(delete);
-						if (profilemodel.getUser() instanceof RegisteredUser)
-							vbox.getChildren().add(favorite);
-						vbox.getChildren().add(addPlaylist);
-						vbox.getChildren().add(edit);
-						songEdit.setPopupContent(vbox);
-						songEdit.show(songAnchorPane, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
-
-					}
-				}
-			});
-			index++;
-		}
-
-	}
-
-
-	public void populateSongPlaylistVersion(ArrayList<Song> songlist){
-		populateSongsList.getItems().clear();
-		populateSongsList.getStylesheets().add("view/theme.css");
-		int index=0;
-		for(Song s : songlist)
-		{
-			AnchorPane songInfo = new AnchorPane();
-			JFXButton playButton = new JFXButton();
-			Image play = new Image("resources/play.png");
-			ImageView playView = new ImageView(play);
-			Text songName = new Text(s.getSong_name());
-			Text songGenre = new Text(s.getGenre());
-			Text songArtist = new Text(s.getArtist_name());
-			Text songYear = new Text(s.getYear() + "");
-
-			songName.getStyleClass().add("text-input-PopulateTitle");
-			songGenre.getStyleClass().add("text-input-PopulateInfo");
-			songArtist.getStyleClass().add("text-input-PopulateInfo");
-			songYear.getStyleClass().add("text-input-PopulateInfo");
-
-			playView.setFitWidth(15);
-			playView.setFitHeight(20);
-
-			AnchorPane.setLeftAnchor(songName, 50.0);
-			AnchorPane.setTopAnchor(songName, 0.0);
-			AnchorPane.setLeftAnchor(songGenre, 400.0);
-			AnchorPane.setTopAnchor(songGenre, 0.0);
-			AnchorPane.setTopAnchor(songArtist, 15.0);
-			AnchorPane.setLeftAnchor(songArtist, 50.0);
-			AnchorPane.setTopAnchor(songYear,15.0 );
-			AnchorPane.setLeftAnchor(songYear, 400.0);
-
-			playButton.setGraphic(playView);
-			int finalIndex = index;
-			playButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-					List<Song> playableList = new ArrayList<>();
-
-					for (int i = finalIndex; i <songlist.size(); i++) {
-						playableList.add(songlist.get(i));
-					}
-
-					for (int i = 0; i<finalIndex; i++) {
-						playableList.add(songlist.get(i));
-					}
-					controller.playSong(playableList);
-
-				}
-			});
-			songInfo.getChildren().add(songYear);
-			songInfo.getChildren().add(songArtist);
-			songInfo.getChildren().add(songGenre);
-			songInfo.getChildren().add(songName);
-			songInfo.getChildren().add(playButton);
-			populateSongsList.getItems().add(songInfo);
-
-			songInfo.setOnMouseClicked(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-					if(event.getButton()== MouseButton.SECONDARY) {
-						vboxSongPlaylist.getChildren().clear();
-						vboxSongPlaylist.getStylesheets().add("view/theme.css");
-						vboxSongPlaylist.getStyleClass().add("vBox-Pop");
-						JFXButton delete = new JFXButton("Delete from Playlist");
-						delete.setOnMouseClicked(new EventHandler<MouseEvent>() {
-							@Override
-							public void handle(MouseEvent event) {
-								controller.deleteSongFromPlaylist(s.getUploader_id(), s.getSong_id(), headerLabelText.getText());
-								songPlaylist.hide();
-							}
-						});
-						delete.getStyleClass().add("jfx-button-RightClick");
-						vboxSongPlaylist.getChildren().add(delete);
-						songPlaylist.setPopupContent(vboxSongPlaylist);
-						songPlaylist.show(songInfo, JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.RIGHT);
-					}
-				}
-			});
-			index++;
-		}
-	}
-
-	public void populateSongAlbumVersion(ArrayList<Song> songlist){
-		populateSongsList.getItems().clear();
-		populateSongsList.getStyleClass().add("view/theme.css");
-		int index=0;
-		for(Song s : songlist)
-		{
-			AnchorPane songInfo = new AnchorPane();
-			JFXButton playBtn = new JFXButton();
-			Image play = new Image("resources/play.png");
-			ImageView playView = new ImageView(play);
-
-			playView.setFitHeight(20);
-			playView.setFitWidth(15);
-
-			playBtn.setGraphic(playView);
-			int finalIndex = index;
-			playBtn.setOnMouseClicked(new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-					List<Song> playableList = new ArrayList<>();
-
-					for (int i = finalIndex; i <songlist.size(); i++) {
-						playableList.add(songlist.get(i));
-					}
-
-					for (int i = 0; i<finalIndex; i++) {
-						playableList.add(songlist.get(i));
-					}
-
-					controller.playSong(playableList);
-
-				}
-			});
-			Text songTitle = new Text(s.getSong_name());
-			Text genre = new Text(s.getGenre());
-
-			songTitle.getStyleClass().add("text-input-PopulateTitle");
-			genre.getStyleClass().add("text-input-PopulateInfo");
-
-
-			AnchorPane.setLeftAnchor(songTitle, 45.0);
-			AnchorPane.setTopAnchor(songTitle, 5.0);
-			AnchorPane.setLeftAnchor(genre, 380.0);
-			AnchorPane.setTopAnchor(genre, 5.0);
-
-			songInfo.setPrefWidth(400.0);
-			songInfo.setMaxWidth(400.0);
-
-			songInfo.getChildren().add(genre);
-			songInfo.getChildren().add(playBtn);
-			songInfo.getChildren().add(songTitle);
-			populateSongsList.getItems().add(songInfo);
-			index++;
-		}
-
-	}
 
 	private void userInfo()
 	{
