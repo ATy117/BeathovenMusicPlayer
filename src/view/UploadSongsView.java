@@ -92,7 +92,6 @@ public class UploadSongsView{
 
 
 		if (songCheck.equals("") || artistCheck.equals("") || nullGenre || badYear || musicfile == null){
-			System.out.println("make sure all fields are filled");
 
 			errorAnchor.getStylesheets().add("view/theme.css");
 			errorAnchor.getStyleClass().add("anchorPane-Error");
