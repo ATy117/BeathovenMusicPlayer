@@ -110,6 +110,11 @@ public class ShowProfileView extends View{
 		populateFavoritePlaylist((ArrayList<Playlist>) profilemodel.getFavoritePlaylists());
 		populateSongFromPlayist((ArrayList<Song>) profilemodel.getPlaylistSongs());
 
+		if (profilemodel.getMostPlayedSong() == null)
+			mostPlayedField.setText("None");
+		else
+			mostPlayedField.setText(profilemodel.getMostPlayedSong().getSong_name());
+
 		Image userPic = controller.getImageFromUser(profilemodel.getUser());
 		profilePic.setFill(new ImagePattern(userPic));
 	}

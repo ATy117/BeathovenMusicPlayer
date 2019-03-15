@@ -24,10 +24,12 @@ public class ShowProfileController extends Controller {
 		SongDAO SD = new SongDAODB(connection);
 		PlaylistDAO PD = new PlaylistDAODB(connection);
 
+		Song mostPlayed = SD.getMostPlayed(profilemodel.getUser().getUser_id());
 		List<Song> faveSongs = SD.getFavoriteSong(profilemodel.getUser().getUser_id());
 		List<Playlist> favePlaylists = PD.getFavoritePlaylists(profilemodel.getUser().getUser_id());
 		profilemodel.setFavoriteSongs(faveSongs);
 		profilemodel.setFavoritePlaylists(favePlaylists);
+		profilemodel.setMostPlayedSong(mostPlayed);
 
 		ShowProfileView view = new ShowProfileView(profileStage, profilemodel, this);
 		profilemodel.Attach(view);
