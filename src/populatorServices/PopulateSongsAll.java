@@ -179,6 +179,7 @@ public class PopulateSongsAll implements PopulateSongs<AnchorPane> {
                                         public void handle(MouseEvent event) {
                                             controller.addSongToPlaylist(s.getUploader_id(), s.getSong_id(), p.getPlaylist_id());
                                             addToPlaylistPop.hide();
+                                            songEdit.hide();
                                         }
                                     });
                                 }
