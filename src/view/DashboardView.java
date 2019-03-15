@@ -38,6 +38,7 @@ public class DashboardView extends View {
 	public Text albumText;
 	public Text genreText;
 	public Circle songPic;
+	public JFXButton logoutBtn;
 
 	private SongPlayerModel songplayermodel;
 	private LibraryModel librarymodel;
@@ -383,6 +384,12 @@ public class DashboardView extends View {
 		genreText.setText("");
 		singerText.setText("");
 		yearText.setText("");
+
+		logoutBtn.setOnKeyPressed(e -> {
+			if (e.getCode().equals(KeyCode.ENTER)) {
+
+			}
+		});
 
 		headerInformation.getStylesheets().add("view/theme.css");
 		filterCombo.getStyleClass().add("jfx-combo-box-Filter");
